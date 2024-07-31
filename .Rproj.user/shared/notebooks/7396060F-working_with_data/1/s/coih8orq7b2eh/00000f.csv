@@ -1,0 +1,5 @@
+"0",""
+"0","# Group the data frame by the car variable and calculate the mean age for each group"
+"0",""
+"0","my_data %>% group_by(car) %>% "
+"0","  summarise(mean_age = mean(age))"

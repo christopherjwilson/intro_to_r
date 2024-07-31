@@ -1,0 +1,50 @@
+---
+title: "Quick revision quiz: Introduction to R and R Studio"
+output: webexercises::webexercises_default
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(webexercises)
+```
+
+
+```{r, echo = FALSE, results='asis'}
+# Uncomment to change widget colours:
+#style_widgets(incorrect = "goldenrod", correct = "purple")
+```
+::: {.webex-check .webex-box}
+
+What is the purpose of R scripts in the context of data analysis?
+`r mcq(c( "To create interactive visualizations", "To organize files and folders on your computer", answer =  "To type and save analysis code for later use", "To display the output of R code immediately"))`
+
+What does the Environment in R Studio primarily display?
+`r mcq(c( "The R script files", "Publication-ready outputs", answer = "Objects (data, analysis, plots) currently in memory",  "The R package installation menu"))`
+
+Which of the following is a reason to learn and use R?
+`r mcq(c( "It is a closed-source software", "It is used exclusively by programmers", answer = "It has a large number of packages and a wide community of users",  "It doesn't require any coding skills"))`
+
+How can you install an R package in R Studio?
+`r mcq(c( "By clicking 'Load' in the Environment section", "By running the package's executable file", answer = "By using the 'install.packages()' function", "By copying the package files to the working directory"))`
+
+What does the 'Run' button do in R Studio?
+`r mcq(c( "It compiles the R script into a standalone program", "It generates publication-ready outputs", answer = "It runs the code in the R script",  "It opens the R package manager"))`
+
+
+How can you load a previously installed R package?
+`r mcq(c( "By clicking the 'Load' button in the Console", "By typing 'install.packages()' in the Console", answer =  "By using the 'library(package_name)' command", "By copying the package files to the working directory"))`
+
+True or False: You can work on multiple datasets at the same time using R / R Studio? `r torf(TRUE)` 
+
+What advantage does using R scripts for analysis provide?
+`r mcq(c( "They enable real-time collaboration with other users", "They allow you to create complex interactive visualizations",answer =  "They encourage transparency and reproducibility of analysis", "They automatically generate publication-ready reports"))`
+
+
+What is the main role of the R Console in R Studio?
+`r mcq(c( "To create interactive visualizations", "To dispay objects in memory", "To organize and manage files in the workspace", answer = "To provide an interactive environment to run R code"))`
+
+"What is the difference between R and R Studio?
+`r mcq(c( answer = "R is a statistical programming language, while R Studio is a software developed for using R to do analysis", "R is a data visualization tool, while R Studio is a statistical analysis software", "R is used for web development, while R Studio is used for machine learning",  "R is the name of the software, while R Studio is a community forum"))`"
+
+:::
+

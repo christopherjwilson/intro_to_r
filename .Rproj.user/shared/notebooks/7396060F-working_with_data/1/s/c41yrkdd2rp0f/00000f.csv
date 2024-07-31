@@ -1,0 +1,4 @@
+"0",""
+"0","# Filter the data frame to select only the rows where the age variable is greater than 25 and the height variable is greater than 175"
+"0",""
+"0","my_data %>% filter(age > 25 & height > 175)"

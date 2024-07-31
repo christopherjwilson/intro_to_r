@@ -1,0 +1,24 @@
+{
+  "index.qmd": {
+    "index.html": "97a9014b",
+    "index.tex": "2b6affde"
+  },
+  "intro.qmd": {
+    "intro.html": "64e713ea"
+  },
+  "summary.qmd": {
+    "summary.html": "f220417c"
+  },
+  "references.qmd": {
+    "references.html": "33896880"
+  },
+  "working_with_data.qmd": {
+    "working_with_data.html": "672f41ed"
+  },
+  "descriptive_stats.qmd": {
+    "descriptive_stats.html": "b3695fe8"
+  },
+  "webexercises/introduction_to_r.Rmd": {
+    "introduction_to_r.html": "1d43f979"
+  }
+}
