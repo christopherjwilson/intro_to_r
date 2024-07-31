@@ -1,0 +1,357 @@
+---
+format: 
+    revealjs:
+        css: "include/style.css"
+        chalkboard: true
+        multiplex: true
+        slide-number: c/t
+bibliography: references.bib
+title: "Hypothesis testing with linear models"
+subtitle: DClin Research Methods 1
+author: Dr Christopher Wilson
+institute: Teesside University
+logo: "logo.jpg"
+csl: apa.csl
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(
+fig.align = "center"
+)
+
+```
+
+## Overview
+
+- Hypothesis testing
+-  Linear models
+-  Linear models in R
+
+
+## Different types of research hypothesis 
+
+- Hypothesis testing is a method for making inferences about a population based on a sample
+
+- In clinical psychology research, for example, we might be interested in the role of attentional bias in anxiety
+
+
+
+## Different types of research hypothesis 
+
+- However, we need to phrase this in terms of a hypothesis that we can test:
+    
+    - There is a difference in attentional bias between anxious and non-anxious individuals
+    - There is a difference in attentional bias between anxious and non-anxious individuals, but only for threat-related stimuli
+    - Level of anxiety predicts level of attentional bias to threat-related stimuli
+    - Level of anxiety moderates the relationship between attentional bias and depression
+  
+
+  
+  
+
+
+
+
+
+    
+## {background-image="images/anxious.jpg" background-size="contain"}
+
+## Hypothesis influences research design 
+
+- The nature of these hypotheses will determine the design of the study, the variables that are measured, and the statistical analysis that is used
+
+- In many cases people come to analyse their data and find it difficult to know which statistical test to use
+
+- This is not necessarily because of a lack of statistical knowledge
+
+## Different analyses for different designs? {.smaller}
+
+- Psych students are often taught to use different statistical tests for different types of designs. For example:
+
+    - t-test for comparing two groups
+    - ANOVA for comparing more than two groups
+    - Correlation for testing the relationship between two continuous variables
+    - Regression for testing the relationship between a continuous and a categorical variable
+    - ANCOVA for testing the relationship between a continuous and a categorical variable, controlling for a third continuous variable
+
+## Using linear models to test hypotheses 
+
+- However, all of these designs can be analysed using linear models (i.e., regression models)
+
+- This is because all of the above tests can be thought of as special cases of linear models
+
+
+## {background-image="https://lindeloev.github.io/tests-as-linear/linear_tests_cheat_sheet.png" background-size="contain"} 
+
+# Linear models using continuous predictor variables
+
+## Linear regression
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+#| out-width: 100%
+#| out-height: 100%
+#| fig-align: center
+
+
+# generate two continuous variables and plot them using ggplot Label the x variable AttentionalBias and the y variable Anxiety
+
+set.seed(123)
+library(ggplot2)
+x <- rnorm(100, 10, 2)
+
+y <- x + rnorm(100, 2, 3)
+
+df <- data.frame(x, y)
+
+
+lm <- lm(y ~ x, data = df)
+
+p = ggplot(lm, aes(x = x, y = y)) + geom_point()
+
+# now fit a linear model to the data and add the intercept value to the plot
+
+intercept <- lm$coefficients[1]
+# add the regression line to the plot with a confidence interval
+
+p <- p +   geom_smooth(method = "lm", se = FALSE, color = "lightgrey")
+
+p <- p + labs(x = "Attentional bias", y = "Anxiety")
+
+
+
+p
+```
+
+- The regression line is the line of best fit through the data (smallest amount of overall error between the line and the data points)
+
+## Residuals
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+# draw a line between the data points and the regression line
+
+p + geom_segment(aes(xend = x, yend = .fitted, color = "red"), alpha = 0.5) + guides(color = FALSE)
+
+
+
+```
+
+- The distances between the data points and the regression line are the residuals
+
+
+# But what is the null hypothesis in regression?
+
+## The null hypothesis in regression {.smaller}
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+#| out-width: 100%
+#| out-height: 100%
+
+# add a horizontal line to the plot at the intercept value
+
+p + geom_hline(yintercept = intercept, linetype = "dashed", color = "red")
+
+```
+
+- The null hypothesis is that the line of best fit is no better at predicting the y variable than the mean of the y variable when the x variable = 0
+
+- In other words, the null hypothesis is that the slope of the line of best fit is 0
+
+
+
+## Looking at regression output
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, eval=FALSE}
+
+model1 <- lm(y ~ x, data = df) #<1>
+
+summary(model1) #<2>
+
+```
+
+1. The <func>lm()</func> function is used for linear regression. The model is specified using the formula y ~ x, where y is the outcome variable and x is the predictor variable.
+
+2. The <func>summary()</func> function is used to get a summary of the model. This includes the intercept and slope values, the standard errors, the t-values, and the p-values.
+
+## Looking at regression output
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+
+model1 <- lm(y ~ x, data = df) #<1>
+
+summary(model1) #<2>
+
+```
+
+# What if we have a categorical predictor variable?
+
+## Example: t-test
+
+- A t-test is a special case of a linear model where there is one predictor variable (group) and one outcome variable (DV)
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+# Generate some data
+set.seed(123)
+group <- rep(c("Treatment", "Control"), each = 10)
+dv <- c(rnorm(10, 10, 2), rnorm(10, 12, 2))
+df <- data.frame(group, dv)
+
+```
+
+```{r echo = T}
+# run a t-test
+
+t.test(dv ~ group, data = df)
+
+
+```
+
+
+
+## Plotting the data #1 {auto-animate="true"}
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+# plot a scatterplot of the data with colour to represent each group
+
+
+ggplot(df, aes(x = group, y = dv, color = group)) + geom_point() 
+
+
+```
+
+Here we can see the data for each group
+
+## Plotting the data #2 {auto-animate="true"}
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+# use geom segment to add a horizontal line for the mean of each group to the plot, use geom_segment so that the mean lines do not cross the mid point of the x axis
+
+ggplot(df, aes(x = group, y = dv, color = group)) + geom_point() + geom_hline(yintercept = mean(df$dv[df$group == "Treatment"]), linetype = "dashed", color = "blue") + geom_hline(yintercept = mean(df$dv[df$group == "Control"]), linetype = "dashed", color = "red") 
+
+
+```
+
+Here we can see the mean for each group, represented by the dashed lines
+
+## Plotting the data #3 {auto-animate="true"}
+
+```{r echo=FALSE, message=FALSE, warning=FALSE} 
+
+# plot a line between the two means
+
+ggplot(df, aes(x = group, y = dv, color = group)) + geom_point() + geom_hline(yintercept = mean(df$dv[df$group == "Treatment"]), linetype = "dashed", color = "red") + geom_hline(yintercept = mean(df$dv[df$group == "Control"]), linetype = "dashed", color = "blue") + geom_segment(aes(x = "Treatment", xend = "Control", y = mean(df$dv[df$group == "Treatment"]), yend = mean(df$dv[df$group == "Control"])), color = "black")
+
+
+```
+
+In a regression model, the intercept is the mean of one of the groups, and the slope is the difference between the means of the two groups
+
+
+
+## Example: t-test as a linear model {.smaller} 
+
+```{r echo = T}
+
+# run a linear model
+
+lm(dv ~ group, data = df) |> summary()
+
+```
+
+- In the above example, the t-test and linear model give the same results. The intercept for the linear model is the mean of the Control Group, and the slope is the difference between the means of group Control and Treatment.
+
+## We can check the confidence intervals from the regression model
+
+```{r echo = T}
+
+# show the confidence confidence intervals of the coefficients
+
+lm(dv ~ group, data = df) |> confint()
+
+```
+
+- We can see that the confidence interval of the regression coefficient is the same as the confidence interval of the difference between means in the t-test
+
+
+# What's the value of using this approach?
+
+## Advantages of using linear models
+
+- Using linear models allows us to test a wide range of hypotheses using the same approach
+
+- This means that we can use the same approach to test hypotheses about:
+    - the relationship between two continuous variables
+    - the relationship between a categorical predictor and continuous outcome
+    - Continuous and categorical predictors in the same model
+
+- We can use this approach regardless of the number of predictor variables or levels in a categorical predictor
+
+# ANOVA as regression
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+# Generate some data for a one-way ANOVA with 3 groups
+
+set.seed(123)
+
+group <- rep(c("Group 1", "Group 2", "Group 3"), each = 10)
+
+dv <- c(rnorm(10, 10, 2), rnorm(10, 12, 2), rnorm(10, 14, 2))
+
+df <- data.frame(group, dv)
+
+```
+
+## One-way ANOVA
+
+
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+
+# running an ANOVA
+
+aov(dv ~ group, data = df) |> summary()
+
+``` 
+
+In this example, we can see that there is a significant effect of group on the outcome variable. However, we do not know which groups are significantly different from each other.
+
+## ANOVA as regression {.smaller}
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+
+lm(dv ~ group, data = df) |> summary()
+
+``` 
+
+In this example, we can see that there is a significant effect of group on the outcome variable. However, we can also see:
+
+-  that Group 2 and Group 3 are significantly different from Group 1.
+- the exact difference between the means of each group
+
+
+# Important points
+
+## Important points
+
+- Not all relationships between variables are linear
+
+- There are other approaches (e.g., logistic regression) for testing non-linear relationships
+
+- You need to check the assumptions of linear models before reporting them
+
+## Summary
+
+- Many different types of hypothesis can be tested using linear models
+
+- This can allow us to ask questions that are more complex because we can include multiple predictor variables in the same model (next week)
+
+- We can get more information from a regression output than from a t-test or ANOVA (for example)
+
+- However, we need to check the assumptions of linear models before reporting them

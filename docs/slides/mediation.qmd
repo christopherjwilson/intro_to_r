@@ -1,0 +1,414 @@
+---
+format: 
+    revealjs:
+        css: ["include/style.css"]
+        chalkboard: true
+        auto-stretch: false
+        multiplex: true
+        slide-number: c/t
+        mermaid:
+          theme: neutral
+        width: 100%
+        code-tools: true
+        code-overflow: wrap
+        code-fold: true
+bibliography: references.bib
+title: "Mediation Designs"
+subtitle: DClin Research Methods 1
+author: Dr Christopher Wilson
+institute: Teesside University
+logo: "logo.jpg"
+csl: apa.csl
+---
+
+```{r setup, include=FALSE}
+
+library(gvlma)
+library(mediation)
+library(bda)
+library(stargazer)
+library(DiagrammeR)
+
+```
+## Overview
+
+-   What is mediation?
+
+- The Baron and Kenny (1986) approach to mediation
+
+- The Preacher and Hayes (2008) approach to mediation
+
+- What is bootstrapping?
+
+- Mediation analysis with a categorical mediator or predictor
+
+
+
+## Today
+
+::: {.callout icon=false}
+- Thinking about more than outcomes. Designing studies to answer more **specific research questions / think about process**.
+  - "Why is this happening?"
+  - "What is the mechanism?"
+:::
+
+
+## What type of research question? {.smaller}
+
+Mediation is an analysis technique. However, we  use it to answer the following type of research question:
+
+> To what extent is the relationship between X and Y mediated by a another variable (M)?
+
+Consider the following example:
+
+>A researcher is interested in the relationship between the treatment a person receives and their mental health. They hypothesise that the relationship between treatment and mental health is mediated by the extent to which they practice the techniques they are taught in therapy, in their everyday life.
+
+## Visualising mediation
+
+```{r fig.height = 5, fig.width = 10, fig.align='center', echo=F}
+
+
+#| fig.cap="Diagram of mediation design"
+#| fig.asp=0.5
+#| fig.pos="H"
+#| fig.align='center'
+
+library(DiagrammeR)
+
+# diagram of treatment -> practice -> mental health
+# LR 
+# treatment -> practice
+# practice -> mental health
+# treatment -> mental health
+edf <-
+  create_edge_df(
+    from = c(1, 2, 1),
+    to = c(2, 3, 3),
+    color=c("blue","green","red"),
+    # label = c(" ","-","+"),
+    fontsize=16)
+
+ndf <- create_node_df(
+  n=3,
+  label = c("Therapy", "Practice", "Mental Health"),
+  shape = "rectangle", 
+  fillcolor = "white", 
+  width = 1.5, 
+  height = 1, 
+  x=c(1,3,5), 
+  y=c(1,3,1),
+  fontsize=12,
+  color="black",
+  fontcolor="black")
+
+med_graph <-
+  create_graph(nodes_df = ndf, edges_df = edf)
+
+med_graph %>% render_graph(title = "")
+
+```
+
+
+
+
+## What is the difference between mediation and moderation? {.smaller}
+
+-   Mediation theorising about the mechanism by which an effect occurs.
+
+-   Moderation is theorising about the conditions under which an effect changes.
+
+That is, from a theoretical perspective:
+
+> mediation is hypothesising about *why* something happens in a relationship, and suggesting that the relationship can be explained through the mediator variable. 
+
+> Moderation is hypothesising about that a relationship is different under certain conditions (i.e. the changing level of the moderator variable).
+
+## How do we test for mediation?
+
+-   There are a number of ways to test for mediation.
+
+    - The "classic" approach is to use the Baron and Kenny (1986) approach.
+    - The "modern" approach is to use the Preacher and Hayes (2008) approach.
+
+- It is worth understanding both approaches, as they are both used in the literature.
+
+- However, the Preacher and Hayes approach is more roust and more flexible.
+
+# Baron and Kenny (1986) approach to mediation
+
+## Baron and Kenny (1986) approach to mediation {.smaller}
+
+-   Baron and Kenny (1986) approach to mediation is a three step process.
+
+-   The first step is to show that the independent variable (X) is related to the mediator (M).
+
+-   The second step is to show that the mediator (M) is related to the dependent variable (Y).
+
+-   The third step is to show that the relationship between the independent variable (X) and the dependent variable (Y) is reduced when the mediator (M) is included in the model.
+
+- The Sobel test is used to test the significance of the indirect effect.
+
+## Visualising mediation
+
+```{r fig.height = 5, fig.width = 10, fig.align='center', echo=F}
+
+
+#| fig.cap="Diagram of mediation design"
+#| fig.asp=0.5
+#| fig.pos="H"
+#| fig.align='center'
+
+library(DiagrammeR)
+
+# diagram of treatment -> practice -> mental health
+# LR 
+# treatment -> practice
+# practice -> mental health
+# treatment -> mental health
+edf <-
+  create_edge_df(
+    from = c(1, 2, 1),
+    to = c(2, 3, 3),
+    color=c("blue","green","red"),
+    # label = c(" ","-","+"),
+    fontsize=16)
+
+ndf <- create_node_df(
+  n=3,
+  label = c("Therapy", "Practice", "Mental Health"),
+  shape = "rectangle", 
+  fillcolor = "white", 
+  width = 1.5, 
+  height = 1, 
+  x=c(1,3,5), 
+  y=c(1,3,1),
+  fontsize=12,
+  color="black",
+  fontcolor="black")
+
+med_graph <-
+  create_graph(nodes_df = ndf, edges_df = edf)
+
+med_graph %>% render_graph(title = "")
+
+```
+
+## Baron and Kenny (1986) approach to mediation #2 {.smaller}
+
+If we assume that we have the following data:
+
+-   X is the independent variable (treatment)
+-   M is the mediator (practice)
+-   Y is the dependent variable (mental health)
+
+Then we would need to show that:
+
+1.  X is related to Y (Path C total effect)
+1.  X is related to M (path A)
+1.  M is related to Y (path B)
+1.  The relationship between X and Y is reduced when M is included in the model. (path C direct effect)
+
+## Baron and Kenny (1986) approach to mediation #3 {.smaller}
+
+```{r echo=F}
+set.seed(456) #Standardizes the numbers generated by rnorm; see Chapter 5
+N <- 100 #Number of participants; graduate students
+X <- rnorm(N, 175, 7) #IV; hours in therapy
+M <- 0.7*X + rnorm(N, 0, 5) #Suspected mediator: practice
+Y <- 0.4*M + rnorm(N, 0, 5) #DV: mental health
+Meddata <- data.frame(X, M, Y)
+```
+
+```{r}
+#| echo: true
+#| code-fold: show
+
+
+#1. Total Effect of X on Y
+fit <- lm(Y ~ X, data=Meddata) #<1>
+
+#2. Path A (X on M)
+fita <- lm(M ~ X, data=Meddata) #<2>
+
+#3. Path B (M on Y)
+fitb <- lm(Y ~ M, data=Meddata) #<3>
+
+#4. Reversed Path C (Y on X, controlling for M)
+fitc <- lm(X ~ Y + M, data=Meddata) #<4>
+
+```
+
+1. Total Effect of X on Y. This should be significant.
+2. Path A (X on M). This should be significant.
+3. Path B (M on Y). This should be significant.
+4. Reversed Path C (Y on X, controlling for M). This should be non-significant.
+
+
+## View the results {.smaller}
+
+
+```{r}
+#| echo: true
+
+
+library(stargazer)
+
+ stargazer(fit, fita, fitb, fitc, type = "text", title = "Baron and Kenny Method")
+
+```
+
+In the table above, all of the paths are significant. However, the relationship between X and Y is no longer significant when M is included in the model.
+
+## Test the significance of the indirect effect 
+
+We can test the significance of the indirect effect using the Sobel test.
+
+```{r}
+#| echo: true
+#| code-fold: show
+
+library(bda)
+mediation.test(Meddata$M, Meddata$X, Meddata$Y)
+```
+
+
+# The Preacher and Hayes (2008) approach to mediation
+
+## Step 1: Run the models 
+
+
+```{r}
+#| echo: true
+#| code-fold: show
+
+
+#Mediate package
+library(mediation)
+
+fitM <- lm(M ~ X,     data=Meddata) #IV on M; 
+fitY <- lm(Y ~ X + M, data=Meddata) #IV and M on DV; 
+```
+
+## Step 2: Check assumptions {.scrollable}
+
+
+```{r}
+#| echo: true
+
+gvlma(fitM) 
+
+
+gvlma(fitY)
+```
+
+
+
+## Step 3.1: Run the mediation analysis on the models
+
+```{r}
+#| echo: true
+
+fitMed <- mediate(fitM, fitY, treat="X", mediator="M")
+summary(fitMed)
+```
+
+## Step 3.1: Run the mediation analysis on the models
+
+The mediate function gives us:  
+
+- Average Causal Mediation Effects (ACME)
+- Average Direct Effects (ADE) 
+- combined indirect and direct effects (Total Effect) 
+- the ratio of these estimates (Prop. Mediated). 
+
+The ACME here is the indirect effect of M (total effect - direct effect) and thus this value tells us if our mediation effect is significant.
+
+
+
+## Step 3.2: Plot the mediation analysis of the models {.smaller}
+
+```{r }
+#| echo: true
+
+plot(fitMed)
+```
+
+
+## Step 3.2: Plot the mediation analysis of the models {.smaller}
+
+The plot  reiterates what was on the previous slide:
+
+- The confidence intervals of Total Effect and ACME are significant
+- The confidence interval of ADE is not significant
+
+ **Translation:**
+
+ - Total effect is significant: there is a relationship between X and Y (direct and indirect)
+ - ADE is not significant: the relationship between X and Y is not direct
+ - ACME is significant: the relationship between X and Y is mediated by M
+
+
+# Bootstrapping
+
+## Bootstrapping the mediation model
+
+- By default, the mediate function uses bootstrapping to estimate the confidence intervals of the mediation effects.
+
+- Bootstrapping is a more robust method of estimating confidence intervals than the Sobel test.
+
+- Bootstrapping is a simulation method that involves repeatedly sampling from the data with replacement. This is done 1000 times by default.
+
+- The confidence intervals are then estimated from the distribution of the bootstrapped estimates.
+
+## Why use bootstrapping?
+
+- Bootstrapping is non-parametric, which means that it does not assume that the data are normally distributed.
+
+- The Sobel test assumes that the data are normally distributed, and is therefore less robust.
+
+- Bootstrapping is robust to violations of normality, heteroscedasticity, and outliers.
+
+- Bootstrapping is not just for mediation analysis, it can be used for any statistical analysis, to estimate confidence intervals.
+
+# Mediation analysis with a categorical mediator
+
+## Mediation analysis with a categorical mediator or predictor
+
+-   The mediation package can also be used to test for mediation with a categorical mediator or predictor.
+
+- The approach is the same as above, but the regression models will specify the mediator or predictor as a factor [example here](https://christopherjwilson.github.io/APRM23/descriptives.html#lets-make-sure-our-data-types-are-correct-1).
+
+- This will mean that some of the regression models will be logistic regression models, like this : 
+
+```
+model <- glm(Outcome ~ Categorical_Predictor,family="binomial",data=myData)
+```
+
+[example here](https://www.r-bloggers.com/2015/09/how-to-perform-a-logistic-regression-in-r/)
+
+
+- The mediation analysis will then be run as outlined earlier.
+
+
+
+## Summary
+
+-   What is mediation?
+
+- The Baron and Kenny (1986) approach to mediation
+
+- The Preacher and Hayes (2008) approach to mediation
+
+- What is bootstrapping?
+
+- Mediation analysis with a categorical mediator or predictor
+
+##  References {.smaller}
+
+Baron, R. M., & Kenny, D. A. (1986). The moderator–mediator variable distinction in social psychological research: Conceptual, strategic, and statistical considerations. *Journal of personality and social psychology*, *51*(6), 1173.
+
+Preacher, K. J., & Hayes, A. F. (2008). Asymptotic and resampling strategies for assessing and comparing indirect effects in multiple mediator models. *Behavior research methods*, *40*(3), 879-891.
+
+Hayes, A. F. (2013). Introduction to mediation, moderation, and conditional process analysis: A regression-based approach. Guilford Press.
+
+Hayes, A. F., & Rockwood, N. J. (2017). Regression-based statistical mediation and moderation analysis in clinical research: Observations, recommendations, and implementation. Behaviour research and therapy, 98, 39-57.

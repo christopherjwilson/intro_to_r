@@ -1,0 +1,560 @@
+---
+format: 
+    revealjs:
+        css: ["include/style.css"]
+        chalkboard: true
+        auto-stretch: false
+        multiplex: true
+        slide-number: c/t
+        mermaid:
+          theme: neutral
+        width: 100%
+        code-tools: true
+        code-overflow: scroll
+        code-fold: true
+execute:
+  echo: true
+        
+bibliography: references.bib
+title: "Factor Analysis"
+subtitle: DClin Research Methods 1
+author: Dr Christopher Wilson
+institute: Teesside University
+logo: "logo.jpg"
+csl: apa.csl
+---
+
+
+```{r echo = F}
+library(tidyverse)
+raq <- read_table2("Datasets/raq.csv")
+```
+
+## Overview
+
+- What is factor analysis?
+
+- Which research questions can factor analysis answer?
+
+- What are the assumptions of factor analysis?
+
+- How do we conduct factor analysis?
+
+- How do we interpret factor analysis?
+
+- How do we report factor analysis?
+
+## What is factor analysis?
+
+- Factor analysis is a statistical technique that is used to reduce a
+  large number of variables to a smaller number of factors.
+
+- It can be used in an exploratory or confirmatory manner.
+
+- Factor analysis is also used as part of structural equation modelling (not covered here).
+
+## Which research questions can factor analysis answer?
+
+- Factor analysis is primarily used to identify latent variables (factors) that explain the relationships between observed variables.
+
+- This approach can be applied to:
+
+    1. Scale development in psychology (dimension reduction or data summarisation).
+    2. Research questions involving latent variables.
+
+
+
+## Scenario 1: Scale development
+
+- A researcher is interested in developing a scale to measure
+  "psychological wellbeing".
+
+- They believe that psychological wellbeing is a latent variable which is indicated by a number of observed behaviours.
+
+- They develop a questionnaire that initially measures 100 different behaviours.
+
+- They then use factor analysis to identify the latent variables (i.e. dimensions of wellbeing) that explain the relationships between the observed behaviours.
+
+
+## Scenario 2: Research questions involving latent variables {.smaller}
+
+- A researcher wants to understand the factors that motivate people to seek help for mental health problems.
+
+- Through researching the literature, they identify a number of observed variables that are associated with help-seeking behaviour.
+
+- They develop a set of questions to capture these variables, such as:
+
+    - "I would feel ashamed if I had a mental health problem."
+    - "I would feel comfortable talking to my friends about my mental health problems."
+    - "I would feel comfortable talking to my family about my mental health problems."
+    - "I would feel comfortable talking to a mental health professional about my mental health problems."
+    - "I have the skills to manage my mental health problems."
+    - "My symptoms are severe."
+
+## Example 2: Research questions involving latent variables {.smaller}
+
+- The researcher then uses factor analysis to identify the latent variables that explain the relationships between the observed variables.
+
+- The analysis indicates two groups of questions that are highly correlated. The researcher labels these groups as "stigma" and "self-efficacy", based on which observed variables that are included in each group.
+
+
+# Exploratory factor analysis
+
+## Exploratory Factor analysis 
+
+
+- Identify the relational structure between a set of variables in order to reduce them to a smaller set of factors
+  - The process of **dimension reduction** (identify new variables) or **data summarisation** (summarise what is already there)
+
+- The researcher does not have a pre-specified model 
+
+## Dimension reduction (factor analysis)
+
+- **Latent Variables**: Not directly observable. Rather they are inferred from other responses
+  - Many psychological constructs (e.g. anxiety) are latent variables that we cannot directly measure. 
+  - Rather, we can measure behaviours, cognitions and other variables that are related to the construct.
+
+> We might concptualise this as: "Responses to the questions are indicative of levels of underlying anxiety"
+
+
+
+## Data summarisation (principal component analysis)
+
+- **Index Variables** or **Components**: A weighted summary of measured variables that contribute to the component variable
+
+- "Principal components are variables of maximal variance constructed from linear combinations of the input features"
+
+> We might conceptualise this as: "We can reduce these measures/questions to a smaller set of higher order, independent, composite variables"  
+
+## Latent versus index variables
+
+**Latent Variables** are causes of their indicators: changes in Anxiety (indicator) leads to increased frequency of negative cognitions (measure).
+
+**Index Variables** are effects of their indicators: change in cholesterol level (indicator) will change QRISK score (index measure).
+
+> Altering the indicators of an index changes the definition of the variable being indexed (because the index is a calculation of the indicators). This is not the case with a latent variable.  
+
+
+
+
+## Types of exploratory factor analysis
+
+There are two common methods of exploratory factor analysis: **Common Factor analysis** and **Principal Component Analysis**
+
+- CFA looks for latent variables that explain the correlations between observed variables
+
+- PCA looks for index variables that explain the correlations between observed variables
+
+## Variance in exploratory factor analysis
+
+- CFA assumes that there are two types of variance: common and unique
+
+```{r  out.width = "90%", echo=F}
+
+knitr::include_graphics("img/cfavariance.png") 
+```
+
+
+## Variance in exploratory factor analysis
+
+- PCA only assumes common variance
+
+
+```{r  out.width = "100%", echo=F}
+
+knitr::include_graphics("img/pcavariance.png") 
+```
+
+## Variance in exploratory factor analysis
+
+
+```{r  out.width = "200%", echo=F}
+
+knitr::include_graphics("img/pcafa1.png") 
+```
+
+## Which type of exploratory factor analysis?
+
+
+- Due to these different approaches, PCA is considered to be reflective of the current sample but not generalisable to the wider population
+
+- Whereas, CFA is considered appropriate for hypothesis testing and making inferences to the population
+
+
+# What is factor analysis?
+
+## What is factor analysis?
+
+- If we measure several variables (or questions), we can examine the correlation between sets of these variables
+  - Such a correlation matrix is known as an **R Matrix** (*r* because correlation)
+- If there are clusters of correlations between a number of the variables (or questions), this indicates that they might be linked to the same underlying dimension (or latent variable)
+- The researcher should use informed judgement when assessing the appropriateness of variables for inclusion
+
+##
+
+```{r  out.height = "100%", echo=F}
+
+knitr::include_graphics("img/rmatrix.png") 
+```
+An r matrix example
+
+## Considerations with factor analysis {.smaller}
+
+- Sample size: 
+  - Must be more data points than variables being measured
+  - A common rule of thumb is at least 10 per variable
+  - There are tests to assess sample size adequacy (e.g. Kaiser-Meyer test should be greater than 0.5)
+
+- Inter-correlation:
+  - There must be sufficient correlation between the variables being measured
+  - A high number of correlations over 0.3
+  - Can be tested using Bartlett test of sphericity (sig. result means factor analysis can be used)
+  
+## Other things to check (see Field, 2018)  
+
+- The quality of analysis depends upon the quality of the data (GI=GO).
+- Avoid multicollinearity:
+  - several variables highly correlated, r > .80.
+  - Determinent: should be greater than 0.00001
+- Avoid singularity:
+  - some variables perfectly correlated, r = 1.
+- Screen the correlation matrix, eliminate any variables that obviously cause concern.
+
+
+## Representing factor analysis {.smaller}
+
+> We can represent factors visually based on the strength of their inter-correlations 
+- Here, the axis of the graph represents a factor or latent variable
+
+```{r  out.width = "100%", echo=F}
+#| layout-ncol: 2
+
+knitr::include_graphics("img/efaplot.png") 
+```
+
+## Representing factor analysis
+
+> We can also represent factor analysis using a regression equation
+- Here the beta values represent the extent to which the variable "loads onto" a particular factor
+
+```{r  out.width = "100%", echo=F}
+#| layout-ncol: 2
+#| column: screen-inset
+
+knitr::include_graphics("img/efaeq1.png") 
+
+
+```
+
+```{r  out.width = "100%", echo=F}
+#| layout-ncol: 2
+#| column: screen-inset
+
+knitr::include_graphics("img/efaeq2.png") 
+
+
+```
+
+## Factor Analysis Example: Statistics anxiety
+
+
+- Many people get anxious about statistics
+- We can ask them about their experience in a number of ways (e.g. questions compiled by students in a stats class)
+
+- Their responses might indicate that stats anxiety has a number of dimensions
+  - i.e. it is a multi-dimensional construct, as opposed to a unitary construct
+
+## Factor Analysis Example: Statistics anxiety
+
+```{r  out.height = "100%", echo=F}
+
+knitr::include_graphics("img/raq.png") 
+```
+
+## Step 1: Create a correlation matrix
+
+```{r}
+raq.matrix <- cor(raq)
+
+raq.matrix
+
+```
+
+## Step 2: Let's check for Inter-correlation <good>
+
+
+
+```{r}
+
+library(corrplot)
+corrplot(raq.matrix, method = "number")
+```
+
+## Step 2: Let's check for Inter-correlation <good>
+
+- We can use bartlett's test from the psych package
+
+```{r}
+library(psych)
+
+cortest.bartlett(raq.matrix, n=2571)
+```
+
+
+## Step 3: Check sampling adequacy
+
+- Overall should be > 0.5
+
+```{r}
+KMO(raq)
+```
+
+## Step 4: Identify number of factors
+
+
+- Based on Eigenvalues:
+    - Kaiser (1960) – retain factors with eigen values > 1.
+    - Joliffe (1972) – retain factors with eigen values > .70. 
+
+-  Use a scree plot: Cattell (1966): use ‘point of inflexion’. 
+
+## Which rule?
+- Use Kaiser’s extraction when
+  - Less than 30 variables, communalities after extraction > 0.7
+  - Sample size > 250 and mean communality ≥ 0.6
+- Scree plot is good if sample size is > 200
+
+## Scree plot {.smaller}
+
+
+```{r}
+scree(raq)
+```
+
+
+- We are looking for the point of inflection
+- Where there is a drop-off
+
+> One approach:
+> See how many factors we can draw a line through
+
+
+
+## Step 4: Identify number of factors
+
+> How many dimensions of stats anxiety are captured in the questionnaire?
+
+- We can run a **parallel analysis** to get an indication of the number of factors contained within the data
+- Parallel Analysis:
+   - Simulates data within the same range of values as our data set
+   - Suggests that we retain, at maximum, the factors with eigenvalues larger than those extracted from simulated data.
+
+##
+
+```{r  out.height = "100%", echo=F}
+
+knitr::include_graphics("img/raq.png") 
+
+```
+
+
+## Step 4: Identify number of factors
+
+
+```{r}
+library(psych)
+
+ parallel_analysis <- fa.parallel(raq)
+
+ parallel_analysis
+
+```
+
+
+
+## Step 5: Perform factor analysis (with initial recommended # factors) {.smaller .scrollable}
+
+```{r}
+paf <- fa(raq,
+nfactors = 6,
+fm="pa",
+max.iter = 100,
+rotate = "none")
+
+paf
+
+```
+
+## What does the output tell us?: Loadings {.smaller}
+
+- MR, ML and PC are different methods of fitting factor analysis
+
+- h2 is the communality of each variable (i.e. the proportion of variance in each variable that is explained by the factors)
+
+- u2 is the uniqueness of each variable (i.e. the proportion of variance in each variable that is not explained by the factors)
+
+- The higher the h2, the better the variable is represented by the factors
+
+- com is the item complexity (i.e. the number of factors that each variable loads onto)
+
+
+## {.smaller .scrollable}
+
+
+
+```{r}
+paf <- fa(raq,
+nfactors = 6,
+fm="pa",
+max.iter = 100,
+rotate = "none")
+
+paf
+
+```
+
+## What does the output tell us?: variance explained {.smaller}
+
+- SS loadings is the  Eigenvalue (i.e. the proportion of variance in each variable that is explained by the factors)
+
+- Proportion Var is the proportion of variance the factor explains
+
+- Cumulative Var is the cumulative proportion of variance explained by the factor
+
+- Proportion Explained is the relative proportion of variance explained by the factor (of the total variance explained by all factors)
+
+- Cumulative Proportion is the cumulative proportion of variance explained by the factor (of the total variance explained by all factors)
+
+
+## {.smaller .scrollable}
+
+```{r}
+paf <- fa(raq,
+nfactors = 6,
+fm="pa",
+max.iter = 100,
+rotate = "none")
+
+paf
+
+```
+
+## What does the output tell us?: Model Significance {.smaller }
+
+- Chi.sq is the chi-square statistic for the model
+
+- It is displayed in the line: *The total n.obs was  2571  with Likelihood Chi Square =  578.65  with prob <  7.6e-58* 
+
+## Evaluating a model {.smaller}
+
+- The overall model significance is assessed using the chi-square statistic
+
+- The eigenvalues indicate the amount of variance explained by each factor
+
+- The AIC and BIC are used to compare different models (lower values are better)
+
+- The RMSEA is a measure of model fit (lower values are better)
+
+> [Schmitt et al. (2018)](https://www.tandfonline.com/doi/full/10.1080/00223891.2018.1449116?casa_token=wtgPcqX86mwAAAAA%3A1VHAAqT58ok56Z5yfx_KpYH4O__uw3RSqwZ1daNDuc7GrYtL1bkpLuw2mWzYWIRjCmIAn5TmAmn9sg) outline their approach to evaluating factor analysis models
+
+## Testing a model model with reduced number of factors {.smaller .scrollable}
+
+```{r}
+paf1 <- fa(raq,
+nfactors = 2,
+fm="pa",
+max.iter = 100,
+rotate = "none")
+
+paf1
+
+
+
+```
+
+## 
+
+```{r}
+plot(paf1)
+```
+
+
+# Factor analysis rotation
+
+## What is rotation?
+- It is possible that variables load "highly" onto one factor and "medium" onto another
+- By rotating the factor axes, the variables are aligned with the factors that they load onto most
+- This helps us  discriminate between factors
+
+## There are different methods of rotation
+- **Orthogonal rotation:** Assumes that factors are unrelated and keeps them that way
+- **Oblique rotation:** Assumes that factors might be related and allows them to be correlated after rotation
+
+> ### Are factors related?
+> -Theoretical: Do we have logical reason for thinking they could be connected?
+
+> -Based on data: Does the factor plot suggest independence or relatedness?
+
+
+## Step 7: Rotation {.smaller .scrollable}
+
+ - Perform factor analysis (with rotation)
+
+```{r}
+paf2 <- fa(raq,
+nfactors = 2,
+fm="pa",
+max.iter = 100,
+rotate = "oblimin") ## oblimin is oblique rotation
+
+paf2
+
+```
+
+
+## Step 7: Rotation
+
+```{r}
+plot(paf1)
+
+
+```
+
+## Step 7: Rotation
+```{r}
+plot(paf2)
+```
+
+
+# Reporting factor analysis
+
+## Reporting factor analysis
+
+The researcher should report:
+
+-  the number of factors that were extracted
+
+-  the method of extraction and rotation
+
+- A table of factor loadings 
+
+[APA factor analysis table example](https://apastyle.apa.org/style-grammar-guidelines/tables-figures/sample-tables#factor)
+
+
+
+
+
+## Summary
+
+
+- What is factor analysis?
+
+- Which research questions can factor analysis answer?
+
+- What are the assumptions of factor analysis?
+
+- How do we conduct factor analysis?
+
+- How do we interpret factor analysis?
+
+- How do we report factor analysis?

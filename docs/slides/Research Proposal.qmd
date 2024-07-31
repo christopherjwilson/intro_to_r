@@ -1,0 +1,67 @@
+---
+format: 
+    revealjs:
+        css: ["include/style.css"]
+        chalkboard: true
+        auto-stretch: false
+        multiplex: true
+        slide-number: c/t
+        mermaid:
+          theme: neutral
+        width: 100%
+        code-tools: true
+        code-overflow: scroll
+        code-fold: true
+execute:
+  echo: true
+        
+bibliography: references.bib
+title: "Research Proposal Guidance"
+subtitle: DClin Research Methods 1
+author: Dr Christopher Wilson
+institute: Teesside University
+logo: "logo.jpg"
+csl: apa.csl
+---
+
+## Presentation details
+
+- The presentation will be 30 minutes long and will outline the thesis project that the trainee will develop further in Year 2.  
+
+- There will also be 10 minutes allotted for questions from the panel which will have one academic member and one clinical member. 
+
+## What should be included?
+
+The presentation will include coverage of the following areas:
+ 
+- Purpose and justification of the study.
+- Research question.
+- Background literature review.
+- Research design (including sample size and selection, measurements to be used, reflexivity, validity, data analysis, service user involvement, and ethical issues).
+- Key milestones in the research project timeline.
+
+When submitting the presentation assessment slides/text, trainees will also submit their Research Agreement (fully completed form signed by the student and supervisory team).
+
+## Assessment criteria
+
+- Systematic and critically informed justification for the study.
+- Detailed, comprehensive and critical use of a substantial body of relevant literature at the forefront of clinical psychological research and practice.
+- Clear and detailed research question/aim suitable for generation of new knowledge at the forefront of clinical psychology.
+- A well-conceptualized, fully justified and realistic research design.
+- Effective and critical analysis and management of ethical issues.
+- Consideration of service user/carer involvement.
+- Consideration of issues of equality, diversity and inclusion.
+- A clearly articulated and coherent plan for data analysis.
+- Plan for the communication of complex academic and professional issues, data analyses and conclusions suitable for dissemination to specialist and non-specialist audiences.
+- Complete fulfilment of professional research ethics requirements.
+- Adhere to the American Psychological Association (APA) guidelines for presentation and referencing.
+
+## The written document
+
+- You should submit a written document of no more than 2000 words (excluding references and appendices) that elaborates on the presentation.
+
+- The written document expands on the presentation.
+
+- You might include more detail on the background literature, research design, ethical issues, and data analysis.
+
+- The presentation is the assessment, the written document is a supporting document.

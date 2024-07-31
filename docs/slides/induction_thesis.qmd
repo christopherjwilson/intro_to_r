@@ -1,0 +1,114 @@
+---
+format: revealjs
+bibliography: references.bib
+title: "Research on the programme"
+subtitle: DClin Research Methods 1
+author: Dr Christopher Wilson and Dr Alan Bowman
+institute: Teesside University
+
+logo: "logo.jpg"
+csl: apa.csl
+---
+
+## Overview of the session
+
+- Approaching Research Methods 1
+- Thesis timeline
+- Some thoughts on project development
+- Small scale servcice improvement project
+
+
+
+# Approaching Research Methods 1
+
+## What is Research Methods 1 about?
+
+- The module is roughly split into two parts: qualitative and quantitative research methods.
+
+- The sessions are about general clinical research methods, but developed with consideration to how they apply to your thesis project.
+
+## Structure of the quantitative sessions
+
+- Sessions will be a mixture of lectures and practicals.
+
+- There is information on Blackboard about the focus of each session.
+
+- For the lectures, there is associated reading.
+
+- For the practicals, you can prepare using the material on the [ https://christopherjwilson.github.io/APRM23/]( https://christopherjwilson.github.io/APRM23/) website.
+
+
+## {background-iframe="https://christopherjwilson.github.io/APRM23/practicals/practical1.html"}
+
+## Adopting a growth mindset
+
+- Learning a new tool, like R and R Studio, will be challenging.
+
+- This is something that will take time and practice.
+
+- You will need to be patient with yourself.
+
+- For the purposes of this year, we need you to focus on understanding the concepts, rather than becoming an expert in R.
+
+## {background-iframe="https://nhsrcommunity.com/"}
+
+# Thinking about your thesis project
+
+# Thesis timeline
+
+```{mermaid}
+gantt
+    title Thesis Timeline (proposal development)
+    dateFormat  YYYY-MM
+    section Thesis
+    axisFormat %m/%y
+    Project Consideration : 2023-11, 2024-01
+    Project List Goes Live :milestone, 2023-11, 0d
+    Teaching Session :milestone, 2023-11, 0d
+    Trainees Select Project :milestone, 2024-01, 0d
+    Proposal Development : 2024-01,2024-05
+    Proposal Submission :milestone, 2024-05, 0d
+
+```
+
+Note: The exact dates of submission are on Blackboard.
+
+# Thesis development
+
+## Building a rationale from the literature
+
+- Regardless of the source of your thesis project idea, you will need to develop a thorough rationale for your project, based on the literature.
+
+- This is a fundamental part of the thesis development process.
+
+- In this sense, consider reviewing the literature as an active process, rather than a passive one.
+
+> The biggest question is: "Why is this project important and what does it add?"
+
+## Research doesn't happen in big chunks of time
+
+- Research is a process that happens with ongoing engagement.
+
+- Conceptual connections between theories, frameworks, and ideas are made over time.
+
+- Engage with your supervisor regularly, and make notes of how your ideas develop and change over time.
+
+> You should always know what you are working towards. If not, meet with your supervisor.
+
+## Use tools to help you
+
+Tools for storing and organising your research (choose one):
+
+- Zotero
+- Mendeley
+- Papers
+- Paperpile
+
+They are more than just reference managers:
+
+- They can help you organise your research
+- They can help you develop your ideas
+- They can help you speed up the writing process
+
+
+# Questions?

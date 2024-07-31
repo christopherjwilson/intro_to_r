@@ -1,0 +1,1924 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="factorAnalysis_files/libs/clipboard/clipboard.min.js"></script>
+<script src="factorAnalysis_files/libs/quarto-html/tabby.min.js"></script>
+<script src="factorAnalysis_files/libs/quarto-html/popper.min.js"></script>
+<script src="factorAnalysis_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="factorAnalysis_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="factorAnalysis_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="factorAnalysis_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="factorAnalysis_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.3.450">
+
+  <meta name="author" content="Dr Christopher Wilson">
+  <title>Factor Analysis</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="factorAnalysis_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="factorAnalysis_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="factorAnalysis_files/libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="include/style.css">
+  <link href="factorAnalysis_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="factorAnalysis_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="factorAnalysis_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="factorAnalysis_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="factorAnalysis_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="factorAnalysis_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    margin-bottom: 0.5rem;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Factor Analysis</h1>
+  <p class="subtitle">DClin Research Methods 1</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Dr Christopher Wilson 
+</div>
+        <p class="quarto-title-affiliation">
+            Teesside University
+          </p>
+    </div>
+</div>
+
+</section>
+<section id="overview" class="slide level2">
+<h2>Overview</h2>
+<ul>
+<li><p>What is factor analysis?</p></li>
+<li><p>Which research questions can factor analysis answer?</p></li>
+<li><p>What are the assumptions of factor analysis?</p></li>
+<li><p>How do we conduct factor analysis?</p></li>
+<li><p>How do we interpret factor analysis?</p></li>
+<li><p>How do we report factor analysis?</p></li>
+</ul>
+</section>
+<section id="what-is-factor-analysis" class="slide level2">
+<h2>What is factor analysis?</h2>
+<ul>
+<li><p>Factor analysis is a statistical technique that is used to reduce a large number of variables to a smaller number of factors.</p></li>
+<li><p>It can be used in an exploratory or confirmatory manner.</p></li>
+<li><p>Factor analysis is also used as part of structural equation modelling (not covered here).</p></li>
+</ul>
+</section>
+<section id="which-research-questions-can-factor-analysis-answer" class="slide level2">
+<h2>Which research questions can factor analysis answer?</h2>
+<ul>
+<li><p>Factor analysis is primarily used to identify latent variables (factors) that explain the relationships between observed variables.</p></li>
+<li><p>This approach can be applied to:</p>
+<ol type="1">
+<li>Scale development in psychology (dimension reduction or data summarisation).</li>
+<li>Research questions involving latent variables.</li>
+</ol></li>
+</ul>
+</section>
+<section id="scenario-1-scale-development" class="slide level2">
+<h2>Scenario 1: Scale development</h2>
+<ul>
+<li><p>A researcher is interested in developing a scale to measure “psychological wellbeing”.</p></li>
+<li><p>They believe that psychological wellbeing is a latent variable which is indicated by a number of observed behaviours.</p></li>
+<li><p>They develop a questionnaire that initially measures 100 different behaviours.</p></li>
+<li><p>They then use factor analysis to identify the latent variables (i.e.&nbsp;dimensions of wellbeing) that explain the relationships between the observed behaviours.</p></li>
+</ul>
+</section>
+<section id="scenario-2-research-questions-involving-latent-variables" class="slide level2 smaller">
+<h2>Scenario 2: Research questions involving latent variables</h2>
+<ul>
+<li><p>A researcher wants to understand the factors that motivate people to seek help for mental health problems.</p></li>
+<li><p>Through researching the literature, they identify a number of observed variables that are associated with help-seeking behaviour.</p></li>
+<li><p>They develop a set of questions to capture these variables, such as:</p>
+<ul>
+<li>“I would feel ashamed if I had a mental health problem.”</li>
+<li>“I would feel comfortable talking to my friends about my mental health problems.”</li>
+<li>“I would feel comfortable talking to my family about my mental health problems.”</li>
+<li>“I would feel comfortable talking to a mental health professional about my mental health problems.”</li>
+<li>“I have the skills to manage my mental health problems.”</li>
+<li>“My symptoms are severe.”</li>
+</ul></li>
+</ul>
+</section>
+<section id="example-2-research-questions-involving-latent-variables" class="slide level2 smaller">
+<h2>Example 2: Research questions involving latent variables</h2>
+<ul>
+<li><p>The researcher then uses factor analysis to identify the latent variables that explain the relationships between the observed variables.</p></li>
+<li><p>The analysis indicates two groups of questions that are highly correlated. The researcher labels these groups as “stigma” and “self-efficacy”, based on which observed variables that are included in each group.</p></li>
+</ul>
+</section>
+<section>
+<section id="exploratory-factor-analysis" class="title-slide slide level1 center">
+<h1>Exploratory factor analysis</h1>
+
+</section>
+<section id="exploratory-factor-analysis-1" class="slide level2">
+<h2>Exploratory Factor analysis</h2>
+<ul>
+<li>Identify the relational structure between a set of variables in order to reduce them to a smaller set of factors
+<ul>
+<li>The process of <strong>dimension reduction</strong> (identify new variables) or <strong>data summarisation</strong> (summarise what is already there)</li>
+</ul></li>
+<li>The researcher does not have a pre-specified model</li>
+</ul>
+</section>
+<section id="dimension-reduction-factor-analysis" class="slide level2">
+<h2>Dimension reduction (factor analysis)</h2>
+<ul>
+<li><strong>Latent Variables</strong>: Not directly observable. Rather they are inferred from other responses
+<ul>
+<li>Many psychological constructs (e.g.&nbsp;anxiety) are latent variables that we cannot directly measure.</li>
+<li>Rather, we can measure behaviours, cognitions and other variables that are related to the construct.</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>We might concptualise this as: “Responses to the questions are indicative of levels of underlying anxiety”</p>
+</blockquote>
+</section>
+<section id="data-summarisation-principal-component-analysis" class="slide level2">
+<h2>Data summarisation (principal component analysis)</h2>
+<ul>
+<li><p><strong>Index Variables</strong> or <strong>Components</strong>: A weighted summary of measured variables that contribute to the component variable</p></li>
+<li><p>“Principal components are variables of maximal variance constructed from linear combinations of the input features”</p></li>
+</ul>
+<blockquote>
+<p>We might conceptualise this as: “We can reduce these measures/questions to a smaller set of higher order, independent, composite variables”</p>
+</blockquote>
+</section>
+<section id="latent-versus-index-variables" class="slide level2">
+<h2>Latent versus index variables</h2>
+<p><strong>Latent Variables</strong> are causes of their indicators: changes in Anxiety (indicator) leads to increased frequency of negative cognitions (measure).</p>
+<p><strong>Index Variables</strong> are effects of their indicators: change in cholesterol level (indicator) will change QRISK score (index measure).</p>
+<blockquote>
+<p>Altering the indicators of an index changes the definition of the variable being indexed (because the index is a calculation of the indicators). This is not the case with a latent variable.</p>
+</blockquote>
+</section>
+<section id="types-of-exploratory-factor-analysis" class="slide level2">
+<h2>Types of exploratory factor analysis</h2>
+<p>There are two common methods of exploratory factor analysis: <strong>Common Factor analysis</strong> and <strong>Principal Component Analysis</strong></p>
+<ul>
+<li><p>CFA looks for latent variables that explain the correlations between observed variables</p></li>
+<li><p>PCA looks for index variables that explain the correlations between observed variables</p></li>
+</ul>
+</section>
+<section id="variance-in-exploratory-factor-analysis" class="slide level2">
+<h2>Variance in exploratory factor analysis</h2>
+<ul>
+<li>CFA assumes that there are two types of variance: common and unique</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/cfavariance.png" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="variance-in-exploratory-factor-analysis-1" class="slide level2">
+<h2>Variance in exploratory factor analysis</h2>
+<ul>
+<li>PCA only assumes common variance</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/pcavariance.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="variance-in-exploratory-factor-analysis-2" class="slide level2">
+<h2>Variance in exploratory factor analysis</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/pcafa1.png" style="width:200.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="which-type-of-exploratory-factor-analysis" class="slide level2">
+<h2>Which type of exploratory factor analysis?</h2>
+<ul>
+<li><p>Due to these different approaches, PCA is considered to be reflective of the current sample but not generalisable to the wider population</p></li>
+<li><p>Whereas, CFA is considered appropriate for hypothesis testing and making inferences to the population</p></li>
+</ul>
+</section></section>
+<section>
+<section id="what-is-factor-analysis-1" class="title-slide slide level1 center">
+<h1>What is factor analysis?</h1>
+
+</section>
+<section id="what-is-factor-analysis-2" class="slide level2">
+<h2>What is factor analysis?</h2>
+<ul>
+<li>If we measure several variables (or questions), we can examine the correlation between sets of these variables
+<ul>
+<li>Such a correlation matrix is known as an <strong>R Matrix</strong> (<em>r</em> because correlation)</li>
+</ul></li>
+<li>If there are clusters of correlations between a number of the variables (or questions), this indicates that they might be linked to the same underlying dimension (or latent variable)</li>
+<li>The researcher should use informed judgement when assessing the appropriateness of variables for inclusion</li>
+</ul>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/rmatrix.png" style="width:100.0%;height:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>An r matrix example</p>
+</section>
+<section id="considerations-with-factor-analysis" class="slide level2 smaller">
+<h2>Considerations with factor analysis</h2>
+<ul>
+<li>Sample size:
+<ul>
+<li>Must be more data points than variables being measured</li>
+<li>A common rule of thumb is at least 10 per variable</li>
+<li>There are tests to assess sample size adequacy (e.g.&nbsp;Kaiser-Meyer test should be greater than 0.5)</li>
+</ul></li>
+<li>Inter-correlation:
+<ul>
+<li>There must be sufficient correlation between the variables being measured</li>
+<li>A high number of correlations over 0.3</li>
+<li>Can be tested using Bartlett test of sphericity (sig. result means factor analysis can be used)</li>
+</ul></li>
+</ul>
+</section>
+<section id="other-things-to-check-see-field-2018" class="slide level2">
+<h2>Other things to check (see Field, 2018)</h2>
+<ul>
+<li>The quality of analysis depends upon the quality of the data (GI=GO).</li>
+<li>Avoid multicollinearity:
+<ul>
+<li>several variables highly correlated, r &gt; .80.</li>
+<li>Determinent: should be greater than 0.00001</li>
+</ul></li>
+<li>Avoid singularity:
+<ul>
+<li>some variables perfectly correlated, r = 1.</li>
+</ul></li>
+<li>Screen the correlation matrix, eliminate any variables that obviously cause concern.</li>
+</ul>
+</section>
+<section id="representing-factor-analysis" class="slide level2 smaller">
+<h2>Representing factor analysis</h2>
+<blockquote>
+<p>We can represent factors visually based on the strength of their inter-correlations - Here, the axis of the graph represents a factor or latent variable</p>
+</blockquote>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/efaplot.png"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="representing-factor-analysis-1" class="slide level2">
+<h2>Representing factor analysis</h2>
+<blockquote>
+<p>We can also represent factor analysis using a regression equation - Here the beta values represent the extent to which the variable “loads onto” a particular factor</p>
+</blockquote>
+<div class="cell column-screen-inset quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/efaeq1.png"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="cell column-screen-inset quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/efaeq2.png"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="factor-analysis-example-statistics-anxiety" class="slide level2">
+<h2>Factor Analysis Example: Statistics anxiety</h2>
+<ul>
+<li><p>Many people get anxious about statistics</p></li>
+<li><p>We can ask them about their experience in a number of ways (e.g.&nbsp;questions compiled by students in a stats class)</p></li>
+<li><p>Their responses might indicate that stats anxiety has a number of dimensions</p>
+<ul>
+<li>i.e.&nbsp;it is a multi-dimensional construct, as opposed to a unitary construct</li>
+</ul></li>
+</ul>
+</section>
+<section id="factor-analysis-example-statistics-anxiety-1" class="slide level2">
+<h2>Factor Analysis Example: Statistics anxiety</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/raq.png" style="width:100.0%;height:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="step-1-create-a-correlation-matrix" class="slide level2">
+<h2>Step 1: Create a correlation matrix</h2>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>raq.matrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(raq)</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a>raq.matrix</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>             Q01         Q02        Q03         Q04         Q05         Q06
+Q01  1.000000000 -0.09872403 -0.3366489  0.43586018  0.40243992  0.21673399
+Q02 -0.098724032  1.00000000  0.3183902 -0.11185965 -0.11934658 -0.07420968
+Q03 -0.336648879  0.31839020  1.0000000 -0.38046016 -0.31030879 -0.22674048
+Q04  0.435860179 -0.11185965 -0.3804602  1.00000000  0.40067225  0.27820154
+Q05  0.402439917 -0.11934658 -0.3103088  0.40067225  1.00000000  0.25746014
+Q06  0.216733985 -0.07420968 -0.2267405  0.27820154  0.25746014  1.00000000
+Q07  0.305365139 -0.15917448 -0.3819533  0.40861502  0.33939179  0.51358048
+Q08  0.330737608 -0.04962257 -0.2586342  0.34942939  0.26862697  0.22283175
+Q09 -0.092339458  0.31464054  0.2998036 -0.12454637 -0.09570151 -0.11264384
+Q10  0.213681706 -0.08400316 -0.1933887  0.21581010  0.25820925  0.32223023
+Q11  0.356786290 -0.14382984 -0.3506397  0.36865655  0.29782882  0.32807072
+Q12  0.345381133 -0.19486946 -0.4099513  0.44164706  0.34674325  0.31250937
+Q13  0.354646283 -0.14274026 -0.3179193  0.34429168  0.30182159  0.46640487
+Q14  0.337879655 -0.16469991 -0.3707551  0.35080964  0.31533810  0.40224407
+Q15  0.245752635 -0.16499581 -0.3123968  0.33423089  0.26137190  0.35989309
+Q16  0.498618057 -0.16755228 -0.4186478  0.41586725  0.39491795  0.24433888
+Q17  0.370550512 -0.08699527 -0.3273715  0.38273945  0.31041722  0.28226121
+Q18  0.347118037 -0.16389415 -0.3752329  0.38200149  0.32209148  0.51332164
+Q19 -0.189011027  0.20329748  0.3415737 -0.18597751 -0.16532210 -0.16675017
+Q20  0.213897945 -0.20159437 -0.3248338  0.24291796  0.19966945  0.10092489
+Q21  0.329153138 -0.20461730 -0.4171878  0.41029317  0.33461494  0.27233273
+Q22 -0.104408664  0.23087487  0.2036569 -0.09838349 -0.13253593 -0.16513541
+Q23 -0.004480593  0.09967828  0.1502065 -0.03381815 -0.04165684 -0.06868743
+            Q07         Q08         Q09         Q10         Q11         Q12
+Q01  0.30536514  0.33073761 -0.09233946  0.21368171  0.35678629  0.34538113
+Q02 -0.15917448 -0.04962257  0.31464054 -0.08400316 -0.14382984 -0.19486946
+Q03 -0.38195325 -0.25863421  0.29980362 -0.19338871 -0.35063969 -0.40995127
+Q04  0.40861502  0.34942939 -0.12454637  0.21581010  0.36865655  0.44164706
+Q05  0.33939179  0.26862697 -0.09570151  0.25820925  0.29782882  0.34674325
+Q06  0.51358048  0.22283175 -0.11264384  0.32223023  0.32807072  0.31250937
+Q07  1.00000000  0.29749696 -0.12829828  0.28372299  0.34474770  0.42298591
+Q08  0.29749696  1.00000000  0.01573316  0.15860850  0.62929768  0.25198582
+Q09 -0.12829828  0.01573316  1.00000000 -0.13418658 -0.11552479 -0.16739436
+Q10  0.28372299  0.15860850 -0.13418658  1.00000000  0.27143657  0.24582591
+Q11  0.34474770  0.62929768 -0.11552479  0.27143657  1.00000000  0.33529466
+Q12  0.42298591  0.25198582 -0.16739436  0.24582591  0.33529466  1.00000000
+Q13  0.44211926  0.31424716 -0.16743882  0.30196707  0.42316548  0.48871303
+Q14  0.44070276  0.28058958 -0.12150197  0.25468730  0.32532025  0.43270398
+Q15  0.39136675  0.29968600 -0.18657099  0.29523438  0.36482687  0.33179910
+Q16  0.38854534  0.32149420 -0.18886556  0.29058576  0.36907763  0.40805908
+Q17  0.39074283  0.59014022 -0.03681556  0.21832214  0.58683495  0.33269383
+Q18  0.50086685  0.27974433 -0.14957782  0.29250304  0.37341373  0.49296482
+Q19 -0.26912031 -0.15947671  0.24931170 -0.12723487 -0.19965203 -0.26665953
+Q20  0.22095420  0.17515089 -0.15864747  0.08406520  0.25533736  0.29802585
+Q21  0.48300388  0.29571756 -0.13594310  0.19313633  0.34643407  0.44063832
+Q22 -0.16820488 -0.07917265  0.25684622 -0.13090831 -0.16198921 -0.16728557
+Q23 -0.07029016 -0.05023839  0.17077441 -0.06191796 -0.08637256 -0.04642506
+            Q13         Q14         Q15         Q16         Q17         Q18
+Q01  0.35464628  0.33787966  0.24575263  0.49861806  0.37055051  0.34711804
+Q02 -0.14274026 -0.16469991 -0.16499581 -0.16755228 -0.08699527 -0.16389415
+Q03 -0.31791928 -0.37075510 -0.31239678 -0.41864780 -0.32737145 -0.37523290
+Q04  0.34429168  0.35080964  0.33423089  0.41586725  0.38273945  0.38200149
+Q05  0.30182159  0.31533810  0.26137190  0.39491795  0.31041722  0.32209148
+Q06  0.46640487  0.40224407  0.35989309  0.24433888  0.28226121  0.51332164
+Q07  0.44211926  0.44070276  0.39136675  0.38854534  0.39074283  0.50086685
+Q08  0.31424716  0.28058958  0.29968600  0.32149420  0.59014022  0.27974433
+Q09 -0.16743882 -0.12150197 -0.18657099 -0.18886556 -0.03681556 -0.14957782
+Q10  0.30196707  0.25468730  0.29523438  0.29058576  0.21832214  0.29250304
+Q11  0.42316548  0.32532025  0.36482687  0.36907763  0.58683495  0.37341373
+Q12  0.48871303  0.43270398  0.33179910  0.40805908  0.33269383  0.49296482
+Q13  1.00000000  0.44978632  0.34219704  0.35837775  0.40837657  0.53293713
+Q14  0.44978632  1.00000000  0.38011484  0.41841820  0.35374183  0.49830615
+Q15  0.34219704  0.38011484  1.00000000  0.45427861  0.37310235  0.34287045
+Q16  0.35837775  0.41841820  0.45427861  1.00000000  0.40976309  0.42197911
+Q17  0.40837657  0.35374183  0.37310235  0.40976309  1.00000000  0.37560681
+Q18  0.53293713  0.49830615  0.34287045  0.42197911  0.37560681  1.00000000
+Q19 -0.22697105 -0.25405813 -0.20980230 -0.26704702 -0.16288096 -0.25663183
+Q20  0.20396327  0.22592173  0.20625622  0.26514025  0.20523013  0.23518040
+Q21  0.37443078  0.39938896  0.29971557  0.42054273  0.36349147  0.43010427
+Q22 -0.19535632 -0.16983754 -0.16790617 -0.15579385 -0.12629066 -0.15982631
+Q23 -0.05298304 -0.04847418 -0.06200665 -0.08152195 -0.09167243 -0.08041698
+           Q19         Q20         Q21         Q22          Q23
+Q01 -0.1890110  0.21389794  0.32915314 -0.10440866 -0.004480593
+Q02  0.2032975 -0.20159437 -0.20461730  0.23087487  0.099678285
+Q03  0.3415737 -0.32483385 -0.41718781  0.20365686  0.150206522
+Q04 -0.1859775  0.24291796  0.41029317 -0.09838349 -0.033818152
+Q05 -0.1653221  0.19966945  0.33461494 -0.13253593 -0.041656841
+Q06 -0.1667502  0.10092489  0.27233273 -0.16513541 -0.068687430
+Q07 -0.2691203  0.22095420  0.48300388 -0.16820488 -0.070290157
+Q08 -0.1594767  0.17515089  0.29571756 -0.07917265 -0.050238392
+Q09  0.2493117 -0.15864747 -0.13594310  0.25684622  0.170774410
+Q10 -0.1272349  0.08406520  0.19313633 -0.13090831 -0.061917956
+Q11 -0.1996520  0.25533736  0.34643407 -0.16198921 -0.086372565
+Q12 -0.2666595  0.29802585  0.44063832 -0.16728557 -0.046425059
+Q13 -0.2269710  0.20396327  0.37443078 -0.19535632 -0.052983042
+Q14 -0.2540581  0.22592173  0.39938896 -0.16983754 -0.048474181
+Q15 -0.2098023  0.20625622  0.29971557 -0.16790617 -0.062006650
+Q16 -0.2670470  0.26514025  0.42054273 -0.15579385 -0.081521950
+Q17 -0.1628810  0.20523013  0.36349147 -0.12629066 -0.091672426
+Q18 -0.2566318  0.23518040  0.43010427 -0.15982631 -0.080416984
+Q19  1.0000000 -0.24859386 -0.27489793  0.23392259  0.122434401
+Q20 -0.2485939  1.00000000  0.46770448 -0.09970186 -0.034665293
+Q21 -0.2748979  0.46770448  1.00000000 -0.12902148 -0.067664367
+Q22  0.2339226 -0.09970186 -0.12902148  1.00000000  0.230369402
+Q23  0.1224344 -0.03466529 -0.06766437  0.23036940  1.000000000</code></pre>
+</div>
+</div>
+</section>
+<section id="step-2-lets-check-for-inter-correlation" class="slide level2">
+<h2>Step 2: Let’s check for Inter-correlation <good></good></h2>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">corrplot</span>(raq.matrix, <span class="at">method =</span> <span class="st">"number"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="factorAnalysis_files/figure-revealjs/unnamed-chunk-11-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="step-2-lets-check-for-inter-correlation-1" class="slide level2">
+<h2>Step 2: Let’s check for Inter-correlation <good></good></h2>
+<ul>
+<li>We can use bartlett’s test from the psych package</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="fu">cortest.bartlett</span>(raq.matrix, <span class="at">n=</span><span class="dv">2571</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>$chisq
+[1] 19334.49
+
+$p.value
+[1] 0
+
+$df
+[1] 253</code></pre>
+</div>
+</div>
+</section>
+<section id="step-3-check-sampling-adequacy" class="slide level2">
+<h2>Step 3: Check sampling adequacy</h2>
+<ul>
+<li>Overall should be &gt; 0.5</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">KMO</span>(raq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Kaiser-Meyer-Olkin factor adequacy
+Call: KMO(r = raq)
+Overall MSA =  0.93
+MSA for each item = 
+ Q01  Q02  Q03  Q04  Q05  Q06  Q07  Q08  Q09  Q10  Q11  Q12  Q13  Q14  Q15  Q16 
+0.93 0.87 0.95 0.96 0.96 0.89 0.94 0.87 0.83 0.95 0.91 0.95 0.95 0.97 0.94 0.93 
+ Q17  Q18  Q19  Q20  Q21  Q22  Q23 
+0.93 0.95 0.94 0.89 0.93 0.88 0.77 </code></pre>
+</div>
+</div>
+</section>
+<section id="step-4-identify-number-of-factors" class="slide level2">
+<h2>Step 4: Identify number of factors</h2>
+<ul>
+<li>Based on Eigenvalues:
+<ul>
+<li>Kaiser (1960) – retain factors with eigen values &gt; 1.</li>
+<li>Joliffe (1972) – retain factors with eigen values &gt; .70.</li>
+</ul></li>
+<li>Use a scree plot: Cattell (1966): use ‘point of inflexion’.</li>
+</ul>
+</section>
+<section id="which-rule" class="slide level2">
+<h2>Which rule?</h2>
+<ul>
+<li>Use Kaiser’s extraction when
+<ul>
+<li>Less than 30 variables, communalities after extraction &gt; 0.7</li>
+<li>Sample size &gt; 250 and mean communality ≥ 0.6</li>
+</ul></li>
+<li>Scree plot is good if sample size is &gt; 200</li>
+</ul>
+</section>
+<section id="scree-plot" class="slide level2 smaller">
+<h2>Scree plot</h2>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">scree</span>(raq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="factorAnalysis_files/figure-revealjs/unnamed-chunk-14-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>We are looking for the point of inflection</li>
+<li>Where there is a drop-off</li>
+</ul>
+<blockquote>
+<p>One approach: See how many factors we can draw a line through</p>
+</blockquote>
+</section>
+<section id="step-4-identify-number-of-factors-1" class="slide level2">
+<h2>Step 4: Identify number of factors</h2>
+<blockquote>
+<p>How many dimensions of stats anxiety are captured in the questionnaire?</p>
+</blockquote>
+<ul>
+<li>We can run a <strong>parallel analysis</strong> to get an indication of the number of factors contained within the data</li>
+<li>Parallel Analysis:
+<ul>
+<li>Simulates data within the same range of values as our data set</li>
+<li>Suggests that we retain, at maximum, the factors with eigenvalues larger than those extracted from simulated data.</li>
+</ul></li>
+</ul>
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/raq.png" style="width:100.0%;height:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="step-4-identify-number-of-factors-2" class="slide level2">
+<h2>Step 4: Identify number of factors</h2>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb9-2"><a href="#cb9-2"></a></span>
+<span id="cb9-3"><a href="#cb9-3"></a> parallel_analysis <span class="ot">&lt;-</span> <span class="fu">fa.parallel</span>(raq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="factorAnalysis_files/figure-revealjs/unnamed-chunk-16-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a> parallel_analysis</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Parallel analysis suggests that the number of factors =  6  and the number of components =  4 
+Call: fa.parallel(x = raq)
+Parallel analysis suggests that the number of factors =  6  and the number of components =  4 
+
+ Eigen Values of 
+  Original factors Resampled data Simulated data Original components
+1             6.64           0.20           0.25                7.29
+2             0.91           0.15           0.15                1.74
+3             0.63           0.13           0.13                1.32
+4             0.48           0.11           0.12                1.23
+5             0.29           0.10           0.10                0.99
+6             0.13           0.08           0.08                0.90
+  Resampled components Simulated components
+1                 1.17                 1.17
+2                 1.14                 1.15
+3                 1.12                 1.12
+4                 1.11                 1.11
+5                 1.09                 1.09
+6                 1.07                 1.08</code></pre>
+</div>
+</div>
+</section>
+<section id="step-5-perform-factor-analysis-with-initial-recommended-factors" class="slide level2 smaller scrollable">
+<h2>Step 5: Perform factor analysis (with initial recommended # factors)</h2>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>paf <span class="ot">&lt;-</span> <span class="fu">fa</span>(raq,</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="at">nfactors =</span> <span class="dv">6</span>,</span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="at">fm=</span><span class="st">"pa"</span>,</span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="at">max.iter =</span> <span class="dv">100</span>,</span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="at">rotate =</span> <span class="st">"none"</span>)</span>
+<span id="cb12-6"><a href="#cb12-6"></a></span>
+<span id="cb12-7"><a href="#cb12-7"></a>paf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Factor Analysis using method =  pa
+Call: fa(r = raq, nfactors = 6, rotate = "none", max.iter = 100, fm = "pa")
+Standardized loadings (pattern matrix) based upon correlation matrix
+      PA1   PA2   PA3   PA4   PA5   PA6   h2   u2 com
+Q01  0.57  0.13 -0.12  0.23 -0.28 -0.19 0.52 0.48 2.3
+Q02 -0.28  0.37  0.17  0.12 -0.03  0.01 0.26 0.74 2.6
+Q03 -0.60  0.25  0.20 -0.02 -0.01  0.03 0.46 0.54 1.6
+Q04  0.61  0.08 -0.06  0.18 -0.09 -0.03 0.42 0.58 1.3
+Q05  0.52  0.04 -0.02  0.15 -0.17 -0.08 0.33 0.67 1.5
+Q06  0.55  0.02  0.49 -0.17  0.07 -0.01 0.57 0.43 2.2
+Q07  0.66 -0.03  0.22  0.03  0.11  0.06 0.50 0.50 1.3
+Q08  0.55  0.49 -0.27 -0.21  0.10 -0.02 0.66 0.34 2.9
+Q09 -0.27  0.46  0.12  0.21  0.10  0.03 0.35 0.65 2.4
+Q10  0.40 -0.01  0.17 -0.09 -0.15  0.02 0.22 0.78 1.8
+Q11  0.64  0.31 -0.20 -0.27  0.08 -0.04 0.63 0.37 2.1
+Q12  0.64 -0.10  0.06  0.15  0.05 -0.07 0.45 0.55 1.2
+Q13  0.65  0.02  0.22 -0.06  0.06 -0.13 0.50 0.50 1.4
+Q14  0.63 -0.04  0.16  0.06  0.01  0.01 0.42 0.58 1.2
+Q15  0.58 -0.01  0.07 -0.15 -0.19  0.44 0.59 0.41 2.3
+Q16  0.66 -0.02 -0.11  0.14 -0.28  0.09 0.56 0.44 1.6
+Q17  0.63  0.36 -0.15 -0.15  0.04  0.01 0.57 0.43 1.9
+Q18  0.68 -0.04  0.28  0.04  0.09 -0.10 0.57 0.43 1.4
+Q19 -0.40  0.27  0.11  0.06 -0.05  0.02 0.25 0.75 2.0
+Q20  0.41 -0.17 -0.25  0.19  0.24  0.11 0.37 0.63 3.5
+Q21  0.64 -0.10 -0.11  0.27  0.28  0.10 0.60 0.40 2.0
+Q22 -0.28  0.29  0.05  0.28  0.05  0.11 0.26 0.74 3.4
+Q23 -0.13  0.18  0.08  0.23  0.01  0.08 0.12 0.88 3.1
+
+                       PA1  PA2  PA3  PA4  PA5  PA6
+SS loadings           6.79 1.14 0.83 0.67 0.45 0.32
+Proportion Var        0.30 0.05 0.04 0.03 0.02 0.01
+Cumulative Var        0.30 0.34 0.38 0.41 0.43 0.44
+Proportion Explained  0.67 0.11 0.08 0.07 0.04 0.03
+Cumulative Proportion 0.67 0.78 0.86 0.92 0.97 1.00
+
+Mean item complexity =  2
+Test of the hypothesis that 6 factors are sufficient.
+
+df null model =  253  with the objective function =  7.55 with Chi Square =  19334.49
+df of  the model are 130  and the objective function was  0.23 
+
+The root mean square of the residuals (RMSR) is  0.02 
+The df corrected root mean square of the residuals is  0.02 
+
+The harmonic n.obs is  2571 with the empirical chi square  364.66  with prob &lt;  3.9e-24 
+The total n.obs was  2571  with Likelihood Chi Square =  578.65  with prob &lt;  7.6e-58 
+
+Tucker Lewis Index of factoring reliability =  0.954
+RMSEA index =  0.037  and the 90 % confidence intervals are  0.034 0.04
+BIC =  -442.12
+Fit based upon off diagonal values = 1
+Measures of factor score adequacy             
+                                                   PA1  PA2  PA3  PA4   PA5
+Correlation of (regression) scores with factors   0.97 0.83 0.80 0.75  0.70
+Multiple R square of scores with factors          0.93 0.68 0.64 0.56  0.48
+Minimum correlation of possible factor scores     0.87 0.37 0.27 0.12 -0.03
+                                                    PA6
+Correlation of (regression) scores with factors    0.65
+Multiple R square of scores with factors           0.42
+Minimum correlation of possible factor scores     -0.17</code></pre>
+</div>
+</div>
+</section>
+<section id="what-does-the-output-tell-us-loadings" class="slide level2 smaller">
+<h2>What does the output tell us?: Loadings</h2>
+<ul>
+<li><p>MR, ML and PC are different methods of fitting factor analysis</p></li>
+<li><p>h2 is the communality of each variable (i.e.&nbsp;the proportion of variance in each variable that is explained by the factors)</p></li>
+<li><p>u2 is the uniqueness of each variable (i.e.&nbsp;the proportion of variance in each variable that is not explained by the factors)</p></li>
+<li><p>The higher the h2, the better the variable is represented by the factors</p></li>
+<li><p>com is the item complexity (i.e.&nbsp;the number of factors that each variable loads onto)</p></li>
+</ul>
+</section>
+<section id="section-2" class="slide level2 smaller scrollable">
+<h2></h2>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>paf <span class="ot">&lt;-</span> <span class="fu">fa</span>(raq,</span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="at">nfactors =</span> <span class="dv">6</span>,</span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="at">fm=</span><span class="st">"pa"</span>,</span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="at">max.iter =</span> <span class="dv">100</span>,</span>
+<span id="cb14-5"><a href="#cb14-5"></a><span class="at">rotate =</span> <span class="st">"none"</span>)</span>
+<span id="cb14-6"><a href="#cb14-6"></a></span>
+<span id="cb14-7"><a href="#cb14-7"></a>paf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Factor Analysis using method =  pa
+Call: fa(r = raq, nfactors = 6, rotate = "none", max.iter = 100, fm = "pa")
+Standardized loadings (pattern matrix) based upon correlation matrix
+      PA1   PA2   PA3   PA4   PA5   PA6   h2   u2 com
+Q01  0.57  0.13 -0.12  0.23 -0.28 -0.19 0.52 0.48 2.3
+Q02 -0.28  0.37  0.17  0.12 -0.03  0.01 0.26 0.74 2.6
+Q03 -0.60  0.25  0.20 -0.02 -0.01  0.03 0.46 0.54 1.6
+Q04  0.61  0.08 -0.06  0.18 -0.09 -0.03 0.42 0.58 1.3
+Q05  0.52  0.04 -0.02  0.15 -0.17 -0.08 0.33 0.67 1.5
+Q06  0.55  0.02  0.49 -0.17  0.07 -0.01 0.57 0.43 2.2
+Q07  0.66 -0.03  0.22  0.03  0.11  0.06 0.50 0.50 1.3
+Q08  0.55  0.49 -0.27 -0.21  0.10 -0.02 0.66 0.34 2.9
+Q09 -0.27  0.46  0.12  0.21  0.10  0.03 0.35 0.65 2.4
+Q10  0.40 -0.01  0.17 -0.09 -0.15  0.02 0.22 0.78 1.8
+Q11  0.64  0.31 -0.20 -0.27  0.08 -0.04 0.63 0.37 2.1
+Q12  0.64 -0.10  0.06  0.15  0.05 -0.07 0.45 0.55 1.2
+Q13  0.65  0.02  0.22 -0.06  0.06 -0.13 0.50 0.50 1.4
+Q14  0.63 -0.04  0.16  0.06  0.01  0.01 0.42 0.58 1.2
+Q15  0.58 -0.01  0.07 -0.15 -0.19  0.44 0.59 0.41 2.3
+Q16  0.66 -0.02 -0.11  0.14 -0.28  0.09 0.56 0.44 1.6
+Q17  0.63  0.36 -0.15 -0.15  0.04  0.01 0.57 0.43 1.9
+Q18  0.68 -0.04  0.28  0.04  0.09 -0.10 0.57 0.43 1.4
+Q19 -0.40  0.27  0.11  0.06 -0.05  0.02 0.25 0.75 2.0
+Q20  0.41 -0.17 -0.25  0.19  0.24  0.11 0.37 0.63 3.5
+Q21  0.64 -0.10 -0.11  0.27  0.28  0.10 0.60 0.40 2.0
+Q22 -0.28  0.29  0.05  0.28  0.05  0.11 0.26 0.74 3.4
+Q23 -0.13  0.18  0.08  0.23  0.01  0.08 0.12 0.88 3.1
+
+                       PA1  PA2  PA3  PA4  PA5  PA6
+SS loadings           6.79 1.14 0.83 0.67 0.45 0.32
+Proportion Var        0.30 0.05 0.04 0.03 0.02 0.01
+Cumulative Var        0.30 0.34 0.38 0.41 0.43 0.44
+Proportion Explained  0.67 0.11 0.08 0.07 0.04 0.03
+Cumulative Proportion 0.67 0.78 0.86 0.92 0.97 1.00
+
+Mean item complexity =  2
+Test of the hypothesis that 6 factors are sufficient.
+
+df null model =  253  with the objective function =  7.55 with Chi Square =  19334.49
+df of  the model are 130  and the objective function was  0.23 
+
+The root mean square of the residuals (RMSR) is  0.02 
+The df corrected root mean square of the residuals is  0.02 
+
+The harmonic n.obs is  2571 with the empirical chi square  364.66  with prob &lt;  3.9e-24 
+The total n.obs was  2571  with Likelihood Chi Square =  578.65  with prob &lt;  7.6e-58 
+
+Tucker Lewis Index of factoring reliability =  0.954
+RMSEA index =  0.037  and the 90 % confidence intervals are  0.034 0.04
+BIC =  -442.12
+Fit based upon off diagonal values = 1
+Measures of factor score adequacy             
+                                                   PA1  PA2  PA3  PA4   PA5
+Correlation of (regression) scores with factors   0.97 0.83 0.80 0.75  0.70
+Multiple R square of scores with factors          0.93 0.68 0.64 0.56  0.48
+Minimum correlation of possible factor scores     0.87 0.37 0.27 0.12 -0.03
+                                                    PA6
+Correlation of (regression) scores with factors    0.65
+Multiple R square of scores with factors           0.42
+Minimum correlation of possible factor scores     -0.17</code></pre>
+</div>
+</div>
+</section>
+<section id="what-does-the-output-tell-us-variance-explained" class="slide level2 smaller">
+<h2>What does the output tell us?: variance explained</h2>
+<ul>
+<li><p>SS loadings is the Eigenvalue (i.e.&nbsp;the proportion of variance in each variable that is explained by the factors)</p></li>
+<li><p>Proportion Var is the proportion of variance the factor explains</p></li>
+<li><p>Cumulative Var is the cumulative proportion of variance explained by the factor</p></li>
+<li><p>Proportion Explained is the relative proportion of variance explained by the factor (of the total variance explained by all factors)</p></li>
+<li><p>Cumulative Proportion is the cumulative proportion of variance explained by the factor (of the total variance explained by all factors)</p></li>
+</ul>
+</section>
+<section id="section-3" class="slide level2 smaller scrollable">
+<h2></h2>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>paf <span class="ot">&lt;-</span> <span class="fu">fa</span>(raq,</span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="at">nfactors =</span> <span class="dv">6</span>,</span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="at">fm=</span><span class="st">"pa"</span>,</span>
+<span id="cb16-4"><a href="#cb16-4"></a><span class="at">max.iter =</span> <span class="dv">100</span>,</span>
+<span id="cb16-5"><a href="#cb16-5"></a><span class="at">rotate =</span> <span class="st">"none"</span>)</span>
+<span id="cb16-6"><a href="#cb16-6"></a></span>
+<span id="cb16-7"><a href="#cb16-7"></a>paf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Factor Analysis using method =  pa
+Call: fa(r = raq, nfactors = 6, rotate = "none", max.iter = 100, fm = "pa")
+Standardized loadings (pattern matrix) based upon correlation matrix
+      PA1   PA2   PA3   PA4   PA5   PA6   h2   u2 com
+Q01  0.57  0.13 -0.12  0.23 -0.28 -0.19 0.52 0.48 2.3
+Q02 -0.28  0.37  0.17  0.12 -0.03  0.01 0.26 0.74 2.6
+Q03 -0.60  0.25  0.20 -0.02 -0.01  0.03 0.46 0.54 1.6
+Q04  0.61  0.08 -0.06  0.18 -0.09 -0.03 0.42 0.58 1.3
+Q05  0.52  0.04 -0.02  0.15 -0.17 -0.08 0.33 0.67 1.5
+Q06  0.55  0.02  0.49 -0.17  0.07 -0.01 0.57 0.43 2.2
+Q07  0.66 -0.03  0.22  0.03  0.11  0.06 0.50 0.50 1.3
+Q08  0.55  0.49 -0.27 -0.21  0.10 -0.02 0.66 0.34 2.9
+Q09 -0.27  0.46  0.12  0.21  0.10  0.03 0.35 0.65 2.4
+Q10  0.40 -0.01  0.17 -0.09 -0.15  0.02 0.22 0.78 1.8
+Q11  0.64  0.31 -0.20 -0.27  0.08 -0.04 0.63 0.37 2.1
+Q12  0.64 -0.10  0.06  0.15  0.05 -0.07 0.45 0.55 1.2
+Q13  0.65  0.02  0.22 -0.06  0.06 -0.13 0.50 0.50 1.4
+Q14  0.63 -0.04  0.16  0.06  0.01  0.01 0.42 0.58 1.2
+Q15  0.58 -0.01  0.07 -0.15 -0.19  0.44 0.59 0.41 2.3
+Q16  0.66 -0.02 -0.11  0.14 -0.28  0.09 0.56 0.44 1.6
+Q17  0.63  0.36 -0.15 -0.15  0.04  0.01 0.57 0.43 1.9
+Q18  0.68 -0.04  0.28  0.04  0.09 -0.10 0.57 0.43 1.4
+Q19 -0.40  0.27  0.11  0.06 -0.05  0.02 0.25 0.75 2.0
+Q20  0.41 -0.17 -0.25  0.19  0.24  0.11 0.37 0.63 3.5
+Q21  0.64 -0.10 -0.11  0.27  0.28  0.10 0.60 0.40 2.0
+Q22 -0.28  0.29  0.05  0.28  0.05  0.11 0.26 0.74 3.4
+Q23 -0.13  0.18  0.08  0.23  0.01  0.08 0.12 0.88 3.1
+
+                       PA1  PA2  PA3  PA4  PA5  PA6
+SS loadings           6.79 1.14 0.83 0.67 0.45 0.32
+Proportion Var        0.30 0.05 0.04 0.03 0.02 0.01
+Cumulative Var        0.30 0.34 0.38 0.41 0.43 0.44
+Proportion Explained  0.67 0.11 0.08 0.07 0.04 0.03
+Cumulative Proportion 0.67 0.78 0.86 0.92 0.97 1.00
+
+Mean item complexity =  2
+Test of the hypothesis that 6 factors are sufficient.
+
+df null model =  253  with the objective function =  7.55 with Chi Square =  19334.49
+df of  the model are 130  and the objective function was  0.23 
+
+The root mean square of the residuals (RMSR) is  0.02 
+The df corrected root mean square of the residuals is  0.02 
+
+The harmonic n.obs is  2571 with the empirical chi square  364.66  with prob &lt;  3.9e-24 
+The total n.obs was  2571  with Likelihood Chi Square =  578.65  with prob &lt;  7.6e-58 
+
+Tucker Lewis Index of factoring reliability =  0.954
+RMSEA index =  0.037  and the 90 % confidence intervals are  0.034 0.04
+BIC =  -442.12
+Fit based upon off diagonal values = 1
+Measures of factor score adequacy             
+                                                   PA1  PA2  PA3  PA4   PA5
+Correlation of (regression) scores with factors   0.97 0.83 0.80 0.75  0.70
+Multiple R square of scores with factors          0.93 0.68 0.64 0.56  0.48
+Minimum correlation of possible factor scores     0.87 0.37 0.27 0.12 -0.03
+                                                    PA6
+Correlation of (regression) scores with factors    0.65
+Multiple R square of scores with factors           0.42
+Minimum correlation of possible factor scores     -0.17</code></pre>
+</div>
+</div>
+</section>
+<section id="what-does-the-output-tell-us-model-significance" class="slide level2 smaller">
+<h2>What does the output tell us?: Model Significance</h2>
+<ul>
+<li><p>Chi.sq is the chi-square statistic for the model</p></li>
+<li><p>It is displayed in the line: <em>The total n.obs was 2571 with Likelihood Chi Square = 578.65 with prob &lt; 7.6e-58</em></p></li>
+</ul>
+</section>
+<section id="evaluating-a-model" class="slide level2 smaller">
+<h2>Evaluating a model</h2>
+<ul>
+<li><p>The overall model significance is assessed using the chi-square statistic</p></li>
+<li><p>The eigenvalues indicate the amount of variance explained by each factor</p></li>
+<li><p>The AIC and BIC are used to compare different models (lower values are better)</p></li>
+<li><p>The RMSEA is a measure of model fit (lower values are better)</p></li>
+</ul>
+<blockquote>
+<p><a href="https://www.tandfonline.com/doi/full/10.1080/00223891.2018.1449116?casa_token=wtgPcqX86mwAAAAA%3A1VHAAqT58ok56Z5yfx_KpYH4O__uw3RSqwZ1daNDuc7GrYtL1bkpLuw2mWzYWIRjCmIAn5TmAmn9sg">Schmitt et al.&nbsp;(2018)</a> outline their approach to evaluating factor analysis models</p>
+</blockquote>
+</section>
+<section id="testing-a-model-model-with-reduced-number-of-factors" class="slide level2 smaller scrollable">
+<h2>Testing a model model with reduced number of factors</h2>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>paf1 <span class="ot">&lt;-</span> <span class="fu">fa</span>(raq,</span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="at">nfactors =</span> <span class="dv">2</span>,</span>
+<span id="cb18-3"><a href="#cb18-3"></a><span class="at">fm=</span><span class="st">"pa"</span>,</span>
+<span id="cb18-4"><a href="#cb18-4"></a><span class="at">max.iter =</span> <span class="dv">100</span>,</span>
+<span id="cb18-5"><a href="#cb18-5"></a><span class="at">rotate =</span> <span class="st">"none"</span>)</span>
+<span id="cb18-6"><a href="#cb18-6"></a></span>
+<span id="cb18-7"><a href="#cb18-7"></a>paf1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Factor Analysis using method =  pa
+Call: fa(r = raq, nfactors = 2, rotate = "none", max.iter = 100, fm = "pa")
+Standardized loadings (pattern matrix) based upon correlation matrix
+      PA1   PA2    h2   u2 com
+Q01  0.56  0.12 0.324 0.68 1.1
+Q02 -0.28  0.39 0.228 0.77 1.8
+Q03 -0.61  0.25 0.430 0.57 1.3
+Q04  0.61  0.09 0.377 0.62 1.0
+Q05  0.52  0.05 0.276 0.72 1.0
+Q06  0.53  0.04 0.282 0.72 1.0
+Q07  0.66 -0.01 0.437 0.56 1.0
+Q08  0.53  0.40 0.445 0.56 1.9
+Q09 -0.27  0.46 0.287 0.71 1.6
+Q10  0.40  0.00 0.163 0.84 1.0
+Q11  0.63  0.27 0.472 0.53 1.3
+Q12  0.64 -0.08 0.421 0.58 1.0
+Q13  0.65  0.04 0.421 0.58 1.0
+Q14  0.63 -0.02 0.396 0.60 1.0
+Q15  0.56  0.00 0.315 0.68 1.0
+Q16  0.65 -0.01 0.428 0.57 1.0
+Q17  0.63  0.34 0.511 0.49 1.5
+Q18  0.68 -0.02 0.461 0.54 1.0
+Q19 -0.40  0.28 0.238 0.76 1.8
+Q20  0.40 -0.15 0.187 0.81 1.3
+Q21  0.63 -0.07 0.403 0.60 1.0
+Q22 -0.28  0.29 0.161 0.84 2.0
+Q23 -0.13  0.19 0.053 0.95 1.8
+
+                       PA1  PA2
+SS loadings           6.67 1.04
+Proportion Var        0.29 0.05
+Cumulative Var        0.29 0.34
+Proportion Explained  0.86 0.14
+Cumulative Proportion 0.86 1.00
+
+Mean item complexity =  1.3
+Test of the hypothesis that 2 factors are sufficient.
+
+df null model =  253  with the objective function =  7.55 with Chi Square =  19334.49
+df of  the model are 208  and the objective function was  1.23 
+
+The root mean square of the residuals (RMSR) is  0.05 
+The df corrected root mean square of the residuals is  0.05 
+
+The harmonic n.obs is  2571 with the empirical chi square  3114.53  with prob &lt;  0 
+The total n.obs was  2571  with Likelihood Chi Square =  3155.34  with prob &lt;  0 
+
+Tucker Lewis Index of factoring reliability =  0.812
+RMSEA index =  0.074  and the 90 % confidence intervals are  0.072 0.077
+BIC =  1522.12
+Fit based upon off diagonal values = 0.97
+Measures of factor score adequacy             
+                                                   PA1  PA2
+Correlation of (regression) scores with factors   0.96 0.78
+Multiple R square of scores with factors          0.92 0.61
+Minimum correlation of possible factor scores     0.83 0.23</code></pre>
+</div>
+</div>
+</section>
+<section id="section-4" class="slide level2">
+<h2></h2>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">plot</span>(paf1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="factorAnalysis_files/figure-revealjs/unnamed-chunk-21-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="factor-analysis-rotation" class="title-slide slide level1 center">
+<h1>Factor analysis rotation</h1>
+
+</section>
+<section id="what-is-rotation" class="slide level2">
+<h2>What is rotation?</h2>
+<ul>
+<li>It is possible that variables load “highly” onto one factor and “medium” onto another</li>
+<li>By rotating the factor axes, the variables are aligned with the factors that they load onto most</li>
+<li>This helps us discriminate between factors</li>
+</ul>
+</section>
+<section id="there-are-different-methods-of-rotation" class="slide level2">
+<h2>There are different methods of rotation</h2>
+<ul>
+<li><strong>Orthogonal rotation:</strong> Assumes that factors are unrelated and keeps them that way</li>
+<li><strong>Oblique rotation:</strong> Assumes that factors might be related and allows them to be correlated after rotation</li>
+</ul>
+<blockquote>
+<h3 id="are-factors-related">Are factors related?</h3>
+<p>-Theoretical: Do we have logical reason for thinking they could be connected?</p>
+</blockquote>
+<blockquote>
+<p>-Based on data: Does the factor plot suggest independence or relatedness?</p>
+</blockquote>
+</section>
+<section id="step-7-rotation" class="slide level2 smaller scrollable">
+<h2>Step 7: Rotation</h2>
+<ul>
+<li>Perform factor analysis (with rotation)</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>paf2 <span class="ot">&lt;-</span> <span class="fu">fa</span>(raq,</span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="at">nfactors =</span> <span class="dv">2</span>,</span>
+<span id="cb21-3"><a href="#cb21-3"></a><span class="at">fm=</span><span class="st">"pa"</span>,</span>
+<span id="cb21-4"><a href="#cb21-4"></a><span class="at">max.iter =</span> <span class="dv">100</span>,</span>
+<span id="cb21-5"><a href="#cb21-5"></a><span class="at">rotate =</span> <span class="st">"oblimin"</span>) <span class="do">## oblimin is oblique rotation</span></span>
+<span id="cb21-6"><a href="#cb21-6"></a></span>
+<span id="cb21-7"><a href="#cb21-7"></a>paf2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Factor Analysis using method =  pa
+Call: fa(r = raq, nfactors = 2, rotate = "oblimin", max.iter = 100, 
+    fm = "pa")
+Standardized loadings (pattern matrix) based upon correlation matrix
+      PA1   PA2    h2   u2 com
+Q01  0.57  0.03 0.324 0.68 1.0
+Q02 -0.12  0.44 0.228 0.77 1.2
+Q03 -0.48  0.36 0.430 0.57 1.8
+Q04  0.61 -0.01 0.377 0.62 1.0
+Q05  0.52 -0.03 0.276 0.72 1.0
+Q06  0.52 -0.05 0.282 0.72 1.0
+Q07  0.63 -0.11 0.437 0.56 1.1
+Q08  0.66  0.32 0.445 0.56 1.4
+Q09 -0.08  0.51 0.287 0.71 1.0
+Q10  0.39 -0.06 0.163 0.84 1.1
+Q11  0.70  0.16 0.472 0.53 1.1
+Q12  0.58 -0.19 0.421 0.58 1.2
+Q13  0.63 -0.07 0.421 0.58 1.0
+Q14  0.59 -0.12 0.396 0.60 1.1
+Q15  0.53 -0.09 0.315 0.68 1.1
+Q16  0.62 -0.12 0.428 0.57 1.1
+Q17  0.73  0.24 0.511 0.49 1.2
+Q18  0.64 -0.13 0.461 0.54 1.1
+Q19 -0.27  0.35 0.238 0.76 1.9
+Q20  0.33 -0.22 0.187 0.81 1.8
+Q21  0.57 -0.18 0.403 0.60 1.2
+Q22 -0.15  0.34 0.161 0.84 1.4
+Q23 -0.05  0.21 0.053 0.95 1.1
+
+                       PA1  PA2
+SS loadings           6.33 1.39
+Proportion Var        0.28 0.06
+Cumulative Var        0.28 0.34
+Proportion Explained  0.82 0.18
+Cumulative Proportion 0.82 1.00
+
+ With factor correlations of 
+      PA1   PA2
+PA1  1.00 -0.22
+PA2 -0.22  1.00
+
+Mean item complexity =  1.2
+Test of the hypothesis that 2 factors are sufficient.
+
+df null model =  253  with the objective function =  7.55 with Chi Square =  19334.49
+df of  the model are 208  and the objective function was  1.23 
+
+The root mean square of the residuals (RMSR) is  0.05 
+The df corrected root mean square of the residuals is  0.05 
+
+The harmonic n.obs is  2571 with the empirical chi square  3114.53  with prob &lt;  0 
+The total n.obs was  2571  with Likelihood Chi Square =  3155.34  with prob &lt;  0 
+
+Tucker Lewis Index of factoring reliability =  0.812
+RMSEA index =  0.074  and the 90 % confidence intervals are  0.072 0.077
+BIC =  1522.12
+Fit based upon off diagonal values = 0.97
+Measures of factor score adequacy             
+                                                   PA1  PA2
+Correlation of (regression) scores with factors   0.96 0.81
+Multiple R square of scores with factors          0.91 0.65
+Minimum correlation of possible factor scores     0.82 0.30</code></pre>
+</div>
+</div>
+</section>
+<section id="step-7-rotation-1" class="slide level2">
+<h2>Step 7: Rotation</h2>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">plot</span>(paf1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="factorAnalysis_files/figure-revealjs/unnamed-chunk-23-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="step-7-rotation-2" class="slide level2">
+<h2>Step 7: Rotation</h2>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">plot</span>(paf2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="factorAnalysis_files/figure-revealjs/unnamed-chunk-24-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="reporting-factor-analysis" class="title-slide slide level1 center">
+<h1>Reporting factor analysis</h1>
+
+</section>
+<section id="reporting-factor-analysis-1" class="slide level2">
+<h2>Reporting factor analysis</h2>
+<p>The researcher should report:</p>
+<ul>
+<li><p>the number of factors that were extracted</p></li>
+<li><p>the method of extraction and rotation</p></li>
+<li><p>A table of factor loadings</p></li>
+</ul>
+<p><a href="https://apastyle.apa.org/style-grammar-guidelines/tables-figures/sample-tables#factor">APA factor analysis table example</a></p>
+</section>
+<section id="summary" class="slide level2">
+<h2>Summary</h2>
+<ul>
+<li><p>What is factor analysis?</p></li>
+<li><p>Which research questions can factor analysis answer?</p></li>
+<li><p>What are the assumptions of factor analysis?</p></li>
+<li><p>How do we conduct factor analysis?</p></li>
+<li><p>How do we interpret factor analysis?</p></li>
+<li><p>How do we report factor analysis?</p></li>
+</ul>
+<p><img src="logo.jpg" class="slide-logo"></p>
+<div class="footer footer-default">
+
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="factorAnalysis_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="factorAnalysis_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="factorAnalysis_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="factorAnalysis_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="factorAnalysis_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="factorAnalysis_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="factorAnalysis_files/libs/revealjs/plugin/multiplex/socket.io.js"></script>
+  <script src="factorAnalysis_files/libs/revealjs/plugin/multiplex/multiplex.js"></script>
+  <script src="factorAnalysis_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="factorAnalysis_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="factorAnalysis_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="factorAnalysis_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="factorAnalysis_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'smaller': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'multiplex': {"secret":"17014599152172957075","id":"9af6ef9f7daef566","url":"https://reveal-multiplex.glitch.me/"},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: '100%',
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        text: function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+      function tippyHover(el, contentFn) {
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        };
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          return note.innerHTML;
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>
