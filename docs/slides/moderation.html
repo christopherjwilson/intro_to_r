@@ -8,7 +8,7 @@
 <link href="moderation_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="moderation_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="moderation_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.450">
+  <meta name="generator" content="quarto-1.5.55">
 
   <meta name="author" content="Dr Christopher Wilson">
   <title>Interactions and Moderation</title>
@@ -31,7 +31,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -42,7 +42,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -70,7 +70,7 @@
     code span.at { color: #657422; } /* Attribute */
     code span.bn { color: #ad0000; } /* BaseN */
     code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
     code span.ch { color: #20794d; } /* Char */
     code span.cn { color: #8f5902; } /* Constant */
     code span.co { color: #5e5e5e; } /* Comment */
@@ -84,7 +84,7 @@
     code span.fu { color: #4758ab; } /* Function */
     code span.im { color: #00769e; } /* Import */
     code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; } /* Keyword */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
     code span.op { color: #5e5e5e; } /* Operator */
     code span.ot { color: #003b4f; } /* Other */
     code span.pp { color: #ad0000; } /* Preprocessor */
@@ -96,12 +96,9 @@
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="moderation_files/libs/revealjs/dist/theme/quarto.css">
-  <link rel="stylesheet" href="include/style.css">
   <link href="moderation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="moderation_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="moderation_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="moderation_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
-  <link href="moderation_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="moderation_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
@@ -224,7 +221,8 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -387,10 +385,16 @@
       margin-right: 0; 
     }
   </style>
-  <script src="moderation_files/libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+  <link href="moderation_files/libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+
+  <script src="moderation_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
   <script src="moderation_files/libs/viz-1.8.2/viz.js"></script>
+
   <link href="moderation_files/libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
-  <script src="moderation_files/libs/grViz-binding-1.0.10/grViz.js"></script>
+
+  <script src="moderation_files/libs/grViz-binding-1.0.11/grViz.js"></script>
+
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -506,9 +510,7 @@ Dr Christopher Wilson
 <li><p>We can check if there is an interaction between predictor variables when we build our regression model.</p></li>
 <li><p>We do this by adding a term to our model that represents the interaction between the predictor variables.</p></li>
 </ul>
-<div class="cell" data-layout-align="center">
-<details>
-<summary>Code</summary>
+<div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1"></a><span class="co"># model1 without interactions</span></span>
 <span id="annotated-cell-1-2"><a href="#annotated-cell-1-2"></a></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();" href="">1</a><span id="annotated-cell-1-3" class="code-annotation-target"><a href="#annotated-cell-1-3"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">+</span> rapportLevel)</span>
@@ -516,16 +518,15 @@ Dr Christopher Wilson
 <span id="annotated-cell-1-5"><a href="#annotated-cell-1-5"></a><span class="co"># model1 with interactions</span></span>
 <span id="annotated-cell-1-6"><a href="#annotated-cell-1-6"></a></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();" href="">2</a><span id="annotated-cell-1-7" class="code-annotation-target"><a href="#annotated-cell-1-7"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">*</span> rapportLevel)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="3" data-code-annotation="1" data-code-cell="annotated-cell-1">This model does not include an interaction between timeInCounselling and rapportLevel. This is because we used the + symbol to separate the predictor variables.</span>
+<span data-code-cell="annotated-cell-1" data-code-lines="3" data-code-annotation="1">This model does not include an interaction between timeInCounselling and rapportLevel. This is because we used the + symbol to separate the predictor variables.</span>
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-lines="7" data-code-annotation="2" data-code-cell="annotated-cell-1">This model does include an interaction between timeInCounselling and rapportLevel. This is because we used the * symbol to separate the predictor variables.</span>
+<span data-code-cell="annotated-cell-1" data-code-lines="7" data-code-annotation="2">This model does include an interaction between timeInCounselling and rapportLevel. This is because we used the * symbol to separate the predictor variables.</span>
 </dd>
 </dl>
 </div>
@@ -533,15 +534,12 @@ Dr Christopher Wilson
 </section>
 <section id="interpreting-interactions-in-regression-1" class="slide level2 smaller">
 <h2>Interpreting interactions in regression #1</h2>
-<div class="cell" data-layout-align="center">
-<details>
-<summary>Code</summary>
+<div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy"><code class="sourceCode r"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1"></a><span class="co"># model1 with interactions</span></span>
 <span id="annotated-cell-2-2"><a href="#annotated-cell-2-2"></a></span>
 <span id="annotated-cell-2-3"><a href="#annotated-cell-2-3"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">*</span> rapportLevel)</span>
 <span id="annotated-cell-2-4"><a href="#annotated-cell-2-4"></a></span>
 <span id="annotated-cell-2-5"><a href="#annotated-cell-2-5"></a><span class="fu">summary</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -581,16 +579,8 @@ F-statistic: 12.22 on 3 and 96 DF,  p-value: 7.701e-07</code></pre>
 <ul>
 <li>We can look at the <strong>simple slopes</strong> of the interaction.</li>
 </ul>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="moderation_files/figure-revealjs/unnamed-chunk-4-1.png" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
+
+<img data-src="moderation_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
 <section id="interpreting-interactions-in-regression-4" class="slide level2">
 <h2>Interpreting interactions in regression #4</h2>
 <ul>
@@ -642,8 +632,8 @@ F-statistic: 12.22 on 3 and 96 DF,  p-value: 7.701e-07</code></pre>
 <h2>Diagram of moderation design</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-383f698b1a5db476257a" style="width:100%;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-383f698b1a5db476257a">{"x":{"diagram":"\n\tdigraph mediation_model { \n\t  # Nodes  \n\t  node [shape = rectangle, fontname = Arial, fontsize=9]\n\t  iv    [pos = \"-1,1!\", label = \"Time in\ncounselling\"]\n\t  blank [pos =  \"0,1!\", label = \"\", width = 0.001, height = 0.001]\n\t  mod   [pos =  \"0,2!\", label = \"Rapport\nlevel\"]\n\t  dv    [pos =  \"1,1!\", label = \"General\nwellbeing\"]\n\t    \n\t  # Hide moderator edges\n\t  { rank = same; blank mod }\n\t  \n\t  # Edges\n\t  edge [fontname = Arial, fontsize=8]\n\t  mod -> blank\n\t  iv -> blank [dir = none]\n\t  blank -> dv [minlen = 1]\n\n\t  # Graph\n\t  graph [layout = neato, overlap = true, outputorder = edgesfirst]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-f66b94f80a6f50d4ea0c" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-f66b94f80a6f50d4ea0c">{"x":{"diagram":"\n\tdigraph moderation_model { \n\t  # Nodes  \n\t  node [shape = rectangle, fontname = Arial, fontsize=9]\n\t  iv    [pos = \"-1,1!\", label = \"Time in\ncounselling\"]\n\t  blank [pos =  \"0,1!\", label = \"\", width = 0.001, height = 0.001]\n\t  mod   [pos =  \"0,2!\", label = \"Rapport\nlevel\"]\n\t  dv    [pos =  \"1,1!\", label = \"General\nwellbeing\"]\n\t    \n\t  # Hide moderator edges\n\t  { rank = same; blank mod }\n\t  \n\t  # Edges\n\t  edge [fontname = Arial, fontsize=8]\n\t  mod -> blank\n\t  iv -> blank [dir = none]\n\t  blank -> dv [minlen = 1]\n\n\t  # Graph\n\t  graph [layout = neato, overlap = true, outputorder = edgesfirst]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -674,18 +664,15 @@ F-statistic: 12.22 on 3 and 96 DF,  p-value: 7.701e-07</code></pre>
 <section id="moderation-example-2" class="slide level2">
 <h2>Moderation example #2</h2>
 <p>The regression model is the same as the one we used for interactions.</p>
-<div class="cell" data-layout-align="center">
-<details>
-<summary>Code</summary>
+<div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1"></a><span class="co"># model1 with interactions</span></span>
 <span id="annotated-cell-3-2"><a href="#annotated-cell-3-2"></a></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();" href="">1</a><span id="annotated-cell-3-3" class="code-annotation-target"><a href="#annotated-cell-3-3"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">*</span> rapportLevel)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="3" data-code-annotation="1" data-code-cell="annotated-cell-3">This model includes an interaction between timeInCounselling and rapportLevel. We know this because we used the * symbol to separate the predictor variables.</span>
+<span data-code-cell="annotated-cell-3" data-code-lines="3" data-code-annotation="1">This model includes an interaction between timeInCounselling and rapportLevel. We know this because we used the * symbol to separate the predictor variables.</span>
 </dd>
 </dl>
 </div>
@@ -695,44 +682,29 @@ F-statistic: 12.22 on 3 and 96 DF,  p-value: 7.701e-07</code></pre>
 <h2>Testing the moderation effect</h2>
 <p>Testing at which levels of <em>Rapport level</em> the relationship between <em>Time in counselling</em> and <em>General Wellbeing</em> is significant.</p>
 <p>Step 1: Run the regression model:</p>
-<div class="cell" data-layout-align="center">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># model1 with interactions</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">*</span> rapportLevel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="co"># model1 with interactions</span></span>
+<span id="cb2-2"><a href=""></a></span>
+<span id="cb2-3"><a href=""></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">*</span> rapportLevel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="testing-the-moderation-effect-2" class="slide level2">
 <h2>Testing the moderation effect #2</h2>
 <p>Step 2: Plot the interaction:</p>
-<div class="cell" data-layout-align="center">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># model1 with interactions</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a></span>
-<span id="cb3-3"><a href="#cb3-3"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">*</span> rapportLevel)</span>
-<span id="cb3-4"><a href="#cb3-4"></a></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="co"># using the rockchalk package</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="fu">library</span>(rockchalk)</span>
-<span id="cb3-8"><a href="#cb3-8"></a></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="co"># use the plotSlopes() function</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a></span>
-<span id="cb3-11"><a href="#cb3-11"></a>ps <span class="ot">&lt;-</span> <span class="fu">plotSlopes</span>(model1, <span class="at">plotx =</span> <span class="st">"timeInCounselling"</span>, <span class="at">modx =</span> <span class="st">"rapportLevel"</span>, <span class="at">interval =</span> <span class="st">"confidence"</span>, <span class="at">modxVals =</span> <span class="st">"std.dev"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="moderation_files/figure-revealjs/unnamed-chunk-8-1.png" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>ps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="co"># model1 with interactions</span></span>
+<span id="cb3-2"><a href=""></a></span>
+<span id="cb3-3"><a href=""></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">*</span> rapportLevel)</span>
+<span id="cb3-4"><a href=""></a></span>
+<span id="cb3-5"><a href=""></a><span class="co"># using the rockchalk package</span></span>
+<span id="cb3-6"><a href=""></a></span>
+<span id="cb3-7"><a href=""></a><span class="fu">library</span>(rockchalk)</span>
+<span id="cb3-8"><a href=""></a></span>
+<span id="cb3-9"><a href=""></a><span class="co"># use the plotSlopes() function</span></span>
+<span id="cb3-10"><a href=""></a></span>
+<span id="cb3-11"><a href=""></a>ps <span class="ot">&lt;-</span> <span class="fu">plotSlopes</span>(model1, <span class="at">plotx =</span> <span class="st">"timeInCounselling"</span>, <span class="at">modx =</span> <span class="st">"rapportLevel"</span>, <span class="at">interval =</span> <span class="st">"confidence"</span>, <span class="at">modxVals =</span> <span class="st">"std.dev"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a>ps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$call
 plotSlopes.lm(model = model1, plotx = "timeInCounselling", modx = "rapportLevel", 
@@ -891,38 +863,26 @@ attr(,"class")
 [1] "plotSlopes" "rockchalk" </code></pre>
 </div>
 </div>
-</section>
+<img data-src="moderation_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
 <section id="testing-the-moderation-effect-3" class="slide level2 scrollable">
 <h2>Testing the moderation effect #3</h2>
 <p>Step 3: Test the range of values where the interaction is significant:</p>
-<div class="cell" data-layout-align="center">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># model1 with interactions</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a></span>
-<span id="cb6-3"><a href="#cb6-3"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">*</span> rapportLevel)</span>
-<span id="cb6-4"><a href="#cb6-4"></a></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="co"># using the rockchalk package</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="fu">library</span>(rockchalk)</span>
-<span id="cb6-8"><a href="#cb6-8"></a></span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="co"># use the plotSlopes() function</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a></span>
-<span id="cb6-11"><a href="#cb6-11"></a>ps <span class="ot">&lt;-</span> <span class="fu">plotSlopes</span>(model1, <span class="at">plotx =</span> <span class="st">"timeInCounselling"</span>, <span class="at">modx =</span> <span class="st">"rapportLevel"</span>, <span class="at">interval =</span> <span class="st">"confidence"</span>, <span class="at">modxVals =</span> <span class="st">"std.dev"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="moderation_files/figure-revealjs/unnamed-chunk-9-1.png" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># use the testSlopes() function</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a></span>
-<span id="cb7-3"><a href="#cb7-3"></a>ts <span class="ot">&lt;-</span> <span class="fu">testSlopes</span>(ps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="co"># model1 with interactions</span></span>
+<span id="cb6-2"><a href=""></a></span>
+<span id="cb6-3"><a href=""></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">*</span> rapportLevel)</span>
+<span id="cb6-4"><a href=""></a></span>
+<span id="cb6-5"><a href=""></a><span class="co"># using the rockchalk package</span></span>
+<span id="cb6-6"><a href=""></a></span>
+<span id="cb6-7"><a href=""></a><span class="fu">library</span>(rockchalk)</span>
+<span id="cb6-8"><a href=""></a></span>
+<span id="cb6-9"><a href=""></a><span class="co"># use the plotSlopes() function</span></span>
+<span id="cb6-10"><a href=""></a></span>
+<span id="cb6-11"><a href=""></a>ps <span class="ot">&lt;-</span> <span class="fu">plotSlopes</span>(model1, <span class="at">plotx =</span> <span class="st">"timeInCounselling"</span>, <span class="at">modx =</span> <span class="st">"rapportLevel"</span>, <span class="at">interval =</span> <span class="st">"confidence"</span>, <span class="at">modxVals =</span> <span class="st">"std.dev"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="co"># use the testSlopes() function</span></span>
+<span id="cb7-2"><a href=""></a></span>
+<span id="cb7-3"><a href=""></a>ts <span class="ot">&lt;-</span> <span class="fu">testSlopes</span>(ps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Values of rapportLevel OUTSIDE this interval:
         lo         hi 
@@ -930,54 +890,47 @@ attr(,"class")
 cause the slope of (b1 + b2*rapportLevel)timeInCounselling to be statistically significant</code></pre>
 </div>
 </div>
-</section>
+<img data-src="moderation_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
 <section id="testing-the-moderation-effect-4" class="slide level2 scrollable">
 <h2>Testing the moderation effect #4</h2>
 <p>Step 4: Visualise the results:</p>
-<div class="cell" data-layout-align="center">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># model1 with interactions</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a></span>
-<span id="cb9-3"><a href="#cb9-3"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">*</span> rapportLevel)</span>
-<span id="cb9-4"><a href="#cb9-4"></a></span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="co"># using the rockchalk package</span></span>
-<span id="cb9-6"><a href="#cb9-6"></a></span>
-<span id="cb9-7"><a href="#cb9-7"></a><span class="fu">library</span>(rockchalk)</span>
-<span id="cb9-8"><a href="#cb9-8"></a></span>
-<span id="cb9-9"><a href="#cb9-9"></a><span class="co"># use the plotSlopes() function</span></span>
-<span id="cb9-10"><a href="#cb9-10"></a></span>
-<span id="cb9-11"><a href="#cb9-11"></a>ps <span class="ot">&lt;-</span> <span class="fu">plotSlopes</span>(model1, <span class="at">plotx =</span> <span class="st">"timeInCounselling"</span>, <span class="at">modx =</span> <span class="st">"rapportLevel"</span>, <span class="at">interval =</span> <span class="st">"confidence"</span>, <span class="at">modxVals =</span> <span class="st">"std.dev"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="co"># model1 with interactions</span></span>
+<span id="cb9-2"><a href=""></a></span>
+<span id="cb9-3"><a href=""></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">*</span> rapportLevel)</span>
+<span id="cb9-4"><a href=""></a></span>
+<span id="cb9-5"><a href=""></a><span class="co"># using the rockchalk package</span></span>
+<span id="cb9-6"><a href=""></a></span>
+<span id="cb9-7"><a href=""></a><span class="fu">library</span>(rockchalk)</span>
+<span id="cb9-8"><a href=""></a></span>
+<span id="cb9-9"><a href=""></a><span class="co"># use the plotSlopes() function</span></span>
+<span id="cb9-10"><a href=""></a></span>
+<span id="cb9-11"><a href=""></a>ps <span class="ot">&lt;-</span> <span class="fu">plotSlopes</span>(model1, <span class="at">plotx =</span> <span class="st">"timeInCounselling"</span>, <span class="at">modx =</span> <span class="st">"rapportLevel"</span>, <span class="at">interval =</span> <span class="st">"confidence"</span>, <span class="at">modxVals =</span> <span class="st">"std.dev"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure>
-<p><img data-src="moderation_files/figure-revealjs/unnamed-chunk-10-1.png" style="width:100.0%"></p>
+<p><img data-src="moderation_files/figure-revealjs/unnamed-chunk-10-1.png" width="960"></p>
 </figure>
 </div>
 </div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># use the testSlopes() function</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a></span>
-<span id="cb10-3"><a href="#cb10-3"></a>ts <span class="ot">&lt;-</span> <span class="fu">testSlopes</span>(ps)</span>
-<span id="cb10-4"><a href="#cb10-4"></a></span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="co"># plot the range of significant values</span></span>
-<span id="cb10-6"><a href="#cb10-6"></a></span>
-<span id="cb10-7"><a href="#cb10-7"></a><span class="fu">plot</span>(ts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="moderation_files/figure-revealjs/unnamed-chunk-10-2.png" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="co"># use the testSlopes() function</span></span>
+<span id="cb10-2"><a href=""></a></span>
+<span id="cb10-3"><a href=""></a>ts <span class="ot">&lt;-</span> <span class="fu">testSlopes</span>(ps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Values of rapportLevel OUTSIDE this interval:
         lo         hi 
 -10.828550   3.537184 
 cause the slope of (b1 + b2*rapportLevel)timeInCounselling to be statistically significant</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="co"># plot the range of significant values</span></span>
+<span id="cb12-2"><a href=""></a></span>
+<span id="cb12-3"><a href=""></a><span class="fu">plot</span>(ts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="moderation_files/figure-revealjs/unnamed-chunk-10-2.png" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -997,9 +950,11 @@ cause the slope of (b1 + b2*rapportLevel)timeInCounselling to be statistically s
 <li><p>Moderations are just a specific type of interaction. They are based on specific theoretical models about the relationship between variables.</p></li>
 <li><p>We can use the <code>rockchalk</code> package to test for interactions and moderation and plot them.</p></li>
 </ul>
+<div class="quarto-auto-generated-content">
 <p><img src="logo.jpg" class="slide-logo"></p>
 <div class="footer footer-default">
 
+</div>
 </div>
 </section></section>
     </div>
@@ -1012,9 +967,6 @@ cause the slope of (b1 + b2*rapportLevel)timeInCounselling to be statistically s
   <script src="moderation_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
   <script src="moderation_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="moderation_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="moderation_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
-  <script src="moderation_files/libs/revealjs/plugin/multiplex/socket.io.js"></script>
-  <script src="moderation_files/libs/revealjs/plugin/multiplex/multiplex.js"></script>
   <script src="moderation_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -1031,14 +983,11 @@ cause the slope of (b1 + b2*rapportLevel)timeInCounselling to be statistically s
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'chalkboard': {"buttons":true},
-'multiplex': {"secret":null,"id":"8c119cb2ba6e5a0e","url":"https://reveal-multiplex.glitch.me/"},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -1059,7 +1008,7 @@ cause the slope of (b1 + b2*rapportLevel)timeInCounselling to be statistically s
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: 'c/t',
+        slideNumber: false,
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
@@ -1184,7 +1133,7 @@ cause the slope of (b1 + b2*rapportLevel)timeInCounselling to be statistically s
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: '100%',
+        width: 1050,
 
         height: 700,
 
@@ -1209,52 +1158,90 @@ cause the slope of (b1 + b2*rapportLevel)timeInCounselling to be statistically s
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
 
           RevealMath,
-          
+          RevealNotes,
           RevealSearch,
           RevealZoom
         ]
       });
     </script>
     
+
     <script>
+
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
       // slide changes (different for each slide format).
+
       (function () {
+
         // dispatch for htmlwidgets
+
         function fireSlideEnter() {
+
           const event = window.document.createEvent("Event");
+
           event.initEvent("slideenter", true, true);
+
           window.document.dispatchEvent(event);
+
         }
+
+    
 
         function fireSlideChanged(previousSlide, currentSlide) {
+
           fireSlideEnter();
 
+    
+
           // dispatch for shiny
+
           if (window.jQuery) {
+
             if (previousSlide) {
+
               window.jQuery(previousSlide).trigger("hidden");
+
             }
+
             if (currentSlide) {
+
               window.jQuery(currentSlide).trigger("shown");
+
             }
+
           }
+
         }
+
+    
 
         // hookup for slidy
+
         if (window.w3c_slidy) {
+
           window.w3c_slidy.add_observer(function (slide_num) {
+
             // slide_num starts at position 1
+
             fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
           });
+
         }
 
+    
+
       })();
+
     </script>
+
+    
 
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1288,18 +1275,7 @@ cause the slope of (b1 + b2*rapportLevel)timeInCounselling to be statistically s
         }
         return false;
       }
-      const clipboard = new window.ClipboardJS('.code-copy-button', {
-        text: function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-        }
-      });
-      clipboard.on('success', function(e) {
+      const onCopySuccess = function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -1331,11 +1307,50 @@ cause the slope of (b1 + b2*rapportLevel)timeInCounselling to be statistically s
         }, 1000);
         // clear code selection
         e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
       });
-      function tippyHover(el, contentFn) {
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1345,8 +1360,17 @@ cause the slope of (b1 + b2*rapportLevel)timeInCounselling to be statistically s
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
@@ -1360,7 +1384,11 @@ cause the slope of (b1 + b2*rapportLevel)timeInCounselling to be statistically s
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          return note.innerHTML;
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
         });
       }
       const findCites = (el) => {

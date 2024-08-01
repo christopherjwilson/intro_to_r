@@ -1,0 +1,13 @@
+---
+format: 
+  revealjs:
+    revealjs-plugins:
+      - drop
+    webr:
+      packages:
+        - dplyr
+---
+
+# Test
+
+- Does this work?
