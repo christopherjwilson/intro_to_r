@@ -1,6 +1,0 @@
----
-format: 
- pdf: default
- html: default
-title: "Research Methods 1: Induction and module overview"
----
