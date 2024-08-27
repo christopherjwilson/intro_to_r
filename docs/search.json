@@ -1,0 +1,22 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Introduction to R for Clinical Psychology",
+    "section": "",
+    "text": "Welcome\nThe purpose of this site/book is to introduce you to R and R Studio for use in Clinical Psychology Research. Before you begin, there are some important things to know:",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#tidyverse",
+    "href": "index.html#tidyverse",
+    "title": "Introduction to R for Clinical Psychology",
+    "section": "The tidyverse",
+    "text": "The tidyverse\n\n\n\n\n\n\nThis site/book uses the tidyverse set of packages\n\n\n\nThe tidyverse is a collection of R packages designed for to make data manipulation and visualization. easier in R. The tidyverse is a powerful set of tools for data analysis, and it is widely used in the R community. It is assumed that you will have the tidyverse installed and loaded for the examples in this site/book. If you do not have the tidyverse installed, you can install it by running the following code in the R console:\n\ninstall.packages(\"tidyverse\")\nYou only need to install the package on to your machine once. Once you have installed the tidyverse, you can load it by running the following code in the R console:\n\nlibrary(tidyverse)\nThe library() function is used to load packages in R. You will need to load the tidyverse package at the beginning of each R session in which you want to use it.",
+    "crumbs": [
+      "Welcome"
+    ]
+  }
+]

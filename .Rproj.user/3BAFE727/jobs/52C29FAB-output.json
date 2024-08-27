@@ -1,0 +1,7 @@
+[1,"==> quarto preview index.qmd --to html --no-watch-inputs --no-browse\n\n"]
+[1,"pandoc \n  to: html\n  output-file: index.html\n  standalone: true\n  toc: true\n  number-sections: false\n  title-prefix: Introduction to R for Clinical Psychology\n  section-divs: true\n  html-math-method: mathjax\n  wrap: none\n  default-image-extension: png\n  \nmetadata\n  crossref:\n    chapters: true\n  document-css: false\n  link-citations: true\n  date-format: long\n  lang: en\n  bibliography:\n    - references.bib\n  editor: visual\n  theme: cosmo\n  title: Introduction to R for Clinical Psychology\n  author: Christopher J Wilson\n  date: 13/06/2024\n  \n"]
+[1,"Output created: docs\\index.html\n\n"]
+[1,"Preparing to preview\n"]
+[1,"\nWatching files for changes\nBrowse at http://localhost:5703/\n"]
+[1,"GET: /\n"]
+[1,"GET: /\n"]
