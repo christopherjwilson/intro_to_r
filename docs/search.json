@@ -18,5 +18,145 @@
     "crumbs": [
       "Welcome"
     ]
+  },
+  {
+    "objectID": "index.html#textbooks-that-can-be-accessed-online",
+    "href": "index.html#textbooks-that-can-be-accessed-online",
+    "title": "Introduction to R for Clinical Psychology",
+    "section": "Textbooks that can be accessed online",
+    "text": "Textbooks that can be accessed online\ne-books can be accessed from the library website: https://www.tees.ac.uk/depts/lis/\n\nResearch Methods and Statistics\nCoolican, 2019. Research Methods and Statistics in Psychology. Taylor & Francis Group\nBarker, C., Pistrang, N., & Elliott, R. (2015). Research methods in clinical psychology: An introduction for students and practitioners (3rd ed.). Chichester, West Sussex: Wiley Blackwell.\nWeiner, I. B., Schinka, J. A., & Velicer, W. F. (2012). Handbook of psychology, research methods in psychology (2. Aufl. ed.). Somerset: Wiley.\n\n\nWorking with R and RStudio to do analysis\nNavarro, D. (2017) Learning statistics with R.\nPhillips N. D. (2018) YaRrr! The Pirate’s Guide to R\nHorton, Pruim and Kaplan (2015) A Student’s Guide to R\nMather, M. (2019) R for Academics\nWickham and Grolemund (2019). R For Data Science\nAllaire and Grolemund (2019). R Markdown: The Definitive Guide\nBasics of RStudio\nData Import\nData Transformation\nData Visualisation with GGPlot",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introduction to R and R Studio",
+    "section": "",
+    "text": "1.1 What are R and R Studio?",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to R and R Studio</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#what-are-r-and-r-studio",
+    "href": "intro.html#what-are-r-and-r-studio",
+    "title": "1  Introduction to R and R Studio",
+    "section": "",
+    "text": "At the end of this section, you will be able to:\n\n\n\n\nDownload and install R and R Studio\nUnderstand the basic layout of R Studio\nDescribe some of the differences between SPSS and R\n\n\n\n\n1.1.1 Downloading and installing R and R Studio\nTo get started with R Studio, you need to download and install two pieces of software:\n\nR: The base software that you will use to write and run code.\nR Studio: An integrated development environment (IDE) that makes it easier to write and run code in R.\n\n\n\nClick on these links to download:\n\nR project\nRStudio\n\n\n\n1.1.2 The R Studio layout\nWhen you open R Studio, you will see a screen that looks like this:\n\n\n\nR Studio IDE\n\n\nBriefly, the different panes in R Studio are:\n\nConsole: You can write and run code in this pane. However, it is best practice to write code in a script. You will see output from your code in the console.\nEnvironment/History: This pane shows you the objects that you have created in R, and the history of the commands that you have run.\nFiles/Plots/Packages/Help: These panes allow you to navigate your files, view plots, manage packages, and access help documentation.\n\nYou will learn more about these panes as you work through the course.\n\n\n\nR Studio IDE\n\n\n\n\n1.1.3 Differences between SPSS and R\nR is a statistical programming language, while SPSS is a point-and-click software package. This means that in R, you write code to perform tasks, while in SPSS, you click buttons and select options from menus.\nThis can take some getting used to, but there are many advantages to using R:\n\nReproducibility: You can save your code and rerun it at any time, ensuring that your analysis is reproducible.\nFlexibility: You can write code to perform any task you like, rather than being limited to the options available in a menu.\nCommunity: R has a large and active community of users who share code and help each other to solve problems.\n\nWith R, you won’t manipulate your source data files. Instead, you load the data into R and manipulate it in R. This means that you can always go back to your original data and start again if you need to.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to R and R Studio</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#no-more-point-and-click---the-r-workflow.",
+    "href": "intro.html#no-more-point-and-click---the-r-workflow.",
+    "title": "1  Introduction to R and R Studio",
+    "section": "1.2 No more “point and click”! - the R workflow.",
+    "text": "1.2 No more “point and click”! - the R workflow.\n\n\n\n\n\n\nAt the end of this section, you will be able to:\n\n\n\n\nOpen a new script in R Studio\nWrite and run code in a script\nSave a script for later use\n\n\n\n\n1.2.1 Using scripts in R Studio\nWhen you work in R, you will write code in a script. This is a text file that contains the code that you want to run. You can write and run code in the console, but it is best practice to write code in a script. This allows you to save your code and run it again later IT also makes it easier to see what you have done.\nTo open a new script in R Studio, click on File &gt; New File &gt; R Script. This will open a new script in the top-left pane of R Studio.\nYou can write code in the script, and then run it by selecting the code that you want to run and clicking the Run button at the top of the script pane. You can also run code by pressing Ctrl + Enter on your keyboard.\nTo save your script, click on File &gt; Save As... and save the file with a .R extension.\n\n\n\n\n\n\n\n\nOrganising your work\n\n\n\nIt is good practice to keep your work organised by putting your scripts, data, and other files in a folder on your computer, for each project that you work on.\nRStudio also allows the creation of projects. You can create a new project in R Studio by clicking on File &gt; New Project.... This will create a new folder on your computer where you can save your scripts, data, and other files. If you save your script in the project folder, you can easily access it by opening the project in R Studio. If you use projects, be aware that R Studio will load the last project you worked on when you open the software.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to R and R Studio</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#objects-functions-and-packages-in-r",
+    "href": "intro.html#objects-functions-and-packages-in-r",
+    "title": "1  Introduction to R and R Studio",
+    "section": "1.3 Objects, functions and packages in R",
+    "text": "1.3 Objects, functions and packages in R\n\n\n\n\n\n\nAt the end of this section, you will be able to:\n\n\n\n\nCreate objects in R\nUse functions in R to perform tasks\nInstall and load packages in R\n\n\n\n\n1.3.1 What are objects?\nIn R, you can create objects to store data. For example, you can create an object called numbers that contains a set of numbers like this:\nnumbers &lt;- c(1, 2, 3, 4, 5)\nBreaking this code down:\n\nnumbers is the name of the object that you are creating.\n&lt;- is the assignment operator. It assigns the value on the right-hand side of the operator to the object on the left-hand side.\nc(1, 2, 3, 4, 5) is the data that you are assigning to the object. In this case, it is a set of numbers.\n\nWhen you run this code, R will create an object called numbers that contains the numbers 1, 2, 3, 4, and 5. You will be ab` le to see the object in the Environment pane in R Studio.\nYou can then use the object in your code, instead of typing out the data each time (see Section 1.3.2 for example).\n\n\n\n\n1.3.2 What are functions?\nFunctions are code that have been written to perform a specific task. You can use functions in R to perform tasks like reading data into R, summarising data, and creating plots.\nFor example, the mean() function calculates the mean of a set of numbers. You can use the mean() function like this:\nnumbers &lt;- c(1, 2, 3, 4, 5)\n\nmean(numbers)\nFunctions in R have a name, followed by parentheses. You can pass arguments to the function inside the parentheses. In this case, the mean() function takes a set of numbers as an argument, and returns the mean of those numbers.\nTo learn more about a function, you can use the help() function. For example, to learn more about the mean() function, you can run the following code:\nhelp(mean)\nYou can also use the ? operator to get help on a function. For example, to get help on the mean() function, you can run the following code:\n\n?mean\n\n\n\n\n1.3.3 What are packages?\nR has many built-in functions that you can use to perform tasks. However, there are also many packages available that contain additional functions. You can install these packages onto your conputer and then load them into your R session whenever you want to use them.\nTo install a package, you can use the install.packages() function. For example, to install the tidyverse package, you would run the following code:\ninstall.packages(\"tidyverse\")\nTo load a package into your R session, you can use the library() function. For example, to load the tidyverse package, you would run the following code:\nlibrary(tidyverse)\nOnce you have loaded a package, you can use the functions in that package in your code. For example, the tidyverse package contains functions for data manipulation and visualisation.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to R and R Studio</span>"
+    ]
+  },
+  {
+    "objectID": "working_with_data.html",
+    "href": "working_with_data.html",
+    "title": "2  Working with data in R Studio",
+    "section": "",
+    "text": "2.1 Importing data into R\nThere are a few different ways to load data into R. You can load data from a file on your computer, from a URL, or from a package. You can load data in different file types, such as CSV, Excel, and SPSS files.\nUsing RStudio, you can load data by clicking on File &gt; Import Dataset. This will open a window where you can select the file that you want to load.\nHowever, you can also load data using code. For example, you can use the read_csv() function from the readr package to load a CSV file into R. You can use the readxl package to load an Excel file, and the haven package to load an SPSS file.\nLet’s break this code down:\nWhen you load data into R, it will be stored as a data frame. A data frame is a type of object in R that is used to store tabular data. It is similar to a spreadsheet in Excel, with rows and columns.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Working with data in R Studio</span>"
+    ]
+  },
+  {
+    "objectID": "working_with_data.html#importing-data-into-r",
+    "href": "working_with_data.html#importing-data-into-r",
+    "title": "2  Working with data in R Studio",
+    "section": "",
+    "text": "At the end of this section, you will be able to:\n\n\n\n\nLoad data into R from different file types\nUnderstand the structure of data in R\n\n\n\n\n\n\n\n# Load the readr package\n\nlibrary(readr)\n\n# Load a CSV file into R\n\ndata &lt;- read_csv(\"data.csv\")\n\n\nlibrary(readr) loads the readr package into your R session. This package contains the read_csv() function, which you can use to load a CSV file into R.\nread_csv(\"data.csv\") reads the CSV file called data.csv into R. The data will be stored in an object called data.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Working with data in R Studio</span>"
+    ]
+  },
+  {
+    "objectID": "working_with_data.html#how-are-data-stored-in-r",
+    "href": "working_with_data.html#how-are-data-stored-in-r",
+    "title": "2  Working with data in R Studio",
+    "section": "2.2 How are data stored in R?",
+    "text": "2.2 How are data stored in R?\nIf you worked through the previous section, you should already have some idea how to load data into R. But how are data stored in R? In R, data are stored in objects. An object is a container that holds data. There are several types of objects in R, but the most common ones are:\n\nVectors (e.g., a sequence of numbers)\nMatrices (e.g., a table of rows and colummns, all of the same data type)\nData frames (e.g., a table of data where each column represents a variable and each row represents an observation)\nLists (e.g., a collection of objects)\n\nIn this section, we will focus on data frames, which are the most common way to store data in R. A data frame is a table of data where each column represents a variable and each row represents an observation. You can think of a data frame as having a structure similar to a spreadsheet.\n\n\n\nData frame with 3 variables/columns",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Working with data in R Studio</span>"
+    ]
+  },
+  {
+    "objectID": "working_with_data.html#how-do-we-use-data-frames-in-r",
+    "href": "working_with_data.html#how-do-we-use-data-frames-in-r",
+    "title": "2  Working with data in R Studio",
+    "section": "2.3 How do we use data frames in R?",
+    "text": "2.3 How do we use data frames in R?\nTo view the data in a data frame, you can simply type the name of the data frame in the console and press Enter. For example, if you have a data frame called my_data, you can view the data in the data frame by typing my_data in the console and pressing Enter.\n\n## load the tidyverse package\n\nlibrary(tidyverse)\n\n# Create a data frame\nmy_data &lt;- data.frame(\n  name = c(\"Alice\", \"Bob\", \"Charlie\", \"David\", \"Eve\", \"Frank\"),\n  age = c(25, 30, 35, 40, 45, 50),\n  height = c(160, 175, 180, 165, 170, 190),\n  car = c(\"Electric\", \"Petrol\", \"Electric\", \"Petrol\", \"Petrol\", \"Electric\")\n)\n\n# View or refer to the data in the data frame\n\nmy_data\n\n     name age height      car\n1   Alice  25    160 Electric\n2     Bob  30    175   Petrol\n3 Charlie  35    180 Electric\n4   David  40    165   Petrol\n5     Eve  45    170   Petrol\n6   Frank  50    190 Electric\n\n\nIn the code above, we created a data frame called my_data with four variables: name, age, height, and car. We then used the my_data object to view the data in the data frame.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Working with data in R Studio</span>"
+    ]
+  },
+  {
+    "objectID": "working_with_data.html#view-or-refer-to-a-specific-variable-in-a-data-frame",
+    "href": "working_with_data.html#view-or-refer-to-a-specific-variable-in-a-data-frame",
+    "title": "2  Working with data in R Studio",
+    "section": "2.4 View or refer to a specific variable in a data frame",
+    "text": "2.4 View or refer to a specific variable in a data frame\nTo view or refer to a specific variable in a data frame, you can use the $ operator. For example, if you want to view the age variable in the my_data data frame, you can type my_data$age in the console and press Enter.\n\n# View or refer to a specific variable in a data frame\n\nmy_data$age\n\n[1] 25 30 35 40 45 50",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Working with data in R Studio</span>"
+    ]
+  },
+  {
+    "objectID": "working_with_data.html#data-types-in-r",
+    "href": "working_with_data.html#data-types-in-r",
+    "title": "2  Working with data in R Studio",
+    "section": "2.5 Data types in R",
+    "text": "2.5 Data types in R\nIn R, each variable in a data frame has a data type. The most common data types in R are:\n\nNumeric: for continuous variables (e.g., age, height)\nFactor: for categorical variables\nLogical: for binary variables (TRUE or FALSE)\n\nYou can use the str() function to view the structure of a data frame, including the data types of each variable.\n\n# View the structure of a data frame\n\nstr(my_data)\n\n'data.frame':   6 obs. of  4 variables:\n $ name  : chr  \"Alice\" \"Bob\" \"Charlie\" \"David\" ...\n $ age   : num  25 30 35 40 45 50\n $ height: num  160 175 180 165 170 190\n $ car   : chr  \"Electric\" \"Petrol\" \"Electric\" \"Petrol\" ...\n\n\nIn the code above, we used the str() function to view the structure of the my_data data frame. The output shows the data types of each variable in the data frame.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Working with data in R Studio</span>"
+    ]
+  },
+  {
+    "objectID": "working_with_data.html#convert-data-types-in-r",
+    "href": "working_with_data.html#convert-data-types-in-r",
+    "title": "2  Working with data in R Studio",
+    "section": "2.6 Convert data types in R",
+    "text": "2.6 Convert data types in R\nYou can convert the data type of a variable in R using the as. functions. For example, you can convert a character variable to a factor variable using the as.factor() function.\n\n# Convert a character variable to a factor variable\n\nmy_data$name &lt;- as.factor(my_data$name)\n\nmy_data$car &lt;- as.factor(my_data$car)\n\nIn the code above, we converted the name variable in the my_data data frame from a character variable to a factor variable using the as.factor() function.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Working with data in R Studio</span>"
+    ]
+  },
+  {
+    "objectID": "working_with_data.html#subsetting-data-in-r",
+    "href": "working_with_data.html#subsetting-data-in-r",
+    "title": "2  Working with data in R Studio",
+    "section": "2.7 Subsetting data in R",
+    "text": "2.7 Subsetting data in R\n\n\n\n\n\n\nAt the end of this section, you will be able to:\n\n\n\n\nFilter data in R\nCreate subsets of data in R\n\n\n\nSubsetting data in R means selecting a subset of the data based on certain criteria. For example, you might want to select only the rows where a certain variable is greater than a certain value, or only the columns that contain certain variables.\nIf we use the my_data data frame from the previous section, we can subset the data to select only the rows where the age variable is greater than 30.\n\n# Filter the data frame to select only the rows where the age variable is greater than 30\n\n# this method uses the dplyr package, which is a part of the tidyverse. Be sure to load the tidyverse package if you haven't already.\n\nmy_data %&gt;% filter(age &gt; 30)\n\n     name age height      car\n1 Charlie  35    180 Electric\n2   David  40    165   Petrol\n3     Eve  45    170   Petrol\n4   Frank  50    190 Electric\n\n\nLet’s break this code down:\n\nmy_data is the data frame that we want to subset.\n%&gt;% is the pipe operator, which is used to pass the data frame to the next function. This allows us to link multiple steps together in a single line of code.\nfilter(age &gt; 30) is the function that filters the data frame to select only the rows where the age variable is greater than 30.\n\nThe output of this code will be a new data frame that contains only the rows where the age variable is greater than 30. However, this new data frame will not be saved anywhere, so if you want to save it, you need to assign it to a new object. Tp do this, you can use the assignment operator &lt;-.\n\n# Filter the data frame to select only the rows where the age variable is greater than 30 and save the result to a new data frame called new_data\n\nnew_data &lt;- my_data %&gt;% filter(age &gt; 30)\n\nIn this code, on the left side of the assignment operator &lt;-, we have new_data, which is the name of the new data frame that will contain only the filtered subset of the data (i.e., the values where the age variable is greater than 30). The difference between this code and the previous code is that we are now saving the result to a new data frame called new_data, instead of just printing it to the console.\nWe can also combine multiple conditions when subsetting data. For example, we can select only the rows where the age variable is greater than 25 and the height variable is greater than 175.\n\n# Filter the data frame to select only the rows where the age variable is greater than 25 and the height variable is greater than 175\n\nmy_data %&gt;% filter(age &gt; 25 & height &gt; 175)\n\n     name age height      car\n1 Charlie  35    180 Electric\n2   Frank  50    190 Electric\n\n\nThere are many other ways to subset data in R, depending on the criteria you want to use. For example, you can use the select() function to select specific columns, the arrange() function to sort the data, and the mutate() function to create new variables. We will cover some of these functions in later sections.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Working with data in R Studio</span>"
+    ]
+  },
+  {
+    "objectID": "working_with_data.html#grouping-and-summarising-data-in-r",
+    "href": "working_with_data.html#grouping-and-summarising-data-in-r",
+    "title": "2  Working with data in R Studio",
+    "section": "2.8 Grouping and summarising data in R",
+    "text": "2.8 Grouping and summarising data in R\n\n\n\n\n\n\nAt the end of this section, you will be able to:\n\n\n\n\nGroup data in R\nSummarise data in R\n\n\n\nGrouping and summarising data in R means grouping the data by one or more variables and then calculating summary statistics for each group. For example, you might want to calculate the mean age for each group of people based on their height.\nIf we use the my_data data frame from the previous section, we can group the data by the car variable and then calculate the mean age for each group.\n\n# Group the data frame by the car variable and calculate the mean age for each group\n\nmy_data %&gt;% group_by(car) %&gt;% \n  summarise(mean_age = mean(age)) %&gt;%\n  ungroup()\n\n# A tibble: 2 × 2\n  car      mean_age\n  &lt;fct&gt;       &lt;dbl&gt;\n1 Electric     36.7\n2 Petrol       38.3\n\n\nLet’s break this code down:\n\nmy_data is the data frame that we want to group and summarise.\n%&gt;% is the pipe operator, which is used to pass the data frame to the next function. This allows us to link multiple steps together in a single line of code.\ngroup_by(car) is the function that groups the data frame by the car variable.\nsummarise(mean_age = mean(age)) is the function that calculates the mean age for each group of cars. The mean_age variable is the name of the new variable that will contain the mean age for each group.\nungroup() is the function that removes the grouping from the data frame. This is optional, but it is good practice to ungroup the data frame after you have finished summarising it.\n\nThe output of this code will be a new data frame that contains the mean age for each group of cars. The car variable is the grouping variable, and the mean_age variable is the summary statistic that we calculated for each group.\nYou can also calculate other summary statistics, such as the median, standard deviation, minimum, and maximum, using the summarise() function. You can also calculate multiple summary statistics at the same time by specifying multiple variables inside the summarise() function. For example, you can calculate the mean and standard deviation of the age variable for each group of cars.\n\n# Group the data frame by the car variable and calculate the mean and standard deviation of the age variable for each group\n\nmy_data %&gt;% group_by(car) %&gt;% \n  summarise(mean_age = mean(age), sd_age = sd(age)) %&gt;%\n  ungroup()\n\n# A tibble: 2 × 3\n  car      mean_age sd_age\n  &lt;fct&gt;       &lt;dbl&gt;  &lt;dbl&gt;\n1 Electric     36.7  12.6 \n2 Petrol       38.3   7.64\n\n\nIn this code, we calculated the mean and standard deviation of the age variable for each group of cars. The mean_age and sd_age variables are the names of the new variables that will contain the mean and standard deviation for each group.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Working with data in R Studio</span>"
+    ]
   }
 ]
