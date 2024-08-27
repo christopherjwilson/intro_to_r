@@ -1,0 +1,160 @@
+---
+title: Practical 5 Moderation Analysis
+author: "Dr. Christopher Wilson"
+Subtitle: "PSY4179 Research Methods 1"
+Institution: "Teesside University"
+format:
+  html:
+    css: ["../include/style.css","../include/glossary.css","../include/booktem.css", "../include/webex.css"]
+    include-in-header: ["../include/webex.js"]
+---
+
+
+```{r setup, include=FALSE}
+library(webexercises)
+```
+
+
+::: {.callout-tip collapse="true"} 
+# How to approach this practical session
+
+1. Have RStudio open and ready to use.
+1. Be sure to read the contextual information and instructions carefully. This information is necessary to complete the tasks.
+1. Complete the tasks as you go along - they are labelled "Task".
+1. Some of the code you need will be completed, some will be partially completed, some you will need to do yourself. You can copy code examples from this page by clicking on the clipboard icon {{< fa clipboard >}} which appears when you hover over the code examples.
+1. Buttons to press in your keyboard are shown like this: <pc>Ctrl + S</pc> or <mac>Cmd + S</mac>. 
+1. Menu items to click in R Studio are shown like this: <if>File -> Save</if>. Panes or Tabs in R Studio are also shown like this: <if>Environment</if>.
+1. On this page, boxes with a drop down arrow {{< fa square-caret-down >}} can be collapsed to hide the information inside them. You can also click on the {{< fa square-caret-right >}} arrow to expand the section.
+:::
+
+
+::: {.callout-important collapse="false"}
+
+# Download the data for this practical
+
+For this session you will need to download the following dataset: [practical5_data.csv](practical5_data.csv)
+
+Right click and select <if>Save link as...</if> to download the file. Save it in the same folder as your script.
+
+### Reminder: Importing data into R
+
+To import data into R, you can use the a command that relates to the type of data you are importing. For example, to import the data in the file **practical5_data.csv**, you would use the following command:
+
+```{r eval=FALSE}
+practical5_data <- read.csv("practical5_data.csv")
+
+```
+
+You can also use the menu to import data. To do this, click on the <if>Import Dataset</if> button and select the type of data you want to import. For example, to import the data in the file **practical5_data.csv**, you would click on <if>From Text (readr)</if> and then select the file **practical5_data.csv**.
+
+:::
+
+## Import the data
+
+::: {.callout-note}
+
+# Task
+
+Import the data from the file **practical5_data.csv** into R. Save the data in a variable called **practical5_data**.
+
+Check the data has been imported correctly
+:::
+
+```{r echo=FALSE}
+
+set.seed(345)
+
+# generate data for a moderation example
+
+anxiety <- rnorm(100,20,2) |> round(0)
+
+attention <- rnorm(100,1500,200)
+
+depression <- 10 + 0.5 * anxiety + 0.05 * attention + 0.009 * anxiety * attention + rnorm(100,0,10) 
+
+depression <- depression /10 |> round(0)
+
+practical5_data <- data.frame(anxiety, attention, depression)
+
+write.csv(practical5_data, "practical5_data.csv", row.names = FALSE)
+
+model1 <- lm(depression ~ anxiety * attention, data = practical5_data)
+
+#summary(model1)
+
+library(gvlma)
+
+#gvlma(model1)
+
+library(mctest)
+
+#mctest(model1)
+
+library(rockchalk)
+
+#ps <- plotSlopes(model1, plotx = "anxiety", modx = "attention", modxVals = "std.dev", xlab = "Anxiety", ylab = "Depression", main = "Moderation of Anxiety on Depression by Attention")
+
+#ts <- testSlopes(ps)
+
+#plot(ts)
+
+```
+
+
+```{r echo=FALSE, eval=FALSE}
+
+# import the data from the file practical5_data.csv into R. Save the data in a variable called practical5_data.
+
+#practical5_data <- read.csv("practical5_data.csv")
+
+# run a regression model with anxiety as the predictor and depression as the outcome. attention is the moderator
+
+model1 <- lm(depression ~ anxiety * attention, data = practical5_data)
+
+summary(model1)
+
+```
+
+## Research Scenario
+
+A psychologist is interested in the relationship between anxiety and depression. They believe that the relationship between anxiety and depression is moderated by attention. They ran an study which measured anxiety, attention and depression in 100 participants. The data from this study is in the file **practical5_data.csv**. The anxiety and depression scores are from standardised measures. The attention scores are from a computerised task (measured in milliseconds). 
+
+::: {.callout-note}
+
+# Task
+
+Using what you have learned this week and last week, you need to:
+
+1. Create and run a regression model to test the researcher's hypothesis.
+
+1. Check the assumptions of the model (make note of, but ignore any violations for the purpose of this exercise).
+
+1. Interpret the results of the model.
+
+1. Plot the interaction between anxiety and attention on depression.
+
+1. Test the slopes of the interaction between anxiety and attention on depression.
+
+1. Interpret the results of the test of the slopes.
+
+1. Write a paragraph outlining your conclusions.
+
+1. Save your script.
+:::
+
+
+# You are done for today {{< fa hands-clapping >}}
+
+::: {.callout-tip collapse="true"}
+# Further resources for interactions and moderation
+
+[Interactions in Multiple Regression](https://christopherjwilson.github.io/APRM23/multipleRegression.html#all-predictors-at-once-testing-interactions)
+
+[Moderation](https://christopherjwilson.github.io/APRM23/moderation.html)
+
+[Conducting moderation analysis](https://www.youtube.com/watch?v=BR050BbER6s&ab_channel=StatisticsofDOOM)
+
+:::
+
+
+

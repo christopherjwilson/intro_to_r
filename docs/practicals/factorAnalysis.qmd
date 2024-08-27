@@ -1,0 +1,176 @@
+
+---
+title: Practical 7 Factor Analysis
+author: "Dr. Christopher Wilson"
+Subtitle: "PSY4179 Research Methods 1"
+Institution: "Teesside University"
+format:
+  html:
+    css: ["../include/style.css","../include/glossary.css","../include/booktem.css", "../include/webex.css"]
+    include-in-header: ["../include/webex.js"]
+execute:
+    eval: false
+    echo: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(psych)
+library(tidyverse)
+library(GPArotation)
+```
+
+# Introduction
+
+Before we begin, install and load the following packages:
+
+- tidyverse
+- psych
+- GPArotation
+
+For this session, we will use the BFI dataset from the psych package. It is made up of 25 self-report personality items from the International Personality Item Pool, gender, education level and age for 2800 subjects and used in the Synthetic Aperture Personality Assessment.
+
+The personality items are split into 5 categories: Agreeableness (A), Conscientiousness (C), Extraversion(E), Neuroticism(N), Openness(O). 
+
+Each item was answered on a six point scale: 1 Very Inaccurate, 2 Moderately Inaccurate, 3 Slightly Inaccurate, 4 Slightly Accurate, 5 Moderately Accurate, 6 Very Accurate.
+
+::: {.callout-note}
+# Task 1: Load the data
+
+To load the data file, use the following code:
+
+```{r}
+#| echo: true
+#| eval: false
+
+ data("bfi")
+
+```
+
+The data will be loaded into the environment tab as a temporary file. You need to click on it to make use of it in your code.
+
+:::
+
+::: {.callout-note}
+
+# Task 2: Filter the data
+
+Columns 1 to 25 are the data we are interested in. To include only these columns in analysis, we use the code below to make a subset of the data 
+
+
+
+```{r}
+#| echo: true
+#| eval: false
+
+bfidata <- bfi[1:25] %>% na.omit() #<1>
+
+```
+1. The code above creates a new data frame called bfidata that contains only the columns we are interested in (1:25) and removes any rows with missing data (na.omit())
+
+:::
+
+::: {.callout-note}
+
+# Task 3: Examine the data
+
+1. Use the describe() command to review a summary of the data
+
+
+```{r}
+#| echo: true
+#| eval: false
+
+describe(bfidata)
+```
+
+
+
+2. Check the number of complete responses using the commands: 
+```{r}
+#| echo: true
+#| eval: false
+
+bfidata %>% complete.cases() %>% sum()
+```
+
+:::
+
+
+::: {.callout-note}
+
+# Task 4: Check the assumptions of factor analysis
+
+- Run Bartletts test of sphericity
+
+```{r}
+# make a correlation matrix first
+
+bfi.maxtrix <- cor(bfidata)
+
+# run bartlettt's test
+cortest.bartlett(bfi.maxtrix, n= 2436)
+
+```
+
+
+- Run the Kaiser-Meyer-Olkin (KMO) measure of sampling adequacy
+
+```{r}
+KMO(bfidata) # using the data
+
+#OR 
+
+KMO(bfi.maxtrix) # using the correlation matrix
+```
+
+:::
+
+::: {.callout-note}
+
+# Task 5: Run a factor analysis
+
+
+- Run a parallel analysis to determine the number of factors
+
+```{r}
+fa.parallel(bfidata)
+```
+
+
+-  Run a factor analysis based on the suggested number of factors (no rotation)
+
+```{r}
+factoranalysis1 <- fa(bfidata, nfactors = 6, fm="pa", max.iter = 100, rotate = "none")
+```
+
+
+- Interpret the output and determine an optimal number of factors based on: scree plot, variance levels, eigenvalues
+
+- Re-run factor analysis with optimal number of factors and use "oblimin" rotation
+
+:::
+
+```{r}
+factoranalysis2 <- fa(bfidata, nfactors = 5, fm="pa", max.iter = 100, rotate = "oblimin")
+
+fa.diagram(factoranalysis2) ## can use fa.diagram to see factors and the questions that load onto them
+
+```
+
+
+# You are done for today {{< fa hands-clapping >}}
+
+::: {.callout-tip collapse="true"}
+# Further resources for  factor analysis
+
+- [Factor Analysis : Andy Field](https://study.sagepub.com/sites/default/files/labcoatleni_worldwide_addiction.pdf) based on SPSS but useful for understanding the process
+
+- [Factor Analysis : Andy Field](https://www.discovr.rocks/solutions/code/code_18/) A code example with no explanation but useful for checking your code
+
+- [Factor analysis](https://statisticsbyjim.com/basics/factor-analysis/) A useful basic explanation of factor analysis
+
+
+
+:::

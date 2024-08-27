@@ -1,0 +1,122 @@
+---
+title: Practical 4 Multiple Regression
+author: "Dr. Christopher Wilson"
+Subtitle: "PSY4179 Research Methods 1"
+Institution: "Teesside University"
+format:
+  html:
+    css: ["../include/style.css","../include/glossary.css","../include/booktem.css", "../include/webex.css"]
+    include-in-header: ["../include/webex.js"]
+---
+
+
+```{r setup, include=FALSE}
+library(webexercises)
+```
+
+
+::: {.callout-tip collapse="true"} 
+# How to approach this practical session
+
+1. Have RStudio open and ready to use.
+1. Be sure to read the contextual information and instructions carefully. This information is necessary to complete the tasks.
+1. Complete the tasks as you go along - they are labelled "Task".
+1. Some of the code you need will be completed, some will be partially completed, some you will need to do yourself. You can copy code examples from this page by clicking on the clipboard icon {{< fa clipboard >}} which appears when you hover over the code examples.
+1. Buttons to press in your keyboard are shown like this: <pc>Ctrl + S</pc> or <mac>Cmd + S</mac>. 
+1. Menu items to click in R Studio are shown like this: <if>File -> Save</if>. Panes or Tabs in R Studio are also shown like this: <if>Environment</if>.
+1. On this page, boxes with a drop down arrow {{< fa square-caret-down >}} can be collapsed to hide the information inside them. You can also click on the {{< fa square-caret-right >}} arrow to expand the section.
+:::
+
+
+::: {.callout-important collapse="false"}
+
+# Download the data for this practical
+
+For this session you will need to download the following dataset: [practical4_data.csv](practical4_data.csv)
+
+Right click and select <if>Save link as...</if> to download the file. Save it in the same folder as your script.
+
+### Reminder: Importing data into R
+
+To import data into R, you can use the a command that relates to the type of data you are importing. For example, to import the data in the file **practical4_data.csv**, you would use the following command:
+
+```{r}
+practical4_data <- read.csv("practical4_data.csv")
+
+# change the gender variable to a factor
+
+practical4_data$gender <- as.factor(practical4_data$gender)
+
+
+```
+
+You can also use the menu to import data. To do this, click on the <if>Import Dataset</if> button and select the type of data you want to import. For example, to import the data in the file **practical4_data.csv**, you would click on <if>From Text (readr)</if> and then select the file **practical4_data.csv**.
+
+
+:::
+
+## Import the data
+
+::: {.callout-note}
+
+# Task
+
+Import the data from the file **practical4_data.csv** into R. Save the data in a variable called **practical3_data**.
+
+Check the data has been imported correctly
+:::
+
+A clinical psychologist is interested in the effects of a treatment plan on the general
+wellbeing of clients. She is also interested in whether the level of severity of symptoms
+when entering treatment or the clients’ trust in the psychologist predict wellbeing.
+
+The dataset contains 5 variables:
+
+- **client:** an anonymous ID of the client
+- **treatment_group (control or therapy):** Which treatment the client has been assigned to
+- **level_of_severity (1-20):** A rating assigned by clinicians as to the severity of the client’s difficulties when they entered treatment (a computed value based on a battery of tests)
+- **trust_score (0-100):** A rating by the client as to the level of trust they have in their psychologist based on their interaction to this point
+- **wellbeing_after_3_months (0-10):** Client’s score on a psychometric measure of general wellbeing
+
+::: {.callout-note}
+
+# Task
+To answer the research questions outlined above, conduct the following analyses:
+
+1. Calculate if there is a difference in the means of severity level, trust score and wellbeing after 3 months between the 2 treatment groups
+
+2. Run a hierarchical multiple regression analysis comparing the following models (in each case, wellbeing after 3 months is the outcome). At this stage, check main effects only, not interactions:
+
+    - Model 0: Intercept only
+    - Model 1: treatment_group, severity_level
+    - Model 2: treatment_group, severity_level, trust_score
+
+3. Check the assumption of multicoliniearity in Model 2 
+
+4. Use the plot() function to check other assumptions of Model 2
+
+5. What conclusions can you draw from these analyses in relation to your research question?
+
+:::
+
+::: {.callout-note}
+# Task
+Save your script.
+:::
+
+# You are done for today {{< fa hands-clapping >}}
+
+::: {.callout-tip collapse="true"}
+# Further resources for hierarchical regression
+
+- [Multiple Regression: Text Book Chapter](https://ebookcentral.proquest.com/lib/tees/reader.action?docID=5584239)
+- [Multiple Regression in R](https://christopherjwilson.github.io/APRM23/multipleRegression.html)
+-   [Hierarchical Regression in R](https://www.statmethods.net/stats/regression.html)
+
+
+
+
+:::
+
+
+

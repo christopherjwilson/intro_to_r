@@ -1,0 +1,522 @@
+---
+title: "Practical 2 - Confidence intervals, effect size and power"
+author: "Dr. Christopher Wilson"
+Subtitle: "PSY4179 Research Methods 1"
+Institution: "Teesside University"
+format:
+  html:
+    css: ["include/style.css","include/glossary.css","include/booktem.css", "include/webex.css", "include/rstudio_default_code.css"]
+    include-after-body: ["include/webex.js"]
+---
+
+
+```{r setup, include=FALSE}
+library(webexercises)
+```
+
+::: {.callout-tip collapse="true"} 
+# How to approach this practical session
+
+1. Have RStudio open and ready to use.
+1. Be sure to read the contextual information and instructions carefully. This information is necessary to complete the tasks.
+1. Complete the tasks as you go along - they are labelled "Task".
+1. Some of the code you need will be completed, some will be partially completed, some you will need to do yourself. You can copy code examples from this page by clicking on the clipboard icon {{< fa clipboard >}} which appears when you hover over the code examples.
+1. Buttons to press in your keyboard are shown like this: <pc>Ctrl + S</pc> or <mac>Cmd + S</mac>. 
+1. Menu items to click in R Studio are shown like this: <if>File -> Save</if>. Panes or Tabs in R Studio are also shown like this: <if>Environment</if>.
+1. On this page, boxes with a drop down arrow {{< fa square-caret-down >}} can be collapsed to hide the information inside them. You can also click on the {{< fa square-caret-right >}} arrow to expand the section.
+:::
+
+
+::: {.callout-important collapse="false"}
+
+# Download the data for this practical
+
+For this session you will need to download the following dataset: [practical2_data.csv](practical2_data.csv)
+
+Right click and select <if>Save link as...</if> to download the file. Save it in the same folder as your script.
+
+## Reminder: Importing data into R
+
+To import data into R, you can use the a command that relates to the type of data you are importing. For example, to import the data in the file **practical2_data.csv**, you would use the following command:
+
+```{r}
+practical2_data <- read.csv("practical2_data.csv")
+```
+
+You can also use the menu to import data. To do this, click on the <if>Import Dataset</if> button and select the type of data you want to import. For example, to import the data in the file **practical2_data.csv**, you would click on <if>From Text (readr)</if> and then select the file **practical2_data.csv**.
+
+
+:::
+
+## Using packages in R
+
+R has many built-in functions, but you can also add extra functions by installing packages. To install a package, you can use the <func>install.packages()</func> function. For example, to install the package <pkg>dplyr</pkg>, you would use the following command:
+
+```{r eval=FALSE}
+install.packages("dplyr") #<1>
+```
+1. you only need to install a package once. 
+
+Once a package is installed, you can load it into your R session using the <func>library()</func> function. For example, to load the package <pkg>dplyr</pkg>, you would use the following command:
+
+```{r warning=FALSE, message=FALSE}
+library(dplyr) #<1>
+```
+1. you need to load a package every time you start a new R session. It is good practice to load all the packages you need at the start of your script.
+
+::: {.callout-note}
+# Task 1
+
+1. Install the package <pkg>dplyr</pkg>.
+1. Load the package <pkg>dplyr</pkg>.
+:::
+
+
+## Using the pipe operator to chain commands
+
+Often in our analysis, we want to perform a series of operations on our data. For example, we might want to filter the data, then summarise it, then plot it. In R, we can do this by chaining commands together using the pipe operator **|>**. 
+
+This is made using the <pc>|</pc> and <pc>></pc> keys on your keyboard. 
+
+The purpose of the pipe operator is to make your code easier to read. For example, consider the following code:
+
+```{r eval = FALSE, warning=FALSE, message=FALSE}
+
+filter(practical2_data, age > 25)   #<1>
+```
+1. The above code uses the <func>filter()</func> function to select only the rows of the dataset where the age is greater than 25.
+
+However, for more complicated analysis, code can be difficult to read. Now consider the following code:
+
+```{r eval = FALSE, warning=FALSE, message=FALSE}
+practical2_data |> filter(age > 25) #<1>
+```
+1. The above code starts with the data and then  uses the pipe operator to "pass" that information to the next function. Because of this,we don't need to specify the dataset in the <func>filter()</func> function. The code also goes from left to right, which makes it easier to read.
+
+
+# Let's do some descriptive statistics
+
+## Filtering data
+
+
+One of the things that the <pkg>dplyr</pkg> package allows you to do is to filter data. This is useful if you want to select only certain rows of data. For example, if you wanted to select only the data for the participants who were over the age of 21, you would use the following command:
+
+```{r eval = FALSE, warning=FALSE, message=FALSE}
+library(dplyr)
+practical2_data |> filter(age > 21) #<1>
+``` 
+1. The first argument is the name of the dataset you want to filter. The second argument is the condition you want to filter by. In this case, we are filtering the data so that only rows where the age is greater than 21 are selected.
+
+::: {.callout-note}
+
+# Task
+
+We can only include participants who are over the age of 18 in our analysis.
+
+Filter the data so that only rows where the age is greater than 18 are selected.
+
+Save the result to an object called **data_over18**.
+:::
+
+```{r echo=FALSE}
+
+data_over18 <- practical2_data |> filter( age > 18)
+n_over18 <- practical2_data |> filter( age > 18) |> count()
+
+```
+
+
+::: {.webex-check .webex-box}
+The number of participants over the age of 18 is `r fitb(n_over18$n)`.
+
+:::
+
+## Summarising data
+
+Another feature of the <pkg>dplyr</pkg> package is the ability to summarise data. This is useful if you want to calculate descriptive statistics for your data. For example, if you wanted to calculate the mean age of the Treatment and Control groups (over 18), you would use the following code:
+
+```{r eval = FALSE, warning=FALSE, message=FALSE}
+
+data_over18 |> group_by(treatment_group) |> summarise(mean_age = mean(age)) #<1>
+```
+
+1. The code above uses the <func>group_by()</func> function to group the data by the variable **treatment_group**. It then uses the <func>summarise()</func> function to calculate the mean age for each group. 
+
+::: {.callout-note}
+
+# Task
+
+Adapt the above code to calculate the standard deviation of the age for each group.
+
+Save the result to an object called **age_sd**.
+
+:::
+
+# Let's do some inferential statistics
+
+## Confidence intervals
+
+Let's say that we want to know if there is a difference in the outcomes between the Treatment and Control groups (only for the participants over 18).
+
+We can use a confidence interval to estimate the difference between the means of the two groups.
+
+The formula for calculating a confidence interval is:
+
+$$CI = \bar{X} \pm 1.96 \times SE$$
+
+where:
+
+- $\bar{X}$ is the mean of the difference between the two groups
+- SE is the standard error of the difference between the two groups
+
+We should already know how to calculate the difference between the means (of participants over 18), from the code you ran earlier. This time you need the difference in the **outcome** variable.
+
+```{r echo=FALSE}
+
+mean_diff <- data_over18 |> group_by(treatment_group) |> summarise(mean_outcome = mean(outcome)) |> pull(mean_outcome) |> diff()
+
+``` 
+
+:::{.webex-check .webex-box}
+
+The difference between the means of the two groups (over 18s) is `r fitb(round(mean_diff, 2))`
+
+:::
+
+The second step is to calculate the standard error of the difference between the means. This is calculated as:
+
+$$SE_{\bar{x}_1 - \bar{x}_2} = \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}$$
+
+where $s_1^2$ is the variance of group 1, $s_2^2$ is the variance of group 2, $n_1$ is the sample size of group 1, and $n_2$ is the sample size of group 2.
+
+So, to calculate the standard error of the difference between the means, we need to:
+
+1.  calculate the variance of each group and the sample size of each group.
+2. get the sum of the two variances divided by the sum of the two sample sizes.
+3. take the square root of the result.
+4. multiply the result by 1.96.
+
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+# calculate the variance of the each group
+var_tg <- data_over18 |> filter(treatment_group == "Treatment") |> pull(outcome) |> var()
+var_cg <- data_over18 |> filter(treatment_group == "Control")  |> pull(outcome) |> var()
+
+# calculate the sample size of each group
+n_tg <- data_over18 |> filter(treatment_group == "Treatment") |> nrow()
+n_cg <- data_over18 |> filter(treatment_group == "Control") |> nrow()
+
+# calculate the standard error of the difference between the means
+se_diff <- sqrt((var_tg/n_tg) + (var_cg/n_cg))
+
+
+```
+
+```{r echo=TRUE}
+
+#The code below will start you off, you need to fill in the missing information
+
+# get the treatment group data
+treatmentGroup <- data_over18 |> filter(treatment_group == "Treatment") #<1>
+
+# get the variance of the treatment group
+var_tg <- treatmentGroup  |> pull(outcome) |> var() #<2>
+
+# get the sample size of the treatment group
+
+n_tg <- treatmentGroup |> nrow() #<3>
+
+## You need to do the same for the control group
+
+## You need to add the two variances together and divide by the sum of the two sample sizes
+
+## You need to take the square root of the result
+
+```
+
+1. This code uses the <func>filter()</func> function to select only the rows of the dataset where the **treatment_group** variable is equal to "Treatment".
+2. This code uses the <func>var()</func> function to calculate the variance of the **outcome** variable. The <func>pull()</func> function is used to extract the **outcome** variable from the dataset, so we can calculate the variance.
+3. This code uses the <func>nrow()</func> function to calculate the number of rows in the dataset.
+
+::: {.callout-note}
+
+# Task
+
+Calculate the variance of the control group, the sample size of the control group, and the standard error of the difference between the means.
+
+Save the results to objects called **var_cg**, **n_cg**, and **se_diff**.
+
+:::
+
+
+::: {.webex-check .webex-box}
+
+The standard error of the difference between the means is `r fitb(se_diff |> round(2))`.
+:::
+
+Now we have the difference between the means and the standard error of the difference between the means, we can calculate the confidence interval.
+
+```{r echo=FALSE}
+
+# the lower confidence interval
+ci_lower <- mean_diff - (1.96 * se_diff) #<1>
+
+# you need to calculate the upper confidence interval
+
+```
+1. This code calculates the lower confidence interval by subtracting 1.96 times the standard error of the difference between the means from the difference between the means.
+
+
+:::{.callout-note}
+
+# Task
+
+Calculate the upper and lower confidence intervals.
+
+Save the results to objects called **ci_lower** and **ci_upper**.
+
+:::
+
+::: {.webex-check .webex-box}
+
+The lower confidence interval is `r fitb(ci_lower |> round(2))`.
+
+The upper confidence interval is `r fitb(mean_diff + (1.96 * se_diff) |> round(2))`.
+
+:::
+
+
+
+::: {.callout-tip collapse="true"}
+
+# Where does 1.96 come from?
+
+The critical value for a 95% confidence interval is 1.96. This is because the area under the 95% of the curve of a normal distribution lies between -1.96 and 1.96 standard deviations from the mean. However, this is only true for a large sample size (aprox. >30). For smaller sample sizes, the critical value is larger. For example, for a sample size of 10, the critical value is 2.26. For a sample size of 5, the critical value of is 2.57. 
+
+These smaller distributions are called t-distributions. The t-distribution is similar to the normal distribution but it is wider. This means that the critical values are larger for smaller sample sizes. This is where the t-test gets its name from.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=6, fig.height=4}
+
+# plot of notmal distribution with 2.5% shaded on each side
+
+x <- seq(-4, 4, length=100)
+
+y <- dnorm(x, mean=0, sd=1)
+
+plot(x, y, type="l", lwd=2, xlab="Standard Deviations", ylab="")
+
+abline(v=c(-1.96, 1.96), lty=2)
+
+abline(h=0, lty=2)
+
+
+## add labels to represent the percentages of the distribution in the shaded and non-shaded areas
+
+text(-2.5, 0.05, "2.5%", cex=0.8)
+
+text(2.5, 0.05, "2.5%", cex=0.8)
+
+text(0, 0.01, "95%", cex=0.8)
+
+```
+
+
+:::
+
+
+
+::: {.callout-tip}
+# What does the confidence interval tell us?
+
+The confidence interval tells us the range of values that we can be confident that the true value (difference between the means) lies within.
+
+A common misunderstanding about CIs is to say that for a 95% CI, there is a 95% probability that the true population mean lies between the values - this is incorrect. 
+
+A correct interpretation is that if we were to repeat the study many times and made confidence intervals for each of the result, then the true population mean would be present in 95% of those confidence intervals.
+
+**Importantly**: If the confidence interval includes zero, then we cannot reject the null hypothesis. If the confidence interval does not include zero, then we can reject the null hypothesis (at $\alpha$ = 0.05). 
+:::
+
+::: {.callout-tip collapse="true"}
+
+# Includes zero? 
+
+Imagine a number line that goes from the lower to the upper confidence interval. If you would have to cross zero to get from the lower to the upper confidence interval value, then the confidence interval includes zero.
+
+```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
+# plot the confidence interval
+
+ci_upper <- mean_diff + (1.96 * se_diff)
+confidenceInterval <- c(ci_lower, ci_upper)
+
+library(ggplot2)
+
+data.frame(confidenceInterval = confidenceInterval) |>
+  ggplot(aes(x = confidenceInterval, y = 1)) +
+  geom_point() +
+  geom_line(aes(x = confidenceInterval, y = 1)) +
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  geom_text(aes(label = "0"), x = 0, y = 0.5, vjust = -1) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  theme(axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(),
+        axis.title.y=element_blank()
+        )
+
+
+```
+
+Does the confidence interval include zero? 
+:::
+
+::: {.webex-check .webex-box}
+
+Based on the confidence interval you calculated, can we reject the null hypothesis?: `r torf(TRUE)`
+
+:::
+
+
+# Calculating effect size
+
+There are many ways to calculate effect size. This depends on the type of data you have and the type of analysis you are doing. 
+
+The most common measure of effect size for a between groups design (2 groups) is Cohen's d. Cohen's d is calculated as the difference between the means of the two groups divided by the pooled standard deviation.
+
+$$d = \frac{\bar{x}_1 - \bar{x}_2}{s_p}$$
+
+where $\bar{x}_1$ is the mean of group 1, $\bar{x}_2$ is the mean of group 2, and $s_p$ is the pooled standard deviation.
+
+We can use packages in R to help us calculate Cohen's d. The <func>cohen.d()</func> function from the <pkg>effsize</pkg> package calculates Cohen's d. 
+
+
+
+
+```{r eval=FALSE}
+
+# install the effsize package
+
+install.packages("effsize") #<1>
+
+
+```
+1. Remember, you only need to install a package once. If you have already installed the package, you do not need to run this code.
+
+Now we can load the package and calculate the effect size.
+
+```{r}
+
+# load the effsize package
+
+library(effsize) #<1>
+
+effect_size <- cohen.d(data_over18$outcome, data_over18$treatment_group) #<2>
+                        
+
+```
+
+1. This code loads the effsize package. Remember, you only need to load a package once when you open RStudio.
+2. This code calculates the effect size using the <func>cohen.d()</func> function. The first argument is the outcome variable and the second argument is the treatment group variable.
+
+
+
+:::{.callout-note}
+
+# Task
+
+Calculate the effect size for the difference between the means.
+
+Save the result to an object called **effect_size**.
+
+:::
+
+::: {.webex-check .webex-box}
+
+The effect size is `r fitb(effect_size$estimate |> round(2))`.
+
+:::
+
+
+
+# Calculate the sample size for conducting a new study, based on this effect
+
+::: {.callout-tip collapse="true"}
+# Conducting power analysis in R
+
+There are many ways to do power analysis and there are many tools for doing so. We will use the power.t.test() function to conduct a power analysis for a t-test.
+
+For other study designs, there are other functions. For example, for a one-way ANOVA, you can use the function power.anova.test(). For a chi-square test, you can use the function power.prop.test(). For a paired t-test, you can use the function power.t.test() with the argument paired = TRUE.
+
+There are also different packages that allow more complicated power analysis. Some packages for power analysis in R include:
+
+- webpower
+- pwr
+
+
+:::
+
+Imagine that you want to conduct a new study, based on the effect size you have found in this study. You want to conduct a study with 80% power, and an alpha level of 0.05. What sample size would you need to conduct this study?
+
+To figure this out, we need to use a power analysis. We will use the power.t.test() function in R. This function requires the following arguments:
+
+- d = effect size
+- sig.level = alpha level
+- power = power
+- type = "two.sample" (because we have two groups)
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, eval=FALSE}
+
+power.t.test(d = effectSize, sig.level = 0.05, power = 0.8, type = "two.sample") #<1>
+
+```
+
+1. In the above code, replace the word "effectSize" with the effect size you calculated above.
+
+
+::: {.callout-tip collapse="true"}
+
+# What is power?
+
+Power is the probability of rejecting the null hypothesis when it is false. In other words, it is the probability of finding a significant effect (in your study) when there is a true effect. The higher this value is, the less likely you are to make a type II error (failing to reject the null hypothesis when it is false). 0.8 is a common value for power in power analysis calculations.
+:::
+
+
+::: {.callout-note}
+# Task
+
+Calculate the sample size required for conducting a new study, based on this effect
+
+:::
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+sampleSize <- power.t.test(d = effect_size$estimate, sig.level = 0.05, power = 0.8, type = "two.sample")$n |> round(0)
+
+```
+
+::: {.webex-check .webex-box}
+
+The required sample size is: `r fitb(sampleSize)` (no decimal places)
+:::
+
+
+
+::: {.callout-note}
+# Task
+Save your script.
+:::
+
+# You are done for today {{< fa hands-clapping >}}
+
+::: {.callout-tip collapse="true"}
+# Further resources for conducting analysis in R
+
+
+- [Exploratory and descriptive analysis](https://christopherjwilson.github.io/APRM23/descriptives.html)
+
+- [Basic statistics in R](https://www.statmethods.net/stats/descriptives.html)
+
+- [Power analysis in R](https://www.statmethods.net/stats/power.html)
+
+:::
