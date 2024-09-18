@@ -10,7 +10,10 @@ book:
     - index.qmd
     - intro.qmd
     - working_with_data.qmd
-    - references.qmd
+    - descriptive_stats.qmd
+    - basic_tests.qmd
+    - correlation.rmd
+    - power_effectSize.qmd
 
 bibliography: references.bib
 

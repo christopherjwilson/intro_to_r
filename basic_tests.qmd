@@ -1,0 +1,282 @@
+# Basic statistical tests
+
+In this chapter, we will learn how to perform basic statistical tests in R. These are all tests that you should be familiar with already from your statistics courses. We will cover the following tests:
+
+-   Independent t-test
+-   Paired t-test
+-   Wilcoxon signed-rank test
+-   Mann-Whitney U test
+-   Chi-squared test
+-   Correlation
+-   ANOVA
+
+These examples will not be exhaustive, but they should give you a good starting point for performing these tests in R. For theoretical background, you can refer to any standard statistics textbook.
+
+::: note
+These examples will all use built-in datasets in R. Each example will include the necessary code to load the dataset and perform the test. However, you can also use your own datasets by loading them into R yourself and replacing the dataset name in the examples.
+:::
+
+## Independent t-test
+
+The independent t-test is used to compare the means of two independent groups. In R, you can use the `t.test()` function to perform an independent t-test. Here is an example:
+
+```{r}
+# This example uses the mtcars dataset, which is a built-in dataset in R that contains data on various car models.
+
+# Load the mtcars dataset
+
+data(mtcars)
+
+# Independent t-test example: Is there a difference in fuel efficiency between automatic and manual cars?
+# the variable am is a binary variable indicating the type of transmission (0 = automatic, 1 = manual)
+
+# Perform the independent t-test
+
+t_test_result <- t.test(mpg ~ am, data = mtcars)
+
+# Print the result
+
+t_test_result
+```
+
+In this example, we are comparing the fuel efficiency (mpg) of automatic and manual cars in the `mtcars` dataset. The `mpg` variable is the dependent variable, and the `am` variable is the independent variable. The `t.test()` function is used to perform the independent t-test, and the result is stored in the `t_test_result` variable.
+
+If we look at the output, we can see the following:
+
+-   The t-test result is presented.
+-   The alternative hypothesis is that the means are not equal.
+-   The 95% confidence interval for the difference in means is presented.
+-   The 2 sample means are presented.
+
+## Paired t-test
+
+The paired t-test is used to compare the means of two related groups. In R, you can use the `t.test()` function with the `paired = TRUE` argument to perform a paired t-test. Here is an example:
+
+```{r}
+
+# This example uses the sleep dataset, which is a built-in dataset in R that contains data on the effect of two soporific drugs on sleep duration.
+
+# Load the sleep dataset
+
+data(sleep)
+
+# Paired t-test example: Is there a difference in sleep duration between the two drugs?
+
+# Perform the paired t-test
+
+paired_t_test_result <- t.test(sleep$extra ~ sleep$group, paired = TRUE)
+
+# Print the result
+
+paired_t_test_result
+```
+
+In this example, we are comparing the sleep duration (`extra`) between patients who were given different drugs in the `sleep` dataset (note: 10 people were each measured twice). The `extra` variable is the dependent variable, and the `group` variable is the independent variable. The `t.test()` function is used to perform the paired t-test, and the result is stored in the `paired_t_test_result` variable.
+
+If we look at the output, we can see the following:
+
+-   The t-test result is presented.
+-   The alternative hypothesis is that the means are not equal.
+-   The 95% confidence interval for the difference in means is presented.
+-   The mean difference is presented.
+
+## Wilcoxon signed-rank test
+
+The Wilcoxon signed-rank test is a non-parametric test used to compare two related groups. In R, you can use the `wilcox.test()` function to perform a Wilcoxon signed-rank test. Here is an example:
+
+```{r}
+
+# This example uses the sleep dataset, which is a built-in dataset in R that contains data on the effect of two soporific drugs on sleep duration.
+
+# Load the sleep dataset
+
+data(sleep)
+
+# Wilcoxon signed-rank test example: Is there a difference in sleep duration between the two drugs?
+
+# Perform the Wilcoxon signed-rank test
+
+wilcoxon_test_result <- wilcox.test(sleep$extra ~ sleep$group, paired = TRUE)
+
+# Print the result
+
+wilcoxon_test_result
+
+```
+
+In this example, we are comparing the sleep duration (`extra`) between patients who were given different drugs in the `sleep` dataset. The `extra` variable is the dependent variable, and the `group` variable is the independent variable. The `wilcox.test()` function is used to perform the Wilcoxon signed-rank test, and the result is stored in the `wilcoxon_test_result` variable.
+
+If we look at the output, we can see the following:
+
+-   The Wilcoxon signed-rank test result is presented ( V is the sum of the ranks of the differences between the pairs of observations).
+-   The alternative hypothesis (true location shift is not equal to 0) is presented. This means that the medians of the two groups are not equal.
+
+Note: if there are ties in the data, the exact p-value is not calculated. Instead, an approximate p-value is presented.
+
+## Mann-Whitney U test
+
+The Mann-Whitney U test is a non-parametric test used to compare the means of two independent groups. In R, you can use the `wilcox.test()` function to perform a Mann-Whitney U test. Note: we will not include the `paired = TRUE` argument that we did in the previous example. Here is an example:
+
+```{r}
+
+# This example uses the mtcars dataset, which is a built-in dataset in R that contains data on various car models.
+
+# Load the mtcars dataset
+
+data(mtcars)
+
+# Mann-Whitney U test example: Is there a difference in fuel efficiency between automatic and manual cars?
+
+# Perform the Mann-Whitney U test
+
+mann_whitney_test_result <- wilcox.test(mpg ~ am, data = mtcars)
+
+# Print the result
+
+mann_whitney_test_result
+
+
+```
+
+The output is interpreted in the same way as the Wilcoxon signed-rank test output.
+
+## Chi-squared test
+
+The chi-squared test is used to test the association between two categorical variables. In R, you can use the `chisq.test()` function to perform a chi-squared test. Here is an example:
+
+```{r}
+
+# This example uses the mtcars dataset, which is a built-in dataset in R that contains data on various car models.
+
+# Load the mtcars dataset
+
+data(mtcars)
+
+# Chi-squared test example: Is there an association between the number of cylinders and the type of transmission?
+
+# Create a contingency table
+
+contingency_table <- table(mtcars$cyl, mtcars$am)
+
+# Perform the chi-squared test
+
+chi_squared_test_result <- chisq.test(contingency_table)
+
+# Print the result
+
+chi_squared_test_result
+
+
+```
+
+In this example, we are testing the association between the number of cylinders (`cyl`) and the type of transmission (`am`) in the `mtcars` dataset. The `chisq.test()` function is used to perform the chi-squared test, and the result is stored in the `chi_squared_test_result` variable.
+
+If we look at the output, we can see the following:
+
+-   The chi-squared test result is presented.
+
+## Correlation
+
+Correlation is used to test the relationship between two continuous variables. In R, you can use the `cor()` function to calculate the correlation coefficient. Here is an example:
+
+```{r}
+
+# This example uses the mtcars dataset, which is a built-in dataset in R that contains data on various car models.
+
+# Load the mtcars dataset
+
+data(mtcars)
+
+# Correlation example: Is there a relationship between fuel efficiency and horsepower?
+
+# Calculate the correlation coefficient
+
+correlation_result <- cor.test(mtcars$mpg, mtcars$hp)
+
+# Print the result
+
+correlation_result
+
+
+```
+
+In this example, we are testing the relationship between fuel efficiency (`mpg`) and horsepower (`hp`) in the `mtcars` dataset. The `cor.test()` function is used to calculate the correlation coefficient, and the result is stored in the `correlation_result` variable.
+
+If we look at the output, we can see the following:
+
+-   The correlation coefficient is presented in the last line of the output.
+-   The significance level of the correlation is tested using a t-test, which is also presented in the output.
+-   The confidence interval for the correlation coefficient is presented.
+-   The alternative hypothesis is that the correlation is not equal to 0.
+
+## One-way ANOVA
+
+One-way ANOVA (Analysis of Variance) is used to test the differences between the means of three or more groups. In R, you can use the `aov()` function to perform an ANOVA. Here is an example:
+
+```{r}
+
+# This example uses the mtcars dataset, which is a built-in dataset in R that contains data on various car models.
+
+# Load the mtcars dataset
+
+data(mtcars)
+
+# One-way ANOVA example: Is there a difference in fuel efficiency between cars with different numbers of cylinders?
+
+# Perform the ANOVA
+
+anova_result <- aov(mpg ~ cyl, data = mtcars)
+
+# Print the result
+
+summary(anova_result)
+
+
+```
+
+In this example, we are testing the differences in fuel efficiency (`mpg`) between cars with different numbers of cylinders (`cyl`) in the `mtcars` dataset. The `aov()` function is used to perform the ANOVA, and the result is stored in the `anova_result` variable.
+
+If we look at the output, we can see the following:
+
+-   The ANOVA result is within the `summary()` function. The summary includes the F-statistic, the p-value, and the significance level of the ANOVA test.
+
+## Factorial ANOVA
+
+Factorial ANOVA is used to test the effects of two or more independent variables on a dependent variable. In R, you can use the `aov()` function with interaction terms to perform a factorial ANOVA. Here is an example:
+
+```{r}
+
+# This example uses the mtcars dataset, which is a built-in dataset in R that contains data on various car models.
+
+# Load the mtcars dataset
+
+data(mtcars)
+
+# Factorial ANOVA example: Is there an interaction effect between the number of cylinders and the type of transmission on fuel efficiency?
+
+# Perform the factorial ANOVA
+
+factorial_anova_result <- aov(mpg ~ cyl * am, data = mtcars)
+
+# Print the result
+
+summary(factorial_anova_result)
+
+
+```
+
+In this example, we are testing the interaction effect between the number of cylinders (`cyl`) and the type of transmission (`am`) on fuel efficiency (`mpg`) in the `mtcars` dataset. The `aov()` function is used to perform the factorial ANOVA, and the result is stored in the `factorial_anova_result` variable.
+
+The interaction term is specified using the `*` operator in the formula.
+
+If we look at the output, we can see the following:
+
+-   The ANOVA result is within the `summary()` function. The summary includes the F-statistic, the p-value, and the significance level of each term tested in the ANOVA.
+
+-   Each independent variable is tested separately (main effects), and the interaction effect is also tested.
+
+-   The interaction effect is denoted by the `cyl:am` term in the output.
+
+## Conclusion
+
+In this chapter, we have covered several basic statistical tests that you can perform in R. These are included for reference and to help you get started with performing statistical tests in R. However, we will be focusing on modelling our data, using different types of regression models, rather than re-learning these tests.

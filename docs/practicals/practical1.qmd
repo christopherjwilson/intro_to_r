@@ -11,28 +11,28 @@ format:
 
 ```{r setup, include=FALSE}
 library(webexercises)
+library(dplyr)
 practical1_data <- read.csv("practical1_data.csv")
 ```
 
-::: {.callout-tip collapse="false"} 
+::: {.callout-tip collapse="false"}
 # How to approach this practical session
 
-1. Have RStudio open and ready to use.
-1. Be sure to read the contextual information and instructions carefully. This information is necessary to complete the tasks.
-1. Complete the tasks as you go along - they are labelled "Task".
-1. Some of the code you need will be completed, some will be partially completed, some you will need to do yourself. You can copy code examples from this page by clicking on the clipboard icon {{< fa clipboard >}} which appears when you hover over the code examples.
-1. Buttons to press in your keyboard are shown like this: <pc>Ctrl + S</pc> or <mac>Cmd + S</mac>. 
-1. Menu items to click in R Studio are shown like this: <if>File -> Save</if>. Panes or Tabs in R Studio are also shown like this: <if>Environment</if>.
-1. On this page, boxes with a drop down arrow {{< fa square-caret-down >}} can be collapsed to hide the information inside them. You can also click on the {{< fa square-caret-right >}} arrow to expand the section.
+1.  Have RStudio open and ready to use.
+2.  Be sure to read the contextual information and instructions carefully. This information is necessary to complete the tasks.
+3.  Complete the tasks as you go along - they are labelled "Task".
+4.  Some of the code you need will be completed, some will be partially completed, some you will need to do yourself. You can copy code examples from this page by clicking on the clipboard icon {{< fa clipboard >}} which appears when you hover over the code examples.
+5.  Buttons to press in your keyboard are shown like this: <pc>Ctrl + S</pc> or <mac>Cmd + S</mac>.
+6.  Menu items to click in R Studio are shown like this: <if>File -\> Save</if>. Panes or Tabs in R Studio are also shown like this: <if>Environment</if>.
+7.  On this page, boxes with a drop down arrow {{< fa square-caret-down >}} can be collapsed to hide the information inside them. You can also click on the {{< fa square-caret-right >}} arrow to expand the section.
 :::
-
 
 # Working with script files in R Studio
 
 To work with R, it is possible to type commands directly into the console and see the results. However, this is not a good way to work with R, because:
 
-1. You would need to repeat this process to run the analysis again.
-1. Your analysis is not transparent - no one else can see what you did.
+1.  You would need to repeat this process to run the analysis again.
+2.  Your analysis is not transparent - no one else can see what you did.
 
 Instead, it is better to write scripts that contain the commands that you want to run and save them, so they can be reused and shared with others.
 
@@ -40,77 +40,75 @@ Instead, it is better to write scripts that contain the commands that you want t
 
 Before you start, create a folder on your computer to store your data and scripts. This will make it easier to find your files later. You can call this folder anything you like, but it is a good idea to give it a name that is related to your project. For example, for this session, you might create a folder called **Practical1**.
 
-::: {.callout-note} 
-# Task 
+::: callout-note
+# Task
+
 Create a folder on your computer to store your data and scripts from this session.
 :::
 
 ## Create a new script file
 
-To create a new script file, click on the <if>File -> New File -> R Script</if>. This will open a new window, which is where you will write your script. It is important to save your script as you work. To do this, click on the <if>File -> Save As</if> and give your script a name. It is a good idea to save your script in the same folder as your data.
+To create a new script file, click on the <if>File -\> New File -\> R Script</if>. This will open a new window, which is where you will write your script. It is important to save your script as you work. To do this, click on the <if>File -\> Save As</if> and give your script a name. It is a good idea to save your script in the same folder as your data.
 
+::: callout-note
+# Task
 
-::: {.callout-note} 
-# Task 
 Create a new script file called **Practical1** and save it in the folder you created for your data and scripts. It should have the extension .R - i.e.: **Practical1.R**.
 :::
 
-
 ## Set the working directory
 
-The working directory is the folder that R will look in for files. To set the working directory, click on the <if>Session -> Set Working Directory -> Choose Directory</if> and select the folder you created for your data.
+The working directory is the folder that R will look in for files. To set the working directory, click on the <if>Session -\> Set Working Directory -\> Choose Directory</if> and select the folder you created for your data.
 
+If you already have a script open and saved, you can also set the working directory by clicking on the <if>Session -\> Set Working Directory -\> To Source File Location</if>. This will set the working directory to the folder where your open script is saved.
 
-If you already have a script open and saved, you can also set the working directory by clicking on the <if>Session -> Set Working Directory -> To Source File Location</if>. This will set the working directory to the folder where your open script is saved.
+::: callout-note
+# Task
 
-
-
-::: {.callout-note} 
-# Task 
 Set the working directory to the folder you created for your data and scripts.
 :::
 
 ::: {.callout-important collapse="true"}
-
 # Why do we need to set the working directory?
 
 When you run a command in R (such as importing a dataset), it will look for files in whichever folder is set as the working directory. If you do not set the working directory, R will look in the default location, which is not usually where your files are. Therefore, it is important to set the working directory to the folder you are using for your data and scripts. This will make it easier to work with R, importing and exporting data.
-
 :::
-
 
 ## Adding comments to a script
 
 It is possible to add information to a script that will not be run as a command. This is called a comment. Comments are useful for adding information about what you are doing in your script. To add a comment, you need to start the line with a hash symbol (#). Anything after the hash symbol will be ignored by R. For example:
-```r
-# This is a comment
 
+``` r
+# This is a comment
 ```
 
-::: {.callout-note} 
-# Task 
+::: callout-note
+# Task
 
 Write a comment in your script that describes what you are doing in this session. For example: *Practical Session 1*.
-
 :::
 
-## Writing commands / code in a script 
+## Writing commands / code in a script
 
-In an R script, any text that is not a comment is assumed to be R code. R Code are instructions that tell R to do something. 
+In an R script, any text that is not a comment is assumed to be R code. R Code are instructions that tell R to do something.
 
 For example:
 
-```r
+``` r
 
 # Add two numbers together #<1>
 
 23 + 52 #<2>
-```
-1. This is comment that will be ignored by R. It is used to describe what the code does.
-2. This code is a command that tells R to add 23 and 52. However, it will not do anything until you tell R to run it. 
 
-::: {.callout-note} 
-# Task 
+
+```
+
+1.  This is comment that will be ignored by R. It is used to describe what the code does.
+2.  This code is a command that tells R to add 23 and 52. However, it will not do anything until you tell R to run it.
+
+::: callout-note
+# Task
+
 Ask the ages of the people sitting next to you and add them together. Write the code in your script.
 :::
 
@@ -118,203 +116,182 @@ Ask the ages of the people sitting next to you and add them together. Write the 
 
 To run code in a script, you can either highlight the code and click on the <if>Run</if> button, or you can use the keyboard shortcut <pc>Ctrl + Enter</pc>/<mac>Cmd + Enter</mac>. This will run the code and print the results in the console.
 
-::: {.callout-note} 
-# Task 
+::: callout-note
+# Task
 
 If you have not already done so, run the code you wrote in the previous step.
-
 :::
 
 ## Saving objects in R
 
 When you run a command in R, you can save the results to an object. For example, when you run the command to add two numbers together, you can save this object by assigning it to a name. For example:
 
-```r
-# Add two numbers together
+``` r
 
-result <- 23 + 52 #<1>
+# Store a set of numbers in an object
+
+numbers <- c(23, 52) #<1>
+
+# Add two numbers together and store the result in an object
+
+result <- 23 + 52 #<2>
 ```
-
-1. This code tells R to add 23 and 52 and save the result to an object called **result**. The result of the code on the right side of the <- is assigned to the object on the left side of the <-.
+1. This code tells R to create a vector of numbers (23 and 52) and save it to an object called **numbers**.
+2.  This code tells R to add 23 and 52 and save the result to an object called **result**. The result of the code on the right side of the \<- is assigned to the object on the left side of the \<-.
 
 You can save many things as objects including the results of analyses, data, and graphs. You will see stored objects in the <if>environment<if> pane in R Studio.
 
 ::: {.callout-tip collapse="false"}
-# The <- assignment operator
+# The \<- assignment operator
 
-Note how the code above uses <- to assign the result to an object. This is called the assignment operator. It is created using the keys <pc> < </pc> and <pc>-</pc> with no space in between them. 
+Note how the code above uses \<- to assign the result to an object. This is called the assignment operator. It is created using the keys <pc> \< </pc> and <pc>-</pc> with no space in between them.
 
-It is important to use <- to assign objects in R. If you use =, it will work, but it might cause problems later on.
-
+It is important to use \<- to assign objects in R. If you use =, it will work, but it might cause problems later on.
 :::
 
-::: {.callout-note} 
-# Task 
+::: callout-note
+# Task
 
 Run the code you wrote in the previous step. Then, run the following command to print the object **ages** in the console.
-
 :::
 
 ## Using functions in R
 
 A function is a command that performs a specific task by providing it with certain information (called "arguments").
 
-For example, the function **mean()** calculates the mean of a set of numbers. 
+For example, the function **mean()** calculates the mean of a set of numbers.
 
 To use a function, you need to provide it with some information. For example, to calculate the mean of a set of numbers, you need to tell the function which numbers to use. For example:
 
-```r
+``` r
 # Calculate the mean of my previous result
 
 mean(result) #<1>
-
-
 ```
 
-1. In the code above, the function **mean()** is used to calculate the mean of the object **result**. 
+1.  In the code above, the function **mean()** is used to calculate the mean of the object **result**.
 
 The object **result** (which was created earlier) is the argument for the function **mean()**.
 
-::: {.callout-note} 
-# Task 
+::: callout-note
+# Task
 
-1. Calculate the mean of the object **ages** and save it to an object called **mean_age**. Print the object **mean_age** in the console.
+1.  Calculate the mean of the object **ages** and save it to an object called **mean_age**. Print the object **mean_age** in the console.
 
-2. Use the sd() function to calculate the standard deviation of the object **ages** and save it to an object called **sd_age**. Print the object **sd_age** in the console.
+2.  Use the sd() function to calculate the standard deviation of the object **ages** and save it to an object called **sd_age**. Print the object **sd_age** in the console.
 
-3. Create a new object called **ages_doubled** that contains the object **ages** multiplied by 2. Print the object **ages_doubled** in the console. 
-
+3.  Create a new object called **ages_doubled** that contains the object **ages** multiplied by 2. Print the object **ages_doubled** in the console.
 :::
 
-::: {.callout-important}
+::: callout-important
 Note how each of the values in the ages_doubled object is twice the value of the corresponding value in the ages object.
 :::
 
-
-
-
 ## Importing data into R
 
-:::{.callout-important collapse="false"}
-
+::: {.callout-important collapse="false"}
 # Download the data for this section
 
 For this section you will need to download the following dataset: [practical1_data.csv](practical1_data.csv)
 
 Right click and select <if>Save link as...</if> to download the file. Save it in the same folder as your script.
-
 :::
-
 
 To import data into R, you can use the a command that relates to the type of data you are importing. For example, to import the data in the file **practical1_data.csv**, you would use the following command:
 
-```r
+``` r
 data <- read.csv("practical1_data.csv") #<1>
-
 ```
 
-1. This code tells R to import the data in the file **practical1_data.csv** and save it to an object called **data**. The object **data** could be named anything you like, but it is a good idea to give it a name that is related to the data you are importing.
+1.  This code tells R to import the data in the file **practical1_data.csv** and save it to an object called **data**. The object **data** could be named anything you like, but it is a good idea to give it a name that is related to the data you are importing.
 
 You can also use the menu to import data. To do this, click on the <if>Import Dataset</if> button and select the type of data you want to import. For example, to import the data in the file **practical1_data.csv**, you would click on <if>From Text (readr)</if> and then select the file **practical1_data.csv**.
 
-
 ::: {.callout-tip collapse="true"}
-
 # Importing other types of data?
 
 It is also possible to import data from other types of files such as Excel files, SPSS files, and Stata files. However, you will need to install additional packages to do this. We will cover this in a later session.
 :::
 
-
-::: {.callout-note}
+::: callout-note
 # Task
 
 Import the data in the file **practical1_data.csv** and save it to an object called **data**. Print the object **data** in the console.
-
 :::
 
 ## Viewing data in R
 
 To view the data in an object, you can use the <if>View()</if> function. For example, to view the data in the object **data**, you would use the following command:
 
-```r
+``` r
 view(data) #<1>
 ```
-1. When you run this code, you should see the dataset in a new window of R Studio.
 
+1.  When you run this code, you should see the dataset in a new window of R Studio.
 
-
-::: {.callout-note}
-
+::: callout-note
 # Task
 
 View the data in the object **data**.
-
 :::
 
-::: {.callout-tip}
-
+::: callout-tip
 Notice that the data is displayed in rows and columns. Each row represents a participant and each column represents a variable. This type of data structure is called a data frame.
-
 :::
 
+To refer to a specific column in a data frame, you can use the dollar sign (\$) followed by the name of the column. For example, to refer to the column **age** in the data frame **data**, you would use the following command:
 
-To refer to a specific column in a data frame, you can use the dollar sign ($) followed by the name of the column. For example, to refer to the column **age** in the data frame **data**, you would use the following command:
-
-```r
+``` r
 data$age #<1>
 ```
-1. When you run this code, you should see the column **age** from the data frame **data** printed in the console.
 
+1.  When you run this code, you should see the column **age** from the data frame **data** printed in the console.
 
 You can use data frame columns in functions. For example, to calculate the mean of the column **age** in the data frame **data**, you would use the following command:
 
-```r
+``` r
 mean(data$age) #<1>
 ```
-1. When you run this code, you should see the mean of the column **age** from the data frame **data** printed in the console.
 
+1.  When you run this code, you should see the mean of the column **age** from the data frame **data** printed in the console.
 
 ::: {.callout-tip collapse="true"}
 # Don't overwrite objects accidentally
 
-When you save objects in R, you assign them a name and use the <- operator. However, if you use the same name more than once, this will overwrite the existing object. For example, this code contains an error. Can you see what it is?:
+When you save objects in R, you assign them a name and use the \<- operator. However, if you use the same name more than once, this will overwrite the existing object. For example, this code contains an error. Can you see what it is?:
 
-```r
+``` r
 
 mean_age <- mean(data$age) #<1>
 mean_age <- mean(data$id) #<2>
-
 ```
-1. The object **mean_age** is assigned the mean of the column **age** in the data frame **data**. 
 
-2. However, the next line of code assigns the mean of the column **id** in the data frame **data** to the object **mean_age**. This overwrites the existing object **mean_age**.
+1.  The object **mean_age** is assigned the mean of the column **age** in the data frame **data**.
 
+2.  However, the next line of code assigns the mean of the column **id** in the data frame **data** to the object **mean_age**. This overwrites the existing object **mean_age**.
 :::
 
-::: {.callout-note}
-
+::: callout-note
 # Task
 
-1. Calculate the mean of the column **age** in the data frame **data** and save it to an object called **mean_age**. 
+1.  Calculate the mean of the column **age** in the data frame **data** and save it to an object called **mean_age**.
 
-1. Calculate the standard deviation of the column **age** in the data frame **data** and save it to an object called **sd_age**. 
+2.  Calculate the standard deviation of the column **age** in the data frame **data** and save it to an object called **sd_age**.
 :::
-
 
 ::: {.webex-check .webex-box}
+The mean age is: `r fitb(mean(practical1_data$age) %>% round(2))` The sd of age is: `r fitb(sd(practical1_data$age) %>% round(2))`
 
-The mean age is: `r fitb(mean(practical1_data$age))`
-The sd of age is: `r fitb(sd(practical1_data$age))`
-
+2 decimal places
 :::
 
-
 ## Saving your script
-Remember to save your script regularly as you work. To save your script, click on the <if>File -> Save</if> or use the keyboard shortcut <if>Ctrl + S</if>.
 
-::: {.callout-note}
+Remember to save your script regularly as you work. To save your script, click on the <if>File -\> Save</if> or use the keyboard shortcut <if>Ctrl + S</if>.
+
+::: callout-note
 # Task
+
 Save your script.
 :::
 
@@ -325,6 +302,5 @@ Save your script.
 
 You can find more examples and videos about the topics covered in this practical here:
 
-- [Working with data in R and R Studio](https://christopherjwilson.github.io/APRM23/workingWithData.html)
-
+-   [Working with data in R and R Studio](https://christopherjwilson.github.io/intro_to_r/working_with_data.html)
 :::

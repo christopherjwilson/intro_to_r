@@ -34,12 +34,11 @@ The `library()` function is used to load packages in R. You will need to load th
 
 ## Textbooks that can be accessed online
 
-e-books can be accessed from the library website: [https://www.tees.ac.uk/depts/lis/](https://www.tees.ac.uk/depts/lis/)
+e-books can be accessed from the library website: <https://www.tees.ac.uk/depts/lis/>
 
 ### Research Methods and Statistics
 
 [Coolican, 2019. Research Methods and Statistics in Psychology. Taylor & Francis Group](https://ebookcentral.proquest.com/lib/tees/detail.action?docID=5584239)
-
 
 [Barker, C., Pistrang, N., & Elliott, R. (2015). Research methods in clinical psychology: An introduction for students and practitioners (3rd ed.). Chichester, West Sussex: Wiley Blackwell.](https://ebookcentral.proquest.com/lib/tees/reader.action?docID=4038573)
 

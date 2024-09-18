@@ -20,5 +20,14 @@
   },
   "webexercises/introduction_to_r.Rmd": {
     "introduction_to_r.html": "1d43f979"
+  },
+  "basic_tests.qmd": {
+    "basic_tests.html": "0d49c39e"
+  },
+  "power_effectSize.qmd": {
+    "power_effectSize.html": "4f5ceb7d"
+  },
+  "correlation.rmd": {
+    "correlation.html": "684d51ca"
   }
 }

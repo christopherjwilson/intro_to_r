@@ -1,0 +1,15 @@
+---
+title: "test"
+format:
+  revealjs:
+    drop:
+      engine: webr
+      webr:
+        packages:
+          - ggplot2
+          - dplyr
+---
+
+# Hello
+
+## Slide

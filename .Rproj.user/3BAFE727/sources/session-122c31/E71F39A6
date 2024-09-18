@@ -1,0 +1,31 @@
+{
+    "id": "E71F39A6",
+    "path": "~/GitHub/intro_to_r/docs/slides/Lecture1.qmd",
+    "project_path": "docs/slides/Lecture1.qmd",
+    "type": "quarto_markdown",
+    "hash": "3256595376",
+    "contents": "",
+    "dirty": false,
+    "created": 1726659621524.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "rmdVisualMode": "false",
+        "rmdVisualWrapConfigured": "true",
+        "source_window_id": "",
+        "Source": "Source",
+        "docOutlineVisible": "1",
+        "rmdVisualCollapsedChunks": "",
+        "cursorPosition": "23,11",
+        "scrollLine": "10",
+        "rmdVisualModeLocation": "1569:1441"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1726660174,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1726660174208,
+    "read_only": false,
+    "read_only_alternatives": []
+}

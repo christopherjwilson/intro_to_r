@@ -1,0 +1,18 @@
+---
+title: "Quarto Drop plugin for Reveal.js"
+subtitle: "A dropdown R or Python console"
+format:
+  revealjs:
+    drop:
+      engine: webr
+      webr:
+        packages:
+          - ggplot2
+          - dplyr
+revealjs-plugins:
+  - drop
+---
+
+# Hello
+
+## Slide
