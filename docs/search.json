@@ -304,7 +304,7 @@
     "href": "basic_tests.html#paired-t-test",
     "title": "4  Basic statistical tests",
     "section": "4.2 Paired t-test",
-    "text": "4.2 Paired t-test\nThe paired t-test is used to compare the means of two related groups. In R, you can use the t.test() function with the paired = TRUE argument to perform a paired t-test. Here is an example:\n\n# This example uses the sleep dataset, which is a built-in dataset in R that contains data on the effect of two soporific drugs on sleep duration.\n\n# Load the sleep dataset\n\ndata(sleep)\n\n# Paired t-test example: Is there a difference in sleep duration between the two drugs?\n\n# Perform the paired t-test\n\npaired_t_test_result &lt;- t.test(sleep$extra ~ sleep$group, paired = TRUE)\n\n# Print the result\n\npaired_t_test_result\n\n\n    Paired t-test\n\ndata:  sleep$extra by sleep$group\nt = -4.0621, df = 9, p-value = 0.002833\nalternative hypothesis: true mean difference is not equal to 0\n95 percent confidence interval:\n -2.4598858 -0.7001142\nsample estimates:\nmean difference \n          -1.58 \n\n\nIn this example, we are comparing the sleep duration (extra) between patients who were given different drugs in the sleep dataset (note: 10 people were each measured twice). The extra variable is the dependent variable, and the group variable is the independent variable. The t.test() function is used to perform the paired t-test, and the result is stored in the paired_t_test_result variable.\nIf we look at the output, we can see the following:\n\nThe t-test result is presented.\nThe alternative hypothesis is that the means are not equal.\nThe 95% confidence interval for the difference in means is presented.\nThe mean difference is presented.",
+    "text": "4.2 Paired t-test\n\n\nThe paired t-test is used to compare the means of two related groups. In R, you can use the t.test() function with the paired = TRUE argument to perform a paired t-test. Here is an example:\n\n# This example uses the sleep dataset, which is a built-in dataset in R that contains data on the effect of two soporific drugs on sleep duration.\n\n# Load the sleep dataset\n\ndata(sleep)\n\n# Paired t-test example: Is there a difference in sleep duration between the two drugs?\n\n# Perform the paired t-test\n\npaired_t_test_result &lt;- t.test(sleep$extra ~ sleep$group, paired = TRUE)\n\n# Print the result\n\npaired_t_test_result\n\n\n    Paired t-test\n\ndata:  sleep$extra by sleep$group\nt = -4.0621, df = 9, p-value = 0.002833\nalternative hypothesis: true mean difference is not equal to 0\n95 percent confidence interval:\n -2.4598858 -0.7001142\nsample estimates:\nmean difference \n          -1.58 \n\n\nIn this example, we are comparing the sleep duration (extra) between patients who were given different drugs in the sleep dataset (note: 10 people were each measured twice). The extra variable is the dependent variable, and the group variable is the independent variable. The t.test() function is used to perform the paired t-test, and the result is stored in the paired_t_test_result variable.\nIf we look at the output, we can see the following:\n\nThe t-test result is presented.\nThe alternative hypothesis is that the means are not equal.\nThe 95% confidence interval for the difference in means is presented.\nThe mean difference is presented.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Basic statistical tests</span>"
     ]
@@ -334,7 +334,7 @@
     "href": "basic_tests.html#chi-squared-test",
     "title": "4  Basic statistical tests",
     "section": "4.5 Chi-squared test",
-    "text": "4.5 Chi-squared test\nThe chi-squared test is used to test the association between two categorical variables. In R, you can use the chisq.test() function to perform a chi-squared test. Here is an example:\n\n# This example uses the mtcars dataset, which is a built-in dataset in R that contains data on various car models.\n\n# Load the mtcars dataset\n\ndata(mtcars)\n\n# Chi-squared test example: Is there an association between the number of cylinders and the type of transmission?\n\n# Create a contingency table\n\ncontingency_table &lt;- table(mtcars$cyl, mtcars$am)\n\n# Perform the chi-squared test\n\nchi_squared_test_result &lt;- chisq.test(contingency_table)\n\nWarning in chisq.test(contingency_table): Chi-squared approximation may be\nincorrect\n\n# Print the result\n\nchi_squared_test_result\n\n\n    Pearson's Chi-squared test\n\ndata:  contingency_table\nX-squared = 8.7407, df = 2, p-value = 0.01265\n\n\nIn this example, we are testing the association between the number of cylinders (cyl) and the type of transmission (am) in the mtcars dataset. The chisq.test() function is used to perform the chi-squared test, and the result is stored in the chi_squared_test_result variable.\nIf we look at the output, we can see the following:\n\nThe chi-squared test result is presented.",
+    "text": "4.5 Chi-squared test\n\n\nThe chi-squared test is used to test the association between two categorical variables. In R, you can use the chisq.test() function to perform a chi-squared test. Here is an example:\n\n# This example uses the mtcars dataset, which is a built-in dataset in R that contains data on various car models.\n\n# Load the mtcars dataset\n\ndata(mtcars)\n\n# Chi-squared test example: Is there an association between the number of cylinders and the type of transmission?\n\n# Create a contingency table\n\ncontingency_table &lt;- table(mtcars$cyl, mtcars$am)\n\n# Perform the chi-squared test\n\nchi_squared_test_result &lt;- chisq.test(contingency_table)\n\nWarning in chisq.test(contingency_table): Chi-squared approximation may be\nincorrect\n\n# Print the result\n\nchi_squared_test_result\n\n\n    Pearson's Chi-squared test\n\ndata:  contingency_table\nX-squared = 8.7407, df = 2, p-value = 0.01265\n\n\nIn this example, we are testing the association between the number of cylinders (cyl) and the type of transmission (am) in the mtcars dataset. The chisq.test() function is used to perform the chi-squared test, and the result is stored in the chi_squared_test_result variable.\nIf we look at the output, we can see the following:\n\nThe chi-squared test result is presented.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Basic statistical tests</span>"
     ]
@@ -382,11 +382,11 @@
   {
     "objectID": "correlation.html",
     "href": "correlation.html",
-    "title": "5  Correlation",
+    "title": "5  Correlation and simple regression",
     "section": "",
-    "text": "5.1 What is Correlation?",
+    "text": "5.1 What is Correlation?\nCorrelation is a measure of the strength and direction of a relationship between two variables. It is most commonly used when we want to see if there is a relationship between two continuous variables. When we calculate correlation, we get a value between -1 and 1. The closer the value is to 1, the stronger the relationship. The closer the value is to 0, the weaker the relationship. We also often calculate the significance of the correlation, which tests against a null hypothesis that the correlation is 0.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
     ]
   },
   {
@@ -402,11 +402,11 @@
   {
     "objectID": "correlation.html#how-is-correlation-calculated",
     "href": "correlation.html#how-is-correlation-calculated",
-    "title": "5  Correlation",
+    "title": "5  Correlation and simple regression",
     "section": "5.2 How is correlation calculated?",
-    "text": "5.2 How is correlation calculated?\n\nThink of this as covariance divided by individual variance\nIf the changes are consistent with both variables, the final value will be higher",
+    "text": "5.2 How is correlation calculated?\nCorrelation can be thought of as covariance divided by individual variance. Covariance is a measure of how much two variables change together. Variance is a measure of how much a variable changes on its own. When we divide covariance by variance, we get a value that is standardised and can be compared across different data sets.\nIf the changes are consistent with both variables (i.e. the covariance is higher and the individual variance is lower), then the final correlation value will be higher.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
     ]
   },
   {
@@ -422,61 +422,61 @@
   {
     "objectID": "correlation.html#what-is-regression",
     "href": "correlation.html#what-is-regression",
-    "title": "5  Correlation",
+    "title": "5  Correlation and simple regression",
     "section": "6.1 What is regression?",
     "text": "6.1 What is regression?\n\nTesting to see if we can make predictions based on data that are correlated\n\n\nWe found a strong correlation between treatment duration and agression levels. Can we use this data to predict aggression levels of other clients, based on their treatment duration?\n\n\nWhen we carry out regression, we get a information about:\n\nHow much variance in the outcome is explained by the predictor\nHow confident we can be about these results generalising (i.e. significance)\nHow much error we can expect from anu predictions that we make (i.e. standard error of the estimate)\nThe figures we need to calculate a predicted outcome value (i.e. coefficient values)",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
     ]
   },
   {
     "objectID": "correlation.html#how-is-regression-calculated",
     "href": "correlation.html#how-is-regression-calculated",
-    "title": "5  Correlation",
+    "title": "5  Correlation and simple regression",
     "section": "6.2 How is regression calculated?",
     "text": "6.2 How is regression calculated?\n\n\n\n\n\n\n\n\n\n\nWhen we run a regression analysis, a calculation is done to select the “line of best fit”\nThis is a “prediction line” that minimises the overall amount of error\n\nError = difference between the data points and the line",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
     ]
   },
   {
     "objectID": "correlation.html#the-regression-equation",
     "href": "correlation.html#the-regression-equation",
-    "title": "5  Correlation",
+    "title": "5  Correlation and simple regression",
     "section": "6.3 The regression equation",
     "text": "6.3 The regression equation\n\n\n\n\n\n\n\n\n\n\nOnce the line of best fit is calculated, predictions are based on this line\nTo make predictions we need the intercept and slope of the line\n\nIntercept or constant= where the line crosses the y axis\nSlope or beta = the angle of the line\n\nPredictions are made using the calculation for a line: Y = bX + c\nYou can think of the equation like this:\n\npredicted outcome value = beta coefficient * value of predictor + constant",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
     ]
   },
   {
     "objectID": "correlation.html#running-regression-in-r",
     "href": "correlation.html#running-regression-in-r",
-    "title": "5  Correlation",
+    "title": "5  Correlation and simple regression",
     "section": "6.4 Running regression in R",
     "text": "6.4 Running regression in R\n\nStep 1: Run regression\nStep 2: Check assumptions\n\nData\nDistribution\nLinearity\nHomogeneity of variance\nUncorrelated predictors\nIndpendence of residuals\nNo influental cases / outliers\n\nStep 3: Check R^2 value\nStep 4: Check model significance\nStep 5: Check coefficient values",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
     ]
   },
   {
     "objectID": "correlation.html#run-regression",
     "href": "correlation.html#run-regression",
-    "title": "5  Correlation",
+    "title": "5  Correlation and simple regression",
     "section": "6.5 Run regression",
     "text": "6.5 Run regression\n\nWe use the lm() command to run regression while saving the results\nWe then use the summary() function to check the results\n\n\nmodel1 &lt;- lm(formula= aggression_level ~ treatment_duration ,data=regression_data)\nsummary(model1)\n\n\nCall:\nlm(formula = aggression_level ~ treatment_duration, data = regression_data)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-3.4251 -1.1493 -0.0593  0.8814  3.4542 \n\nCoefficients:\n                   Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)         12.3300     0.7509   16.42  &lt; 2e-16 ***\ntreatment_duration  -0.6933     0.0726   -9.55 1.15e-15 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.551 on 98 degrees of freedom\nMultiple R-squared:  0.4821,    Adjusted R-squared:  0.4768 \nF-statistic: 91.21 on 1 and 98 DF,  p-value: 1.146e-15",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
     ]
   },
   {
     "objectID": "correlation.html#what-are-residuals",
     "href": "correlation.html#what-are-residuals",
-    "title": "5  Correlation",
+    "title": "5  Correlation and simple regression",
     "section": "6.6 What are residuals?",
     "text": "6.6 What are residuals?\n\nIn regression, the assumptions apply to the residuals, not the data themselves\nResidual just means the difference between the data point and the regression line",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
     ]
   },
   {
@@ -492,81 +492,81 @@
   {
     "objectID": "correlation.html#check-assumptions-linearity",
     "href": "correlation.html#check-assumptions-linearity",
-    "title": "5  Correlation",
+    "title": "5  Correlation and simple regression",
     "section": "6.8 Check assumptions: linearity",
     "text": "6.8 Check assumptions: linearity\n\nUsing the plot() command on our regression model will give us some useful diagnostic plots\nThe first plot that it outputs shows the residuals vs the fitted values\nHere, we want to see them spread out, with the line being horizontal and straight\n\n\nplot(model1, which=1)\n\n\n\n\n\n\n\n\n\nThere is a slight amount of curvilinearity here but nothing to be worried about",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
     ]
   },
   {
     "objectID": "correlation.html#check-assumptions-homogeneity-of-variance-1",
     "href": "correlation.html#check-assumptions-homogeneity-of-variance-1",
-    "title": "5  Correlation",
+    "title": "5  Correlation and simple regression",
     "section": "6.9 Check assumptions: Homogeneity of Variance #1",
     "text": "6.9 Check assumptions: Homogeneity of Variance #1\n\nWe can use the sample plot to check Homogeneity of Variance\nWe want the variance to be constant across the data set. We do not want the variance to change at different points in the data\n\n\nplot(model1, which=1)\n\n\n\n\n\n\n\n\n\nA violation of Homogeneity of Variance would usually look like a funnel, with the data narrowing",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
     ]
   },
   {
     "objectID": "correlation.html#check-assumptions-influential-cases",
     "href": "correlation.html#check-assumptions-influential-cases",
-    "title": "5  Correlation",
+    "title": "5  Correlation and simple regression",
     "section": "6.10 Check assumptions: Influential cases",
     "text": "6.10 Check assumptions: Influential cases\n\nWe need to check that there are no extreme outliers - they could throw off our predictions\nWe are looking for participants that have high rediduals + high leverage\n\nSome guidance suggests anything higher than 1 is an influential case\nOthers suggest 4/n is the cut off point (4 divided by number of participants)\n\n\n\nplot(model1, which=4)\n\n\n\n\n\n\n\n\n\nWe are looking for participants that have high rediduals + high leverage\n\nNo cases over 1\nMany are over 0.04 (4/n = 0.04)\n\n\n\nplot(model1, which=5)",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
     ]
   },
   {
     "objectID": "correlation.html#check-the-r-squared-value",
     "href": "correlation.html#check-the-r-squared-value",
-    "title": "5  Correlation",
+    "title": "5  Correlation and simple regression",
     "section": "6.11 Check the r squared value",
     "text": "6.11 Check the r squared value\n\nr^2 = the amount of variance in the outcome that is explained by the predictor(s)\nThe closer this value is to 1, the more useful our regression model is for predicting the outcome\n\n\nmodelSummary &lt;- summary(model1)\nmodelSummary\n\n\nCall:\nlm(formula = aggression_level ~ treatment_duration, data = regression_data)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-3.4251 -1.1493 -0.0593  0.8814  3.4542 \n\nCoefficients:\n                   Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)         12.3300     0.7509   16.42  &lt; 2e-16 ***\ntreatment_duration  -0.6933     0.0726   -9.55 1.15e-15 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.551 on 98 degrees of freedom\nMultiple R-squared:  0.4821,    Adjusted R-squared:  0.4768 \nF-statistic: 91.21 on 1 and 98 DF,  p-value: 1.146e-15\n\n\n\nThe r^2 of 0.482052 means that 48% of the variance in aggression level is explained by treatment duration",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
     ]
   },
   {
     "objectID": "correlation.html#check-model-significance",
     "href": "correlation.html#check-model-significance",
-    "title": "5  Correlation",
+    "title": "5  Correlation and simple regression",
     "section": "6.12 Check model significance",
     "text": "6.12 Check model significance\n\nThe model significance is displayed at the very end of the output\n\np-value: 1.146e-15\nAs p &lt; 0.05, the model is significant\n\n\n\nmodelSummary\n\n\nCall:\nlm(formula = aggression_level ~ treatment_duration, data = regression_data)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-3.4251 -1.1493 -0.0593  0.8814  3.4542 \n\nCoefficients:\n                   Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)         12.3300     0.7509   16.42  &lt; 2e-16 ***\ntreatment_duration  -0.6933     0.0726   -9.55 1.15e-15 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.551 on 98 degrees of freedom\nMultiple R-squared:  0.4821,    Adjusted R-squared:  0.4768 \nF-statistic: 91.21 on 1 and 98 DF,  p-value: 1.146e-15",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
     ]
   },
   {
     "objectID": "correlation.html#check-coefficient-values",
     "href": "correlation.html#check-coefficient-values",
-    "title": "5  Correlation",
+    "title": "5  Correlation and simple regression",
     "section": "6.13 Check coefficient values",
     "text": "6.13 Check coefficient values\n\nThe coefficient values are displayed in the coefficients table\nIf we have more than one predictor, they are all listed here\n\n\nmodelSummary$coefficients\n\n                     Estimate Std. Error   t value     Pr(&gt;|t|)\n(Intercept)        12.3300211 0.75087601 16.420848 6.840516e-30\ntreatment_duration -0.6933201 0.07259671 -9.550297 1.145898e-15\n\n\n\nThe beta coefficient for treatment duration is in the Estimate column\nFor every unit increase in treatment duration, aggression level decreases by 0.69",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
     ]
   },
   {
     "objectID": "correlation.html#the-regression-equation-1",
     "href": "correlation.html#the-regression-equation-1",
-    "title": "5  Correlation",
+    "title": "5  Correlation and simple regression",
     "section": "6.14 The regression equation",
     "text": "6.14 The regression equation\n\nThe regression equation is:\n\nOutcome = predictor value * beta coefficient + constant\n\nFor this model, that is:\n\nAggression level = treatment duration * -0.69 + 12.33\n\nmodelSummary$coefficients\n\n                     Estimate Std. Error   t value     Pr(&gt;|t|)\n(Intercept)        12.3300211 0.75087601 16.420848 6.840516e-30\ntreatment_duration -0.6933201 0.07259671 -9.550297 1.145898e-15",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
     ]
   },
   {
     "objectID": "correlation.html#accounting-for-error-in-predictions",
     "href": "correlation.html#accounting-for-error-in-predictions",
-    "title": "5  Correlation",
+    "title": "5  Correlation and simple regression",
     "section": "6.15 Accounting for error in predictions",
     "text": "6.15 Accounting for error in predictions\n\nWe also know that the accuracy of predictions will be within a certain margin of error\nThis is known as standard error of the estimate or residual standard error\n\n\nmodelSummary\n\n\nCall:\nlm(formula = aggression_level ~ treatment_duration, data = regression_data)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-3.4251 -1.1493 -0.0593  0.8814  3.4542 \n\nCoefficients:\n                   Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)         12.3300     0.7509   16.42  &lt; 2e-16 ***\ntreatment_duration  -0.6933     0.0726   -9.55 1.15e-15 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.551 on 98 degrees of freedom\nMultiple R-squared:  0.4821,    Adjusted R-squared:  0.4768 \nF-statistic: 91.21 on 1 and 98 DF,  p-value: 1.146e-15",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
     ]
   },
   {
@@ -577,6 +577,36 @@
     "text": "Revision Quiz\n\nWhat is the purpose of R scripts in the context of data analysis? r mcq(c( \"To create interactive visualizations\", \"To organize files and folders on your computer\", answer =  \"To type and save analysis code for later use\", \"To display the output of R code immediately\"))\nWhat does the Environment in R Studio primarily display? r mcq(c( \"The R script files\", \"Publication-ready outputs\", answer = \"Objects (data, analysis, plots) currently in memory\",  \"The R package installation menu\"))\nWhich of the following is a reason to learn and use R? r mcq(c( \"It is a closed-source software\", \"It is used exclusively by programmers\", answer = \"It has a large number of packages and a wide community of users\",  \"It doesn't require any coding skills\"))\nHow can you install an R package in R Studio? r mcq(c( \"By clicking 'Load' in the Environment section\", \"By running the package's executable file\", answer = \"By using the 'install.packages()' function\", \"By copying the package files to the working directory\"))\nWhat does the ‘Run’ button do in R Studio? r mcq(c( \"It compiles the R script into a standalone program\", \"It generates publication-ready outputs\", answer = \"It runs the code in the R script\",  \"It opens the R package manager\"))\nHow can you load a previously installed R package? r mcq(c( \"By clicking the 'Load' button in the Console\", \"By typing 'install.packages()' in the Console\", answer =  \"By using the 'library(package_name)' command\", \"By copying the package files to the working directory\"))\nTrue or False: You can work on multiple datasets at the same time using R / R Studio? r torf(TRUE)\nWhat advantage does using R scripts for analysis provide? r mcq(c( \"They enable real-time collaboration with other users\", \"They allow you to create complex interactive visualizations\",answer =  \"They encourage transparency and reproducibility of analysis\", \"They automatically generate publication-ready reports\"))\nWhat is the main role of the R Console in R Studio? r mcq(c( \"To create interactive visualizations\", \"To dispay objects in memory\", \"To organize and manage files in the workspace\", answer = \"To provide an interactive environment to run R code\"))\n“What is the difference between R and R Studio? r mcq(c( answer = \"R is a statistical programming language, while R Studio is a software developed for using R to do analysis\", \"R is a data visualization tool, while R Studio is a statistical analysis software\", \"R is used for web development, while R Studio is used for machine learning\",  \"R is the name of the software, while R Studio is a community forum\"))”",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to R and R Studio</span>"
+    ]
+  },
+  {
+    "objectID": "correlation.html#which-correlation-to-use",
+    "href": "correlation.html#which-correlation-to-use",
+    "title": "5  Correlation and simple regression",
+    "section": "5.3 Which correlation to use?",
+    "text": "5.3 Which correlation to use?\nWhen we run correlation in R, we use the cor.test() command. This command will give us the correlation value, the p value and the confidence intervals.\nWe can specify a Pearson correlation (the default) or a Spearman correlation (for non-parametric data).\n\n5.3.1 Running correlation in R\n\nR can run correlations using the cor.test() command\n\n\ncor.test(regression_data$treatment_duration,regression_data$aggression_level) \n\n\n    Pearson's product-moment correlation\n\ndata:  regression_data$treatment_duration and regression_data$aggression_level\nt = -9.5503, df = 98, p-value = 1.146e-15\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n -0.7838251 -0.5765006\nsample estimates:\n       cor \n-0.6942996 \n\n\nIn the above example, we are testing the correlation between treatment duration and aggression level. Each variable is separated by a comma.\n\n\n5.3.2 Interpreting the output\n\nThe r value tells us the strength and direction of the relationship\nIn the output it is labelled as “cor” (short for correlation)\n\nCorrelation values can range from -1 to 1. The closer the value is to 1, the stronger the relationship. The closer the value is to 0, the weaker the relationship. Positive values indicate a positive relationship (i.e. as one variable increases, so does the other). Negative values indicate a negative relationship (i.e. as one variable increases, the other decreases).\n\ncor.test(regression_data$treatment_duration,regression_data$aggression_level)\n\n\n    Pearson's product-moment correlation\n\ndata:  regression_data$treatment_duration and regression_data$aggression_level\nt = -9.5503, df = 98, p-value = 1.146e-15\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n -0.7838251 -0.5765006\nsample estimates:\n       cor \n-0.6942996 \n\n\n\n\n5.3.3 Check the significance of the correlation\n\nWe can see that the significance by looking at the p value\n\nThe significance is 1.146^-15\nThis means: 0.0000000000000001146\n\nTherefore p value &lt; 0.05\n\n\ncor.test(regression_data$treatment_duration,regression_data$aggression_level)\n\n\n    Pearson's product-moment correlation\n\ndata:  regression_data$treatment_duration and regression_data$aggression_level\nt = -9.5503, df = 98, p-value = 1.146e-15\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n -0.7838251 -0.5765006\nsample estimates:\n       cor \n-0.6942996",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
+    ]
+  },
+  {
+    "objectID": "correlation.html#exponent-values",
+    "href": "correlation.html#exponent-values",
+    "title": "5  Correlation and simple regression",
+    "section": "5.4 Exponent values",
+    "text": "5.4 Exponent values\nWhen we see a value like 1.146e-15, this is a shorthand way of writing a very small number. The e-15 means that we move the decimal point 15 places to the left. So 1.146e-15 is the same as 0.000000000000001146",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
+    ]
+  },
+  {
+    "objectID": "correlation.html#check-assumptions-distribution",
+    "href": "correlation.html#check-assumptions-distribution",
+    "title": "5  Correlation and simple regression",
+    "section": "6.7 Check assumptions: distribution",
+    "text": "6.7 Check assumptions: distribution\n\nUsing the plot() command on our regression model will give us some useful diagnostic plots\nThe second plot that it outputs shows the normality\n\n\nplot(model1, which=2)\n\n\n\n\n\n\n\n\n\nWe could also use a histogram to check the distribution\nNotice how we can use the $ sign to get the residuals from the model\n\n\nhist(model1$residuals)",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
     ]
   }
 ]

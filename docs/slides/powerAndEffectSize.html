@@ -413,7 +413,7 @@ Dr Christopher Wilson
 <section id="section" class="slide level2">
 <h2></h2>
 
-<img data-src="powerAndEffectSize_files/figure-revealjs/unnamed-chunk-1-1.png" width="576" class="r-stretch"><p>Imagine we could see them all, and knew that there was no difference between those who received treatment and those who did not.</p>
+<img data-src="powerAndEffectSize_files/figure-revealjs/unnamed-chunk-1-1.png" width="576" class="r-stretch"><p>Imagine we could see them all, and knew that there was not much difference between those who received treatment and those who did not.</p>
 </section></section>
 <section>
 <section id="now-imagine-that-100-studies-were-done-across-the-country-each-with-a-sample-size-of-20-per-group." class="title-slide slide level1 center">
@@ -458,9 +458,10 @@ Dr Christopher Wilson
 <li><p>For example: for a difference between 2 means, we could still obtain a difference of up to 1.96 standard deviations, 95% of the time, even if the null hypothesis were true.</p></li>
 <li><p>There’s still a 5% chance (2.5% + 2.5%) of obtaining a difference higher than 1.96 standard deviations, even if the null hypothesis were true.</p></li>
 </ul>
-</section>
-<section id="takeaways" class="slide level2">
-<h2>Takeaways</h2>
+</section></section>
+<section>
+<section id="takeaways" class="title-slide slide level1 center">
+<h1>Takeaways</h1>
 <ul>
 <li><p>Even when the null hypothesis is true, we can still obtain a range of differences when we sample from the population.</p></li>
 <li><p>Some of these differences will even result in p-values below 0.05.</p></li>
@@ -500,6 +501,7 @@ Dr Christopher Wilson
 <section id="takeaways-1" class="title-slide slide level1 center">
 <h1>Takeaways</h1>
 <ul>
+<li><p>p-values can put people into a binary mindset about results (yes/no) when the data collected is likely more complex</p></li>
 <li><p>p-values are not stable from one study to the next, so be careful about interpreting them.</p></li>
 <li><p>p-values are not a good measure of evidence for or against a hypothesis, only how likely the data are to have occurred if the null hypothesis were true.</p></li>
 <li><p>There is no such thing as a “near-significant” result. A p-value of 0.048 is not more “important” than a p-value of 0.05.</p></li>
@@ -520,8 +522,10 @@ Dr Christopher Wilson
 <ul>
 <li>Confidence intervals are a better way to interpret results than p-values.</li>
 <li>A confidence interval is a range of values that is likely to contain the true value of a parameter.</li>
-<li>For example, a 95% confidence interval for a mean says:</li>
-<li>If we were to collect the same sample 1000 times and calculate a 95% confidence interval of the mean for each sample, 950 of the intervals would contain the true population mean.</li>
+<li>For example, a 95% confidence interval for a mean says:
+<ul>
+<li>If we were to collect the same sample 100 times and calculate a 95% confidence interval of the mean for each sample, 95 of the intervals would contain the true population mean.</li>
+</ul></li>
 </ul>
 </section>
 <section id="what-can-confidence-intervals-tell-us" class="slide level2">
@@ -540,6 +544,7 @@ Dr Christopher Wilson
 </blockquote>
 <p>This tells us that the true mean difference between the two groups is likely to be between 0.02 and 0.45, and that if we were to repeat the study 100 times, 95 of the confidence intervals would contain the true mean difference.</p>
 </section></section>
+<section>
 <section id="takeaways-2" class="title-slide slide level1 center">
 <h1>Takeaways</h1>
 <ul>
@@ -548,7 +553,11 @@ Dr Christopher Wilson
 <li><p>Confidence intervals can tell us the likely range of outcomes, and a better sense of how precise our estimate of the true value is.</p></li>
 </ul>
 </section>
+<section id="lets-look-again-at-the-data" class="slide level2">
+<h2>Let’s look again at the data:</h2>
 
+<img data-src="powerAndEffectSize_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"><p>There’s not much difference between the two groups. Does that mean there is no difference?</p>
+</section></section>
 <section>
 <section id="effect-sizes-and-designing-studies-with-sufficient-power" class="title-slide slide level1 center">
 <h1>Effect sizes and designing studies with sufficient power</h1>

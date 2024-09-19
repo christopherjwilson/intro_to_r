@@ -101,7 +101,7 @@ ggplot(data_long, aes(x = group, y = value, colour = group)) +
 
 ```
 
-Imagine we could see them all, and knew that there was no difference between those who received treatment and those who did not.
+Imagine we could see them all, and knew that there was not much difference between those who received treatment and those who did not.
 
 # Now, imagine that 100 studies were done across the country, each with a sample size of 20 per group.
 
@@ -243,7 +243,7 @@ text(0, 0.01, "95%", cex=0.8)
 
 -   There's still a 5% chance (2.5% + 2.5%) of obtaining a difference higher than 1.96 standard deviations, even if the null hypothesis were true.
 
-## Takeaways
+# Takeaways
 
 -   Even when the null hypothesis is true, we can still obtain a range of differences when we sample from the population.
 
@@ -312,6 +312,8 @@ A: Because that's what they were taught in college or grad school.
 
 # Takeaways
 
+-   p-values can put people into a binary mindset about results (yes/no) when the data collected is likely more complex
+
 -   p-values are not stable from one study to the next, so be careful about interpreting them.
 
 -   p-values are not a good measure of evidence for or against a hypothesis, only how likely the data are to have occurred if the null hypothesis were true.
@@ -329,7 +331,7 @@ A: Because that's what they were taught in college or grad school.
 -   Confidence intervals are a better way to interpret results than p-values.
 -   A confidence interval is a range of values that is likely to contain the true value of a parameter.
 -   For example, a 95% confidence interval for a mean says:
--   If we were to collect the same sample 1000 times and calculate a 95% confidence interval of the mean for each sample, 950 of the intervals would contain the true population mean.
+    -   If we were to collect the same sample 100 times and calculate a 95% confidence interval of the mean for each sample, 95 of the intervals would contain the true population mean.
 
 ## What can confidence intervals tell us?
 
@@ -354,6 +356,18 @@ This tells us that the true mean difference between the two groups is likely to 
 -   Confidence intervals are a better way to interpret results than p-values.
 
 -   Confidence intervals can tell us the likely range of outcomes, and a better sense of how precise our estimate of the true value is.
+
+## Let's look again at the data:
+
+```{r}
+ggplot(data_long, aes(x = group, y = value, colour = group)) +
+  geom_jitter(width = 0.2, height = 0) +
+  theme_classic() +
+  theme(legend.position = "none") +
+  labs(x = "Group", y = "Score on measure")
+```
+
+There's not much difference between the two groups. Does that mean there is no difference?
 
 # Effect sizes and designing studies with sufficient power
 

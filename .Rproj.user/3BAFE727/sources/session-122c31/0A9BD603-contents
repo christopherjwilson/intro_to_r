@@ -1,0 +1,170 @@
+# Introduction to R and R Studio
+
+## What are R and R Studio?
+
+::: callout-tip
+## At the end of this section, you will be able to:
+
+-   Download and install R and R Studio
+-   Understand the basic layout of R Studio
+-   Describe some of the differences between SPSS and R
+:::
+
+### Downloading and installing R and R Studio
+
+To get started with R Studio, you need to download and install two pieces of software:
+
+1.  **R**: The base software that you will use to write and run code.
+2.  **R Studio**: An integrated development environment (IDE) that makes it easier to write and run code in R.
+
+<iframe src="https://teesside.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=3c0c4687-22a2-4dee-af74-b18f0095352a&amp;autoplay=false&amp;offerviewer=false&amp;showtitle=true&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="405" width="600" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="installing_R">
+
+</iframe>
+
+Click on these links to download:
+
+-   [R project](https://cran.r-project.org/)
+-   [RStudio](https://rstudio.com/)
+
+### The R Studio layout
+
+When you open R Studio, you will see a screen that looks like this:
+
+![R Studio IDE](images/rstudio_ide.png)
+
+Briefly, the different panes in R Studio are:
+
+-   **Console**: You can write and run code in this pane. However, it is best practice to write code in a script. You will see output from your code in the console.
+-   **Environment/History**: This pane shows you the objects that you have created in R, and the history of the commands that you have run.
+-   **Files/Plots/Packages/Help**: These panes allow you to navigate your files, view plots, manage packages, and access help documentation.
+
+You will learn more about these panes as you work through the course.
+
+![R Studio IDE](images/rstudio1.png)
+
+### Differences between SPSS and R
+
+R is a statistical programming language, while SPSS is a point-and-click software package. This means that in R, you write code to perform tasks, while in SPSS, you click buttons and select options from menus.
+
+This can take some getting used to, but there are many advantages to using R:
+
+-   **Reproducibility**: You can save your code and rerun it at any time, ensuring that your analysis is reproducible.
+-   **Flexibility**: You can write code to perform any task you like, rather than being limited to the options available in a menu.
+-   **Community**: R has a large and active community of users who share code and help each other to solve problems.
+
+With R, you won't manipulate your source data files. Instead, you load the data into R and manipulate it in R. This means that you can always go back to your original data and start again if you need to.
+
+## No more "point and click"! - the R workflow.
+
+::: callout-tip
+## At the end of this section, you will be able to:
+
+-   Open a new script in R Studio
+-   Write and run code in a script
+-   Save a script for later use
+:::
+
+### Using scripts in R Studio
+
+When you work in R, you will write code in a script. This is a text file that contains the code that you want to run. You can write and run code in the console, but it is best practice to write code in a script. This allows you to save your code and run it again later IT also makes it easier to see what you have done.
+
+To open a new script in R Studio, click on `File > New File > R Script`. This will open a new script in the top-left pane of R Studio.
+
+You can write code in the script, and then run it by selecting the code that you want to run and clicking the `Run` button at the top of the script pane. You can also run code by pressing `Ctrl + Enter` on your keyboard.
+
+To save your script, click on `File > Save As...` and save the file with a `.R` extension.
+
+<iframe src="https://teesside.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=eb06a83c-281e-472e-9fe5-b18f00de8ebb&amp;autoplay=false&amp;offerviewer=false&amp;showtitle=false&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="405" width="600" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="Working with scripts in R">
+
+</iframe>
+
+::: callout-important
+### Organising your work
+
+It is good practice to keep your work organised by putting your scripts, data, and other files in a folder on your computer, for each project that you work on.
+
+RStudio also allows the creation of projects. You can create a new project in R Studio by clicking on `File > New Project...`. This will create a new folder on your computer where you can save your scripts, data, and other files. If you save your script in the project folder, you can easily access it by opening the project in R Studio. If you use projects, be aware that R Studio will load the last project you worked on when you open the software.
+:::
+
+## Objects, functions and packages in R
+
+::: callout-tip
+## At the end of this section, you will be able to:
+
+-   Create objects in R
+-   Use functions in R to perform tasks
+-   Install and load packages in R
+:::
+
+### What are objects?
+
+In R, you can create objects to store data. For example, you can create an object called `numbers` that contains a set of numbers like this:
+
+``` r
+numbers <- c(1, 2, 3, 4, 5)
+```
+
+Breaking this code down:
+
+-   `numbers` is the name of the object that you are creating.
+
+-   `<-` is the assignment operator. It assigns the value on the right-hand side of the operator to the object on the left-hand side.
+
+-   `c(1, 2, 3, 4, 5)` is the data that you are assigning to the object. In this case, it is a set of numbers.
+
+When you run this code, R will create an object called `numbers` that contains the numbers 1, 2, 3, 4, and 5. You will be ab\` le to see the object in the Environment pane in R Studio.
+
+You can then use the object in your code, instead of typing out the data each time (see @sec-functions for example).
+
+<iframe src="https://teesside.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=96684e99-62ad-408c-bd68-b19300dba08b&amp;autoplay=false&amp;offerviewer=false&amp;showtitle=false&amp;showbrand=false&amp;captions=false&amp;interactivity=all" height="405" width="600" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="objects">
+
+</iframe>
+
+### What are functions? {#sec-functions}
+
+Functions are code that have been written to perform a specific task. You can use functions in R to perform tasks like reading data into R, summarising data, and creating plots.
+
+For example, the `mean()` function calculates the mean of a set of numbers. You can use the `mean()` function like this:
+
+``` r
+numbers <- c(1, 2, 3, 4, 5)
+
+mean(numbers)
+```
+
+Functions in R have a name, followed by parentheses. You can pass arguments to the function inside the parentheses. In this case, the `mean()` function takes a set of numbers as an argument, and returns the mean of those numbers.
+
+To learn more about a function, you can use the `help()` function. For example, to learn more about the `mean()` function, you can run the following code:
+
+``` r
+help(mean)
+```
+
+You can also use the `?` operator to get help on a function. For example, to get help on the `mean()` function, you can run the following code:
+
+``` r
+
+?mean
+```
+
+<iframe src="https://teesside.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=d9f698a4-df8f-4c4e-a78a-b19300e02ed0&amp;autoplay=false&amp;offerviewer=false&amp;showtitle=false&amp;showbrand=false&amp;captions=false&amp;interactivity=all" height="405" width="600" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="functions">
+
+</iframe>
+
+### What are packages?
+
+R has many built-in functions that you can use to perform tasks. However, there are also many packages available that contain additional functions. You can install these packages onto your conputer and then load them into your R session whenever you want to use them.
+
+To install a package, you can use the `install.packages()` function. For example, to install the `tidyverse` package, you would run the following code:
+
+``` r
+install.packages("tidyverse")
+```
+
+To load a package into your R session, you can use the `library()` function. For example, to load the `tidyverse` package, you would run the following code:
+
+``` r
+library(tidyverse)
+```
+
+Once you have loaded a package, you can use the functions in that package in your code. For example, the `tidyverse` package contains functions for data manipulation and visualisation.

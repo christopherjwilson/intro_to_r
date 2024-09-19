@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Correlation – Introduction to R for Clinical Psychology</title>
+<title>5&nbsp; Correlation and simple regression – Introduction to R for Clinical Psychology</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -115,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./correlation.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Correlation</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./correlation.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Correlation and simple regression</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -173,7 +173,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./correlation.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Correlation and simple regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -194,16 +194,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#what-is-correlation" id="toc-what-is-correlation" class="nav-link active" data-scroll-target="#what-is-correlation"><span class="header-section-number">5.1</span> What is Correlation?</a></li>
   <li><a href="#how-is-correlation-calculated" id="toc-how-is-correlation-calculated" class="nav-link" data-scroll-target="#how-is-correlation-calculated"><span class="header-section-number">5.2</span> How is correlation calculated?</a></li>
-  <li><a href="#running-correlation-in-r" id="toc-running-correlation-in-r" class="nav-link" data-scroll-target="#running-correlation-in-r"><span class="header-section-number">5.3</span> Running correlation in R</a>
+  <li><a href="#which-correlation-to-use" id="toc-which-correlation-to-use" class="nav-link" data-scroll-target="#which-correlation-to-use"><span class="header-section-number">5.3</span> Which correlation to use?</a>
   <ul class="collapse">
-  <li><a href="#check-assumptions-data" id="toc-check-assumptions-data" class="nav-link" data-scroll-target="#check-assumptions-data"><span class="header-section-number">5.3.1</span> Check assumptions: data</a></li>
-  <li><a href="#check-assumptions-distribution" id="toc-check-assumptions-distribution" class="nav-link" data-scroll-target="#check-assumptions-distribution"><span class="header-section-number">5.3.2</span> Check assumptions: distribution</a></li>
-  <li><a href="#check-assumptions-distribution-2" id="toc-check-assumptions-distribution-2" class="nav-link" data-scroll-target="#check-assumptions-distribution-2"><span class="header-section-number">5.3.3</span> Check assumptions: distribution #2</a></li>
-  <li><a href="#checking-assumptions-linearity" id="toc-checking-assumptions-linearity" class="nav-link" data-scroll-target="#checking-assumptions-linearity"><span class="header-section-number">5.3.4</span> Checking assumptions: linearity</a></li>
-  <li><a href="#run-correlation" id="toc-run-correlation" class="nav-link" data-scroll-target="#run-correlation"><span class="header-section-number">5.3.5</span> Run correlation</a></li>
-  <li><a href="#check-r-value-correlation-value" id="toc-check-r-value-correlation-value" class="nav-link" data-scroll-target="#check-r-value-correlation-value"><span class="header-section-number">5.3.6</span> Check r Value (correlation value)</a></li>
-  <li><a href="#check-the-significance-of-the-correlation" id="toc-check-the-significance-of-the-correlation" class="nav-link" data-scroll-target="#check-the-significance-of-the-correlation"><span class="header-section-number">5.3.7</span> Check the significance of the correlation</a></li>
+  <li><a href="#running-correlation-in-r" id="toc-running-correlation-in-r" class="nav-link" data-scroll-target="#running-correlation-in-r"><span class="header-section-number">5.3.1</span> Running correlation in R</a></li>
+  <li><a href="#interpreting-the-output" id="toc-interpreting-the-output" class="nav-link" data-scroll-target="#interpreting-the-output"><span class="header-section-number">5.3.2</span> Interpreting the output</a></li>
+  <li><a href="#check-the-significance-of-the-correlation" id="toc-check-the-significance-of-the-correlation" class="nav-link" data-scroll-target="#check-the-significance-of-the-correlation"><span class="header-section-number">5.3.3</span> Check the significance of the correlation</a></li>
   </ul></li>
+  <li><a href="#exponent-values" id="toc-exponent-values" class="nav-link" data-scroll-target="#exponent-values"><span class="header-section-number">5.4</span> Exponent values</a></li>
   <li><a href="#simple-regression" id="toc-simple-regression" class="nav-link" data-scroll-target="#simple-regression"><span class="header-section-number">6</span> Simple Regression</a>
   <ul class="collapse">
   <li><a href="#what-is-regression" id="toc-what-is-regression" class="nav-link" data-scroll-target="#what-is-regression"><span class="header-section-number">6.1</span> What is regression?</a></li>
@@ -212,7 +209,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#running-regression-in-r" id="toc-running-regression-in-r" class="nav-link" data-scroll-target="#running-regression-in-r"><span class="header-section-number">6.4</span> Running regression in R</a></li>
   <li><a href="#run-regression" id="toc-run-regression" class="nav-link" data-scroll-target="#run-regression"><span class="header-section-number">6.5</span> Run regression</a></li>
   <li><a href="#what-are-residuals" id="toc-what-are-residuals" class="nav-link" data-scroll-target="#what-are-residuals"><span class="header-section-number">6.6</span> What are residuals?</a></li>
-  <li><a href="#check-assumptions-distribution-1" id="toc-check-assumptions-distribution-1" class="nav-link" data-scroll-target="#check-assumptions-distribution-1"><span class="header-section-number">6.7</span> Check assumptions: distribution</a></li>
+  <li><a href="#check-assumptions-distribution" id="toc-check-assumptions-distribution" class="nav-link" data-scroll-target="#check-assumptions-distribution"><span class="header-section-number">6.7</span> Check assumptions: distribution</a></li>
   <li><a href="#check-assumptions-linearity" id="toc-check-assumptions-linearity" class="nav-link" data-scroll-target="#check-assumptions-linearity"><span class="header-section-number">6.8</span> Check assumptions: linearity</a></li>
   <li><a href="#check-assumptions-homogeneity-of-variance-1" id="toc-check-assumptions-homogeneity-of-variance-1" class="nav-link" data-scroll-target="#check-assumptions-homogeneity-of-variance-1"><span class="header-section-number">6.9</span> Check assumptions: Homogeneity of Variance #1</a></li>
   <li><a href="#check-assumptions-influential-cases" id="toc-check-assumptions-influential-cases" class="nav-link" data-scroll-target="#check-assumptions-influential-cases"><span class="header-section-number">6.10</span> Check assumptions: Influential cases</a></li>
@@ -230,7 +227,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Correlation</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Correlation and simple regression</span></h1>
 </div>
 
 
@@ -251,17 +248,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </iframe>
 <section id="what-is-correlation" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="what-is-correlation"><span class="header-section-number">5.1</span> What is Correlation?</h2>
-<ul>
-<li>The relationship between 2 variables</li>
-<li>Question: Is treatment duration related to aggression levels?</li>
-</ul>
+<p>Correlation is a measure of the strength and direction of a relationship between two variables. It is most commonly used when we want to see if there is a relationship between two <em>continuous</em> variables. When we calculate correlation, we get a value between -1 and 1. The closer the value is to 1, the stronger the relationship. The closer the value is to 0, the weaker the relationship. We also often calculate the significance of the correlation, which tests against a null hypothesis that the correlation is 0.</p>
 </section>
 <section id="how-is-correlation-calculated" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="how-is-correlation-calculated"><span class="header-section-number">5.2</span> How is correlation calculated?</h2>
-<ul>
-<li>Think of this as covariance divided by individual variance</li>
-<li>If the changes are consistent with both variables, the final value will be higher</li>
-</ul>
+<p>Correlation can be thought of as covariance divided by individual variance. Covariance is a measure of how much two variables change together. Variance is a measure of how much a variable changes on its own. When we divide covariance by variance, we get a value that is standardised and can be compared across different data sets.</p>
+<p>If the changes are consistent with both variables (i.e.&nbsp;the covariance is higher and the individual variance is lower), then the final correlation value will be higher.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -281,113 +273,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="running-correlation-in-r" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="running-correlation-in-r"><span class="header-section-number">5.3</span> Running correlation in R</h2>
-<ul>
-<li>Step 1: Check assumptions
-<ul>
-<li>Data,distribution,linearity</li>
-</ul></li>
-<li>Step 2: Run correlation</li>
-<li>Step 3: Check R value</li>
-<li>Step 4: Check significance</li>
-</ul>
-<section id="check-assumptions-data" class="level3" data-number="5.3.1">
-<h3 data-number="5.3.1" class="anchored" data-anchor-id="check-assumptions-data"><span class="header-section-number">5.3.1</span> Check assumptions: data</h3>
-<ul>
-<li>Parametric tests require interval or ratio data</li>
-<li>If the data are ordinal then a non-parametric correlation is used</li>
-</ul>
-<blockquote class="blockquote">
-<p>What type of data are treatment duration and aggression level?</p>
-</blockquote>
-</section>
-<section id="check-assumptions-distribution" class="level3" data-number="5.3.2">
-<h3 data-number="5.3.2" class="anchored" data-anchor-id="check-assumptions-distribution"><span class="header-section-number">5.3.2</span> Check assumptions: distribution</h3>
-<ul>
-<li>Parametric tests require normally distributed data</li>
-</ul>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="correlation_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="correlation_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="check-assumptions-distribution-2" class="level3" data-number="5.3.3">
-<h3 data-number="5.3.3" class="anchored" data-anchor-id="check-assumptions-distribution-2"><span class="header-section-number">5.3.3</span> Check assumptions: distribution #2</h3>
-<ul>
-<li>Parametric tests require normally distributed data</li>
-</ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(regression_data<span class="sc">$</span>treatment_duration)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Shapiro-Wilk normality test
-
-data:  regression_data$treatment_duration
-W = 0.94971, p-value = 0.0007939</code></pre>
-</div>
-</div>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(regression_data<span class="sc">$</span>aggression_level)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Shapiro-Wilk normality test
-
-data:  regression_data$aggression_level
-W = 0.9928, p-value = 0.8756</code></pre>
-</div>
-</div>
-<ul>
-<li>The normality assumption is less of an issue when sample size is &gt; 30</li>
-</ul>
-</section>
-<section id="checking-assumptions-linearity" class="level3" data-number="5.3.4">
-<h3 data-number="5.3.4" class="anchored" data-anchor-id="checking-assumptions-linearity"><span class="header-section-number">5.3.4</span> Checking assumptions: linearity</h3>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="img/curvilinear.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="863"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>regression_data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>treatment_duration,<span class="at">y=</span>aggression_level)) <span class="sc">+</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="correlation_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<ul>
-<li>Here we are looking to see if the relationship is linear</li>
-</ul>
-</section>
-<section id="run-correlation" class="level3" data-number="5.3.5">
-<h3 data-number="5.3.5" class="anchored" data-anchor-id="run-correlation"><span class="header-section-number">5.3.5</span> Run correlation</h3>
+<section id="which-correlation-to-use" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="which-correlation-to-use"><span class="header-section-number">5.3</span> Which correlation to use?</h2>
+<p>When we run correlation in R, we use the <em>cor.test()</em> command. This command will give us the correlation value, the p value and the confidence intervals.</p>
+<p>We can specify a Pearson correlation (the default) or a Spearman correlation (for non-parametric data).</p>
+<section id="running-correlation-in-r" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="running-correlation-in-r"><span class="header-section-number">5.3.1</span> Running correlation in R</h3>
 <ul>
 <li>R can run correlations using the <em>cor.test()</em> command</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(regression_data<span class="sc">$</span>treatment_duration,regression_data<span class="sc">$</span>aggression_level)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(regression_data<span class="sc">$</span>treatment_duration,regression_data<span class="sc">$</span>aggression_level) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -402,15 +298,17 @@ sample estimates:
 -0.6942996 </code></pre>
 </div>
 </div>
+<p>In the above example, we are testing the correlation between treatment duration and aggression level. Each variable is separated by a comma.</p>
 </section>
-<section id="check-r-value-correlation-value" class="level3" data-number="5.3.6">
-<h3 data-number="5.3.6" class="anchored" data-anchor-id="check-r-value-correlation-value"><span class="header-section-number">5.3.6</span> Check r Value (correlation value)</h3>
+<section id="interpreting-the-output" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="interpreting-the-output"><span class="header-section-number">5.3.2</span> Interpreting the output</h3>
 <ul>
 <li>The r value tells us the strength and direction of the relationship</li>
 <li>In the output it is labelled as “cor” (short for correlation)</li>
 </ul>
+<p>Correlation values can range from -1 to 1. The closer the value is to 1, the stronger the relationship. The closer the value is to 0, the weaker the relationship. Positive values indicate a positive relationship (i.e.&nbsp;as one variable increases, so does the other). Negative values indicate a negative relationship (i.e.&nbsp;as one variable increases, the other decreases).</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(regression_data<span class="sc">$</span>treatment_duration,regression_data<span class="sc">$</span>aggression_level)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(regression_data<span class="sc">$</span>treatment_duration,regression_data<span class="sc">$</span>aggression_level)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -426,8 +324,8 @@ sample estimates:
 </div>
 </div>
 </section>
-<section id="check-the-significance-of-the-correlation" class="level3" data-number="5.3.7">
-<h3 data-number="5.3.7" class="anchored" data-anchor-id="check-the-significance-of-the-correlation"><span class="header-section-number">5.3.7</span> Check the significance of the correlation</h3>
+<section id="check-the-significance-of-the-correlation" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="check-the-significance-of-the-correlation"><span class="header-section-number">5.3.3</span> Check the significance of the correlation</h3>
 <ul>
 <li>We can see that the significance by looking at the p value
 <ul>
@@ -437,7 +335,7 @@ sample estimates:
 <li>Therefore p value &lt; 0.05</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(regression_data<span class="sc">$</span>treatment_duration,regression_data<span class="sc">$</span>aggression_level)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(regression_data<span class="sc">$</span>treatment_duration,regression_data<span class="sc">$</span>aggression_level)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -453,6 +351,10 @@ sample estimates:
 </div>
 </div>
 </section>
+</section>
+<section id="exponent-values" class="level2 note important" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="exponent-values"><span class="header-section-number">5.4</span> Exponent values</h2>
+<p>When we see a value like 1.146e-15, this is a shorthand way of writing a very small number. The e-15 means that we move the decimal point 15 places to the left. So 1.146e-15 is the same as 0.000000000000001146</p>
 </section>
 <section id="simple-regression" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> Simple Regression</h1>
@@ -516,7 +418,7 @@ sample estimates:
 <li><p>Predictions are made using the calculation for a line: <strong>Y = bX + c</strong></p></li>
 <li><p>You can think of the equation like this:</p></li>
 </ul>
-<p><strong>predicted outcome value = beta coefficient * value of predictor + constant </strong></p>
+<p><strong>predicted outcome value = beta coefficient * value of predictor + constant</strong></p>
 </section>
 <section id="running-regression-in-r" class="level2" data-number="6.4">
 <h2 data-number="6.4" class="anchored" data-anchor-id="running-regression-in-r"><span class="header-section-number">6.4</span> Running regression in R</h2>
@@ -544,8 +446,8 @@ sample estimates:
 <li>We then use the <em>summary()</em> function to check the results</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula=</span> aggression_level <span class="sc">~</span> treatment_duration ,<span class="at">data=</span>regression_data)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula=</span> aggression_level <span class="sc">~</span> treatment_duration ,<span class="at">data=</span>regression_data)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -584,18 +486,18 @@ F-statistic: 91.21 on 1 and 98 DF,  p-value: 1.146e-15</code></pre>
 </div>
 </div>
 </section>
-<section id="check-assumptions-distribution-1" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="check-assumptions-distribution-1"><span class="header-section-number">6.7</span> Check assumptions: distribution</h2>
+<section id="check-assumptions-distribution" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="check-assumptions-distribution"><span class="header-section-number">6.7</span> Check assumptions: distribution</h2>
 <ul>
 <li>Using the <em>plot()</em> command on our regression model will give us some useful diagnostic plots</li>
 <li>The second plot that it outputs shows the normality</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model1, <span class="at">which=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model1, <span class="at">which=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="correlation_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="correlation_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -605,11 +507,11 @@ F-statistic: 91.21 on 1 and 98 DF,  p-value: 1.146e-15</code></pre>
 <li>Notice how we can use the $ sign to get the residuals from the model</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(model1<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(model1<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="correlation_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="correlation_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -623,11 +525,11 @@ F-statistic: 91.21 on 1 and 98 DF,  p-value: 1.146e-15</code></pre>
 <li>Here, we want to see them spread out, with the line being horizontal and straight</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model1, <span class="at">which=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model1, <span class="at">which=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="correlation_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="correlation_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -643,11 +545,11 @@ F-statistic: 91.21 on 1 and 98 DF,  p-value: 1.146e-15</code></pre>
 <li>We want the variance to be constant across the data set. We do not want the variance to change at different points in the data</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model1, <span class="at">which=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model1, <span class="at">which=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="correlation_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="correlation_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -676,11 +578,11 @@ F-statistic: 91.21 on 1 and 98 DF,  p-value: 1.146e-15</code></pre>
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model1, <span class="at">which=</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model1, <span class="at">which=</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="correlation_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%"></p>
+<p><img src="correlation_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%"></p>
 </figure>
 </div>
 </div>
@@ -693,11 +595,11 @@ F-statistic: 91.21 on 1 and 98 DF,  p-value: 1.146e-15</code></pre>
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model1, <span class="at">which=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model1, <span class="at">which=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="correlation_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+<p><img src="correlation_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
 </div>
@@ -710,8 +612,8 @@ F-statistic: 91.21 on 1 and 98 DF,  p-value: 1.146e-15</code></pre>
 <li>The closer this value is to 1, the more useful our regression model is for predicting the outcome</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>modelSummary <span class="ot">&lt;-</span> <span class="fu">summary</span>(model1)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>modelSummary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>modelSummary <span class="ot">&lt;-</span> <span class="fu">summary</span>(model1)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>modelSummary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -747,7 +649,7 @@ F-statistic: 91.21 on 1 and 98 DF,  p-value: 1.146e-15</code></pre>
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>modelSummary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>modelSummary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -777,7 +679,7 @@ F-statistic: 91.21 on 1 and 98 DF,  p-value: 1.146e-15</code></pre>
 <li>If we have more than one predictor, they are all listed here</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>modelSummary<span class="sc">$</span>coefficients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>modelSummary<span class="sc">$</span>coefficients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                     Estimate Std. Error   t value     Pr(&gt;|t|)
 (Intercept)        12.3300211 0.75087601 16.420848 6.840516e-30
@@ -800,7 +702,7 @@ treatment_duration -0.6933201 0.07259671 -9.550297 1.145898e-15</code></pre>
 </ul>
 <p>Aggression level = treatment duration * -0.69 + 12.33</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>modelSummary<span class="sc">$</span>coefficients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>modelSummary<span class="sc">$</span>coefficients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                     Estimate Std. Error   t value     Pr(&gt;|t|)
 (Intercept)        12.3300211 0.75087601 16.420848 6.840516e-30
@@ -815,7 +717,7 @@ treatment_duration -0.6933201 0.07259671 -9.550297 1.145898e-15</code></pre>
 <li>This is known as <strong>standard error of the estimate</strong> or <strong>residual standard error</strong></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>modelSummary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>modelSummary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:

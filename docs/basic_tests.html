@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./power_effectSize.html" rel="next">
+<link href="./correlation.html" rel="next">
 <link href="./descriptive_stats.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -172,8 +172,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./correlation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Correlation and simple regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./power_effectSize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sampling, power and effect size</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sampling, power and effect size</span></span></a>
   </div>
 </li>
     </ul>
@@ -236,6 +242,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="independent-t-test" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="independent-t-test"><span class="header-section-number">4.1</span> Independent t-test</h2>
+<iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=e71c205c-6789-43bc-b020-b1f000ed905b&amp;autoplay=false&amp;offerviewer=false&amp;showtitle=false&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="independent t-test in R">
+</iframe>
 <p>The independent t-test is used to compare the means of two independent groups. In R, you can use the <code>t.test()</code> function to perform an independent t-test. Here is an example:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This example uses the mtcars dataset, which is a built-in dataset in R that contains data on various car models.</span></span>
@@ -279,6 +287,8 @@ mean in group 0 mean in group 1
 </section>
 <section id="paired-t-test" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="paired-t-test"><span class="header-section-number">4.2</span> Paired t-test</h2>
+<iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=67032f01-233e-409d-9021-b1f000e88cab&amp;autoplay=false&amp;offerviewer=false&amp;showtitle=false&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="t-tests in R">
+</iframe>
 <p>The paired t-test is used to compare the means of two related groups. In R, you can use the <code>t.test()</code> function with the <code>paired = TRUE</code> argument to perform a paired t-test. Here is an example:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This example uses the sleep dataset, which is a built-in dataset in R that contains data on the effect of two soporific drugs on sleep duration.</span></span>
@@ -397,6 +407,8 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 </section>
 <section id="chi-squared-test" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="chi-squared-test"><span class="header-section-number">4.5</span> Chi-squared test</h2>
+<iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=74a966be-ab9b-412b-a97a-b1f000efe18d&amp;autoplay=false&amp;offerviewer=false&amp;showtitle=false&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="Chi Square Test in R">
+</iframe>
 <p>The chi-squared test is used to test the association between two categorical variables. In R, you can use the <code>chisq.test()</code> function to perform a chi-squared test. Here is an example:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This example uses the mtcars dataset, which is a built-in dataset in R that contains data on various car models.</span></span>
@@ -983,8 +995,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./power_effectSize.html" class="pagination-link" aria-label="Sampling, power and effect size">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sampling, power and effect size</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./correlation.html" class="pagination-link" aria-label="Correlation and simple regression">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Correlation and simple regression</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
