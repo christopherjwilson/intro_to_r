@@ -232,61 +232,61 @@
   {
     "objectID": "power_effectSize.html",
     "href": "power_effectSize.html",
-    "title": "5  Sampling, power and effect size",
+    "title": "6  Sampling, power and effect size",
     "section": "",
-    "text": "5.1 Different measures of effect size\nThere are different ways to calculate effect size depending on the type of data and the statistical test used. Here are some common effect size measures:\nIn the following sections, we will calculate the effect size for different types of data using some of these measures.",
+    "text": "6.1 Different measures of effect size\nThere are different ways to calculate effect size depending on the type of data and the statistical test used. Here are some common effect size measures:\nIn the following sections, we will calculate the effect size for different types of data using some of these measures.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sampling, power and effect size</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Sampling, power and effect size</span>"
     ]
   },
   {
     "objectID": "power_effectSize.html#different-measures-of-effect-size",
     "href": "power_effectSize.html#different-measures-of-effect-size",
-    "title": "5  Sampling, power and effect size",
+    "title": "6  Sampling, power and effect size",
     "section": "",
     "text": "Cohen’s d: This is a measure of the difference between two means in standard deviation units. It is commonly used in t-tests and ANOVA tests.\nEta-squared (\\(\\eta^2\\)): This is a measure of the proportion of variance in the dependent variable that is explained by the independent variable. It is commonly used in ANOVA tests.\nPhi coefficient (\\(\\phi\\)): This is a measure of the association between two binary variables. It is commonly used in chi-square tests.\nCorrelation coefficient (\\(r\\)): This is a measure of the strength and direction of the relationship between two continuous variables. It is commonly used in correlation tests.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sampling, power and effect size</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Sampling, power and effect size</span>"
     ]
   },
   {
     "objectID": "power_effectSize.html#calculating-cohens-d",
     "href": "power_effectSize.html#calculating-cohens-d",
-    "title": "5  Sampling, power and effect size",
-    "section": "5.2 Calculating Cohen’s d",
-    "text": "5.2 Calculating Cohen’s d\nCohen’s d is a measure of the difference between two means in standard deviation units. It is calculated as the difference between the means divided by the pooled standard deviation. The formula for Cohen’s d is:\n\\[ d = \\frac{{\\bar{X}_1 - \\bar{X}_2}}{{s_p}} \\]\nwhere:\n\n\\(\\bar{X}_1\\) and \\(\\bar{X}_2\\) are the means of the two groups.\n\\(s_p\\) is the pooled standard deviation, calculated as:\n\n$$\ns_p = $$\nwhere:\n\n\\(n_1\\) and \\(n_2\\) are the sample sizes of the two groups.\n\\(s_1\\) and \\(s_2\\) are the standard deviations of the two groups.\n\nLet’s calculate Cohen’s d for a hypothetical dataset with two groups. The dataset contains the following information:\n\nGroup 1: Mean = 10, Standard deviation = 2, Sample size = 30\nGroup 2: Mean = 12, Standard deviation = 3, Sample size = 30\n\nTo calculate Cohen’s d, we first need to calculate the pooled standard deviation (\\(s_p\\)) using the formula above. Then, we can calculate Cohen’s d using the formula for Cohen’s d.\nLet’s calculate Cohen’s d for this dataset using R:\n\n# Calculate Cohen's d\n\n# Group 1\n\nmean1 &lt;- 10\n\nsd1 &lt;- 2\n\nn1 &lt;- 30\n\n# Group 2\n\nmean2 &lt;- 12\n\nsd2 &lt;- 3\n\nn2 &lt;- 30\n\n# Calculate pooled standard deviation\n\nsp &lt;- sqrt(((n1 - 1) * sd1^2 + (n2 - 1) * sd2^2) / (n1 + n2 - 2))\n\n# Calculate Cohen's d\n\nd &lt;- (mean1 - mean2) / sp\n\n\nd\n\n[1] -0.7844645\n\n\nThe calculated value of Cohen’s d is -0.7844645. This negative value indicates that the mean of Group 1 is smaller than the mean of Group 2 by approximately 0.78 standard deviations.",
+    "title": "6  Sampling, power and effect size",
+    "section": "6.2 Calculating Cohen’s d",
+    "text": "6.2 Calculating Cohen’s d\nCohen’s d is a measure of the difference between two means in standard deviation units. It is calculated as the difference between the means divided by the pooled standard deviation. The formula for Cohen’s d is:\n\\[ d = \\frac{{\\bar{X}_1 - \\bar{X}_2}}{{s_p}} \\]\nwhere:\n\n\\(\\bar{X}_1\\) and \\(\\bar{X}_2\\) are the means of the two groups.\n\\(s_p\\) is the pooled standard deviation, calculated as:\n\n\\[s_p = \\sqrt{\\frac{{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}}{{n_1 + n_2 - 2}}} \\]\nwhere:\n\n\\(n_1\\) and \\(n_2\\) are the sample sizes of the two groups.\n\\(s_1\\) and \\(s_2\\) are the standard deviations of the two groups.\n\nLet’s calculate Cohen’s d for a hypothetical dataset with two groups. The dataset contains the following information:\n\nGroup 1: Mean = 10, Standard deviation = 2, Sample size = 30\nGroup 2: Mean = 12, Standard deviation = 3, Sample size = 30\n\nTo calculate Cohen’s d, we first need to calculate the pooled standard deviation (\\(s_p\\)) using the formula above. Then, we can calculate Cohen’s d using the formula for Cohen’s d.\nLet’s calculate Cohen’s d for this dataset using R:\n\n# Calculate Cohen's d\n\n# Group 1\n\nmean1 &lt;- 10\n\nsd1 &lt;- 2\n\nn1 &lt;- 30\n\n# Group 2\n\nmean2 &lt;- 12\n\nsd2 &lt;- 3\n\nn2 &lt;- 30\n\n# Calculate pooled standard deviation\n\nsp &lt;- sqrt(((n1 - 1) * sd1^2 + (n2 - 1) * sd2^2) / (n1 + n2 - 2))\n\n# Calculate Cohen's d\n\nd &lt;- (mean1 - mean2) / sp\n\n\nd\n\n[1] -0.7844645\n\n\nThe calculated value of Cohen’s d is -0.7844645. This negative value indicates that the mean of Group 1 is smaller than the mean of Group 2 by approximately 0.78 standard deviations.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sampling, power and effect size</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Sampling, power and effect size</span>"
     ]
   },
   {
     "objectID": "power_effectSize.html#calculating-eta-squared-and-other-effect-size-measures",
     "href": "power_effectSize.html#calculating-eta-squared-and-other-effect-size-measures",
-    "title": "5  Sampling, power and effect size",
-    "section": "5.3 Calculating Eta-squared and other effect size measures",
-    "text": "5.3 Calculating Eta-squared and other effect size measures\nIt is possible to calculate other effect size measures such as Eta-squared, Phi coefficient. However, these measures are most commonly calculated using the output of statistical tests such as ANOVA and chi-square tests etc. To obtain these measures for the purpose of sample size calculation, you would usually look at previous studies or meta analyses to determine the expected effect size. For clinical research, you may also use the minimal clinically important difference (MCID) as a guide to determine the effect size.",
+    "title": "6  Sampling, power and effect size",
+    "section": "6.3 Calculating Eta-squared and other effect size measures",
+    "text": "6.3 Calculating Eta-squared and other effect size measures\nIt is possible to calculate other effect size measures such as Eta-squared, Phi coefficient. However, these measures are most commonly calculated using the output of statistical tests such as ANOVA and chi-square tests etc. To obtain these measures for the purpose of sample size calculation, you would usually look at previous studies or meta analyses to determine the expected effect size. For clinical research, you may also use the minimal clinically important difference (MCID) as a guide to determine the effect size.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sampling, power and effect size</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Sampling, power and effect size</span>"
     ]
   },
   {
     "objectID": "power_effectSize.html#power-analysis",
     "href": "power_effectSize.html#power-analysis",
-    "title": "5  Sampling, power and effect size",
-    "section": "5.4 Power analysis",
-    "text": "5.4 Power analysis\nPower analysis is a method used to determine the sample size required to detect an effect of a given size with a certain level of confidence. It is important to conduct a power analysis before conducting a study to ensure that the sample size is adequate to detect the effect of interest.\nTo conduct a power analysis, you need to specify the following parameters:\n\nThe effect size: The size of the effect you want to detect. This is usually determined based on previous studies, meta-analyses or MCID.\nThe significance level (\\(\\alpha\\)): The probability of rejecting the null hypothesis when it is true (Type 1 error rate). This is commonly set at 0.05.\nThe power (\\(1 - \\beta\\)): The probability of correctly rejecting the null hypothesis when it is false (1 - Type 2 error rate). This is commonly set at 0.80 or 0.90.\nThe number of groups or conditions: The number of groups or conditions in the study.\n\nThe sample size required to achieve a desired power level can be calculated using power analysis functions in R. There are many packages in r for power analysis. The package pwr is one such package that provides functions to calculate the sample size required for different types of statistical tests.\nThe functions for some basic research designs are:\n\npwr.t.test(): For t-tests\npwr.anova.test(): For ANOVA tests\npwr.chisq.test(): For chi-square tests\npwr.f2.test(): For regression models\n\nLet’s calculate the sample size required to achieve a power of 0.80 for a t-test with the example data we used earlier. We will use the pwr.t.test() function from the pwr package to calculate the sample size required to achieve a power of 0.80 for a t-test with the following parameters:\n\nEffect size (Cohen’s d) = -0.7844645\nSignificance level (\\(\\alpha\\)) = 0.05\n\n\n# Load the pwr package\n\n\nlibrary(pwr)\n\n# Calculate the sample size required for a t-test\n# using the d value calculated earlier\n\npwr.t.test(d = d, sig.level = 0.05, power = 0.80)\n\n\n     Two-sample t test power calculation \n\n              n = 26.50429\n              d = 0.7844645\n      sig.level = 0.05\n          power = 0.8\n    alternative = two.sided\n\nNOTE: n is number in *each* group\n\n\nThe output of the pwr.t.test() function provides the sample size required to achieve a power of 0.80 for a t-test with the specified effect size and significance level. The output includes the following information:\n\nn = The sample size required for each group to achieve a power of 0.80.\nd = The effect size (Cohen’s d) used in the power analysis.\nsig.level = The significance level used in the power analysis.\npower = The power level achieved with the specified sample size.\n\nThe sample size required to achieve a power of 0.80 for a t-test with the specified effect size and significance level is 26.5 for each group. Since the sample size must be a whole number, we would need to round up to the nearest whole number. Therefore, the sample size required for each group is 27.",
+    "title": "6  Sampling, power and effect size",
+    "section": "6.4 Power analysis",
+    "text": "6.4 Power analysis\nPower analysis is a method used to determine the sample size required to detect an effect of a given size with a certain level of confidence. It is important to conduct a power analysis before conducting a study to ensure that the sample size is adequate to detect the effect of interest.\nTo conduct a power analysis, you need to specify the following parameters:\n\nThe effect size: The size of the effect you want to detect. This is usually determined based on previous studies, meta-analyses or MCID.\nThe significance level (\\(\\alpha\\)): The probability of rejecting the null hypothesis when it is true (Type 1 error rate). This is commonly set at 0.05.\nThe power (\\(1 - \\beta\\)): The probability of correctly rejecting the null hypothesis when it is false (1 - Type 2 error rate). This is commonly set at 0.80 or 0.90.\nThe number of groups or conditions: The number of groups or conditions in the study.\n\nThe sample size required to achieve a desired power level can be calculated using power analysis functions in R. There are many packages in r for power analysis. The package pwr is one such package that provides functions to calculate the sample size required for different types of statistical tests.\nThe functions for some basic research designs are:\n\npwr.t.test(): For t-tests\npwr.anova.test(): For ANOVA tests\npwr.chisq.test(): For chi-square tests\npwr.f2.test(): For regression models\n\nLet’s calculate the sample size required to achieve a power of 0.80 for a t-test with the example data we used earlier. We will use the pwr.t.test() function from the pwr package to calculate the sample size required to achieve a power of 0.80 for a t-test with the following parameters:\n\nEffect size (Cohen’s d) = -0.7844645\nSignificance level (\\(\\alpha\\)) = 0.05\n\n\n# Load the pwr package\n\n\nlibrary(pwr)\n\n# Calculate the sample size required for a t-test\n# using the d value calculated earlier\n\npwr.t.test(d = d, sig.level = 0.05, power = 0.80)\n\n\n     Two-sample t test power calculation \n\n              n = 26.50429\n              d = 0.7844645\n      sig.level = 0.05\n          power = 0.8\n    alternative = two.sided\n\nNOTE: n is number in *each* group\n\n\nThe output of the pwr.t.test() function provides the sample size required to achieve a power of 0.80 for a t-test with the specified effect size and significance level. The output includes the following information:\n\nn = The sample size required for each group to achieve a power of 0.80.\nd = The effect size (Cohen’s d) used in the power analysis.\nsig.level = The significance level used in the power analysis.\npower = The power level achieved with the specified sample size.\n\nThe sample size required to achieve a power of 0.80 for a t-test with the specified effect size and significance level is 26.5 for each group. Since the sample size must be a whole number, we would need to round up to the nearest whole number. Therefore, the sample size required for each group is 27.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sampling, power and effect size</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Sampling, power and effect size</span>"
     ]
   },
   {
     "objectID": "power_effectSize.html#more-complex-power-analysis",
     "href": "power_effectSize.html#more-complex-power-analysis",
-    "title": "5  Sampling, power and effect size",
-    "section": "5.5 More complex power analysis",
-    "text": "5.5 More complex power analysis\nFor more complex designs, different approaches to power analysis might be necessary, such as using simulation. This is possible to do in R, but is beyond the scope of this chapter.",
+    "title": "6  Sampling, power and effect size",
+    "section": "6.5 More complex power analysis",
+    "text": "6.5 More complex power analysis\nFor more complex designs, different approaches to power analysis might be necessary, such as using simulation. This is possible to do in R, but is beyond the scope of this chapter.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sampling, power and effect size</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Sampling, power and effect size</span>"
     ]
   },
   {

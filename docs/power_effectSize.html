@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Sampling, power and effect size – Introduction to R for Clinical Psychology</title>
+<title>6&nbsp; Sampling, power and effect size – Introduction to R for Clinical Psychology</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./basic_tests.html" rel="prev">
+<link href="./correlation.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -143,7 +143,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./power_effectSize.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sampling, power and effect size</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./power_effectSize.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sampling, power and effect size</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -200,8 +200,14 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./correlation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Correlation and simple regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./power_effectSize.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sampling, power and effect size</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sampling, power and effect size</span></span></a>
   </div>
 </li>
     </ul>
@@ -214,11 +220,11 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#different-measures-of-effect-size" id="toc-different-measures-of-effect-size" class="nav-link active" data-scroll-target="#different-measures-of-effect-size"><span class="header-section-number">5.1</span> Different measures of effect size</a></li>
-  <li><a href="#calculating-cohens-d" id="toc-calculating-cohens-d" class="nav-link" data-scroll-target="#calculating-cohens-d"><span class="header-section-number">5.2</span> Calculating Cohen’s d</a></li>
-  <li><a href="#calculating-eta-squared-and-other-effect-size-measures" id="toc-calculating-eta-squared-and-other-effect-size-measures" class="nav-link" data-scroll-target="#calculating-eta-squared-and-other-effect-size-measures"><span class="header-section-number">5.3</span> Calculating Eta-squared and other effect size measures</a></li>
-  <li><a href="#power-analysis" id="toc-power-analysis" class="nav-link" data-scroll-target="#power-analysis"><span class="header-section-number">5.4</span> Power analysis</a></li>
-  <li><a href="#more-complex-power-analysis" id="toc-more-complex-power-analysis" class="nav-link" data-scroll-target="#more-complex-power-analysis"><span class="header-section-number">5.5</span> More complex power analysis</a></li>
+  <li><a href="#different-measures-of-effect-size" id="toc-different-measures-of-effect-size" class="nav-link active" data-scroll-target="#different-measures-of-effect-size"><span class="header-section-number">6.1</span> Different measures of effect size</a></li>
+  <li><a href="#calculating-cohens-d" id="toc-calculating-cohens-d" class="nav-link" data-scroll-target="#calculating-cohens-d"><span class="header-section-number">6.2</span> Calculating Cohen’s d</a></li>
+  <li><a href="#calculating-eta-squared-and-other-effect-size-measures" id="toc-calculating-eta-squared-and-other-effect-size-measures" class="nav-link" data-scroll-target="#calculating-eta-squared-and-other-effect-size-measures"><span class="header-section-number">6.3</span> Calculating Eta-squared and other effect size measures</a></li>
+  <li><a href="#power-analysis" id="toc-power-analysis" class="nav-link" data-scroll-target="#power-analysis"><span class="header-section-number">6.4</span> Power analysis</a></li>
+  <li><a href="#more-complex-power-analysis" id="toc-more-complex-power-analysis" class="nav-link" data-scroll-target="#more-complex-power-analysis"><span class="header-section-number">6.5</span> More complex power analysis</a></li>
   </ul>
 </nav>
     </div>
@@ -227,7 +233,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sampling, power and effect size</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sampling, power and effect size</span></h1>
 </div>
 
 
@@ -262,8 +268,8 @@ Tip
 <p>However, since our significance level is usually set at 0.05 and the effect size is determined by the data, the sample size is the only factor that we can control to increase the power of a study.</p>
 </div>
 </div>
-<section id="different-measures-of-effect-size" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="different-measures-of-effect-size"><span class="header-section-number">5.1</span> Different measures of effect size</h2>
+<section id="different-measures-of-effect-size" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="different-measures-of-effect-size"><span class="header-section-number">6.1</span> Different measures of effect size</h2>
 <p>There are different ways to calculate effect size depending on the type of data and the statistical test used. Here are some common effect size measures:</p>
 <ul>
 <li><p><strong>Cohen’s d</strong>: This is a measure of the difference between two means in standard deviation units. It is commonly used in t-tests and ANOVA tests.</p></li>
@@ -273,8 +279,8 @@ Tip
 </ul>
 <p>In the following sections, we will calculate the effect size for different types of data using some of these measures.</p>
 </section>
-<section id="calculating-cohens-d" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="calculating-cohens-d"><span class="header-section-number">5.2</span> Calculating Cohen’s d</h2>
+<section id="calculating-cohens-d" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="calculating-cohens-d"><span class="header-section-number">6.2</span> Calculating Cohen’s d</h2>
 <p>Cohen’s d is a measure of the difference between two means in standard deviation units. It is calculated as the difference between the means divided by the pooled standard deviation. The formula for Cohen’s d is:</p>
 <p><span class="math display">\[ d = \frac{{\bar{X}_1 - \bar{X}_2}}{{s_p}} \]</span></p>
 <p>where:</p>
@@ -282,8 +288,7 @@ Tip
 <li><p><span class="math inline">\(\bar{X}_1\)</span> and <span class="math inline">\(\bar{X}_2\)</span> are the means of the two groups.</p></li>
 <li><p><span class="math inline">\(s_p\)</span> is the pooled standard deviation, calculated as:</p></li>
 </ul>
-<p>$$</p>
-<p>s_p = $$</p>
+<p><span class="math display">\[s_p = \sqrt{\frac{{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}}{{n_1 + n_2 - 2}}} \]</span></p>
 <p>where:</p>
 <ul>
 <li><p><span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> are the sample sizes of the two groups.</p></li>
@@ -331,12 +336,12 @@ Tip
 </div>
 <p>The calculated value of Cohen’s d is -0.7844645. This negative value indicates that the mean of Group 1 is smaller than the mean of Group 2 by approximately 0.78 standard deviations.</p>
 </section>
-<section id="calculating-eta-squared-and-other-effect-size-measures" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="calculating-eta-squared-and-other-effect-size-measures"><span class="header-section-number">5.3</span> Calculating Eta-squared and other effect size measures</h2>
+<section id="calculating-eta-squared-and-other-effect-size-measures" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="calculating-eta-squared-and-other-effect-size-measures"><span class="header-section-number">6.3</span> Calculating Eta-squared and other effect size measures</h2>
 <p>It is possible to calculate other effect size measures such as Eta-squared, Phi coefficient. However, these measures are most commonly calculated using the output of statistical tests such as ANOVA and chi-square tests etc. To obtain these measures for the purpose of sample size calculation, you would usually look at previous studies or meta analyses to determine the expected effect size. For clinical research, you may also use the minimal clinically important difference (MCID) as a guide to determine the effect size.</p>
 </section>
-<section id="power-analysis" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="power-analysis"><span class="header-section-number">5.4</span> Power analysis</h2>
+<section id="power-analysis" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="power-analysis"><span class="header-section-number">6.4</span> Power analysis</h2>
 <p>Power analysis is a method used to determine the sample size required to detect an effect of a given size with a certain level of confidence. It is important to conduct a power analysis before conducting a study to ensure that the sample size is adequate to detect the effect of interest.</p>
 <p>To conduct a power analysis, you need to specify the following parameters:</p>
 <ul>
@@ -390,8 +395,8 @@ NOTE: n is number in *each* group</code></pre>
 </ul>
 <p>The sample size required to achieve a power of 0.80 for a t-test with the specified effect size and significance level is 26.5 for each group. Since the sample size must be a whole number, we would need to round up to the nearest whole number. Therefore, the sample size required for each group is 27.</p>
 </section>
-<section id="more-complex-power-analysis" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="more-complex-power-analysis"><span class="header-section-number">5.5</span> More complex power analysis</h2>
+<section id="more-complex-power-analysis" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="more-complex-power-analysis"><span class="header-section-number">6.5</span> More complex power analysis</h2>
 <p>For more complex designs, different approaches to power analysis might be necessary, such as using simulation. This is possible to do in R, but is beyond the scope of this chapter.</p>
 
 
@@ -820,8 +825,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./basic_tests.html" class="pagination-link" aria-label="Basic statistical tests">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Basic statistical tests</span></span>
+      <a href="./correlation.html" class="pagination-link" aria-label="Correlation and simple regression">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Correlation and simple regression</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
