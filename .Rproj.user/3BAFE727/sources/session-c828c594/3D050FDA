@@ -1,0 +1,31 @@
+{
+    "id": "3D050FDA",
+    "path": "~/GitHub/intro_to_r/docs/slides/powerAndEffectSize.qmd",
+    "project_path": "docs/slides/powerAndEffectSize.qmd",
+    "type": "quarto_markdown",
+    "hash": "2524584460",
+    "contents": "",
+    "dirty": false,
+    "created": 1727426697868.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "rmdVisualMode": "true",
+        "rmdVisualWrapConfigured": "true",
+        "source_window_id": "",
+        "Source": "Source",
+        "docOutlineVisible": "1",
+        "cursorPosition": "369,35",
+        "scrollLine": "236",
+        "rmdVisualModeLocation": "16853:12700",
+        "rmdVisualCollapsedChunks": ""
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1727428091,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1727428091236,
+    "read_only": false,
+    "read_only_alternatives": []
+}

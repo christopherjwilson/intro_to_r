@@ -16,7 +16,7 @@ revealjs-plugins:
 width: 1920
 height: 1080
 bibliography: references.bib
-title: "Power and Effect Sizes in Clinical Psychology Research"
+title: "Intro to Power and Effect Sizes in Clinical Psychology Research"
 subtitle: DClin Research Methods 1
 author: Dr Christopher Wilson
 institute: Teesside University
@@ -347,7 +347,11 @@ For example:
 
 > The results of the t-test showed a significant difference between the two groups, t(18) = 2.43, p = .03, 95% CI \[0.02, 0.45\].
 
-This tells us that the true mean difference between the two groups is likely to be between 0.02 and 0.45, and that if we were to repeat the study 100 times, 95 of the confidence intervals would contain the true mean difference.
+This tells us that the true mean difference between the two groups is likely to be between 0.02 and 0.45. We can decide (depending on our research question) how meaningful this is to us.
+
+::: notes
+CI = if we were to repeat the study 100 times, 95 of the confidence intervals would contain the true mean difference.
+:::
 
 # Takeaways
 
@@ -435,20 +439,9 @@ What does this mean?
     -   The absence of an effect
     -   The absence of power to detect an effect
 
-## An analogy for statistical power
+## Think of power as the strength of magnification and effect size as the size of what you are looking for...
 
-Consider a study as a fishing trip.
-
--   We want to catch a particular type of fish (detect an effect).
--   We don't know how common it is in the lake (we don't know if the effect exists).
--   We need to decide how many times to cast the net (how many participants to recruit).
--   This depends on how big the school of fish is (the effect size).
--   If the school of fish is big, we shouldn't need to cast the net many times before finding it (or concluding that it is not there).
--   If it is small, we will need to cast the net many times before finding it (or concluding that it is not there).
-
-## An analogy for statistical power
-
-![](images/fish.jpg){fig-align="center" width="94%"}
+![](images/image_0.jpg){fig-align="center"}
 
 ## Thinking about statistical power
 
