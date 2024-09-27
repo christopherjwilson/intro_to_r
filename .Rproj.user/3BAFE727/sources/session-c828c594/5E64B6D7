@@ -1,0 +1,27 @@
+{
+    "id": "5E64B6D7",
+    "path": "~/GitHub/intro_to_r/docs/slides/linearModels.qmd",
+    "project_path": "docs/slides/linearModels.qmd",
+    "type": "quarto_markdown",
+    "hash": "599177955",
+    "contents": "",
+    "dirty": false,
+    "created": 1727430436986.0,
+    "source_on_save": false,
+    "relative_order": 4,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "14,8",
+        "scrollLine": "0",
+        "last_setup_crc32": "c828c594af0513b6"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1727431634,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1727431634492,
+    "read_only": false,
+    "read_only_alternatives": []
+}
