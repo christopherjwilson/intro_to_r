@@ -1,0 +1,256 @@
+# Simple linear regression in R
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.align="center")
+library(tidyverse)
+regression_data <- read.csv("Datasets/regression_data.csv")
+```
+
+::: callout-tip
+## At the end of this chapter, you will be able to:
+
+-   Conduct and interpret a simple linear regression in R
+:::
+
+## What is linear regression?
+
+Linear regression is usually the first type of regression analysis that people learn. It is used to predict the value of an outcome variable based on one or more input predictor variables. The aim is to test if there is a linear relationship between the predictor and outcome variables.
+
+### What is a linear relationship?
+
+A linear relationship is one where the relationship between the predictor and outcome variables can be represented by a straight line. This means that as the predictor variable increases, the outcome variable also increases or decreases in a linear fashion. Linear regression between two variables is represented visually as a straight line, which is known as the "line of best fit".
+
+The line of best fit is calculated by minimising the overall amount of error between the data points and the line. 
+
+The fact that the line will not pass through every data point is understood, and we assess the accuracy of the line by looking at the residuals. Residuals are the difference between each data point and the line of best fit. The aim is to have residuals that are as small as possible.
+
+
+
+## Is every relationship linear?
+
+No! And this is an important thing to consider when using this approach. We tend to use these approaches as a way of testing hypotheses about the relationships between variables (usually psychological constructs), but we have to remember that the analysis is actually testing how well a straight line fits the data. The null hypothesis is that the slope of the line is zero, which means that there is no relationship between the predictor and outcome variables. So a significant result means that the line is a better fit than no line at all, but it doesn't mean that: 
+
+1. our hypothesis is correct
+2. the linear model is the best fit for the data
+
+This same type of caveat applies to all statistical tests, and people don't often think about what the test is actually doing.
+
+If the relationship is not linear, then we need to use a different type of regression analysis. This could be polynomial regression, logistic regression, or another type of regression analysis that is more appropriate for the data.
+
+When we choose an approach, we should remember that we are trying to find the best model to understand what is happening in the data. 
+
+
+> # All models are wrong. Some are useful. - George Box
+
+## When to use linear regression
+
+From a hypothesis testing perspective, we use linear regression when we want to test if the value of one variable (the predictor) predicts the value of another (the outcome) variable. 
+
+In theory, if we establish that the predictor variable is a significant predictor of the outcome variable, we can then use the regression equation to make predictions about the outcome variable based on the predictor variable. However, this is not always done by researchers, and the focus is often on the significance of the predictor variable.
+
+## How is regression calculated?
+
+```{r echo=F}
+
+knitr::include_graphics("img/bestfit.png") 
+```
+
+-   When we run a regression analysis, a calculation is done to select the "line of best fit"
+-   This is a "prediction line" that minimises the overall amount of error
+    -   Error = difference between the data points and the line
+
+## The regression equation
+
+```{r echo=F}
+
+knitr::include_graphics("img/bestfit.png") 
+```
+
+-   Once the line of best fit is calculated, predictions are based on this line
+
+-   To make predictions we need the **intercept** and **slope** of the line
+
+    -   **Intercept** or **constant**= where the line crosses the y axis
+    -   **Slope** or **beta** = the angle of the line
+
+-   Predictions are made using the calculation for a line: **Y = bX + c**
+
+-   You can think of the equation like this:
+
+**predicted outcome value = beta coefficient \* value of predictor + constant**
+
+## Running regression in R
+
+-   Step 1: Run regression
+-   Step 2: Check assumptions
+    -   Data
+    -   Distribution
+    -   Linearity
+    -   Homogeneity of variance
+    -   Uncorrelated predictors
+    -   Indpendence of residuals
+    -   No influental cases / outliers
+-   Step 3: Check R\^2 value
+-   Step 4: Check model significance
+-   Step 5: Check coefficient values
+
+## Run regression
+
+-   We use the *lm()* command to run regression while saving the results
+-   We then use the *summary()* function to check the results
+
+```{r}
+model1 <- lm(formula= aggression_level ~ treatment_duration ,data=regression_data)
+summary(model1)
+
+```
+
+## What are residuals?
+
+-   In regression, the assumptions apply to the residuals, not the data themselves
+-   Residual just means the difference between the data point and the regression line
+
+```{r echo=F, width= '100%'}
+
+knitr::include_graphics("img/residuals1.png") 
+```
+
+## Check assumptions: distribution
+
+-   Using the *plot()* command on our regression model will give us some useful diagnostic plots
+-   The second plot that it outputs shows the normality
+
+```{r}
+
+plot(model1, which=2)
+
+```
+
+-   We could also use a histogram to check the distribution
+-   Notice how we can use the \$ sign to get the residuals from the model
+
+```{r}
+hist(model1$residuals)
+```
+
+## Check assumptions: linearity
+
+-   Using the *plot()* command on our regression model will give us some useful diagnostic plots
+-   The first plot that it outputs shows the residuals vs the fitted values
+-   Here, we want to see them spread out, with the line being horizontal and straight
+
+```{r}
+
+plot(model1, which=1)
+
+```
+
+-   There is a slight amount of curvilinearity here but nothing to be worried about
+
+## Check assumptions: Homogeneity of Variance #1
+
+-   We can use the sample plot to check Homogeneity of Variance
+-   We want the variance to be constant across the data set. We do not want the variance to change at different points in the data
+
+```{r}
+
+plot(model1, which=1)
+
+```
+
+-   A violation of Homogeneity of Variance would usually look like a funnel, with the data narrowing
+
+```{r echo=F, out.height= "100%"}
+
+knitr::include_graphics("img/biasedresiduals.png") 
+```
+
+## Check assumptions: Influential cases
+
+-   We need to check that there are no extreme outliers - they could throw off our predictions
+-   We are looking for participants that have high rediduals + high leverage
+    -   Some guidance suggests anything higher than 1 is an influential case
+    -   Others suggest 4/n is the cut off point (4 divided by number of participants)
+
+```{r  out.width= "30%"}
+
+plot(model1, which=4)
+
+```
+
+-   We are looking for participants that have high rediduals + high leverage
+    -   No cases over 1
+    -   Many are over 0.04 (4/n = 0.04)
+
+```{r  out.width= "40%"}
+
+plot(model1, which=5)
+
+```
+
+## Check the r squared value
+
+-   r\^2 = the amount of variance in the **outcome** that is explained by the **predictor(s)**
+-   The closer this value is to 1, the more useful our regression model is for predicting the outcome
+
+```{r}
+modelSummary <- summary(model1)
+modelSummary
+
+```
+
+-   The r\^2 of `r modelSummary$r.squared` means that 48% of the variance in **aggression level** is explained by **treatment duration**
+
+## Check model significance
+
+-   The model significance is displayed at the very end of the output
+    -   *p-value: 1.146e-15*
+    -   As p \< 0.05, the model is significant
+
+```{r}
+
+modelSummary
+
+```
+
+## Check coefficient values
+
+-   The coefficient values are displayed in the coefficients table
+-   If we have more than one predictor, they are all listed here
+
+```{r}
+
+modelSummary$coefficients
+
+```
+
+-   The **beta coefficient** for treatment duration is in the *Estimate* column
+-   For every unit increase in treatment duration, aggression level decreases by 0.69
+
+## The regression equation
+
+-   The regression equation is:
+
+Outcome = predictor value \* beta coefficient + constant
+
+-   For this model, that is:
+
+Aggression level = treatment duration \* -0.69 + 12.33
+
+```{r}
+
+modelSummary$coefficients
+
+```
+
+## Accounting for error in predictions
+
+-   We also know that the accuracy of predictions will be within a certain margin of error
+-   This is known as **standard error of the estimate** or **residual standard error**
+
+```{r}
+
+modelSummary
+
+```
+

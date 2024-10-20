@@ -222,11 +222,11 @@
   {
     "objectID": "basic_tests.html",
     "href": "basic_tests.html",
-    "title": "4  Basic statistical tests",
+    "title": "5  Basic statistical tests",
     "section": "",
-    "text": "4.1 Independent t-test\nThe independent t-test is used to compare the means of two independent groups. In R, you can use the t.test() function to perform an independent t-test. Here is an example:\n# This example uses the mtcars dataset, which is a built-in dataset in R that contains data on various car models.\n\n# Load the mtcars dataset\n\ndata(mtcars)\n\n# Independent t-test example: Is there a difference in fuel efficiency between automatic and manual cars?\n# the variable am is a binary variable indicating the type of transmission (0 = automatic, 1 = manual)\n\n# Perform the independent t-test\n\nt_test_result &lt;- t.test(mpg ~ am, data = mtcars)\n\n# Print the result\n\nt_test_result\n\n\n    Welch Two Sample t-test\n\ndata:  mpg by am\nt = -3.7671, df = 18.332, p-value = 0.001374\nalternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0\n95 percent confidence interval:\n -11.280194  -3.209684\nsample estimates:\nmean in group 0 mean in group 1 \n       17.14737        24.39231\nIn this example, we are comparing the fuel efficiency (mpg) of automatic and manual cars in the mtcars dataset. The mpg variable is the dependent variable, and the am variable is the independent variable. The t.test() function is used to perform the independent t-test, and the result is stored in the t_test_result variable.\nIf we look at the output, we can see the following:",
+    "text": "5.1 Independent t-test\nThe independent t-test is used to compare the means of two independent groups. In R, you can use the t.test() function to perform an independent t-test. Here is an example:\n# This example uses the mtcars dataset, which is a built-in dataset in R that contains data on various car models.\n\n# Load the mtcars dataset\n\ndata(mtcars)\n\n# Independent t-test example: Is there a difference in fuel efficiency between automatic and manual cars?\n# the variable am is a binary variable indicating the type of transmission (0 = automatic, 1 = manual)\n\n# Perform the independent t-test\n\nt_test_result &lt;- t.test(mpg ~ am, data = mtcars)\n\n# Print the result\n\nt_test_result\n\n\n    Welch Two Sample t-test\n\ndata:  mpg by am\nt = -3.7671, df = 18.332, p-value = 0.001374\nalternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0\n95 percent confidence interval:\n -11.280194  -3.209684\nsample estimates:\nmean in group 0 mean in group 1 \n       17.14737        24.39231\nIn this example, we are comparing the fuel efficiency (mpg) of automatic and manual cars in the mtcars dataset. The mpg variable is the dependent variable, and the am variable is the independent variable. The t.test() function is used to perform the independent t-test, and the result is stored in the t_test_result variable.\nIf we look at the output, we can see the following:",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Basic statistical tests</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Basic statistical tests</span>"
     ]
   },
   {
@@ -292,121 +292,121 @@
   {
     "objectID": "basic_tests.html#independent-t-test",
     "href": "basic_tests.html#independent-t-test",
-    "title": "4  Basic statistical tests",
+    "title": "5  Basic statistical tests",
     "section": "",
     "text": "The t-test result is presented.\nThe alternative hypothesis is that the means are not equal.\nThe 95% confidence interval for the difference in means is presented.\nThe 2 sample means are presented.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Basic statistical tests</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Basic statistical tests</span>"
     ]
   },
   {
     "objectID": "basic_tests.html#paired-t-test",
     "href": "basic_tests.html#paired-t-test",
-    "title": "4  Basic statistical tests",
-    "section": "4.2 Paired t-test",
-    "text": "4.2 Paired t-test\n\n\nThe paired t-test is used to compare the means of two related groups. In R, you can use the t.test() function with the paired = TRUE argument to perform a paired t-test. Here is an example:\n\n# This example uses the sleep dataset, which is a built-in dataset in R that contains data on the effect of two soporific drugs on sleep duration.\n\n# Load the sleep dataset\n\ndata(sleep)\n\n# Paired t-test example: Is there a difference in sleep duration between the two drugs?\n\n# Perform the paired t-test\n\npaired_t_test_result &lt;- t.test(sleep$extra ~ sleep$group, paired = TRUE)\n\n# Print the result\n\npaired_t_test_result\n\n\n    Paired t-test\n\ndata:  sleep$extra by sleep$group\nt = -4.0621, df = 9, p-value = 0.002833\nalternative hypothesis: true mean difference is not equal to 0\n95 percent confidence interval:\n -2.4598858 -0.7001142\nsample estimates:\nmean difference \n          -1.58 \n\n\nIn this example, we are comparing the sleep duration (extra) between patients who were given different drugs in the sleep dataset (note: 10 people were each measured twice). The extra variable is the dependent variable, and the group variable is the independent variable. The t.test() function is used to perform the paired t-test, and the result is stored in the paired_t_test_result variable.\nIf we look at the output, we can see the following:\n\nThe t-test result is presented.\nThe alternative hypothesis is that the means are not equal.\nThe 95% confidence interval for the difference in means is presented.\nThe mean difference is presented.",
+    "title": "5  Basic statistical tests",
+    "section": "5.2 Paired t-test",
+    "text": "5.2 Paired t-test\n\n\nThe paired t-test is used to compare the means of two related groups. In R, you can use the t.test() function with the paired = TRUE argument to perform a paired t-test. Here is an example:\n\n# This example uses the sleep dataset, which is a built-in dataset in R that contains data on the effect of two soporific drugs on sleep duration.\n\n# Load the sleep dataset\n\ndata(sleep)\n\n# Paired t-test example: Is there a difference in sleep duration between the two drugs?\n\n# Perform the paired t-test\n\npaired_t_test_result &lt;- t.test(sleep$extra ~ sleep$group, paired = TRUE)\n\n# Print the result\n\npaired_t_test_result\n\n\n    Paired t-test\n\ndata:  sleep$extra by sleep$group\nt = -4.0621, df = 9, p-value = 0.002833\nalternative hypothesis: true mean difference is not equal to 0\n95 percent confidence interval:\n -2.4598858 -0.7001142\nsample estimates:\nmean difference \n          -1.58 \n\n\nIn this example, we are comparing the sleep duration (extra) between patients who were given different drugs in the sleep dataset (note: 10 people were each measured twice). The extra variable is the dependent variable, and the group variable is the independent variable. The t.test() function is used to perform the paired t-test, and the result is stored in the paired_t_test_result variable.\nIf we look at the output, we can see the following:\n\nThe t-test result is presented.\nThe alternative hypothesis is that the means are not equal.\nThe 95% confidence interval for the difference in means is presented.\nThe mean difference is presented.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Basic statistical tests</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Basic statistical tests</span>"
     ]
   },
   {
     "objectID": "basic_tests.html#wilcoxon-signed-rank-test",
     "href": "basic_tests.html#wilcoxon-signed-rank-test",
-    "title": "4  Basic statistical tests",
-    "section": "4.3 Wilcoxon signed-rank test",
-    "text": "4.3 Wilcoxon signed-rank test\nThe Wilcoxon signed-rank test is a non-parametric test used to compare two related groups. In R, you can use the wilcox.test() function to perform a Wilcoxon signed-rank test. Here is an example:\n\n# This example uses the sleep dataset, which is a built-in dataset in R that contains data on the effect of two soporific drugs on sleep duration.\n\n# Load the sleep dataset\n\ndata(sleep)\n\n# Wilcoxon signed-rank test example: Is there a difference in sleep duration between the two drugs?\n\n# Perform the Wilcoxon signed-rank test\n\nwilcoxon_test_result &lt;- wilcox.test(sleep$extra ~ sleep$group, paired = TRUE)\n\nWarning in wilcox.test.default(x = DATA[[1L]], y = DATA[[2L]], ...): cannot\ncompute exact p-value with ties\n\n\nWarning in wilcox.test.default(x = DATA[[1L]], y = DATA[[2L]], ...): cannot\ncompute exact p-value with zeroes\n\n# Print the result\n\nwilcoxon_test_result\n\n\n    Wilcoxon signed rank test with continuity correction\n\ndata:  sleep$extra by sleep$group\nV = 0, p-value = 0.009091\nalternative hypothesis: true location shift is not equal to 0\n\n\nIn this example, we are comparing the sleep duration (extra) between patients who were given different drugs in the sleep dataset. The extra variable is the dependent variable, and the group variable is the independent variable. The wilcox.test() function is used to perform the Wilcoxon signed-rank test, and the result is stored in the wilcoxon_test_result variable.\nIf we look at the output, we can see the following:\n\nThe Wilcoxon signed-rank test result is presented ( V is the sum of the ranks of the differences between the pairs of observations).\nThe alternative hypothesis (true location shift is not equal to 0) is presented. This means that the medians of the two groups are not equal.\n\nNote: if there are ties in the data, the exact p-value is not calculated. Instead, an approximate p-value is presented.",
+    "title": "5  Basic statistical tests",
+    "section": "5.3 Wilcoxon signed-rank test",
+    "text": "5.3 Wilcoxon signed-rank test\nThe Wilcoxon signed-rank test is a non-parametric test used to compare two related groups. In R, you can use the wilcox.test() function to perform a Wilcoxon signed-rank test. Here is an example:\n\n# This example uses the sleep dataset, which is a built-in dataset in R that contains data on the effect of two soporific drugs on sleep duration.\n\n# Load the sleep dataset\n\ndata(sleep)\n\n# Wilcoxon signed-rank test example: Is there a difference in sleep duration between the two drugs?\n\n# Perform the Wilcoxon signed-rank test\n\nwilcoxon_test_result &lt;- wilcox.test(sleep$extra ~ sleep$group, paired = TRUE)\n\nWarning in wilcox.test.default(x = DATA[[1L]], y = DATA[[2L]], ...): cannot\ncompute exact p-value with ties\n\n\nWarning in wilcox.test.default(x = DATA[[1L]], y = DATA[[2L]], ...): cannot\ncompute exact p-value with zeroes\n\n# Print the result\n\nwilcoxon_test_result\n\n\n    Wilcoxon signed rank test with continuity correction\n\ndata:  sleep$extra by sleep$group\nV = 0, p-value = 0.009091\nalternative hypothesis: true location shift is not equal to 0\n\n\nIn this example, we are comparing the sleep duration (extra) between patients who were given different drugs in the sleep dataset. The extra variable is the dependent variable, and the group variable is the independent variable. The wilcox.test() function is used to perform the Wilcoxon signed-rank test, and the result is stored in the wilcoxon_test_result variable.\nIf we look at the output, we can see the following:\n\nThe Wilcoxon signed-rank test result is presented ( V is the sum of the ranks of the differences between the pairs of observations).\nThe alternative hypothesis (true location shift is not equal to 0) is presented. This means that the medians of the two groups are not equal.\n\nNote: if there are ties in the data, the exact p-value is not calculated. Instead, an approximate p-value is presented.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Basic statistical tests</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Basic statistical tests</span>"
     ]
   },
   {
     "objectID": "basic_tests.html#mann-whitney-u-test",
     "href": "basic_tests.html#mann-whitney-u-test",
-    "title": "4  Basic statistical tests",
-    "section": "4.4 Mann-Whitney U test",
-    "text": "4.4 Mann-Whitney U test\nThe Mann-Whitney U test is a non-parametric test used to compare the means of two independent groups. In R, you can use the wilcox.test() function to perform a Mann-Whitney U test. Note: we will not include the paired = TRUE argument that we did in the previous example. Here is an example:\n\n# This example uses the mtcars dataset, which is a built-in dataset in R that contains data on various car models.\n\n# Load the mtcars dataset\n\ndata(mtcars)\n\n# Mann-Whitney U test example: Is there a difference in fuel efficiency between automatic and manual cars?\n\n# Perform the Mann-Whitney U test\n\nmann_whitney_test_result &lt;- wilcox.test(mpg ~ am, data = mtcars)\n\nWarning in wilcox.test.default(x = DATA[[1L]], y = DATA[[2L]], ...): cannot\ncompute exact p-value with ties\n\n# Print the result\n\nmann_whitney_test_result\n\n\n    Wilcoxon rank sum test with continuity correction\n\ndata:  mpg by am\nW = 42, p-value = 0.001871\nalternative hypothesis: true location shift is not equal to 0\n\n\nThe output is interpreted in the same way as the Wilcoxon signed-rank test output.",
+    "title": "5  Basic statistical tests",
+    "section": "5.4 Mann-Whitney U test",
+    "text": "5.4 Mann-Whitney U test\nThe Mann-Whitney U test is a non-parametric test used to compare the means of two independent groups. In R, you can use the wilcox.test() function to perform a Mann-Whitney U test. Note: we will not include the paired = TRUE argument that we did in the previous example. Here is an example:\n\n# This example uses the mtcars dataset, which is a built-in dataset in R that contains data on various car models.\n\n# Load the mtcars dataset\n\ndata(mtcars)\n\n# Mann-Whitney U test example: Is there a difference in fuel efficiency between automatic and manual cars?\n\n# Perform the Mann-Whitney U test\n\nmann_whitney_test_result &lt;- wilcox.test(mpg ~ am, data = mtcars)\n\nWarning in wilcox.test.default(x = DATA[[1L]], y = DATA[[2L]], ...): cannot\ncompute exact p-value with ties\n\n# Print the result\n\nmann_whitney_test_result\n\n\n    Wilcoxon rank sum test with continuity correction\n\ndata:  mpg by am\nW = 42, p-value = 0.001871\nalternative hypothesis: true location shift is not equal to 0\n\n\nThe output is interpreted in the same way as the Wilcoxon signed-rank test output.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Basic statistical tests</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Basic statistical tests</span>"
     ]
   },
   {
     "objectID": "basic_tests.html#chi-squared-test",
     "href": "basic_tests.html#chi-squared-test",
-    "title": "4  Basic statistical tests",
-    "section": "4.5 Chi-squared test",
-    "text": "4.5 Chi-squared test\n\n\nThe chi-squared test is used to test the association between two categorical variables. In R, you can use the chisq.test() function to perform a chi-squared test. Here is an example:\n\n# This example uses the mtcars dataset, which is a built-in dataset in R that contains data on various car models.\n\n# Load the mtcars dataset\n\ndata(mtcars)\n\n# Chi-squared test example: Is there an association between the number of cylinders and the type of transmission?\n\n# Create a contingency table\n\ncontingency_table &lt;- table(mtcars$cyl, mtcars$am)\n\n# Perform the chi-squared test\n\nchi_squared_test_result &lt;- chisq.test(contingency_table)\n\nWarning in chisq.test(contingency_table): Chi-squared approximation may be\nincorrect\n\n# Print the result\n\nchi_squared_test_result\n\n\n    Pearson's Chi-squared test\n\ndata:  contingency_table\nX-squared = 8.7407, df = 2, p-value = 0.01265\n\n\nIn this example, we are testing the association between the number of cylinders (cyl) and the type of transmission (am) in the mtcars dataset. The chisq.test() function is used to perform the chi-squared test, and the result is stored in the chi_squared_test_result variable.\nIf we look at the output, we can see the following:\n\nThe chi-squared test result is presented.",
+    "title": "5  Basic statistical tests",
+    "section": "5.5 Chi-squared test",
+    "text": "5.5 Chi-squared test\n\n\nThe chi-squared test is used to test the association between two categorical variables. In R, you can use the chisq.test() function to perform a chi-squared test. Here is an example:\n\n# This example uses the mtcars dataset, which is a built-in dataset in R that contains data on various car models.\n\n# Load the mtcars dataset\n\ndata(mtcars)\n\n# Chi-squared test example: Is there an association between the number of cylinders and the type of transmission?\n\n# Create a contingency table\n\ncontingency_table &lt;- table(mtcars$cyl, mtcars$am)\n\n# Perform the chi-squared test\n\nchi_squared_test_result &lt;- chisq.test(contingency_table)\n\nWarning in chisq.test(contingency_table): Chi-squared approximation may be\nincorrect\n\n# Print the result\n\nchi_squared_test_result\n\n\n    Pearson's Chi-squared test\n\ndata:  contingency_table\nX-squared = 8.7407, df = 2, p-value = 0.01265\n\n\nIn this example, we are testing the association between the number of cylinders (cyl) and the type of transmission (am) in the mtcars dataset. The chisq.test() function is used to perform the chi-squared test, and the result is stored in the chi_squared_test_result variable.\nIf we look at the output, we can see the following:\n\nThe chi-squared test result is presented.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Basic statistical tests</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Basic statistical tests</span>"
     ]
   },
   {
     "objectID": "basic_tests.html#correlation",
     "href": "basic_tests.html#correlation",
-    "title": "4  Basic statistical tests",
-    "section": "4.6 Correlation",
-    "text": "4.6 Correlation\nCorrelation is used to test the relationship between two continuous variables. In R, you can use the cor() function to calculate the correlation coefficient. Here is an example:\n\n# This example uses the mtcars dataset, which is a built-in dataset in R that contains data on various car models.\n\n# Load the mtcars dataset\n\ndata(mtcars)\n\n# Correlation example: Is there a relationship between fuel efficiency and horsepower?\n\n# Calculate the correlation coefficient\n\ncorrelation_result &lt;- cor.test(mtcars$mpg, mtcars$hp)\n\n# Print the result\n\ncorrelation_result\n\n\n    Pearson's product-moment correlation\n\ndata:  mtcars$mpg and mtcars$hp\nt = -6.7424, df = 30, p-value = 1.788e-07\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n -0.8852686 -0.5860994\nsample estimates:\n       cor \n-0.7761684 \n\n\nIn this example, we are testing the relationship between fuel efficiency (mpg) and horsepower (hp) in the mtcars dataset. The cor.test() function is used to calculate the correlation coefficient, and the result is stored in the correlation_result variable.\nIf we look at the output, we can see the following:\n\nThe correlation coefficient is presented in the last line of the output.\nThe significance level of the correlation is tested using a t-test, which is also presented in the output.\nThe confidence interval for the correlation coefficient is presented.\nThe alternative hypothesis is that the correlation is not equal to 0.",
+    "title": "5  Basic statistical tests",
+    "section": "5.6 Correlation",
+    "text": "5.6 Correlation\n\n\nCorrelation is used to test the relationship between two continuous variables. In R, you can use the cor.test() function to calculate the correlation coefficient with significance test. Here is an example:\n\n# This example uses the mtcars dataset, which is a built-in dataset in R that contains data on various car models.\n\n# Load the mtcars dataset\n\ndata(mtcars)\n\n# Correlation example: Is there a relationship between fuel efficiency and horsepower?\n\n# Calculate the correlation coefficient\n\ncorrelation_result &lt;- cor.test(mtcars$mpg, mtcars$hp)\n\n# Print the result\n\ncorrelation_result\n\n\n    Pearson's product-moment correlation\n\ndata:  mtcars$mpg and mtcars$hp\nt = -6.7424, df = 30, p-value = 1.788e-07\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n -0.8852686 -0.5860994\nsample estimates:\n       cor \n-0.7761684 \n\n\nIn this example, we are testing the relationship between fuel efficiency (mpg) and horsepower (hp) in the mtcars dataset. The cor.test() function is used to calculate the correlation coefficient, and the result is stored in the correlation_result variable.\nIf we look at the output, we can see the following:\n\nThe correlation coefficient is presented in the last line of the output.\nThe significance level of the correlation is tested using a t-test, which is also presented in the output.\nThe confidence interval for the correlation coefficient is presented.\nThe alternative hypothesis is that the correlation is not equal to 0.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Basic statistical tests</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Basic statistical tests</span>"
     ]
   },
   {
     "objectID": "basic_tests.html#one-way-anova",
     "href": "basic_tests.html#one-way-anova",
-    "title": "4  Basic statistical tests",
-    "section": "4.7 One-way ANOVA",
-    "text": "4.7 One-way ANOVA\nOne-way ANOVA (Analysis of Variance) is used to test the differences between the means of three or more groups. In R, you can use the aov() function to perform an ANOVA. Here is an example:\n\n# This example uses the mtcars dataset, which is a built-in dataset in R that contains data on various car models.\n\n# Load the mtcars dataset\n\ndata(mtcars)\n\n# One-way ANOVA example: Is there a difference in fuel efficiency between cars with different numbers of cylinders?\n\n# Perform the ANOVA\n\nanova_result &lt;- aov(mpg ~ cyl, data = mtcars)\n\n# Print the result\n\nsummary(anova_result)\n\n            Df Sum Sq Mean Sq F value   Pr(&gt;F)    \ncyl          1  817.7   817.7   79.56 6.11e-10 ***\nResiduals   30  308.3    10.3                     \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\nIn this example, we are testing the differences in fuel efficiency (mpg) between cars with different numbers of cylinders (cyl) in the mtcars dataset. The aov() function is used to perform the ANOVA, and the result is stored in the anova_result variable.\nIf we look at the output, we can see the following:\n\nThe ANOVA result is within the summary() function. The summary includes the F-statistic, the p-value, and the significance level of the ANOVA test.",
+    "title": "5  Basic statistical tests",
+    "section": "5.7 One-way ANOVA",
+    "text": "5.7 One-way ANOVA\nOne-way ANOVA (Analysis of Variance) is used to test the differences between the means of three or more groups. In R, you can use the aov() function to perform an ANOVA. Here is an example:\n\n\n\n# This example uses the mtcars dataset, which is a built-in dataset in R that contains data on various car models.\n\n# Load the mtcars dataset\n\ndata(mtcars)\n\n# One-way ANOVA example: Is there a difference in fuel efficiency between cars with different numbers of cylinders?\n\n# cyl should be a factor\n\nmtcars$cyl &lt;- as.factor(mtcars$cyl)\n\n# Perform the ANOVA\n\nanova_result &lt;- aov(mpg ~ cyl, data = mtcars)\n\n# Print the result\n\nsummary(anova_result)\n\n            Df Sum Sq Mean Sq F value   Pr(&gt;F)    \ncyl          2  824.8   412.4    39.7 4.98e-09 ***\nResiduals   29  301.3    10.4                     \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\nIn this example, we are testing the differences in fuel efficiency (mpg) between cars with different numbers of cylinders (cyl) in the mtcars dataset. The aov() function is used to perform the ANOVA, and the result is stored in the anova_result variable.\nIf we look at the output, we can see the following:\n\nThe ANOVA result is within the summary() function. The summary includes the F-statistic, the p-value, and the significance level of the ANOVA test.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Basic statistical tests</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Basic statistical tests</span>"
     ]
   },
   {
     "objectID": "basic_tests.html#factorial-anova",
     "href": "basic_tests.html#factorial-anova",
-    "title": "4  Basic statistical tests",
-    "section": "4.8 Factorial ANOVA",
-    "text": "4.8 Factorial ANOVA\nFactorial ANOVA is used to test the effects of two or more independent variables on a dependent variable. In R, you can use the aov() function with interaction terms to perform a factorial ANOVA. Here is an example:\n\n# This example uses the mtcars dataset, which is a built-in dataset in R that contains data on various car models.\n\n# Load the mtcars dataset\n\ndata(mtcars)\n\n# Factorial ANOVA example: Is there an interaction effect between the number of cylinders and the type of transmission on fuel efficiency?\n\n# Perform the factorial ANOVA\n\nfactorial_anova_result &lt;- aov(mpg ~ cyl * am, data = mtcars)\n\n# Print the result\n\nsummary(factorial_anova_result)\n\n            Df Sum Sq Mean Sq F value   Pr(&gt;F)    \ncyl          1  817.7   817.7  94.642 1.76e-10 ***\nam           1   37.0    37.0   4.279   0.0479 *  \ncyl:am       1   29.4    29.4   3.407   0.0755 .  \nResiduals   28  241.9     8.6                     \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\nIn this example, we are testing the interaction effect between the number of cylinders (cyl) and the type of transmission (am) on fuel efficiency (mpg) in the mtcars dataset. The aov() function is used to perform the factorial ANOVA, and the result is stored in the factorial_anova_result variable.\nThe interaction term is specified using the * operator in the formula.\nIf we look at the output, we can see the following:\n\nThe ANOVA result is within the summary() function. The summary includes the F-statistic, the p-value, and the significance level of each term tested in the ANOVA.\nEach independent variable is tested separately (main effects), and the interaction effect is also tested.\nThe interaction effect is denoted by the cyl:am term in the output.",
+    "title": "5  Basic statistical tests",
+    "section": "5.8 Factorial ANOVA",
+    "text": "5.8 Factorial ANOVA\nFactorial ANOVA is used to test the effects of two or more independent variables on a dependent variable. In R, you can use the aov() function with interaction terms to perform a factorial ANOVA. Here is an example:\n\n# This example uses the mtcars dataset, which is a built-in dataset in R that contains data on various car models.\n\n# Load the mtcars dataset\n\ndata(mtcars)\n\n# Factorial ANOVA example: Is there an interaction effect between the number of cylinders and the type of transmission on fuel efficiency?\n\n# cyl and am should be factors\n\nmtcars$cyl &lt;- as.factor(mtcars$cyl)\nmtcars$am &lt;- as.factor(mtcars$am)\n\n# Perform the factorial ANOVA\n\nfactorial_anova_result &lt;- aov(mpg ~ cyl * am, data = mtcars)\n\n# Print the result\n\nsummary(factorial_anova_result)\n\n            Df Sum Sq Mean Sq F value   Pr(&gt;F)    \ncyl          2  824.8   412.4  44.852 3.73e-09 ***\nam           1   36.8    36.8   3.999   0.0561 .  \ncyl:am       2   25.4    12.7   1.383   0.2686    \nResiduals   26  239.1     9.2                     \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\nIn this example, we are testing the interaction effect between the number of cylinders (cyl) and the type of transmission (am) on fuel efficiency (mpg) in the mtcars dataset. The aov() function is used to perform the factorial ANOVA, and the result is stored in the factorial_anova_result variable.\nThe interaction term is specified using the * operator in the formula.\nIf we look at the output, we can see the following:\n\nThe ANOVA result is within the summary() function. The summary includes the F-statistic, the p-value, and the significance level of each term tested in the ANOVA.\nEach independent variable is tested separately (main effects), and the interaction effect is also tested.\nThe interaction effect is denoted by the cyl:am term in the output.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Basic statistical tests</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Basic statistical tests</span>"
     ]
   },
   {
     "objectID": "basic_tests.html#conclusion",
     "href": "basic_tests.html#conclusion",
-    "title": "4  Basic statistical tests",
-    "section": "4.9 Conclusion",
-    "text": "4.9 Conclusion\nIn this chapter, we have covered several basic statistical tests that you can perform in R. These are included for reference and to help you get started with performing statistical tests in R. However, we will be focusing on modelling our data, using different types of regression models, rather than re-learning these tests.",
+    "title": "5  Basic statistical tests",
+    "section": "5.9 Conclusion",
+    "text": "5.9 Conclusion\nIn this chapter, we have covered several basic statistical tests that you can perform in R. These are included for reference and to help you get started with performing statistical tests in R. However, we will be focusing on modelling our data, using different types of regression models, rather than re-learning these tests.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Basic statistical tests</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Basic statistical tests</span>"
     ]
   },
   {
     "objectID": "correlation.html",
     "href": "correlation.html",
-    "title": "5  Correlation and simple regression",
+    "title": "6  Correlation in R",
     "section": "",
-    "text": "5.1 What is Correlation?\nCorrelation is a measure of the strength and direction of a relationship between two variables. It is most commonly used when we want to see if there is a relationship between two continuous variables. When we calculate correlation, we get a value between -1 and 1. The closer the value is to 1, the stronger the relationship. The closer the value is to 0, the weaker the relationship. We also often calculate the significance of the correlation, which tests against a null hypothesis that the correlation is 0.",
+    "text": "6.1 What is Correlation?\nCorrelation is a measure of the strength and direction of a relationship between two variables. It is most commonly used when we want to see if there is a relationship between two continuous variables. However, it is possible to run correlations between a continuous and a categorical variable (this is known as point-biserial correlation) or between two categorical variables (this is known as phi coefficient).\nSticking to the more conventional form of correlation; when we calculate correlation, we get an r value of between -1 and 1. This tells us two things:\nWe also often calculate the significance of the correlation, which tests against a null hypothesis that the correlation is 0. This is not part of the correlation per se, but it is often part of correlational research questions.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Correlation in R</span>"
     ]
   },
   {
     "objectID": "correlation.html#what-is-correlation",
     "href": "correlation.html#what-is-correlation",
-    "title": "5  Correlation",
+    "title": "6  Correlation in R",
     "section": "",
-    "text": "The relationship between 2 variables\nQuestion: Is treatment duration related to aggression levels?",
+    "text": "The closer the value is to 1, the stronger the relationship. The closer the value is to 0, the weaker the relationship.\nThe sign of the value tells us the direction of the relationship. Positive values indicate a positive relationship (i.e. as one variable increases, so does the other). Negative values indicate a negative relationship (i.e. as one variable increases, the other decreases).",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Correlation in R</span>"
     ]
   },
   {
     "objectID": "correlation.html#how-is-correlation-calculated",
     "href": "correlation.html#how-is-correlation-calculated",
-    "title": "5  Correlation and simple regression",
-    "section": "5.2 How is correlation calculated?",
-    "text": "5.2 How is correlation calculated?\nCorrelation can be thought of as covariance divided by individual variance. Covariance is a measure of how much two variables change together. Variance is a measure of how much a variable changes on its own. When we divide covariance by variance, we get a value that is standardised and can be compared across different data sets.\nIf the changes are consistent with both variables (i.e. the covariance is higher and the individual variance is lower), then the final correlation value will be higher.",
+    "title": "6  Correlation in R",
+    "section": "6.3 How is correlation calculated?",
+    "text": "6.3 How is correlation calculated?\nCorrelation can be thought of as covariance divided by individual variance. Covariance is a measure of how much two variables change together. Variance is a measure of how much a variable changes on its own. When we divide covariance by variance, we get a value that is standardised and can be compared across different data sets.\nIf the changes are consistent with both variables (i.e. the covariance is higher and the individual variance is lower), then the final correlation value will be higher. However, if the changes are inconsistent (i.e. the covariance is lower and the individual variance is higher), then the final correlation value will be lower.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Correlation in R</span>"
     ]
   },
   {
@@ -582,21 +582,21 @@
   {
     "objectID": "correlation.html#which-correlation-to-use",
     "href": "correlation.html#which-correlation-to-use",
-    "title": "5  Correlation and simple regression",
-    "section": "5.3 Which correlation to use?",
-    "text": "5.3 Which correlation to use?\nWhen we run correlation in R, we use the cor.test() command. This command will give us the correlation value, the p value and the confidence intervals.\nWe can specify a Pearson correlation (the default) or a Spearman correlation (for non-parametric data).\n\n5.3.1 Running correlation in R\n\nR can run correlations using the cor.test() command\n\n\ncor.test(regression_data$treatment_duration,regression_data$aggression_level) \n\n\n    Pearson's product-moment correlation\n\ndata:  regression_data$treatment_duration and regression_data$aggression_level\nt = -9.5503, df = 98, p-value = 1.146e-15\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n -0.7838251 -0.5765006\nsample estimates:\n       cor \n-0.6942996 \n\n\nIn the above example, we are testing the correlation between treatment duration and aggression level. Each variable is separated by a comma.\n\n\n5.3.2 Interpreting the output\n\nThe r value tells us the strength and direction of the relationship\nIn the output it is labelled as “cor” (short for correlation)\n\nCorrelation values can range from -1 to 1. The closer the value is to 1, the stronger the relationship. The closer the value is to 0, the weaker the relationship. Positive values indicate a positive relationship (i.e. as one variable increases, so does the other). Negative values indicate a negative relationship (i.e. as one variable increases, the other decreases).\n\ncor.test(regression_data$treatment_duration,regression_data$aggression_level)\n\n\n    Pearson's product-moment correlation\n\ndata:  regression_data$treatment_duration and regression_data$aggression_level\nt = -9.5503, df = 98, p-value = 1.146e-15\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n -0.7838251 -0.5765006\nsample estimates:\n       cor \n-0.6942996 \n\n\n\n\n5.3.3 Check the significance of the correlation\n\nWe can see that the significance by looking at the p value\n\nThe significance is 1.146^-15\nThis means: 0.0000000000000001146\n\nTherefore p value &lt; 0.05\n\n\ncor.test(regression_data$treatment_duration,regression_data$aggression_level)\n\n\n    Pearson's product-moment correlation\n\ndata:  regression_data$treatment_duration and regression_data$aggression_level\nt = -9.5503, df = 98, p-value = 1.146e-15\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n -0.7838251 -0.5765006\nsample estimates:\n       cor \n-0.6942996",
+    "title": "6  Correlation in R",
+    "section": "6.4 Which correlation to use?",
+    "text": "6.4 Which correlation to use?\nWhen we run correlation in R, we use the cor.test() command. This command will give us the correlation value, the p value and the confidence intervals.\nWe can specify a Pearson correlation (the default) or a Spearman correlation (for non-parametric data).\n\n6.4.1 Running correlation in R\n\nR can run correlations using the cor.test() command\n\n\ncor.test(regression_data$treatment_duration,regression_data$aggression_level) \n\n\n    Pearson's product-moment correlation\n\ndata:  regression_data$treatment_duration and regression_data$aggression_level\nt = -9.5503, df = 98, p-value = 1.146e-15\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n -0.7838251 -0.5765006\nsample estimates:\n       cor \n-0.6942996 \n\n\nIn the above example, we are testing the correlation between treatment duration and aggression level. Each variable is separated by a comma.\n\n\n6.4.2 Interpreting the output\n\nThe r value tells us the strength and direction of the relationship\nIn the output it is labelled as “cor” (short for correlation)\n\nCorrelation values can range from -1 to 1. The closer the value is to 1, the stronger the relationship. The closer the value is to 0, the weaker the relationship. Positive values indicate a positive relationship (i.e. as one variable increases, so does the other). Negative values indicate a negative relationship (i.e. as one variable increases, the other decreases).\n\ncor.test(regression_data$treatment_duration,regression_data$aggression_level)\n\n\n    Pearson's product-moment correlation\n\ndata:  regression_data$treatment_duration and regression_data$aggression_level\nt = -9.5503, df = 98, p-value = 1.146e-15\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n -0.7838251 -0.5765006\nsample estimates:\n       cor \n-0.6942996 \n\n\n\n\n6.4.3 Check the significance of the correlation\n\nWe can see that the significance by looking at the p value\n\nThe significance is 1.146^-15\nThis means: 0.0000000000000001146\n\nTherefore p value &lt; 0.05\n\n\ncor.test(regression_data$treatment_duration,regression_data$aggression_level)\n\n\n    Pearson's product-moment correlation\n\ndata:  regression_data$treatment_duration and regression_data$aggression_level\nt = -9.5503, df = 98, p-value = 1.146e-15\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n -0.7838251 -0.5765006\nsample estimates:\n       cor \n-0.6942996 \n\n\n\n\n\n\n\n\nExponent values\n\n\n\nWhen we see a value like 1.146e-15, this is a shorthand way of writing a very small number. The e-15 means that we move the decimal point 15 places to the left. So 1.146e-15 is the same as 0.000000000000001146",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Correlation in R</span>"
     ]
   },
   {
     "objectID": "correlation.html#exponent-values",
     "href": "correlation.html#exponent-values",
-    "title": "5  Correlation and simple regression",
-    "section": "5.4 Exponent values",
-    "text": "5.4 Exponent values\nWhen we see a value like 1.146e-15, this is a shorthand way of writing a very small number. The e-15 means that we move the decimal point 15 places to the left. So 1.146e-15 is the same as 0.000000000000001146",
+    "title": "6  Correlation in R",
+    "section": "6.5 Exponent values",
+    "text": "6.5 Exponent values\nWhen we see a value like 1.146e-15, this is a shorthand way of writing a very small number. The e-15 means that we move the decimal point 15 places to the left. So 1.146e-15 is the same as 0.000000000000001146",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Correlation in R</span>"
     ]
   },
   {
@@ -607,6 +607,16 @@
     "text": "6.7 Check assumptions: distribution\n\nUsing the plot() command on our regression model will give us some useful diagnostic plots\nThe second plot that it outputs shows the normality\n\n\nplot(model1, which=2)\n\n\n\n\n\n\n\n\n\nWe could also use a histogram to check the distribution\nNotice how we can use the $ sign to get the residuals from the model\n\n\nhist(model1$residuals)",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
+    ]
+  },
+  {
+    "objectID": "correlation.html#visualising-correlation",
+    "href": "correlation.html#visualising-correlation",
+    "title": "6  Correlation in R",
+    "section": "6.2 Visualising correlation",
+    "text": "6.2 Visualising correlation\nWe can visualise correlation using a scatterplot. This is a graph where each data point is plotted on a graph, with one variable on the x axis and the other on the y axis. If the data points form something resembling a straight line, with all of the data points in a consistent pattern, then we have a strong correlation. If the data points are scattered, then we have a weaker correlation. However, if the data points are inconsistent or more diffuse, the correlation is weaker. The direction of the line tells us the direction of the correlation.\n\n\n\n\n\n\n\n\n\nVisualising the data in this way can give us a good idea of the strength and direction of the correlation. However, it is not a substitute for running the correlation itself. At the same time, correlation coefficients can be misleading on their own. It is always a good idea to visualise the data as well.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Correlation in R</span>"
     ]
   }
 ]

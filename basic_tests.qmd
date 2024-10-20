@@ -12,13 +12,21 @@ In this chapter, we will learn how to perform basic statistical tests in R. Thes
 
 These examples will not be exhaustive, but they should give you a good starting point for performing these tests in R. For theoretical background, you can refer to any standard statistics textbook.
 
+::: callout-tip
+## At the end of this chapter, you will be able to:
+
+-   Conduct several basic inferential tests with R
+:::
+
 ::: note
 These examples will all use built-in datasets in R. Each example will include the necessary code to load the dataset and perform the test. However, you can also use your own datasets by loading them into R yourself and replacing the dataset name in the examples.
 :::
 
 ## Independent t-test
 
-<iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=e71c205c-6789-43bc-b020-b1f000ed905b&autoplay=false&offerviewer=false&showtitle=false&showbrand=true&captions=false&interactivity=all" height="405" width="600" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="independent t-test in R" ></iframe>
+<iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=e71c205c-6789-43bc-b020-b1f000ed905b&amp;autoplay=false&amp;offerviewer=false&amp;showtitle=false&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="405" width="600" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="independent t-test in R">
+
+</iframe>
 
 The independent t-test is used to compare the means of two independent groups. In R, you can use the `t.test()` function to perform an independent t-test. Here is an example:
 
@@ -52,7 +60,9 @@ If we look at the output, we can see the following:
 
 ## Paired t-test
 
-<iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=67032f01-233e-409d-9021-b1f000e88cab&autoplay=false&offerviewer=false&showtitle=false&showbrand=true&captions=false&interactivity=all" height="405" width="600" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="t-tests in R" ></iframe>
+<iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=67032f01-233e-409d-9021-b1f000e88cab&amp;autoplay=false&amp;offerviewer=false&amp;showtitle=false&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="405" width="600" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="t-tests in R">
+
+</iframe>
 
 The paired t-test is used to compare the means of two related groups. In R, you can use the `t.test()` function with the `paired = TRUE` argument to perform a paired t-test. Here is an example:
 
@@ -74,7 +84,6 @@ paired_t_test_result <- t.test(sleep$extra ~ sleep$group, paired = TRUE)
 
 paired_t_test_result
 ```
-
 
 In this example, we are comparing the sleep duration (`extra`) between patients who were given different drugs in the `sleep` dataset (note: 10 people were each measured twice). The `extra` variable is the dependent variable, and the `group` variable is the independent variable. The `t.test()` function is used to perform the paired t-test, and the result is stored in the `paired_t_test_result` variable.
 
@@ -147,7 +156,9 @@ The output is interpreted in the same way as the Wilcoxon signed-rank test outpu
 
 ## Chi-squared test
 
-<iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=74a966be-ab9b-412b-a97a-b1f000efe18d&autoplay=false&offerviewer=false&showtitle=false&showbrand=true&captions=false&interactivity=all" height="405" width="600" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="Chi Square Test in R" ></iframe>
+<iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=74a966be-ab9b-412b-a97a-b1f000efe18d&amp;autoplay=false&amp;offerviewer=false&amp;showtitle=false&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="405" width="600" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="Chi Square Test in R">
+
+</iframe>
 
 The chi-squared test is used to test the association between two categorical variables. In R, you can use the `chisq.test()` function to perform a chi-squared test. Here is an example:
 
@@ -184,7 +195,9 @@ If we look at the output, we can see the following:
 
 ## Correlation
 
-<iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=decadcc4-5bec-47b9-bc86-b1f000f4d0dc&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="600" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="Correlation in R" ></iframe>
+<iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=decadcc4-5bec-47b9-bc86-b1f000f4d0dc&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="405" width="600" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="Correlation in R">
+
+</iframe>
 
 Correlation is used to test the relationship between two continuous variables. In R, you can use the `cor.test()` function to calculate the correlation coefficient with significance test. Here is an example:
 
@@ -222,9 +235,10 @@ If we look at the output, we can see the following:
 
 One-way ANOVA (Analysis of Variance) is used to test the differences between the means of three or more groups. In R, you can use the `aov()` function to perform an ANOVA. Here is an example:
 
-<iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=deb8b511-35b1-46e5-b816-b1f000fa1e46&autoplay=false&offerviewer=false&showtitle=false&showbrand=true&captions=false&interactivity=all" height="405" width="600" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="One Waty ANOVA in R" ></iframe>
+<iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=deb8b511-35b1-46e5-b816-b1f000fa1e46&amp;autoplay=false&amp;offerviewer=false&amp;showtitle=false&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="405" width="600" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="One Waty ANOVA in R">
 
-  
+</iframe>
+
 ```{r}
 
 # This example uses the mtcars dataset, which is a built-in dataset in R that contains data on various car models.

@@ -28,15 +28,31 @@ width: 1920
 
 There are many ongoing discussions in clinical psychology research. They will be picked up in other sessions this year. Today we will discuss:
 
--   Translating research into effective treatment
+-   The link between research and effective treatment
 
 -   Clinical analogue studies
 
 -   Open and reproducible research
 
+## Linking this to the development of your own thesis project...
+
+-   Twp of the most important (but sometimes neglected) aspects of the thesis project are the **rationale and the research question**.
+
+-   A project with a clear research question and strong rationale, is one that has deep connections to the existing theoretical models and prior findings on a topic.
+
+-   This helps make the case for why the research is needed. While the contribution it makes to knowledge and practice, and the clinical relevance of the work are clear to the reader.
+
+## When designing a research project, consider the following:
+
+-   If you know of an existing relationship between variables in the literature, what is the rationale for your project?
+
+-   Stating that something "has not been done before" is not the same as explaining why it should be done.
+
+-   If your rationale/question implies that you want to understand the "why" of a particular topic, does your research design allow you to do this?
+
 ## Research designs in clinical psychology
 
--   A wide range of approaches are commonly used: Experimental and quasi-experimental, cor relational, case study, and qualitative designs.
+-   A wide range of approaches are commonly used: Experimental and quasi-experimental, correlational, case study, and qualitative designs.
 
 -   To investigate psychological disorders, assessment, treatment, prevention, professional training, ethics, and cultural diversity.
 
@@ -58,25 +74,17 @@ Sometimes referred to as "Type 1" clinical research [@ComerKendall2013]
 
 -   May serve as the "building blocks" of future intervention eﬀorts.
 
--   Rarely followed through to the point of application.
+-   Rarely (unfortunately) followed through to the point of application.
 
 ::: notes
 ```         
 ## Experimental psychopathology research example {.smaller}
 
-@PetersEtAl2011 employed an experimental approach to test the hypothesis that attributional style may be one causative factor of depression vulnerability.
+Attentional bias towards negatively valent stimuli is a known feature of depression/anxiety and other comorbid diagnoses.
 
--   Undergraduate students, without a history of depression, were randomly assigned to one of two experimental conditions: resilience condition or vulnerability condition
+This is measured in a lab using a dot probe task.
 
--   Following exposure to the assigned descriptions, all participants subsequently completed a stressor task
-
--   Peters and colleagues measured the change in mood state from before to after manipulation.
-
--   Results indicated that individuals in the resilience condition reported less depressed mood (compared to the vulnerability condition) in response to the academic stressor
-
-resilience: descriptions that promoted a selfworthy, stable attribution of a positive event descriptions that promoted an unstable attribution unrelated to self-worth for a negative event
-
-The vulnerability condition: - descriptions that promoted a self-deﬁcient, stable attribution of a negative event - descriptions that promoted an unstable attribution unrelated to self-worth for a positive
+However, an additional component of those with PTSD is a difficulty disengaging attention from the stimuli afterwards.
 ```
 :::
 
@@ -104,19 +112,25 @@ Sometimes referred to as "Type II" clinical research [@ComerKendall2013]
 -   However, in men, brainstem activity was associated only with the development of PTSD.
 :::
 
-## What were the differences between the two types of studies?
+## What were the differences between these types of studies?
 
--   The first type can identify a putative causal variable that was directly manipulable.
+-   Type I can identify a putative causal variable that was directly manipulable.
 
     -   This could tell us something about how or why psychopathology might develop.
 
--   The second type might to gain a deeper understanding of the processs or experiences.
+-   Type II might to gain a deeper understanding of the processs or experiences.
 
-    -   The study did not attempt to explain a causal relationship between the variables.
+    -   A study could not attempt to explain a causal relationship between the variables.
+
+-   Type III and Type IV can only make descriptive statements about the relationships between variables.
+
+    -   No processes, explanations or origins.
 
 # Takeaway:
 
 It is important to understand what you are trying to achieve with your research and what is possible with the research design you choose.
+
+It is also important to consider what type of studies existing research indicates a need for.
 
 # Linking basic research to clinical interventions {background-image="https://www.tees.ac.uk/Images/CommonImages/prospectus/course_images/main/psychology.jpg" background-color="black"}
 
@@ -146,13 +160,13 @@ Information about core psychological processes is essential to:
 [@EhringEtAl2022].
 :::
 
-## Some of the issues with translating cinical psychology research into treatment/intervention
+## Some of the issues with translating clinical psychology research into treatment/intervention
 
 -   Lack of stability and replicability of basic research findings
 
 -   Lack of basic studies establishing causality before moving to testing complex clinical intervention
 
--   Fat-handed interventions and easy-to-vary theories
+-   Overly-broad interventions and easy-to-vary theories
 
 -   Imbalance between research focused on efficacy compared to research on mediators, mechanisms of change, and moderators
 
@@ -195,6 +209,14 @@ Research findings in clinical psychology are not as reliable as assumed, due to:
 -   To get a complete understanding of a treatment, we need to understand: Efficacy, Mediators, Mechanisms of change, Moderators
 
 -   This requires whole programs of research, not just a single study
+
+## Linking this to the development of your own thesis project...
+
+-   Consider whether the existing literature is indicating the need for a process-based account.
+
+-   Don't neglect fundamental psychological research that is relevant to your topic/question. This is often where the "mechanisms" of change are examined.
+
+-   Try to *focus* your research questions on specific mechanisms or variables that are theoretically relevant, as opposed to being overly broad in your approach.
 
 # Takeaways:
 
@@ -283,13 +305,13 @@ However, it has been argued that the limitations of clinical analogue studies ar
 
 # Open Science {background-image="https://images.unsplash.com/photo-1457369804613-52c61a468e7d" background-color="black"}
 
-## What is open and reproducable research?
+## What is open and reproducible research?
 
 -   Reproducible research is the idea that research is published with their hypotheses, research plan, materials, data and software code so that others can try to replicate the results and verify the findings.
 
 -   Studies are pre-registered, so that researchers can see if the study was conducted as planned and the results support the researchers' original hypotheses.
 
-## Why Reproducable Research?
+## Why Reproducible Research?
 
 -   One of the major limitations of clinical research can be lack of transparency and reproducibility
 
@@ -311,7 +333,7 @@ However, it has been argued that the limitations of clinical analogue studies ar
 
 -   Materials, data and code are made available, so that others can try to replicate the results and verify the findings.
 
-## How to make your research reproducable? {.smaller}
+## How to make your research reproducible? {.smaller}
 
 -   Pre-register your study
 

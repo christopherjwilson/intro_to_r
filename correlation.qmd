@@ -1,0 +1,118 @@
+# Correlation in R
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.align="center")
+library(tidyverse)
+regression_data <- read.csv("Datasets/regression_data.csv")
+```
+
+::: callout-tip
+## At the end of this chapter, you will be able to:
+
+-   Conduct and interpret a correlation analysis in R
+:::
+
+## What is Correlation?
+
+Correlation is a measure of the strength and direction of a relationship between two variables. It is most commonly used when we want to see if there is a relationship between two *continuous* variables. However, it is possible to run correlations between a continuous and a categorical variable (this is known as point-biserial correlation) or between two categorical variables (this is known as phi coefficient).
+
+Sticking to the more conventional form of correlation; when we calculate correlation, we get an r value of between -1 and 1. This tells us two things:
+
+1.  The closer the value is to 1, the stronger the relationship. The closer the value is to 0, the weaker the relationship.
+
+2.  The sign of the value tells us the direction of the relationship. Positive values indicate a positive relationship (i.e. as one variable increases, so does the other). Negative values indicate a negative relationship (i.e. as one variable increases, the other decreases).
+
+We also often calculate the significance of the correlation, which tests against a null hypothesis that the correlation is 0. This is not part of the correlation per se, but it is often part of correlational research questions.
+
+## Visualising correlation
+
+We can visualise correlation using a scatterplot. This is a graph where each data point is plotted on a graph, with one variable on the x axis and the other on the y axis. If the data points form something resembling a straight line, with all of the data points in a consistent pattern, then we have a strong correlation. If the data points are scattered, then we have a weaker correlation. However, if the data points are inconsistent or more diffuse, the correlation is weaker. The direction of the line tells us the direction of the correlation.
+
+```{r out.width = "100%", echo=F}
+
+# data for a strong positive correlation (n = 100)
+
+x <- rnorm(100, mean = 50, sd = 10)
+y <- x + rnorm(100, mean = 0, sd = 5)
+
+# data for a strong negative correlation (n = 100)
+
+x2 <- rnorm(100, mean = 50, sd = 10)
+y2 <- -x2 + rnorm(100, mean = 0, sd = 5)
+
+# data for a weak correlation (n = 100)
+
+x3 <- rnorm(100, mean = 50, sd = 10)
+y3 <- rnorm(100, mean = 10, sd = 100)
+
+# plot the data
+
+par(mfrow=c(1,3))
+
+plot(x,y, main="Strong positive correlation", xlab="X", ylab="Y")
+plot(x2,y2, main="Strong negative correlation", xlab="X", ylab="Y")
+plot(x3,y3, main="Weak correlation", xlab="X", ylab="Y")
+
+```
+
+Visualising the data in this way can give us a good idea of the strength and direction of the correlation. However, it is not a substitute for running the correlation itself. At the same time, correlation coefficients can be misleading on their own. It is always a good idea to visualise the data as well.
+
+## How is correlation calculated?
+
+Correlation can be thought of as covariance divided by individual variance. Covariance is a measure of how much two variables change together. Variance is a measure of how much a variable changes on its own. When we divide covariance by variance, we get a value that is standardised and can be compared across different data sets.
+
+If the changes are consistent with both variables (i.e. the covariance is higher and the individual variance is lower), then the final correlation value will be higher. However, if the changes are inconsistent (i.e. the covariance is lower and the individual variance is higher), then the final correlation value will be lower.
+
+```{r out.width = "100%", echo=F}
+
+knitr::include_graphics("img/correlation.png") 
+```
+
+```{r out.height = "100%", echo=F}
+
+knitr::include_graphics("img/corcalc.png") 
+```
+
+## Which correlation to use?
+
+When we run correlation in R, we use the *cor.test()* command. This command will give us the correlation value, the p value and the confidence intervals.
+
+We can specify a Pearson correlation (the default) or a Spearman correlation (for non-parametric data).
+
+### Running correlation in R
+
+-   R can run correlations using the *cor.test()* command
+
+```{r}
+cor.test(regression_data$treatment_duration,regression_data$aggression_level) 
+```
+
+In the above example, we are testing the correlation between treatment duration and aggression level. Each variable is separated by a comma.
+
+### Interpreting the output
+
+-   The r value tells us the strength and direction of the relationship
+-   In the output it is labelled as "cor" (short for correlation)
+
+Correlation values can range from -1 to 1. The closer the value is to 1, the stronger the relationship. The closer the value is to 0, the weaker the relationship. Positive values indicate a positive relationship (i.e. as one variable increases, so does the other). Negative values indicate a negative relationship (i.e. as one variable increases, the other decreases).
+
+```{r}
+cor.test(regression_data$treatment_duration,regression_data$aggression_level)
+```
+
+### Check the significance of the correlation
+
+-   We can see that the significance by looking at the p value
+    -   The significance is 1.146\^-15
+    -   This means: 0.0000000000000001146
+-   Therefore p value \< 0.05
+
+```{r}
+cor.test(regression_data$treatment_duration,regression_data$aggression_level)
+```
+
+::: callout-tip
+## Exponent values
+
+When we see a value like 1.146e-15, this is a shorthand way of writing a very small number. The e-15 means that we move the decimal point 15 places to the left. So 1.146e-15 is the same as 0.000000000000001146
+:::

@@ -1,0 +1,405 @@
+---
+format:
+  revealjs:
+    css: "include/style.css"
+    chalkboard: true
+    multiplex: true
+    slide-number: c/t
+    drop:
+      shortcut: "]"
+      engine: webr
+      webr:
+        packages:
+          - tidyverse
+    mermaid:
+      theme: neutral
+revealjs-plugins:
+  - drop
+bibliography: references.bib
+title: "Multiple regression models"
+subtitle: DClin Research Methods 1
+author: Dr Christopher Wilson
+institute: Teesside University
+logo: "logo.jpg"
+csl: apa.csl
+---
+
+## Recap {.smaller}
+
+::: {.fragment .fade-in-then-semi-out .smaller}
+-   Thinking about more than outcomes. Designing studies to answer more **specific research questions / think about process**.
+    -   "Why is this happening?"
+    -   "What is the mechanism?"
+:::
+
+::: {.fragment .fade-in-then-semi-out}
+-   Thinking beyond significance testing. Using **confidence intervals and effect sizes** to interpret results.
+    -   "How big is the effect?"
+    -   "What is the range of plausible values?"
+:::
+
+::: {.fragment .fade-in-then-semi-out}
+-   Thinking about the relationship between variables. Modelling relationships between variables using regression.
+    -   "Does **Predictor Variable** (e.g. Treatment Group, Avoidance, Trait) predict **Outcome Variable** (e.g. Wellbeing, Depression, Behaviour)?"
+    -   "How much variance is explained by the model?"
+:::
+
+## In the coming weeks
+
+::: {.callout icon="false"}
+-   Thinking about more than outcomes. Designing studies to answer more **specific research questions / think about process**.
+    -   "Why is this happening?"
+    -   "What is the mechanism?"
+:::
+
+> -   We will learn more about modelling our data to address these questions.
+
+> -   Remember that analysis alone cannot answer these questions. We need to design our studies to address these questions based on theory.
+
+## Overview
+
+-   Multiple regression
+-   Hierarchical regression
+
+# What type of research question?
+
+## Research scenario
+
+-   Imagine we are interested in factors that predict depression in students
+
+-   In terms of demographics, age and gender have been shown to be important
+
+-   Previous research has shown that depression is associated with loneliness and stress
+
+-   More recent research has shown that self-esteem might also be a factor
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+# generate data for 200 participants
+
+set.seed(1234)
+depression <- rnorm(200, 20, 2)
+age <- rnorm(200, 30, 1) 
+gender <- rbinom(200, 1, 0.5) 
+stress <- rnorm(200, 50, 2.5) + (depression + runif(200, 0, 10) * 0.1)
+loneliness <- rnorm(200, 10, 1.5) + (depression + runif(200, 0, 5) * 0.1)
+selfesteem <- rnorm(200, 18, 1) + (depression + runif(200, 0, 1) * 0.1)
+
+
+
+data <- data.frame(depression, age, gender, stress, loneliness, selfesteem) |> round(0)
+  
+data$gender <- as.factor(data$gender)
+
+```
+
+# Research question: Does self-esteem predict depression?
+
+## There are several different ways we could approach this:
+
+::: {.fragment .semi-fade-out}
+1.  We could focus on self-esteem and depression in isolation (i.e., simple regression)
+:::
+
+2.  We could include the other variables as covariates in a single model (i.e., multiple regression)
+
+3.  We could use a hierarchical approach, where we enter the variables in stages, to see the variance explained by self-esteem, above and beyond what is explained by the other variables (i.e., hierarchical regression)
+
+# Multiple regression
+
+## Multiple regression
+
+-   We will use the multiple regression approach to answer our research question
+
+There are some considerations:
+
+-   More variables means a larger sample size is required (power analysis)
+
+-   There is an additional assumption called *multicollinearity*. This means that the predictor variables should not be too highly correlated with each other
+
+## Running the analysis
+
+-   The process is the same as what we have done previously. The additional predictors are added to the model.
+
+```{r echo=T, message=FALSE, warning=FALSE}
+
+model1 <- lm(data = data, lm(depression ~ age + gender + stress + loneliness + selfesteem))
+
+```
+
+## Visualising this model
+
+```{mermaid}
+graph LR
+
+selfesteem --> depression
+
+lonliness --> depression
+
+stress --> depression
+
+gender --> depression
+
+age --> depression
+
+
+```
+
+## Testing multicollinearity
+
+-   We can test for multicollinearity using the <func>mctest()</func> function, from the <pkg>mctest</pkg> package
+
+```{r echo=T, message=FALSE, warning=FALSE, eval=FALSE}
+library(mctest)
+
+mctest(model1, type= "b") #<1>
+
+```
+
+1.  The <func>mctest()</func> function takes a model as an argument. The <arg>type</arg> argument specifies the type of tests to run. The <arg>b</arg> argument specifies that we want to test both overall and individual predictor multicollinearity.
+
+## 
+
+```{r echo=T, message=FALSE, warning=FALSE}
+library(mctest)
+
+mctest(model1, type= "b") #<1>
+
+```
+
+Higher variance inflation factors (VIFs) indicate higher multicollinearity. A VIF of 5 or more is considered problematic.
+
+## Interpreting the output of mctest()
+
+-   The output of the <func>mctest()</func> function is several different tests of multicollinearity
+
+-   We need to review them as a whole and make a judgement about whether multicollinearity is a problem
+
+-   If there seems to be a problem, we would need to look into the data to see which of the variables are highly correlated
+
+## What to do if multicollinearity exists:
+
+-   Remove some of the highly correlated predictors
+-   Linearly combine some predictors.
+-   Perform an analysis designed for highly correlated variables (e.g. = PCA or partial least squares regression)
+
+## Remember, we also need to test the other assumptions
+
+-   There is another package called <pkg>gvlma</pkg> that provides diagnostics for all of the assumptions of linear regression.
+
+-   We can use this in combination with our diagnostic plots (from last week)
+
+```{r echo=T, message=FALSE, warning=FALSE, eval=FALSE}
+
+library(gvlma)
+
+gvlma(model1)
+
+```
+
+## Viewing the output of gvlma() {.smaller}
+
+```{r echo=T, message=FALSE, warning=FALSE}
+
+library(gvlma)
+
+gvlma(model1)
+
+```
+
+-   Global Statistic: Test of the overall model.
+-   Link function test: Is this relationship linear?
+
+# Looking at the output of multiple regression
+
+## 
+
+```{r echo=T, message=FALSE, warning=FALSE}
+
+summary(model1)
+
+```
+
+## Interpreting the output of multiple regression
+
+-   First we look at the overall model significance and $R^2$ values. These tell us whether the model is significant and how much variance is explained by the model.
+
+-   If the overall model is significant, we look at the individual predictors. We look at the significance of the predictors and the coefficient values (Estimate).
+
+# Hierarchical regression
+
+## Hierarchical regression - research scenario
+
+-   Imagine we are interested in factors that predict depression in students
+
+-   In terms of demographics, age and gender have been shown to be important
+
+-   Previous research has shown that depression is associated with loneliness and stress
+
+-   More recent research has shown that self-esteem might also be a factor
+
+## Using a hierarchical approach
+
+-   We could use a hierarchical approach, where we enter the variables in stages.
+
+-   This involves running several regression models, each with a different set of predictors
+
+-   We can then compare the models to see how much variance is explained by each set of predictors
+
+## Which models would we test?
+
+-   This depends on our understanding of the variables
+
+-   For example, we might do the following:
+
+    -   Model 1: Demographics
+    -   Model 2: Demographics + stress + loneliness
+    -   Model 3: Demographics + stress + loneliness + self-esteem
+
+## Visualising the models {.scrollable}
+
+```{mermaid}
+graph LR
+
+depression1[depression]
+depression2[depression]
+depression3[depression]
+
+gender1[gender] 
+gender2[gender] 
+gender3[gender] 
+
+age1[age]
+age2[age]
+age3[age]
+
+stress2[stress]
+stress3[stress]
+
+loneliness2[loneliness]
+loneliness3[loneliness]
+
+selfesteem[self-esteem]
+
+subgraph Model 3
+gender3 --> depression3
+age3 --> depression3
+loneliness3 --> depression3
+stress3 --> depression3
+selfesteem --> depression3
+end 
+
+subgraph Model 2
+gender2 --> depression2
+age2 --> depression2
+loneliness2 --> depression2
+stress2 --> depression2
+end 
+
+subgraph Model 1
+  direction LR
+gender1 --> depression1
+age1 --> depression1
+end 
+
+
+
+
+
+
+```
+
+## Running the analysis
+
+```{r echo=T, message=FALSE, warning=FALSE}
+
+model0 <- lm(depression ~ 1, data = data) #<1>
+
+model1 <- lm(depression ~ age + gender, data = data) #<2>
+
+model2 <- lm(depression~ age + gender + stress + loneliness, data = data) #<3>
+
+model3 <- lm(depression ~ age + gender + stress + loneliness + selfesteem, data = data) #<4>
+
+```
+
+1.  Model 0 is the null model. It is a model with no predictors. It is used as a baseline for comparison.
+
+2.  Model 1 is the first model. It includes the demographic variables.
+
+3.  Model 2 is the second model. It includes the demographic variables, stress and loneliness.
+
+4.  Model 3 is the third model. It includes the demographic variables, stress, loneliness and self-esteem.
+
+## Comparing the models
+
+-   We can compare the models using the <func>anova()</func> function
+
+```{r echo=T, message=FALSE, warning=FALSE}
+
+anova(model0, model1, model2, model3)
+
+```
+
+## Comparing the models
+
+-   The <func>anova()</func> function compares the change in $R^2$ between the models
+
+-   If the change in $R^2$ is significant, then the model is significantly better than the previous model
+
+-   This way, we can see the value of each set of predictors
+
+## What is the intercept-only model?
+
+-   The intercept-only model is the null model.
+
+-   It is a model with no predictors.
+
+-   It is used as a baseline for comparison, so we can see if the the first set of predictors (i.e., demographics) explain more variance than the null model.
+
+## Assessing the quality of the models
+
+-   Significance is not the only thing we should look at when comparing models
+
+-   There are several measures of model fit that we can use to assess the quality of regression models
+
+-   AIC (Akaike Information Criterion) and BIC (Bayesian Information Criterion) are two commonly used measures
+
+-   Both are assessing the same thing: the trade-off between model fit and model complexity
+
+## Assessing the quality of the models
+
+-   We can use the built-in <func>AIC()</func> and <func>BIC()</func> functions to calculate these measures
+
+```{r echo=T, message=FALSE, warning=FALSE}
+
+AIC(model0, model1, model2, model3)
+
+BIC(model0, model1, model2, model3)
+
+```
+
+Lower values indicate better model fit (i.e., the model explains more variance), taking into account the number of predictors.
+
+# Models and hypothesis testing
+
+## What do the models tell us about our research question? {.smaller}
+
+-   We were interested in whether self-esteem predicts depression
+
+-   The models tell us that self-esteem explains a significant amount of variance in depression, above and beyond:
+
+    -   Demographics (age and gender)
+    -   stress + loneliness (identified in previous research)
+
+-   This gives us a clear indication that self-esteem is an important predictor of depression
+
+-   The final model is the best model in terms of $R^2$ and model fit, suggesting that all of the predictors are important
+
+## Final points
+
+-   Model building should be theory driven
+
+-   We should have a clear rationale for the predictors we include
+
+-   We should have a clear rationale for the order in which we enter the predictors, based on previous research

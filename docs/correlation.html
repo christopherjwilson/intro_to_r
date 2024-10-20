@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Correlation and simple regression – Introduction to R for Clinical Psychology</title>
+<title>6&nbsp; Correlation in R – Introduction to R for Clinical Psychology</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./power_effectSize.html" rel="next">
 <link href="./basic_tests.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -115,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./correlation.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Correlation and simple regression</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./correlation.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Correlation in R</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -166,20 +165,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./power_effectSize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sampling, power and effect size</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./basic_tests.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Basic statistical tests</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Basic statistical tests</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./correlation.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Correlation and simple regression</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./power_effectSize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sampling, power and effect size</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Correlation in R</span></span></a>
   </div>
 </li>
     </ul>
@@ -192,32 +191,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-is-correlation" id="toc-what-is-correlation" class="nav-link active" data-scroll-target="#what-is-correlation"><span class="header-section-number">5.1</span> What is Correlation?</a></li>
-  <li><a href="#how-is-correlation-calculated" id="toc-how-is-correlation-calculated" class="nav-link" data-scroll-target="#how-is-correlation-calculated"><span class="header-section-number">5.2</span> How is correlation calculated?</a></li>
-  <li><a href="#which-correlation-to-use" id="toc-which-correlation-to-use" class="nav-link" data-scroll-target="#which-correlation-to-use"><span class="header-section-number">5.3</span> Which correlation to use?</a>
+  <li><a href="#what-is-correlation" id="toc-what-is-correlation" class="nav-link active" data-scroll-target="#what-is-correlation"><span class="header-section-number">6.1</span> What is Correlation?</a></li>
+  <li><a href="#visualising-correlation" id="toc-visualising-correlation" class="nav-link" data-scroll-target="#visualising-correlation"><span class="header-section-number">6.2</span> Visualising correlation</a></li>
+  <li><a href="#how-is-correlation-calculated" id="toc-how-is-correlation-calculated" class="nav-link" data-scroll-target="#how-is-correlation-calculated"><span class="header-section-number">6.3</span> How is correlation calculated?</a></li>
+  <li><a href="#which-correlation-to-use" id="toc-which-correlation-to-use" class="nav-link" data-scroll-target="#which-correlation-to-use"><span class="header-section-number">6.4</span> Which correlation to use?</a>
   <ul class="collapse">
-  <li><a href="#running-correlation-in-r" id="toc-running-correlation-in-r" class="nav-link" data-scroll-target="#running-correlation-in-r"><span class="header-section-number">5.3.1</span> Running correlation in R</a></li>
-  <li><a href="#interpreting-the-output" id="toc-interpreting-the-output" class="nav-link" data-scroll-target="#interpreting-the-output"><span class="header-section-number">5.3.2</span> Interpreting the output</a></li>
-  <li><a href="#check-the-significance-of-the-correlation" id="toc-check-the-significance-of-the-correlation" class="nav-link" data-scroll-target="#check-the-significance-of-the-correlation"><span class="header-section-number">5.3.3</span> Check the significance of the correlation</a></li>
-  </ul></li>
-  <li><a href="#exponent-values" id="toc-exponent-values" class="nav-link" data-scroll-target="#exponent-values"><span class="header-section-number">5.4</span> Exponent values</a></li>
-  <li><a href="#simple-regression" id="toc-simple-regression" class="nav-link" data-scroll-target="#simple-regression"><span class="header-section-number">6</span> Simple Regression</a>
-  <ul class="collapse">
-  <li><a href="#what-is-regression" id="toc-what-is-regression" class="nav-link" data-scroll-target="#what-is-regression"><span class="header-section-number">6.1</span> What is regression?</a></li>
-  <li><a href="#how-is-regression-calculated" id="toc-how-is-regression-calculated" class="nav-link" data-scroll-target="#how-is-regression-calculated"><span class="header-section-number">6.2</span> How is regression calculated?</a></li>
-  <li><a href="#the-regression-equation" id="toc-the-regression-equation" class="nav-link" data-scroll-target="#the-regression-equation"><span class="header-section-number">6.3</span> The regression equation</a></li>
-  <li><a href="#running-regression-in-r" id="toc-running-regression-in-r" class="nav-link" data-scroll-target="#running-regression-in-r"><span class="header-section-number">6.4</span> Running regression in R</a></li>
-  <li><a href="#run-regression" id="toc-run-regression" class="nav-link" data-scroll-target="#run-regression"><span class="header-section-number">6.5</span> Run regression</a></li>
-  <li><a href="#what-are-residuals" id="toc-what-are-residuals" class="nav-link" data-scroll-target="#what-are-residuals"><span class="header-section-number">6.6</span> What are residuals?</a></li>
-  <li><a href="#check-assumptions-distribution" id="toc-check-assumptions-distribution" class="nav-link" data-scroll-target="#check-assumptions-distribution"><span class="header-section-number">6.7</span> Check assumptions: distribution</a></li>
-  <li><a href="#check-assumptions-linearity" id="toc-check-assumptions-linearity" class="nav-link" data-scroll-target="#check-assumptions-linearity"><span class="header-section-number">6.8</span> Check assumptions: linearity</a></li>
-  <li><a href="#check-assumptions-homogeneity-of-variance-1" id="toc-check-assumptions-homogeneity-of-variance-1" class="nav-link" data-scroll-target="#check-assumptions-homogeneity-of-variance-1"><span class="header-section-number">6.9</span> Check assumptions: Homogeneity of Variance #1</a></li>
-  <li><a href="#check-assumptions-influential-cases" id="toc-check-assumptions-influential-cases" class="nav-link" data-scroll-target="#check-assumptions-influential-cases"><span class="header-section-number">6.10</span> Check assumptions: Influential cases</a></li>
-  <li><a href="#check-the-r-squared-value" id="toc-check-the-r-squared-value" class="nav-link" data-scroll-target="#check-the-r-squared-value"><span class="header-section-number">6.11</span> Check the r squared value</a></li>
-  <li><a href="#check-model-significance" id="toc-check-model-significance" class="nav-link" data-scroll-target="#check-model-significance"><span class="header-section-number">6.12</span> Check model significance</a></li>
-  <li><a href="#check-coefficient-values" id="toc-check-coefficient-values" class="nav-link" data-scroll-target="#check-coefficient-values"><span class="header-section-number">6.13</span> Check coefficient values</a></li>
-  <li><a href="#the-regression-equation-1" id="toc-the-regression-equation-1" class="nav-link" data-scroll-target="#the-regression-equation-1"><span class="header-section-number">6.14</span> The regression equation</a></li>
-  <li><a href="#accounting-for-error-in-predictions" id="toc-accounting-for-error-in-predictions" class="nav-link" data-scroll-target="#accounting-for-error-in-predictions"><span class="header-section-number">6.15</span> Accounting for error in predictions</a></li>
+  <li><a href="#running-correlation-in-r" id="toc-running-correlation-in-r" class="nav-link" data-scroll-target="#running-correlation-in-r"><span class="header-section-number">6.4.1</span> Running correlation in R</a></li>
+  <li><a href="#interpreting-the-output" id="toc-interpreting-the-output" class="nav-link" data-scroll-target="#interpreting-the-output"><span class="header-section-number">6.4.2</span> Interpreting the output</a></li>
+  <li><a href="#check-the-significance-of-the-correlation" id="toc-check-the-significance-of-the-correlation" class="nav-link" data-scroll-target="#check-the-significance-of-the-correlation"><span class="header-section-number">6.4.3</span> Check the significance of the correlation</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -227,7 +208,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Correlation and simple regression</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Correlation in R</span></h1>
 </div>
 
 
@@ -244,16 +225,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<iframe src="https://teesside.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=c13b5ceb-47c7-4001-8a56-adaa008f19a2&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;captions=false&amp;interactivity=all" height="405" width="100%" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay">
-</iframe>
-<section id="what-is-correlation" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="what-is-correlation"><span class="header-section-number">5.1</span> What is Correlation?</h2>
-<p>Correlation is a measure of the strength and direction of a relationship between two variables. It is most commonly used when we want to see if there is a relationship between two <em>continuous</em> variables. When we calculate correlation, we get a value between -1 and 1. The closer the value is to 1, the stronger the relationship. The closer the value is to 0, the weaker the relationship. We also often calculate the significance of the correlation, which tests against a null hypothesis that the correlation is 0.</p>
+<section id="what-is-correlation" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="what-is-correlation"><span class="header-section-number">6.1</span> What is Correlation?</h2>
+<p>Correlation is a measure of the strength and direction of a relationship between two variables. It is most commonly used when we want to see if there is a relationship between two <em>continuous</em> variables. However, it is possible to run correlations between a continuous and a categorical variable (this is known as point-biserial correlation) or between two categorical variables (this is known as phi coefficient).</p>
+<p>Sticking to the more conventional form of correlation; when we calculate correlation, we get an r value of between -1 and 1. This tells us two things:</p>
+<ol type="1">
+<li><p>The closer the value is to 1, the stronger the relationship. The closer the value is to 0, the weaker the relationship.</p></li>
+<li><p>The sign of the value tells us the direction of the relationship. Positive values indicate a positive relationship (i.e.&nbsp;as one variable increases, so does the other). Negative values indicate a negative relationship (i.e.&nbsp;as one variable increases, the other decreases).</p></li>
+</ol>
+<p>We also often calculate the significance of the correlation, which tests against a null hypothesis that the correlation is 0. This is not part of the correlation per se, but it is often part of correlational research questions.</p>
 </section>
-<section id="how-is-correlation-calculated" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="how-is-correlation-calculated"><span class="header-section-number">5.2</span> How is correlation calculated?</h2>
+<section id="visualising-correlation" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="visualising-correlation"><span class="header-section-number">6.2</span> Visualising correlation</h2>
+<p>We can visualise correlation using a scatterplot. This is a graph where each data point is plotted on a graph, with one variable on the x axis and the other on the y axis. If the data points form something resembling a straight line, with all of the data points in a consistent pattern, then we have a strong correlation. If the data points are scattered, then we have a weaker correlation. However, if the data points are inconsistent or more diffuse, the correlation is weaker. The direction of the line tells us the direction of the correlation.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="correlation_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Visualising the data in this way can give us a good idea of the strength and direction of the correlation. However, it is not a substitute for running the correlation itself. At the same time, correlation coefficients can be misleading on their own. It is always a good idea to visualise the data as well.</p>
+</section>
+<section id="how-is-correlation-calculated" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="how-is-correlation-calculated"><span class="header-section-number">6.3</span> How is correlation calculated?</h2>
 <p>Correlation can be thought of as covariance divided by individual variance. Covariance is a measure of how much two variables change together. Variance is a measure of how much a variable changes on its own. When we divide covariance by variance, we get a value that is standardised and can be compared across different data sets.</p>
-<p>If the changes are consistent with both variables (i.e.&nbsp;the covariance is higher and the individual variance is lower), then the final correlation value will be higher.</p>
+<p>If the changes are consistent with both variables (i.e.&nbsp;the covariance is higher and the individual variance is lower), then the final correlation value will be higher. However, if the changes are inconsistent (i.e.&nbsp;the covariance is lower and the individual variance is higher), then the final correlation value will be lower.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -273,12 +272,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="which-correlation-to-use" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="which-correlation-to-use"><span class="header-section-number">5.3</span> Which correlation to use?</h2>
+<section id="which-correlation-to-use" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="which-correlation-to-use"><span class="header-section-number">6.4</span> Which correlation to use?</h2>
 <p>When we run correlation in R, we use the <em>cor.test()</em> command. This command will give us the correlation value, the p value and the confidence intervals.</p>
 <p>We can specify a Pearson correlation (the default) or a Spearman correlation (for non-parametric data).</p>
-<section id="running-correlation-in-r" class="level3" data-number="5.3.1">
-<h3 data-number="5.3.1" class="anchored" data-anchor-id="running-correlation-in-r"><span class="header-section-number">5.3.1</span> Running correlation in R</h3>
+<section id="running-correlation-in-r" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="running-correlation-in-r"><span class="header-section-number">6.4.1</span> Running correlation in R</h3>
 <ul>
 <li>R can run correlations using the <em>cor.test()</em> command</li>
 </ul>
@@ -300,8 +299,8 @@ sample estimates:
 </div>
 <p>In the above example, we are testing the correlation between treatment duration and aggression level. Each variable is separated by a comma.</p>
 </section>
-<section id="interpreting-the-output" class="level3" data-number="5.3.2">
-<h3 data-number="5.3.2" class="anchored" data-anchor-id="interpreting-the-output"><span class="header-section-number">5.3.2</span> Interpreting the output</h3>
+<section id="interpreting-the-output" class="level3" data-number="6.4.2">
+<h3 data-number="6.4.2" class="anchored" data-anchor-id="interpreting-the-output"><span class="header-section-number">6.4.2</span> Interpreting the output</h3>
 <ul>
 <li>The r value tells us the strength and direction of the relationship</li>
 <li>In the output it is labelled as “cor” (short for correlation)</li>
@@ -324,8 +323,8 @@ sample estimates:
 </div>
 </div>
 </section>
-<section id="check-the-significance-of-the-correlation" class="level3" data-number="5.3.3">
-<h3 data-number="5.3.3" class="anchored" data-anchor-id="check-the-significance-of-the-correlation"><span class="header-section-number">5.3.3</span> Check the significance of the correlation</h3>
+<section id="check-the-significance-of-the-correlation" class="level3" data-number="6.4.3">
+<h3 data-number="6.4.3" class="anchored" data-anchor-id="check-the-significance-of-the-correlation"><span class="header-section-number">6.4.3</span> Check the significance of the correlation</h3>
 <ul>
 <li>We can see that the significance by looking at the p value
 <ul>
@@ -350,393 +349,17 @@ sample estimates:
 -0.6942996 </code></pre>
 </div>
 </div>
-</section>
-</section>
-<section id="exponent-values" class="level2 note important" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="exponent-values"><span class="header-section-number">5.4</span> Exponent values</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exponent values
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>When we see a value like 1.146e-15, this is a shorthand way of writing a very small number. The e-15 means that we move the decimal point 15 places to the left. So 1.146e-15 is the same as 0.000000000000001146</p>
-</section>
-<section id="simple-regression" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Simple Regression</h1>
-<iframe src="https://teesside.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=5e657c9f-3a06-4a74-b259-adaa0090242b&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;captions=false&amp;interactivity=all" height="405" width="100%" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay">
-</iframe>
-<section id="what-is-regression" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="what-is-regression"><span class="header-section-number">6.1</span> What is regression?</h2>
-<ul>
-<li>Testing to see if we can make predictions based on data that are correlated</li>
-</ul>
-<blockquote class="blockquote">
-<p>We found a strong correlation between treatment duration and agression levels. Can we use this data to predict aggression levels of other clients, based on their treatment duration?</p>
-</blockquote>
-<ul>
-<li>When we carry out regression, we get a information about:
-<ul>
-<li>How much variance in the <strong>outcome</strong> is explained by the <strong>predictor</strong></li>
-<li>How confident we can be about these results generalising (i.e.&nbsp;<strong>significance</strong>)</li>
-<li>How much error we can expect from anu predictions that we make (i.e.&nbsp;<strong>standard error of the estimate</strong>)</li>
-<li>The figures we need to calculate a predicted outcome value (i.e.&nbsp;<strong>coefficient values</strong>)</li>
-</ul></li>
-</ul>
-</section>
-<section id="how-is-regression-calculated" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="how-is-regression-calculated"><span class="header-section-number">6.2</span> How is regression calculated?</h2>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="img/bestfit.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="536"></p>
-</figure>
-</div>
-</div>
-</div>
-<ul>
-<li>When we run a regression analysis, a calculation is done to select the “line of best fit”</li>
-<li>This is a “prediction line” that minimises the overall amount of error
-<ul>
-<li>Error = difference between the data points and the line</li>
-</ul></li>
-</ul>
-</section>
-<section id="the-regression-equation" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="the-regression-equation"><span class="header-section-number">6.3</span> The regression equation</h2>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="img/bestfit.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="536"></p>
-</figure>
-</div>
-</div>
-</div>
-<ul>
-<li><p>Once the line of best fit is calculated, predictions are based on this line</p></li>
-<li><p>To make predictions we need the <strong>intercept</strong> and <strong>slope</strong> of the line</p>
-<ul>
-<li><strong>Intercept</strong> or <strong>constant</strong>= where the line crosses the y axis</li>
-<li><strong>Slope</strong> or <strong>beta</strong> = the angle of the line</li>
-</ul></li>
-<li><p>Predictions are made using the calculation for a line: <strong>Y = bX + c</strong></p></li>
-<li><p>You can think of the equation like this:</p></li>
-</ul>
-<p><strong>predicted outcome value = beta coefficient * value of predictor + constant</strong></p>
-</section>
-<section id="running-regression-in-r" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="running-regression-in-r"><span class="header-section-number">6.4</span> Running regression in R</h2>
-<ul>
-<li>Step 1: Run regression</li>
-<li>Step 2: Check assumptions
-<ul>
-<li>Data</li>
-<li>Distribution</li>
-<li>Linearity</li>
-<li>Homogeneity of variance</li>
-<li>Uncorrelated predictors</li>
-<li>Indpendence of residuals</li>
-<li>No influental cases / outliers</li>
-</ul></li>
-<li>Step 3: Check R^2 value</li>
-<li>Step 4: Check model significance</li>
-<li>Step 5: Check coefficient values</li>
-</ul>
-</section>
-<section id="run-regression" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="run-regression"><span class="header-section-number">6.5</span> Run regression</h2>
-<ul>
-<li>We use the <em>lm()</em> command to run regression while saving the results</li>
-<li>We then use the <em>summary()</em> function to check the results</li>
-</ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula=</span> aggression_level <span class="sc">~</span> treatment_duration ,<span class="at">data=</span>regression_data)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = aggression_level ~ treatment_duration, data = regression_data)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--3.4251 -1.1493 -0.0593  0.8814  3.4542 
-
-Coefficients:
-                   Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)         12.3300     0.7509   16.42  &lt; 2e-16 ***
-treatment_duration  -0.6933     0.0726   -9.55 1.15e-15 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 1.551 on 98 degrees of freedom
-Multiple R-squared:  0.4821,    Adjusted R-squared:  0.4768 
-F-statistic: 91.21 on 1 and 98 DF,  p-value: 1.146e-15</code></pre>
-</div>
-</div>
-</section>
-<section id="what-are-residuals" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="what-are-residuals"><span class="header-section-number">6.6</span> What are residuals?</h2>
-<ul>
-<li>In regression, the assumptions apply to the residuals, not the data themselves</li>
-<li>Residual just means the difference between the data point and the regression line</li>
-</ul>
-<div class="cell" data-layout-align="center" width="100%">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="img/residuals1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="510"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="check-assumptions-distribution" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="check-assumptions-distribution"><span class="header-section-number">6.7</span> Check assumptions: distribution</h2>
-<ul>
-<li>Using the <em>plot()</em> command on our regression model will give us some useful diagnostic plots</li>
-<li>The second plot that it outputs shows the normality</li>
-</ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model1, <span class="at">which=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="correlation_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<ul>
-<li>We could also use a histogram to check the distribution</li>
-<li>Notice how we can use the $ sign to get the residuals from the model</li>
-</ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(model1<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="correlation_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="check-assumptions-linearity" class="level2" data-number="6.8">
-<h2 data-number="6.8" class="anchored" data-anchor-id="check-assumptions-linearity"><span class="header-section-number">6.8</span> Check assumptions: linearity</h2>
-<ul>
-<li>Using the <em>plot()</em> command on our regression model will give us some useful diagnostic plots</li>
-<li>The first plot that it outputs shows the residuals vs the fitted values</li>
-<li>Here, we want to see them spread out, with the line being horizontal and straight</li>
-</ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model1, <span class="at">which=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="correlation_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<ul>
-<li>There is a slight amount of curvilinearity here but nothing to be worried about</li>
-</ul>
-</section>
-<section id="check-assumptions-homogeneity-of-variance-1" class="level2" data-number="6.9">
-<h2 data-number="6.9" class="anchored" data-anchor-id="check-assumptions-homogeneity-of-variance-1"><span class="header-section-number">6.9</span> Check assumptions: Homogeneity of Variance #1</h2>
-<ul>
-<li>We can use the sample plot to check Homogeneity of Variance</li>
-<li>We want the variance to be constant across the data set. We do not want the variance to change at different points in the data</li>
-</ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model1, <span class="at">which=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="correlation_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<ul>
-<li>A violation of Homogeneity of Variance would usually look like a funnel, with the data narrowing</li>
-</ul>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="img/biasedresiduals.png" class="quarto-figure quarto-figure-center figure-img" style="height:100.0%" width="496"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="check-assumptions-influential-cases" class="level2" data-number="6.10">
-<h2 data-number="6.10" class="anchored" data-anchor-id="check-assumptions-influential-cases"><span class="header-section-number">6.10</span> Check assumptions: Influential cases</h2>
-<ul>
-<li>We need to check that there are no extreme outliers - they could throw off our predictions</li>
-<li>We are looking for participants that have high rediduals + high leverage
-<ul>
-<li>Some guidance suggests anything higher than 1 is an influential case</li>
-<li>Others suggest 4/n is the cut off point (4 divided by number of participants)</li>
-</ul></li>
-</ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model1, <span class="at">which=</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="correlation_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<ul>
-<li>We are looking for participants that have high rediduals + high leverage
-<ul>
-<li>No cases over 1</li>
-<li>Many are over 0.04 (4/n = 0.04)</li>
-</ul></li>
-</ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model1, <span class="at">which=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="correlation_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="check-the-r-squared-value" class="level2" data-number="6.11">
-<h2 data-number="6.11" class="anchored" data-anchor-id="check-the-r-squared-value"><span class="header-section-number">6.11</span> Check the r squared value</h2>
-<ul>
-<li>r^2 = the amount of variance in the <strong>outcome</strong> that is explained by the <strong>predictor(s)</strong></li>
-<li>The closer this value is to 1, the more useful our regression model is for predicting the outcome</li>
-</ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>modelSummary <span class="ot">&lt;-</span> <span class="fu">summary</span>(model1)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>modelSummary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = aggression_level ~ treatment_duration, data = regression_data)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--3.4251 -1.1493 -0.0593  0.8814  3.4542 
-
-Coefficients:
-                   Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)         12.3300     0.7509   16.42  &lt; 2e-16 ***
-treatment_duration  -0.6933     0.0726   -9.55 1.15e-15 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 1.551 on 98 degrees of freedom
-Multiple R-squared:  0.4821,    Adjusted R-squared:  0.4768 
-F-statistic: 91.21 on 1 and 98 DF,  p-value: 1.146e-15</code></pre>
-</div>
-</div>
-<ul>
-<li>The r^2 of 0.482052 means that 48% of the variance in <strong>aggression level</strong> is explained by <strong>treatment duration</strong></li>
-</ul>
-</section>
-<section id="check-model-significance" class="level2" data-number="6.12">
-<h2 data-number="6.12" class="anchored" data-anchor-id="check-model-significance"><span class="header-section-number">6.12</span> Check model significance</h2>
-<ul>
-<li>The model significance is displayed at the very end of the output
-<ul>
-<li><em>p-value: 1.146e-15</em></li>
-<li>As p &lt; 0.05, the model is significant</li>
-</ul></li>
-</ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>modelSummary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = aggression_level ~ treatment_duration, data = regression_data)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--3.4251 -1.1493 -0.0593  0.8814  3.4542 
-
-Coefficients:
-                   Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)         12.3300     0.7509   16.42  &lt; 2e-16 ***
-treatment_duration  -0.6933     0.0726   -9.55 1.15e-15 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 1.551 on 98 degrees of freedom
-Multiple R-squared:  0.4821,    Adjusted R-squared:  0.4768 
-F-statistic: 91.21 on 1 and 98 DF,  p-value: 1.146e-15</code></pre>
-</div>
-</div>
-</section>
-<section id="check-coefficient-values" class="level2" data-number="6.13">
-<h2 data-number="6.13" class="anchored" data-anchor-id="check-coefficient-values"><span class="header-section-number">6.13</span> Check coefficient values</h2>
-<ul>
-<li>The coefficient values are displayed in the coefficients table</li>
-<li>If we have more than one predictor, they are all listed here</li>
-</ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>modelSummary<span class="sc">$</span>coefficients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                     Estimate Std. Error   t value     Pr(&gt;|t|)
-(Intercept)        12.3300211 0.75087601 16.420848 6.840516e-30
-treatment_duration -0.6933201 0.07259671 -9.550297 1.145898e-15</code></pre>
-</div>
-</div>
-<ul>
-<li>The <strong>beta coefficient</strong> for treatment duration is in the <em>Estimate</em> column</li>
-<li>For every unit increase in treatment duration, aggression level decreases by 0.69</li>
-</ul>
-</section>
-<section id="the-regression-equation-1" class="level2" data-number="6.14">
-<h2 data-number="6.14" class="anchored" data-anchor-id="the-regression-equation-1"><span class="header-section-number">6.14</span> The regression equation</h2>
-<ul>
-<li>The regression equation is:</li>
-</ul>
-<p>Outcome = predictor value * beta coefficient + constant</p>
-<ul>
-<li>For this model, that is:</li>
-</ul>
-<p>Aggression level = treatment duration * -0.69 + 12.33</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>modelSummary<span class="sc">$</span>coefficients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                     Estimate Std. Error   t value     Pr(&gt;|t|)
-(Intercept)        12.3300211 0.75087601 16.420848 6.840516e-30
-treatment_duration -0.6933201 0.07259671 -9.550297 1.145898e-15</code></pre>
-</div>
-</div>
-</section>
-<section id="accounting-for-error-in-predictions" class="level2" data-number="6.15">
-<h2 data-number="6.15" class="anchored" data-anchor-id="accounting-for-error-in-predictions"><span class="header-section-number">6.15</span> Accounting for error in predictions</h2>
-<ul>
-<li>We also know that the accuracy of predictions will be within a certain margin of error</li>
-<li>This is known as <strong>standard error of the estimate</strong> or <strong>residual standard error</strong></li>
-</ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>modelSummary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = aggression_level ~ treatment_duration, data = regression_data)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--3.4251 -1.1493 -0.0593  0.8814  3.4542 
-
-Coefficients:
-                   Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)         12.3300     0.7509   16.42  &lt; 2e-16 ***
-treatment_duration  -0.6933     0.0726   -9.55 1.15e-15 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 1.551 on 98 degrees of freedom
-Multiple R-squared:  0.4821,    Adjusted R-squared:  0.4768 
-F-statistic: 91.21 on 1 and 98 DF,  p-value: 1.146e-15</code></pre>
 </div>
 </div>
 
@@ -1168,13 +791,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./basic_tests.html" class="pagination-link" aria-label="Basic statistical tests">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Basic statistical tests</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Basic statistical tests</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./power_effectSize.html" class="pagination-link" aria-label="Sampling, power and effect size">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sampling, power and effect size</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

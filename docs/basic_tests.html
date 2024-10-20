@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Basic statistical tests – Introduction to R for Clinical Psychology</title>
+<title>5&nbsp; Basic statistical tests – Introduction to R for Clinical Psychology</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./correlation.html" rel="next">
-<link href="./descriptive_stats.html" rel="prev">
+<link href="./power_effectSize.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -115,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./basic_tests.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Basic statistical tests</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./basic_tests.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Basic statistical tests</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -166,20 +166,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./power_effectSize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sampling, power and effect size</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./basic_tests.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Basic statistical tests</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Basic statistical tests</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./correlation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Correlation and simple regression</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./power_effectSize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sampling, power and effect size</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Correlation in R</span></span></a>
   </div>
 </li>
     </ul>
@@ -192,15 +192,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#independent-t-test" id="toc-independent-t-test" class="nav-link active" data-scroll-target="#independent-t-test"><span class="header-section-number">4.1</span> Independent t-test</a></li>
-  <li><a href="#paired-t-test" id="toc-paired-t-test" class="nav-link" data-scroll-target="#paired-t-test"><span class="header-section-number">4.2</span> Paired t-test</a></li>
-  <li><a href="#wilcoxon-signed-rank-test" id="toc-wilcoxon-signed-rank-test" class="nav-link" data-scroll-target="#wilcoxon-signed-rank-test"><span class="header-section-number">4.3</span> Wilcoxon signed-rank test</a></li>
-  <li><a href="#mann-whitney-u-test" id="toc-mann-whitney-u-test" class="nav-link" data-scroll-target="#mann-whitney-u-test"><span class="header-section-number">4.4</span> Mann-Whitney U test</a></li>
-  <li><a href="#chi-squared-test" id="toc-chi-squared-test" class="nav-link" data-scroll-target="#chi-squared-test"><span class="header-section-number">4.5</span> Chi-squared test</a></li>
-  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation"><span class="header-section-number">4.6</span> Correlation</a></li>
-  <li><a href="#one-way-anova" id="toc-one-way-anova" class="nav-link" data-scroll-target="#one-way-anova"><span class="header-section-number">4.7</span> One-way ANOVA</a></li>
-  <li><a href="#factorial-anova" id="toc-factorial-anova" class="nav-link" data-scroll-target="#factorial-anova"><span class="header-section-number">4.8</span> Factorial ANOVA</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">4.9</span> Conclusion</a></li>
+  <li><a href="#independent-t-test" id="toc-independent-t-test" class="nav-link active" data-scroll-target="#independent-t-test"><span class="header-section-number">5.1</span> Independent t-test</a></li>
+  <li><a href="#paired-t-test" id="toc-paired-t-test" class="nav-link" data-scroll-target="#paired-t-test"><span class="header-section-number">5.2</span> Paired t-test</a></li>
+  <li><a href="#wilcoxon-signed-rank-test" id="toc-wilcoxon-signed-rank-test" class="nav-link" data-scroll-target="#wilcoxon-signed-rank-test"><span class="header-section-number">5.3</span> Wilcoxon signed-rank test</a></li>
+  <li><a href="#mann-whitney-u-test" id="toc-mann-whitney-u-test" class="nav-link" data-scroll-target="#mann-whitney-u-test"><span class="header-section-number">5.4</span> Mann-Whitney U test</a></li>
+  <li><a href="#chi-squared-test" id="toc-chi-squared-test" class="nav-link" data-scroll-target="#chi-squared-test"><span class="header-section-number">5.5</span> Chi-squared test</a></li>
+  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation"><span class="header-section-number">5.6</span> Correlation</a></li>
+  <li><a href="#one-way-anova" id="toc-one-way-anova" class="nav-link" data-scroll-target="#one-way-anova"><span class="header-section-number">5.7</span> One-way ANOVA</a></li>
+  <li><a href="#factorial-anova" id="toc-factorial-anova" class="nav-link" data-scroll-target="#factorial-anova"><span class="header-section-number">5.8</span> Factorial ANOVA</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5.9</span> Conclusion</a></li>
   </ul>
 </nav>
     </div>
@@ -209,7 +209,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Basic statistical tests</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Basic statistical tests</span></h1>
 </div>
 
 
@@ -237,12 +237,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>ANOVA</li>
 </ul>
 <p>These examples will not be exhaustive, but they should give you a good starting point for performing these tests in R. For theoretical background, you can refer to any standard statistics textbook.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+At the end of this chapter, you will be able to:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Conduct several basic inderential tests with R</li>
+</ul>
+</div>
+</div>
 <div class="note">
 <p>These examples will all use built-in datasets in R. Each example will include the necessary code to load the dataset and perform the test. However, you can also use your own datasets by loading them into R yourself and replacing the dataset name in the examples.</p>
 </div>
-<section id="independent-t-test" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="independent-t-test"><span class="header-section-number">4.1</span> Independent t-test</h2>
-<iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=e71c205c-6789-43bc-b020-b1f000ed905b&amp;autoplay=false&amp;offerviewer=false&amp;showtitle=false&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="independent t-test in R">
+<section id="independent-t-test" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="independent-t-test"><span class="header-section-number">5.1</span> Independent t-test</h2>
+<iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=e71c205c-6789-43bc-b020-b1f000ed905b&amp;autoplay=false&amp;offerviewer=false&amp;showtitle=false&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="405" width="600" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="independent t-test in R">
 </iframe>
 <p>The independent t-test is used to compare the means of two independent groups. In R, you can use the <code>t.test()</code> function to perform an independent t-test. Here is an example:</p>
 <div class="cell">
@@ -285,9 +300,9 @@ mean in group 0 mean in group 1
 <li>The 2 sample means are presented.</li>
 </ul>
 </section>
-<section id="paired-t-test" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="paired-t-test"><span class="header-section-number">4.2</span> Paired t-test</h2>
-<iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=67032f01-233e-409d-9021-b1f000e88cab&amp;autoplay=false&amp;offerviewer=false&amp;showtitle=false&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="t-tests in R">
+<section id="paired-t-test" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="paired-t-test"><span class="header-section-number">5.2</span> Paired t-test</h2>
+<iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=67032f01-233e-409d-9021-b1f000e88cab&amp;autoplay=false&amp;offerviewer=false&amp;showtitle=false&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="405" width="600" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="t-tests in R">
 </iframe>
 <p>The paired t-test is used to compare the means of two related groups. In R, you can use the <code>t.test()</code> function with the <code>paired = TRUE</code> argument to perform a paired t-test. Here is an example:</p>
 <div class="cell">
@@ -329,8 +344,8 @@ mean difference
 <li>The mean difference is presented.</li>
 </ul>
 </section>
-<section id="wilcoxon-signed-rank-test" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="wilcoxon-signed-rank-test"><span class="header-section-number">4.3</span> Wilcoxon signed-rank test</h2>
+<section id="wilcoxon-signed-rank-test" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="wilcoxon-signed-rank-test"><span class="header-section-number">5.3</span> Wilcoxon signed-rank test</h2>
 <p>The Wilcoxon signed-rank test is a non-parametric test used to compare two related groups. In R, you can use the <code>wilcox.test()</code> function to perform a Wilcoxon signed-rank test. Here is an example:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This example uses the sleep dataset, which is a built-in dataset in R that contains data on the effect of two soporific drugs on sleep duration.</span></span>
@@ -372,8 +387,8 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 </ul>
 <p>Note: if there are ties in the data, the exact p-value is not calculated. Instead, an approximate p-value is presented.</p>
 </section>
-<section id="mann-whitney-u-test" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="mann-whitney-u-test"><span class="header-section-number">4.4</span> Mann-Whitney U test</h2>
+<section id="mann-whitney-u-test" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="mann-whitney-u-test"><span class="header-section-number">5.4</span> Mann-Whitney U test</h2>
 <p>The Mann-Whitney U test is a non-parametric test used to compare the means of two independent groups. In R, you can use the <code>wilcox.test()</code> function to perform a Mann-Whitney U test. Note: we will not include the <code>paired = TRUE</code> argument that we did in the previous example. Here is an example:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This example uses the mtcars dataset, which is a built-in dataset in R that contains data on various car models.</span></span>
@@ -405,9 +420,9 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 </div>
 <p>The output is interpreted in the same way as the Wilcoxon signed-rank test output.</p>
 </section>
-<section id="chi-squared-test" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="chi-squared-test"><span class="header-section-number">4.5</span> Chi-squared test</h2>
-<iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=74a966be-ab9b-412b-a97a-b1f000efe18d&amp;autoplay=false&amp;offerviewer=false&amp;showtitle=false&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="Chi Square Test in R">
+<section id="chi-squared-test" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="chi-squared-test"><span class="header-section-number">5.5</span> Chi-squared test</h2>
+<iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=74a966be-ab9b-412b-a97a-b1f000efe18d&amp;autoplay=false&amp;offerviewer=false&amp;showtitle=false&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="405" width="600" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="Chi Square Test in R">
 </iframe>
 <p>The chi-squared test is used to test the association between two categorical variables. In R, you can use the <code>chisq.test()</code> function to perform a chi-squared test. Here is an example:</p>
 <div class="cell">
@@ -447,9 +462,11 @@ X-squared = 8.7407, df = 2, p-value = 0.01265</code></pre>
 <li>The chi-squared test result is presented.</li>
 </ul>
 </section>
-<section id="correlation" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="correlation"><span class="header-section-number">4.6</span> Correlation</h2>
-<p>Correlation is used to test the relationship between two continuous variables. In R, you can use the <code>cor()</code> function to calculate the correlation coefficient. Here is an example:</p>
+<section id="correlation" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="correlation"><span class="header-section-number">5.6</span> Correlation</h2>
+<iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=decadcc4-5bec-47b9-bc86-b1f000f4d0dc&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="405" width="600" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="Correlation in R">
+</iframe>
+<p>Correlation is used to test the relationship between two continuous variables. In R, you can use the <code>cor.test()</code> function to calculate the correlation coefficient with significance test. Here is an example:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This example uses the mtcars dataset, which is a built-in dataset in R that contains data on various car models.</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -489,9 +506,11 @@ sample estimates:
 <li>The alternative hypothesis is that the correlation is not equal to 0.</li>
 </ul>
 </section>
-<section id="one-way-anova" class="level2" data-number="4.7">
-<h2 data-number="4.7" class="anchored" data-anchor-id="one-way-anova"><span class="header-section-number">4.7</span> One-way ANOVA</h2>
+<section id="one-way-anova" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="one-way-anova"><span class="header-section-number">5.7</span> One-way ANOVA</h2>
 <p>One-way ANOVA (Analysis of Variance) is used to test the differences between the means of three or more groups. In R, you can use the <code>aov()</code> function to perform an ANOVA. Here is an example:</p>
+<iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=deb8b511-35b1-46e5-b816-b1f000fa1e46&amp;autoplay=false&amp;offerviewer=false&amp;showtitle=false&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="405" width="600" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="One Waty ANOVA in R">
+</iframe>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This example uses the mtcars dataset, which is a built-in dataset in R that contains data on various car models.</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -501,17 +520,21 @@ sample estimates:
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># One-way ANOVA example: Is there a difference in fuel efficiency between cars with different numbers of cylinders?</span></span>
 <span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform the ANOVA</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co"># cyl should be a factor</span></span>
 <span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>anova_result <span class="ot">&lt;-</span> <span class="fu">aov</span>(mpg <span class="sc">~</span> cyl, <span class="at">data =</span> mtcars)</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>mtcars<span class="sc">$</span>cyl <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(mtcars<span class="sc">$</span>cyl)</span>
 <span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the result</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform the ANOVA</span></span>
 <span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(anova_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>anova_result <span class="ot">&lt;-</span> <span class="fu">aov</span>(mpg <span class="sc">~</span> cyl, <span class="at">data =</span> mtcars)</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the result</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(anova_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-cyl          1  817.7   817.7   79.56 6.11e-10 ***
-Residuals   30  308.3    10.3                     
+cyl          2  824.8   412.4    39.7 4.98e-09 ***
+Residuals   29  301.3    10.4                     
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
@@ -522,8 +545,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <li>The ANOVA result is within the <code>summary()</code> function. The summary includes the F-statistic, the p-value, and the significance level of the ANOVA test.</li>
 </ul>
 </section>
-<section id="factorial-anova" class="level2" data-number="4.8">
-<h2 data-number="4.8" class="anchored" data-anchor-id="factorial-anova"><span class="header-section-number">4.8</span> Factorial ANOVA</h2>
+<section id="factorial-anova" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="factorial-anova"><span class="header-section-number">5.8</span> Factorial ANOVA</h2>
 <p>Factorial ANOVA is used to test the effects of two or more independent variables on a dependent variable. In R, you can use the <code>aov()</code> function with interaction terms to perform a factorial ANOVA. Here is an example:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This example uses the mtcars dataset, which is a built-in dataset in R that contains data on various car models.</span></span>
@@ -534,19 +557,24 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Factorial ANOVA example: Is there an interaction effect between the number of cylinders and the type of transmission on fuel efficiency?</span></span>
 <span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform the factorial ANOVA</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co"># cyl and am should be factors</span></span>
 <span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>factorial_anova_result <span class="ot">&lt;-</span> <span class="fu">aov</span>(mpg <span class="sc">~</span> cyl <span class="sc">*</span> am, <span class="at">data =</span> mtcars)</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the result</span></span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(factorial_anova_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>mtcars<span class="sc">$</span>cyl <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(mtcars<span class="sc">$</span>cyl)</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>mtcars<span class="sc">$</span>am <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(mtcars<span class="sc">$</span>am)</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform the factorial ANOVA</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>factorial_anova_result <span class="ot">&lt;-</span> <span class="fu">aov</span>(mpg <span class="sc">~</span> cyl <span class="sc">*</span> am, <span class="at">data =</span> mtcars)</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the result</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(factorial_anova_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-cyl          1  817.7   817.7  94.642 1.76e-10 ***
-am           1   37.0    37.0   4.279   0.0479 *  
-cyl:am       1   29.4    29.4   3.407   0.0755 .  
-Residuals   28  241.9     8.6                     
+cyl          2  824.8   412.4  44.852 3.73e-09 ***
+am           1   36.8    36.8   3.999   0.0561 .  
+cyl:am       2   25.4    12.7   1.383   0.2686    
+Residuals   26  239.1     9.2                     
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
@@ -560,8 +588,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <li><p>The interaction effect is denoted by the <code>cyl:am</code> term in the output.</p></li>
 </ul>
 </section>
-<section id="conclusion" class="level2" data-number="4.9">
-<h2 data-number="4.9" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">4.9</span> Conclusion</h2>
+<section id="conclusion" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">5.9</span> Conclusion</h2>
 <p>In this chapter, we have covered several basic statistical tests that you can perform in R. These are included for reference and to help you get started with performing statistical tests in R. However, we will be focusing on modelling our data, using different types of regression models, rather than re-learning these tests.</p>
 
 
@@ -990,13 +1018,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./descriptive_stats.html" class="pagination-link" aria-label="Exploratory and descriptive analysis">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Exploratory and descriptive analysis</span></span>
+      <a href="./power_effectSize.html" class="pagination-link" aria-label="Sampling, power and effect size">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sampling, power and effect size</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./correlation.html" class="pagination-link" aria-label="Correlation and simple regression">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Correlation and simple regression</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./correlation.html" class="pagination-link" aria-label="Correlation in R">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Correlation in R</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
