@@ -410,6 +410,45 @@ Dr Christopher Wilson
 </div>
 
 </section>
+<section id="key-points-from-lecture-1" class="slide level2">
+<h2>Key points from Lecture 1:</h2>
+<ul>
+<li><p>Generate research questions based on where the current literature is</p></li>
+<li><p>Incorporate the current theoretical models that explain your phenomenon of interest</p></li>
+<li><p>Some topics need more on the <em>“What?”</em> but many need more on the <em>“How?” -</em> build from wherever current knowledge is and design your study accordingly.</p></li>
+<li><p>Transparency and open science practices (e.g., registration) can prod you to clarify these points before you begin data collection.</p></li>
+</ul>
+</section>
+<section id="key-points-from-lecture-2" class="slide level2">
+<h2>Key points from Lecture 2:</h2>
+<ul>
+<li><p>Statistical significance is an indicator of confidence that if the null hypothesis were true, we would be unlikely to find such a result.</p></li>
+<li><p>The importance of statistical significance is often <strong><em>overstated</em></strong> in that it does not:</p>
+<ul>
+<li><p>Confirm that our alternative hypothesis is true</p></li>
+<li><p>Mean that our result is clinically meaningful</p></li>
+</ul></li>
+</ul>
+<p>The importance of statistical significance is often <strong><em>understated</em></strong> in that:</p>
+<ul>
+<li><p>There is no such thing as a “near significant” result - alpha thresholds (p values) are decided in advance</p></li>
+<li><p>Studies need to be designed with sufficient power (i.e., sample size) to detect the effect of interest</p></li>
+<li><p>The reliability of significant results depends on the analysis being applied correctly (e.g., test assumptions)</p></li>
+</ul>
+</section>
+<section id="key-points-from-lecture-2-cont." class="slide level2">
+<h2>Key points from Lecture 2 (cont.):</h2>
+<ul>
+<li><p>When designing studies, we need to understand the effect we are looking for and run power analysis</p></li>
+<li><p>When designing studies, we need to decide how best to assess the data to test our hypothesis/es</p></li>
+<li><p>When analysing the data, we need to look at it in detail, not just take a “cookier cutter” approach</p></li>
+</ul>
+</section>
+<section id="suggested-reading" class="slide level2">
+<h2>Suggested reading:</h2>
+<p><a href="https://osf.io/preprints/psyarxiv/r8g7c">The Eight Steps of Data Analysis: A Graphical Framework to Promote Sound Statistical Analysis</a></p>
+<p><a href="https://osf.io/preprints/psyarxiv/r8g7c" class="uri">https://osf.io/preprints/psyarxiv/r8g7c</a></p>
+</section>
 <section id="overview" class="slide level2">
 <h2>Overview</h2>
 <ul>
@@ -450,26 +489,33 @@ Dr Christopher Wilson
 </section>
 <section id="different-analyses-for-different-designs" class="slide level2 smaller">
 <h2>Different analyses for different designs?</h2>
-<ul>
-<li><p>Psych students are often taught to use different statistical tests for different types of designs. For example:</p>
+<p>Psych students are often taught to use different statistical tests for different types of designs. For example:</p>
 <ul>
 <li>t-test for comparing two groups</li>
 <li>ANOVA for comparing more than two groups</li>
 <li>Correlation for testing the relationship between two continuous variables</li>
 <li>Regression for testing the relationship between a continuous and a categorical variable</li>
 <li>ANCOVA for testing the relationship between a continuous and a categorical variable, controlling for a third continuous variable</li>
-</ul></li>
 </ul>
 </section>
-<section id="using-linear-models-to-test-hypotheses" class="slide level2">
-<h2>Using linear models to test hypotheses</h2>
+<section id="all-of-the-previous-examples-are-based-on-regression" class="slide level2">
+<h2>All of the previous examples are based on regression</h2>
+<iframe width="780" height="500" src="https://lindeloev.github.io/tests-as-linear/linear_tests_cheat_sheet.pdf" title="Webpage example"></iframe>
+</section>
+<section id="think-about-your-questions-before-you-think-about-the-stats" class="slide level2">
+<h2>Think about your questions before you think about the stats</h2>
+<h3 id="the-role-of-attentional-bias-in-anxiety">The role of attentional bias in anxiety</h3>
+<p>Let’s assume we have several variables:</p>
 <ul>
-<li><p>However, all of these designs can be analysed using linear models (i.e., regression models)</p></li>
-<li><p>This is because all of the above tests can be thought of as special cases of linear models</p></li>
+<li><p>Age, Gender</p></li>
+<li><p>Stimulus level: Threatening / Non-threatening</p></li>
+<li><p>Anxiety Score</p></li>
+<li><p>Attentional bias (based on reaction times)</p></li>
 </ul>
+<h3 id="how-do-we-analyse-the-data">How do we analyse the data?</h3>
 </section>
-<section id="section-1" class="slide level2" data-background-image="https://lindeloev.github.io/tests-as-linear/linear_tests_cheat_sheet.png" data-background-size="contain">
-<h2></h2>
+<section id="in-the-coming-weeks-we-will-see-how-taking-a-modelling-approach-allows-us-to-answer-the-questions-we-want-rather-than-designing-questions-to-fit-a-set-of-tests." class="slide level2">
+<h2>In the coming weeks, we will see how taking a modelling approach allows us to answer the questions we want, rather than designing questions to fit a set of tests.</h2>
 </section>
 <section>
 <section id="linear-models-using-continuous-predictor-variables" class="title-slide slide level1 center">
@@ -647,10 +693,10 @@ groupTreatment -4.141139 -0.3948464</code></pre>
 <h1>What’s the value of using this approach?</h1>
 
 </section>
-<section id="advantages-of-using-linear-models" class="slide level2">
-<h2>Advantages of using linear models</h2>
+<section id="advantages-of-using-models" class="slide level2">
+<h2>Advantages of using models</h2>
 <ul>
-<li><p>Using linear models allows us to test a wide range of hypotheses using the same approach</p></li>
+<li><p>Using models allows us to test a wide range of hypotheses using the same approach</p></li>
 <li><p>This means that we can use the same approach to test hypotheses about:</p>
 <ul>
 <li>the relationship between two continuous variables</li>
@@ -717,11 +763,23 @@ F-statistic: 6.435 on 2 and 27 DF,  p-value: 0.005183</code></pre>
 <h2>What about non-linear relationships?</h2>
 <ul>
 <li><p>Not all relationships between variables are linear</p></li>
-<li><p>For example, the relationship between age and cognitive decline is often non-linear</p></li>
+<li><p>For example, the relationship between age and cognitive functioning is often non-linear</p></li>
 <li><p>In these cases, we can use other approaches (e.g., polynomial regression) to test the relationship</p></li>
 </ul>
 
 <img data-src="linearModels_files/figure-revealjs/unnamed-chunk-16-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="what-about-non-linear-relationships-2" class="slide level2">
+<h2>What about non-linear relationships? #2</h2>
+<ul>
+<li>Once you become confident with the idea of modelling the relationships between variables, you can apply different types of model, based on what fits the data</li>
+</ul>
+<!-- -->
+<ul>
+<li><p><strong>Fit</strong> is an important concept in modelling. <em>For example, to test a binary outcome (e.g., Yes/No), we would use logistic regresssion, because this type of model fits the data better.</em></p></li>
+<li><p>There are also ways to model data to fit non-linear relationships for continuous data</p></li>
+<li><p>We are starting with the linear model, since all of the alternative approaches you know (e.g., t-test, ANOVA etc.) are based on a linear model.</p></li>
+</ul>
+</section>
 <section id="how-do-we-know-if-a-linear-model-is-appropriate" class="slide level2">
 <h2>How do we know if a linear model is appropriate?</h2>
 <ul>
@@ -739,7 +797,7 @@ F-statistic: 6.435 on 2 and 27 DF,  p-value: 0.005183</code></pre>
 <section id="summary" class="slide level2">
 <h2>Summary</h2>
 <ul>
-<li><p>Many different types of hypothesis can be tested using linear models</p></li>
+<li><p>Many different types of hypothesis can be tested using regression models</p></li>
 <li><p>This can allow us to ask questions that are more complex because we can include multiple predictor variables in the same model (next week)</p></li>
 <li><p>We can get more information from a regression output than from a t-test or ANOVA (for example)</p></li>
 <li><p>However, we need to check the assumptions of linear models before reporting them</p></li>
@@ -934,9 +992,9 @@ F-statistic: 6.435 on 2 and 27 DF,  p-value: 0.005183</code></pre>
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: 1050,
+        width: 1280,
 
-        height: 700,
+        height: 720,
 
         // Factor of the display size that should remain empty around the content
         margin: 0.1,
