@@ -452,10 +452,25 @@ Dr Christopher Wilson
 <section id="overview" class="slide level2">
 <h2>Overview</h2>
 <ul>
-<li>Hypothesis testing</li>
-<li>Linear models</li>
-<li>Linear models in R</li>
+<li><p>Hypothesis testing</p></li>
+<li><p>Linear models</p></li>
+<li><p>Linear models in R</p>
+<blockquote>
+<p>Note: Some of the points discussed today will be best understood in combination with the next few lectures, but we have to introduce the concepts first.</p>
+</blockquote></li>
 </ul>
+</section>
+<section id="designing-studies-think-about-the-data" class="slide level2">
+<h2>Designing studies: think about the data!</h2>
+<p>When designing your study:</p>
+<ul>
+<li><p>Identify the most appropriate research question/hypothesis</p></li>
+<li><p>Figure out how the data you’re collecting will help you test the hypothesis</p></li>
+<li><p>Figure out how best to model your hypothesis with the data you will have</p></li>
+</ul>
+<blockquote>
+<p>Do this at the design stage, when considering your method/measures. Don’t wait until later!</p>
+</blockquote>
 </section>
 <section id="different-types-of-research-hypothesis" class="slide level2">
 <h2>Different types of research hypothesis</h2>
@@ -516,6 +531,16 @@ Dr Christopher Wilson
 </section>
 <section id="in-the-coming-weeks-we-will-see-how-taking-a-modelling-approach-allows-us-to-answer-the-questions-we-want-rather-than-designing-questions-to-fit-a-set-of-tests." class="slide level2">
 <h2>In the coming weeks, we will see how taking a modelling approach allows us to answer the questions we want, rather than designing questions to fit a set of tests.</h2>
+</section>
+<section id="what-does-modelling-the-data-actually-mean" class="slide level2">
+<h2>What does “modelling” the data actually mean?</h2>
+<ul>
+<li><p>“Modelling” means figuring out what is the best way to represent our data.</p></li>
+<li><p>For research purposes, we could extend that to say “What is the best way to represent (and test) our hypothesis with the data?”</p>
+<blockquote>
+<p>For example, a t-test <em>models</em> the data of two groups as their means and their variance scores</p>
+</blockquote></li>
+</ul>
 </section>
 <section>
 <section id="linear-models-using-continuous-predictor-variables" class="title-slide slide level1 center">
@@ -771,10 +796,7 @@ F-statistic: 6.435 on 2 and 27 DF,  p-value: 0.005183</code></pre>
 <section id="what-about-non-linear-relationships-2" class="slide level2">
 <h2>What about non-linear relationships? #2</h2>
 <ul>
-<li>Once you become confident with the idea of modelling the relationships between variables, you can apply different types of model, based on what fits the data</li>
-</ul>
-<!-- -->
-<ul>
+<li><p>Once you become confident with the idea of modelling the relationships between variables, you can apply different types of model, based on what fits the data</p></li>
 <li><p><strong>Fit</strong> is an important concept in modelling. <em>For example, to test a binary outcome (e.g., Yes/No), we would use logistic regresssion, because this type of model fits the data better.</em></p></li>
 <li><p>There are also ways to model data to fit non-linear relationships for continuous data</p></li>
 <li><p>We are starting with the linear model, since all of the alternative approaches you know (e.g., t-test, ANOVA etc.) are based on a linear model.</p></li>
@@ -797,6 +819,7 @@ F-statistic: 6.435 on 2 and 27 DF,  p-value: 0.005183</code></pre>
 <section id="summary" class="slide level2">
 <h2>Summary</h2>
 <ul>
+<li><p>Once your research question has been decided, figure out how you can model your hypothesis with the data you are collecing</p></li>
 <li><p>Many different types of hypothesis can be tested using regression models</p></li>
 <li><p>This can allow us to ask questions that are more complex because we can include multiple predictor variables in the same model (next week)</p></li>
 <li><p>We can get more information from a regression output than from a t-test or ANOVA (for example)</p></li>

@@ -77,8 +77,24 @@ The importance of statistical significance is often ***understated*** in that:
 ## Overview
 
 -   Hypothesis testing
+
 -   Linear models
+
 -   Linear models in R
+
+    > Note: Some of the points discussed today will be best understood in combination with the next few lectures, but we have to introduce the concepts first.
+
+## Designing studies: think about the data!
+
+When designing your study:
+
+- Identify the most appropriate research question/hypothesis 
+
+- Figure out how the data you're collecting will help you test the hypothesis
+
+- Figure out how best to model your hypothesis with the data you will have
+
+> Do this at the design stage, when considering your method/measures. Don't wait until later!
 
 ## Different types of research hypothesis
 
@@ -137,6 +153,14 @@ Let's assume we have several variables:
 ### How do we analyse the data?
 
 ## In the coming weeks, we will see how taking a modelling approach allows us to answer the questions we want, rather than designing questions to fit a set of tests.
+
+## What does "modelling" the data actually mean?
+
+-   "Modelling" means figuring out what is the best way to represent our data.
+
+-   For research purposes, we could extend that to say "What is the best way to represent (and test) our hypothesis with the data?"
+
+    > For example, a t-test *models* the data of two groups as their means and their variance scores
 
 # Linear models using continuous predictor variables
 
@@ -426,14 +450,11 @@ p
 
 -   Once you become confident with the idea of modelling the relationships between variables, you can apply different types of model, based on what fits the data
 
-```{=html}
-<!-- -->
-```
 -   **Fit** is an important concept in modelling. *For example, to test a binary outcome (e.g., Yes/No), we would use logistic regresssion, because this type of model fits the data better.*
 
 -   There are also ways to model data to fit non-linear relationships for continuous data
 
--    We are starting with the linear model, since all of the alternative approaches you know (e.g., t-test, ANOVA etc.) are based on a linear model.
+-   We are starting with the linear model, since all of the alternative approaches you know (e.g., t-test, ANOVA etc.) are based on a linear model.
 
 ## How do we know if a linear model is appropriate?
 
@@ -449,6 +470,8 @@ p
 -   Many of these assumptions can be checked using the residuals of the model. If you are using R, the <func>plot()</func> function can be used to check these assumptions. We will learn another method next week
 
 ## Summary
+
+-   Once your research question has been decided, figure out how you can model your hypothesis with the data you are collecing
 
 -   Many different types of hypothesis can be tested using regression models
 
