@@ -32,5 +32,8 @@
   },
   "correlation.qmd": {
     "correlation.html": "2cb264b9"
+  },
+  "regression.qmd": {
+    "regression.html": "82f74026"
   }
 }

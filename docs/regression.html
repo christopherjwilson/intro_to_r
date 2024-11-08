@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>regression</title>
+<title>7&nbsp; Simple Regression in R – Introduction to R for Clinical Psychology</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,31 +57,192 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="regression_files/libs/clipboard/clipboard.min.js"></script>
-<script src="regression_files/libs/quarto-html/quarto.js"></script>
-<script src="regression_files/libs/quarto-html/popper.min.js"></script>
-<script src="regression_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="regression_files/libs/quarto-html/anchor.min.js"></script>
-<link href="regression_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="regression_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="regression_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="regression_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="regression_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./correlation.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
 
 
 </head>
 
-<body class="fullcontent">
+<body class="nav-sidebar floating">
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./regression.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Simple Regression in R</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Introduction to R for Clinical Psychology</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to R and R Studio</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./working_with_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Working with data in R Studio</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./descriptive_stats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Exploratory and descriptive analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./power_effectSize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sampling, power and effect size</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./basic_tests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Basic statistical tests</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./correlation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Correlation in R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Simple Regression in R</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#what-is-regression-analysis" id="toc-what-is-regression-analysis" class="nav-link active" data-scroll-target="#what-is-regression-analysis"><span class="header-section-number">8</span> What is regression analysis?</a></li>
+  <li><a href="#simple-regression-in-r" id="toc-simple-regression-in-r" class="nav-link" data-scroll-target="#simple-regression-in-r"><span class="header-section-number">9</span> Simple regression in R</a>
+  <ul class="collapse">
+  <li><a href="#checking-model-assumptions" id="toc-checking-model-assumptions" class="nav-link" data-scroll-target="#checking-model-assumptions"><span class="header-section-number">9.1</span> Checking model assumptions</a></li>
+  <li><a href="#check-the-assumptions" id="toc-check-the-assumptions" class="nav-link" data-scroll-target="#check-the-assumptions"><span class="header-section-number">9.2</span> Check the assumptions</a>
+  <ul class="collapse">
+  <li><a href="#the-assumption-of-independence" id="toc-the-assumption-of-independence" class="nav-link" data-scroll-target="#the-assumption-of-independence"><span class="header-section-number">9.2.1</span> The assumption of independence</a></li>
+  <li><a href="#the-assumption-of-linearity" id="toc-the-assumption-of-linearity" class="nav-link" data-scroll-target="#the-assumption-of-linearity"><span class="header-section-number">9.2.2</span> The assumption of linearity</a></li>
+  <li><a href="#the-assumption-of-normality" id="toc-the-assumption-of-normality" class="nav-link" data-scroll-target="#the-assumption-of-normality"><span class="header-section-number">9.2.3</span> The assumption of normality</a></li>
+  <li><a href="#the-assumption-of-homoscedasticity" id="toc-the-assumption-of-homoscedasticity" class="nav-link" data-scroll-target="#the-assumption-of-homoscedasticity"><span class="header-section-number">9.2.4</span> The assumption of homoscedasticity</a></li>
+  <li><a href="#checking-for-outliers-or-influential-cases" id="toc-checking-for-outliers-or-influential-cases" class="nav-link" data-scroll-target="#checking-for-outliers-or-influential-cases"><span class="header-section-number">9.2.5</span> Checking for outliers or influential cases</a></li>
+  </ul></li>
+  <li><a href="#interpret-the-regression-model-results" id="toc-interpret-the-regression-model-results" class="nav-link" data-scroll-target="#interpret-the-regression-model-results"><span class="header-section-number">9.3</span> Interpret the regression model results</a>
+  <ul class="collapse">
+  <li><a href="#call-the-regression-formula" id="toc-call-the-regression-formula" class="nav-link" data-scroll-target="#call-the-regression-formula"><span class="header-section-number">9.3.1</span> <strong>Call:</strong> The regression formula</a></li>
+  <li><a href="#residuals-the-residuals" id="toc-residuals-the-residuals" class="nav-link" data-scroll-target="#residuals-the-residuals"><span class="header-section-number">9.3.2</span> <strong>Residuals:</strong> The residuals</a></li>
+  <li><a href="#coefficients-the-beta-values" id="toc-coefficients-the-beta-values" class="nav-link" data-scroll-target="#coefficients-the-beta-values"><span class="header-section-number">9.3.3</span> <strong>Coefficients:</strong> The beta values</a></li>
+  </ul></li>
+  <li><a href="#regression-with-a-categorical-predictor-variable" id="toc-regression-with-a-categorical-predictor-variable" class="nav-link" data-scroll-target="#regression-with-a-categorical-predictor-variable"><span class="header-section-number">9.4</span> Regression with a categorical predictor variable</a></li>
+  <li><a href="#comparing-multiple-levels-of-predictor-variables-estimated-marginal-means" id="toc-comparing-multiple-levels-of-predictor-variables-estimated-marginal-means" class="nav-link" data-scroll-target="#comparing-multiple-levels-of-predictor-variables-estimated-marginal-means"><span class="header-section-number">9.5</span> Comparing multiple levels of predictor variables (estimated marginal means)</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Simple Regression in R</span></h1>
+</div>
 
 
 
-<section id="simple-regression-in-r" class="level1">
-<h1>Simple Regression in R</h1>
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -97,9 +258,8 @@ At the end of this chapter, you will be able to:
 </ul>
 </div>
 </div>
-</section>
-<section id="what-is-regression-analysis" class="level1">
-<h1>What is regression analysis?</h1>
+<section id="what-is-regression-analysis" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> What is regression analysis?</h1>
 <p>Regression analysis is a statistical technique used to model the relationship between an outcome (dependent) variable and one or more predictor (criterion/independent) variables. The goal of regression analysis is to understand how the outcome variable changes as the predictor variable changes.</p>
 <p>When we say simple regression, we mean that there is only one predictor variable. This is to distinguish from multiple regression, where there are two or more predictor variables.</p>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -118,8 +278,8 @@ Regression does not imply causation
 <iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=507d34bd-a8da-43fc-9cbf-b22200a92173&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="338" width="600" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="Simple Regression in R">
 </iframe>
 </section>
-<section id="simple-regression-in-r-1" class="level1">
-<h1>Simple regression in R</h1>
+<section id="simple-regression-in-r" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Simple regression in R</h1>
 <p>In R, we can conduct a simple regression analysis using the <code>lm()</code> function. The <code>lm()</code> function stands for linear model and is used to fit linear models. The syntax for the <code>lm()</code> function is:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(y <span class="sc">~</span> x, data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Where <code>y</code> is the outcome variable, <code>x</code> is the predictor variable, and <code>data</code> is the dataset containing the variables.</p>
@@ -127,7 +287,7 @@ Regression does not imply causation
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a simple regression model</span></span>
 <span id="annotated-cell-2-2"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1" onclick="event.preventDefault();" href="">1</a><span id="annotated-cell-2-3" class="code-annotation-target"><a href="#annotated-cell-2-3" aria-hidden="true" tabindex="-1"></a>regression_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(trust_score <span class="sc">~</span> treatment_duration, <span class="at">data =</span> regression_data)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-2-3" class="code-annotation-target"><a href="#annotated-cell-2-3" aria-hidden="true" tabindex="-1"></a>regression_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(trust_score <span class="sc">~</span> treatment_duration, <span class="at">data =</span> regression_data)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
@@ -157,8 +317,8 @@ What is the model?
 </div>
 </div>
 </div>
-<section id="checking-model-assumptions" class="level2">
-<h2 class="anchored" data-anchor-id="checking-model-assumptions">Checking model assumptions</h2>
+<section id="checking-model-assumptions" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="checking-model-assumptions"><span class="header-section-number">9.1</span> Checking model assumptions</h2>
 <p>Before interpreting the results of a regression analysis, it is essential to check the assumptions of the model. The key assumptions of linear regression are:</p>
 <ol type="1">
 <li><strong>Linearity</strong>: The relationship between the predictor and outcome variables is linear.</li>
@@ -170,7 +330,7 @@ What is the model?
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create diagnostic plots</span></span>
 <span id="annotated-cell-3-2"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();" href="">1</a><span id="annotated-cell-3-3" class="code-annotation-target"><a href="#annotated-cell-3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(regression_model)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-3" class="code-annotation-target"><a href="#annotated-cell-3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(regression_model)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
@@ -209,13 +369,13 @@ What is the model?
 </div>
 </div>
 </section>
-<section id="check-the-assumptions" class="level2">
-<h2 class="anchored" data-anchor-id="check-the-assumptions">Check the assumptions</h2>
+<section id="check-the-assumptions" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="check-the-assumptions"><span class="header-section-number">9.2</span> Check the assumptions</h2>
 <p>We can check the assumptions of linear regression using the <func>plot()</func> function.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-4-1"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the assumptions</span></span>
 <span id="annotated-cell-4-2"><a href="#annotated-cell-4-2" aria-hidden="true" tabindex="-1"></a></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1" onclick="event.preventDefault();" href="">1</a><span id="annotated-cell-4-3" class="code-annotation-target"><a href="#annotated-cell-4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-4-3" class="code-annotation-target"><a href="#annotated-cell-4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
@@ -228,12 +388,12 @@ What is the model?
 <blockquote class="blockquote">
 <p>When you run the plot function, there will be a message in the console that says “Hit <return> to see next plot:”. You need to press enter to move through the plots.</return></p>
 </blockquote>
-<section id="the-assumption-of-independence" class="level3">
-<h3 class="anchored" data-anchor-id="the-assumption-of-independence">The assumption of independence</h3>
+<section id="the-assumption-of-independence" class="level3" data-number="9.2.1">
+<h3 data-number="9.2.1" class="anchored" data-anchor-id="the-assumption-of-independence"><span class="header-section-number">9.2.1</span> The assumption of independence</h3>
 <p>This assumption is the idea that each observation is independent of the others. In other words, the value of one observation (e.g.&nbsp;a participant’s score) should not be related to the value of another participant’s score. This is not interpreted from the plots, but is an assumption that should be considered when collecting data. For example, you would not use this approach to analyse data from a repeated measures design, because the observations are not independent.</p>
 </section>
-<section id="the-assumption-of-linearity" class="level3">
-<h3 class="anchored" data-anchor-id="the-assumption-of-linearity">The assumption of linearity</h3>
+<section id="the-assumption-of-linearity" class="level3" data-number="9.2.2">
+<h3 data-number="9.2.2" class="anchored" data-anchor-id="the-assumption-of-linearity"><span class="header-section-number">9.2.2</span> The assumption of linearity</h3>
 <p>The first plot is a plot of the residuals against the fitted values. This plot is used to check the assumption of linearity. The assumption of linearity states that the relationship between the predictor variable and the outcome variable is linear. In other words, the relationship between the predictor variable and the outcome variable can be described by a straight line. If the relationship is not linear, then the model is not a good fit for the data.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -257,8 +417,8 @@ Linear and non-linear residuals
 </div>
 </div>
 </section>
-<section id="the-assumption-of-normality" class="level3">
-<h3 class="anchored" data-anchor-id="the-assumption-of-normality">The assumption of normality</h3>
+<section id="the-assumption-of-normality" class="level3" data-number="9.2.3">
+<h3 data-number="9.2.3" class="anchored" data-anchor-id="the-assumption-of-normality"><span class="header-section-number">9.2.3</span> The assumption of normality</h3>
 <p>The second plot is a normal Q-Q plot of the residuals. This plot is used to check the assumption of normality. The assumption of normality states that the residuals are normally distributed. If the residuals are not normally distributed, then the model is not a good fit for the data.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -282,8 +442,8 @@ Normal and non-normal residuals
 </div>
 </div>
 </section>
-<section id="the-assumption-of-homoscedasticity" class="level3">
-<h3 class="anchored" data-anchor-id="the-assumption-of-homoscedasticity">The assumption of homoscedasticity</h3>
+<section id="the-assumption-of-homoscedasticity" class="level3" data-number="9.2.4">
+<h3 data-number="9.2.4" class="anchored" data-anchor-id="the-assumption-of-homoscedasticity"><span class="header-section-number">9.2.4</span> The assumption of homoscedasticity</h3>
 <p>The third plot is a scale-location plot of the residuals against the fitted values. This plot is used to check the assumption of homoscedasticity. The assumption of homoscedasticity states that the residuals have equal variance. If the residuals do not have equal variance, then the model is not a good fit for the data.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -307,8 +467,8 @@ Homoscedastic and heteroscedastic residuals
 </div>
 </div>
 </section>
-<section id="checking-for-outliers-or-influential-cases" class="level3">
-<h3 class="anchored" data-anchor-id="checking-for-outliers-or-influential-cases">Checking for outliers or influential cases</h3>
+<section id="checking-for-outliers-or-influential-cases" class="level3" data-number="9.2.5">
+<h3 data-number="9.2.5" class="anchored" data-anchor-id="checking-for-outliers-or-influential-cases"><span class="header-section-number">9.2.5</span> Checking for outliers or influential cases</h3>
 <p>The fourth plot is a plot of Cook’s distance. This plot is used to check for outliers. An outlier is a data point that is very different from the rest of the data. If there are outliers, then they could be affecting the regression model. The threshold for Cook’s distance is 1. If a data point has a Cook’s distance greater than 1, then it is considered an outlier.</p>
 <p>The fifth plot is a plot of the residuals against the leverage. The sixth plot is a plot of the Cook’s distance against the leverage. They are pretty much the same plots as the plot 4.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -336,13 +496,13 @@ Outliers and influential cases
 </div>
 </section>
 </section>
-<section id="interpret-the-regression-model-results" class="level2">
-<h2 class="anchored" data-anchor-id="interpret-the-regression-model-results">Interpret the regression model results</h2>
+<section id="interpret-the-regression-model-results" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="interpret-the-regression-model-results"><span class="header-section-number">9.3</span> Interpret the regression model results</h2>
 <p>To view the results of the regression model, we use the <func>summary()</func> function.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-5-1"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View the results</span></span>
 <span id="annotated-cell-5-2"><a href="#annotated-cell-5-2" aria-hidden="true" tabindex="-1"></a></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1" onclick="event.preventDefault();" href="">1</a><span id="annotated-cell-5-3" class="code-annotation-target"><a href="#annotated-cell-5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(regression_model)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-5-3" class="code-annotation-target"><a href="#annotated-cell-5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(regression_model)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
@@ -372,16 +532,16 @@ Multiple R-squared:  0.006886,  Adjusted R-squared:  -0.003248
 F-statistic: 0.6795 on 1 and 98 DF,  p-value: 0.4118</code></pre>
 </div>
 </div>
-<section id="call-the-regression-formula" class="level3">
-<h3 class="anchored" data-anchor-id="call-the-regression-formula"><strong>Call:</strong> The regression formula</h3>
+<section id="call-the-regression-formula" class="level3" data-number="9.3.1">
+<h3 data-number="9.3.1" class="anchored" data-anchor-id="call-the-regression-formula"><span class="header-section-number">9.3.1</span> <strong>Call:</strong> The regression formula</h3>
 <p>The first line of the output is the regression formula. This is the formula that was used to create the model.</p>
 </section>
-<section id="residuals-the-residuals" class="level3">
-<h3 class="anchored" data-anchor-id="residuals-the-residuals"><strong>Residuals:</strong> The residuals</h3>
+<section id="residuals-the-residuals" class="level3" data-number="9.3.2">
+<h3 data-number="9.3.2" class="anchored" data-anchor-id="residuals-the-residuals"><span class="header-section-number">9.3.2</span> <strong>Residuals:</strong> The residuals</h3>
 <p>The second line of the output is the residuals. The residuals are the difference between the actual values of the outcome variable and the predicted values of the outcome variable. This section is giving us some summary statistics about the residuals. However, we usually check the assumptions using the plots.</p>
 </section>
-<section id="coefficients-the-beta-values" class="level3">
-<h3 class="anchored" data-anchor-id="coefficients-the-beta-values"><strong>Coefficients:</strong> The beta values</h3>
+<section id="coefficients-the-beta-values" class="level3" data-number="9.3.3">
+<h3 data-number="9.3.3" class="anchored" data-anchor-id="coefficients-the-beta-values"><span class="header-section-number">9.3.3</span> <strong>Coefficients:</strong> The beta values</h3>
 <p>The third section of the output is the coefficients. You will see a line of values for the <strong>intercept</strong> and another line for each of the predictor variables in the model. <strong>Estimate</strong> is the beta value. <strong>Std. Error</strong> is the standard error of the beta value. <strong>Pr(&gt;|t|)</strong> is the p value for the beta value.</p>
 <ul>
 <li><p>Intercept: We are not usually interested in this line by itself. It is the value of the outcome variable when all of the predictor variables are equal to zero. In this case, it is the value of avoidance when depression is equal to zero. However, it might be the case that depression cannot be equal to zero. In this case, the intercept would not be meaningful. <em>If the predictor were a categorical variable, then the intercept would be the value of the outcome variable when the predictor variable is equal to the reference category (i.e.&nbsp;The mean of the outcome for that group).</em></p></li>
@@ -397,8 +557,8 @@ F-statistic: 0.6795 on 1 and 98 DF,  p-value: 0.4118</code></pre>
 </ul>
 </section>
 </section>
-<section id="regression-with-a-categorical-predictor-variable" class="level2">
-<h2 class="anchored" data-anchor-id="regression-with-a-categorical-predictor-variable">Regression with a categorical predictor variable</h2>
+<section id="regression-with-a-categorical-predictor-variable" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="regression-with-a-categorical-predictor-variable"><span class="header-section-number">9.4</span> Regression with a categorical predictor variable</h2>
 <p>So far, we have conducted a regression analysis with a continuous predictor variable. Now, let’s consider a regression analysis with a categorical predictor variable.</p>
 <iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=e8096534-43d8-4187-bce3-b22200c21181&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="338" width="600" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="Regression with categorical predictors + multiple comparisons with estimated marginal means">
 </iframe>
@@ -406,16 +566,16 @@ F-statistic: 0.6795 on 1 and 98 DF,  p-value: 0.4118</code></pre>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-6-1"><a href="#annotated-cell-6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># specify the reference level - this is more useful when we have more than 2 levels</span></span>
 <span id="annotated-cell-6-2"><a href="#annotated-cell-6-2" aria-hidden="true" tabindex="-1"></a></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="0" onclick="event.preventDefault();" href="">0</a><span id="annotated-cell-6-3" class="code-annotation-target"><a href="#annotated-cell-6-3" aria-hidden="true" tabindex="-1"></a>regression_data<span class="sc">$</span>treatment_group <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(regression_data<span class="sc">$</span>treatment_group)</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1" onclick="event.preventDefault();" href="">1</a><span id="annotated-cell-6-4" class="code-annotation-target"><a href="#annotated-cell-6-4" aria-hidden="true" tabindex="-1"></a>regression_data<span class="sc">$</span>treatment <span class="ot">&lt;-</span> <span class="fu">relevel</span>(regression_data<span class="sc">$</span>treatment_group, <span class="at">ref =</span> <span class="st">"therapy1"</span>)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="0" onclick="event.preventDefault();">0</a><span id="annotated-cell-6-3" class="code-annotation-target"><a href="#annotated-cell-6-3" aria-hidden="true" tabindex="-1"></a>regression_data<span class="sc">$</span>treatment_group <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(regression_data<span class="sc">$</span>treatment_group)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-6-4" class="code-annotation-target"><a href="#annotated-cell-6-4" aria-hidden="true" tabindex="-1"></a>regression_data<span class="sc">$</span>treatment <span class="ot">&lt;-</span> <span class="fu">relevel</span>(regression_data<span class="sc">$</span>treatment_group, <span class="at">ref =</span> <span class="st">"therapy1"</span>)</span>
 <span id="annotated-cell-6-5"><a href="#annotated-cell-6-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="annotated-cell-6-6"><a href="#annotated-cell-6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a regression model with a categorical predictor variable</span></span>
 <span id="annotated-cell-6-7"><a href="#annotated-cell-6-7" aria-hidden="true" tabindex="-1"></a></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="2" onclick="event.preventDefault();" href="">2</a><span id="annotated-cell-6-8" class="code-annotation-target"><a href="#annotated-cell-6-8" aria-hidden="true" tabindex="-1"></a>regression_model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(aggression_level <span class="sc">~</span> treatment_group, <span class="at">data =</span> regression_data)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-6-8" class="code-annotation-target"><a href="#annotated-cell-6-8" aria-hidden="true" tabindex="-1"></a>regression_model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(aggression_level <span class="sc">~</span> treatment_group, <span class="at">data =</span> regression_data)</span>
 <span id="annotated-cell-6-9"><a href="#annotated-cell-6-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="annotated-cell-6-10"><a href="#annotated-cell-6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of the model</span></span>
 <span id="annotated-cell-6-11"><a href="#annotated-cell-6-11" aria-hidden="true" tabindex="-1"></a></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="3" onclick="event.preventDefault();" href="">3</a><span id="annotated-cell-6-12" class="code-annotation-target"><a href="#annotated-cell-6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(regression_model2)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-6-12" class="code-annotation-target"><a href="#annotated-cell-6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(regression_model2)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-6" data-target-annotation="0">0</dt>
@@ -486,8 +646,8 @@ Testing assumptions with a categorical predictor variable
 </div>
 </div>
 </section>
-<section id="comparing-multiple-levels-of-predictor-variables-estimated-marginal-means" class="level2">
-<h2 class="anchored" data-anchor-id="comparing-multiple-levels-of-predictor-variables-estimated-marginal-means">Comparing multiple levels of predictor variables (estimated marginal means)</h2>
+<section id="comparing-multiple-levels-of-predictor-variables-estimated-marginal-means" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="comparing-multiple-levels-of-predictor-variables-estimated-marginal-means"><span class="header-section-number">9.5</span> Comparing multiple levels of predictor variables (estimated marginal means)</h2>
 <p>If we have more than 2 levels of the predictor variable, we can compare each level to the reference level. We can also compare all levels to each other using the <code>emmeans</code> package. The <code>emmeans</code> package provides estimated marginal means for the levels of a predictor variable. We can use the <code>emmeans()</code> function to calculate the estimated marginal means for the levels of the predictor variable.</p>
 <p>For this example, let’s use the mtcar dataset, which contains information about cars. We will conduct a regression analysis with the <code>cyl</code> variable as the predictor variable and the <code>mpg</code> variable as the outcome variable. The <code>cyl</code> variable has 3 levels (4, 6, and 8 cylinders). We will compare the mean <code>mpg</code> for each level of the <code>cyl</code> variable.</p>
 <div class="cell" data-layout-align="center">
@@ -523,7 +683,7 @@ Testing assumptions with a categorical predictor variable
 Caution: You lose important information if you filter this package's results.
 See '? untidy'</code></pre>
 </div>
-<div class="sourceCode cell-code" id="annotated-cell-8"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="3" onclick="event.preventDefault();" href="">3</a><span id="annotated-cell-8-1" class="code-annotation-target"><a href="#annotated-cell-8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">emmeans</span>(regression_model3, pairwise <span class="sc">~</span> cyl)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-8"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-8-1" class="code-annotation-target"><a href="#annotated-cell-8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">emmeans</span>(regression_model3, pairwise <span class="sc">~</span> cyl)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -574,22 +734,23 @@ What are estimated marginal means?
 </div>
 <div class="callout-body-container callout-body">
 <p>Estimated marginal means are the predicted means of the outcome variable for each level of the predictor variable. They are calculated by averaging the predicted values of the outcome variable for each level of the predictor variable, while holding all other variables constant. Estimated marginal means provide a way to compare the levels of the predictor variable and determine if there are significant differences between them.</p>
-<section id="what-is-the-difference-between-estimated-marginal-means-and-actual-means---how-should-i-report-them" class="level3">
-<h3 class="anchored" data-anchor-id="what-is-the-difference-between-estimated-marginal-means-and-actual-means---how-should-i-report-them">What is the difference between estimated marginal means and actual means - how should I report them?</h3>
+<section id="what-is-the-difference-between-estimated-marginal-means-and-actual-means---how-should-i-report-them" class="level3" data-number="9.5.1">
+<h3 data-number="9.5.1" class="anchored" data-anchor-id="what-is-the-difference-between-estimated-marginal-means-and-actual-means---how-should-i-report-them"><span class="header-section-number">9.5.1</span> What is the difference between estimated marginal means and actual means - how should I report them?</h3>
 <p>Estimated marginal means are the predicted means of the outcome variable for each level of the predictor variable. They are calculated by averaging the predicted values of the outcome variable for each level of the predictor variable, while holding all other variables constant. Actual means are the observed means of the outcome variable for each level of the predictor variable. The difference between estimated marginal means and actual means is that estimated marginal means are based on the regression model, while actual means are based on the observed data. This allows the estimated marginal means to take into account other variables in the model, for example.</p>
 <p>When reporting the results of a regression analysis, it is common to report the estimated marginal means rather than the actual means. This is because the estimated marginal means take into account the effects of other variables in the model, while the actual means do not. Reporting the estimated marginal means can give a more accurate representation of the relationship between the predictor variable and the outcome variable.</p>
 </section>
-<section id="what-are-tukey-corrected-p-values" class="level3">
-<h3 class="anchored" data-anchor-id="what-are-tukey-corrected-p-values">What are Tukey corrected p-values?</h3>
+<section id="what-are-tukey-corrected-p-values" class="level3" data-number="9.5.2">
+<h3 data-number="9.5.2" class="anchored" data-anchor-id="what-are-tukey-corrected-p-values"><span class="header-section-number">9.5.2</span> What are Tukey corrected p-values?</h3>
 <p>Tukey corrected p-values are used to adjust for multiple comparisons in a pairwise comparison analysis. When conducting multiple comparisons between the levels of a predictor variable, there is an increased risk of making a Type I error (false positive) due to the number of comparisons being made. Tukey corrected p-values adjust for this increased risk. This means that the p-values are adjusted to account for the number of comparisons being made, reducing the likelihood of making a false positive conclusion.</p>
 </section>
 </div>
 </div>
+
+
 </section>
 </section>
 
-</main>
-<!-- /main column -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1010,6 +1171,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./correlation.html" class="pagination-link" aria-label="Correlation in R">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Correlation in R</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
