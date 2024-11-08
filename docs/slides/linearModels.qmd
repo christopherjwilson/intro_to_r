@@ -88,11 +88,11 @@ The importance of statistical significance is often ***understated*** in that:
 
 When designing your study:
 
-- Identify the most appropriate research question/hypothesis 
+-   Identify the most appropriate research question/hypothesis
 
-- Figure out how the data you're collecting will help you test the hypothesis
+-   Figure out how the data you're collecting will help you test the hypothesis
 
-- Figure out how best to model your hypothesis with the data you will have
+-   Figure out how best to model your hypothesis with the data you will have
 
 > Do this at the design stage, when considering your method/measures. Don't wait until later!
 
@@ -134,7 +134,7 @@ Psych students are often taught to use different statistical tests for different
 ## All of the previous examples are based on regression
 
 ```{=html}
-<iframe width="780" height="500" src="https://lindeloev.github.io/tests-as-linear/linear_tests_cheat_sheet.pdf" title="Webpage example"></iframe>
+<iframe width="1200" height="700" src="https://lindeloev.github.io/tests-as-linear/linear_tests_cheat_sheet.pdf" title="Webpage example"></iframe>
 ```
 ## Think about your questions before you think about the stats
 

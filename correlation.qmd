@@ -12,6 +12,9 @@ regression_data <- read.csv("Datasets/regression_data.csv")
 -   Conduct and interpret a correlation analysis in R
 :::
 
+
+<iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=6ed16e63-6d24-4817-a387-b22200a1a4d0&autoplay=false&offerviewer=false&showtitle=true&showbrand=true&captions=false&interactivity=all" height="338" width="600" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="Correlation in R" ></iframe>
+
 ## What is Correlation?
 
 Correlation is a measure of the strength and direction of a relationship between two variables. It is most commonly used when we want to see if there is a relationship between two *continuous* variables. However, it is possible to run correlations between a continuous and a categorical variable (this is known as point-biserial correlation) or between two categorical variables (this is known as phi coefficient).
