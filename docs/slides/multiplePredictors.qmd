@@ -1,10 +1,13 @@
 ---
 format:
   revealjs:
+    view-distance: 20
     css: "include/style.css"
     chalkboard: true
     multiplex: true
     slide-number: c/t
+    gfm:
+      mermaid-format: pdf
     drop:
       shortcut: "]"
       engine: webr
@@ -129,18 +132,16 @@ model1 <- lm(data = data, lm(depression ~ age + gender + stress + loneliness + s
 
 ## Visualising this model
 
-```{mermaid}
-graph LR
+```{dot}
 
-selfesteem --> depression
-
-lonliness --> depression
-
-stress --> depression
-
-gender --> depression
-
-age --> depression
+digraph {
+  rankdir="LR"
+  Selfesteem -> Depression
+  Loneliness -> Depression
+  Stress -> Depression
+  Gender -> Depression
+  Age -> Depression
+  }
 
 
 ```
@@ -253,61 +254,14 @@ summary(model1)
 -   For example, we might do the following:
 
     -   Model 1: Demographics
+
     -   Model 2: Demographics + stress + loneliness
+
     -   Model 3: Demographics + stress + loneliness + self-esteem
 
-## Visualising the models {.scrollable}
+## Visualising models
 
-```{mermaid}
-graph LR
-
-depression1[depression]
-depression2[depression]
-depression3[depression]
-
-gender1[gender] 
-gender2[gender] 
-gender3[gender] 
-
-age1[age]
-age2[age]
-age3[age]
-
-stress2[stress]
-stress3[stress]
-
-loneliness2[loneliness]
-loneliness3[loneliness]
-
-selfesteem[self-esteem]
-
-subgraph Model 3
-gender3 --> depression3
-age3 --> depression3
-loneliness3 --> depression3
-stress3 --> depression3
-selfesteem --> depression3
-end 
-
-subgraph Model 2
-gender2 --> depression2
-age2 --> depression2
-loneliness2 --> depression2
-stress2 --> depression2
-end 
-
-subgraph Model 1
-  direction LR
-gender1 --> depression1
-age1 --> depression1
-end 
-
-
-
-
-
-
-```
+![](images/model2.png){width=100%}
 
 ## Running the analysis
 
