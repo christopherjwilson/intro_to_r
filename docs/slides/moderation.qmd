@@ -162,7 +162,7 @@ plot_model(model1, type="int", mdrt.values = "meansd")
 -   This means that the variables are interacting with each other to predict the outcome variable.
 
 ::: callout-warning
-If we plan to test for interactions, we need to make sure that we have enough power to do so. It is like adding another predictor variable to the model.
+If we plan to test for interactions, we need to make sure that we have enough power to do so. It is more than just adding another predictor, as interaction effects tend to be **much** weaker than main effects.
 :::
 
 # Moderation designs

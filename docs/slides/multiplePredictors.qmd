@@ -261,7 +261,7 @@ summary(model1)
 
 ## Visualising models
 
-![](images/model2.png){width=100%}
+![](images/model2.png){width="100%"}
 
 ## Running the analysis
 
