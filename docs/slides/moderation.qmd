@@ -25,6 +25,8 @@ author: Dr Christopher Wilson
 institute: Teesside University
 logo: "logo.jpg"
 csl: apa.csl
+width: 1280
+height: 720
 ---
 
 ## Recap {.smaller}
@@ -195,7 +197,7 @@ From a theory perspective, we are stating that we believe that the relationship 
 
 library(DiagrammeR)
 
-code <- "
+dia1 <- "
 	digraph moderation_model { 
 	  # Nodes  
 	  node [shape = rectangle, fontname = Arial, fontsize=9]
@@ -217,7 +219,7 @@ code <- "
 	  graph [layout = neato, overlap = true, outputorder = edgesfirst]
 }"
 
-grViz(code)
+grViz(dia1)
 
 ```
 
@@ -259,7 +261,7 @@ model1 <- lm(data = modData, generalWellbeing ~ timeInCounselling * rapportLevel
 
 1.  This model includes an interaction between timeInCounselling and rapportLevel. We know this because we used the \* symbol to separate the predictor variables.
 
-## Testing the moderation effect
+## Testing the moderation effect {.scrollable}
 
 Testing at which levels of *Rapport level* the relationship between *Time in counselling* and *General Wellbeing* is significant.
 
@@ -275,7 +277,7 @@ model1 <- lm(data = modData, generalWellbeing ~ timeInCounselling * rapportLevel
 
 ```
 
-## Testing the moderation effect #2
+## Testing the moderation effect #2 {.scrollable}
 
 Step 2: Plot the interaction:
 
