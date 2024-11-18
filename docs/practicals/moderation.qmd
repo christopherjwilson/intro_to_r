@@ -9,27 +9,23 @@ format:
     include-in-header: ["../include/webex.js"]
 ---
 
-
 ```{r setup, include=FALSE}
 library(webexercises)
 ```
 
-
-::: {.callout-tip collapse="true"} 
+::: {.callout-tip collapse="true"}
 # How to approach this practical session
 
-1. Have RStudio open and ready to use.
-1. Be sure to read the contextual information and instructions carefully. This information is necessary to complete the tasks.
-1. Complete the tasks as you go along - they are labelled "Task".
-1. Some of the code you need will be completed, some will be partially completed, some you will need to do yourself. You can copy code examples from this page by clicking on the clipboard icon {{< fa clipboard >}} which appears when you hover over the code examples.
-1. Buttons to press in your keyboard are shown like this: <pc>Ctrl + S</pc> or <mac>Cmd + S</mac>. 
-1. Menu items to click in R Studio are shown like this: <if>File -> Save</if>. Panes or Tabs in R Studio are also shown like this: <if>Environment</if>.
-1. On this page, boxes with a drop down arrow {{< fa square-caret-down >}} can be collapsed to hide the information inside them. You can also click on the {{< fa square-caret-right >}} arrow to expand the section.
+1.  Have RStudio open and ready to use.
+2.  Be sure to read the contextual information and instructions carefully. This information is necessary to complete the tasks.
+3.  Complete the tasks as you go along - they are labelled "Task".
+4.  Some of the code you need will be completed, some will be partially completed, some you will need to do yourself. You can copy code examples from this page by clicking on the clipboard icon {{< fa clipboard >}} which appears when you hover over the code examples.
+5.  Buttons to press in your keyboard are shown like this: <pc>Ctrl + S</pc> or <mac>Cmd + S</mac>.
+6.  Menu items to click in R Studio are shown like this: <if>File -\> Save</if>. Panes or Tabs in R Studio are also shown like this: <if>Environment</if>.
+7.  On this page, boxes with a drop down arrow {{< fa square-caret-down >}} can be collapsed to hide the information inside them. You can also click on the {{< fa square-caret-right >}} arrow to expand the section.
 :::
 
-
 ::: {.callout-important collapse="false"}
-
 # Download the data for this practical
 
 For this session you will need to download the following dataset: [practical5_data.csv](practical5_data.csv)
@@ -46,13 +42,11 @@ practical5_data <- read.csv("practical5_data.csv")
 ```
 
 You can also use the menu to import data. To do this, click on the <if>Import Dataset</if> button and select the type of data you want to import. For example, to import the data in the file **practical5_data.csv**, you would click on <if>From Text (readr)</if> and then select the file **practical5_data.csv**.
-
 :::
 
 ## Import the data
 
-::: {.callout-note}
-
+::: callout-note
 # Task
 
 Import the data from the file **practical5_data.csv** into R. Save the data in a variable called **practical5_data**.
@@ -100,7 +94,6 @@ library(rockchalk)
 
 ```
 
-
 ```{r echo=FALSE, eval=FALSE}
 
 # import the data from the file practical5_data.csv into R. Save the data in a variable called practical5_data.
@@ -117,44 +110,36 @@ summary(model1)
 
 ## Research Scenario
 
-A psychologist is interested in the relationship between anxiety and depression. They believe that the relationship between anxiety and depression is moderated by attention. They ran an study which measured anxiety, attention and depression in 100 participants. The data from this study is in the file **practical5_data.csv**. The anxiety and depression scores are from standardised measures. The attention scores are from a computerised task (measured in milliseconds). 
+A psychologist is interested in the relationship between anxiety and depression. They believe that the relationship between anxiety and depression is moderated by attention. They ran an study which measured anxiety, attention and depression in 100 participants. The data from this study is in the file **practical5_data.csv**. The anxiety and depression scores are from standardised measures. The attention scores are from a computerised task (measured in milliseconds).
 
-::: {.callout-note}
-
+::: callout-note
 # Task
 
 Using what you have learned this week and last week, you need to:
 
-1. Create and run a regression model to test the researcher's hypothesis.
+1.  Create and run a regression model to test the researcher's hypothesis.
 
-1. Check the assumptions of the model (make note of, but ignore any violations for the purpose of this exercise).
+2.  Check the assumptions of the model (make note of, but ignore any violations for the purpose of this exercise).
 
-1. Interpret the results of the model.
+3.  Interpret the results of the model.
 
-1. Plot the interaction between anxiety and attention on depression.
+4.  Plot the interaction between anxiety and attention on depression.
 
-1. Test the slopes of the interaction between anxiety and attention on depression.
+5.  Test the slopes of the interaction between anxiety and attention on depression.
 
-1. Interpret the results of the test of the slopes.
+6.  Interpret the results of the test of the slopes.
 
-1. Write a paragraph outlining your conclusions.
+7.  Write a paragraph outlining your conclusions.
 
-1. Save your script.
+8.  Save your script.
 :::
-
 
 # You are done for today {{< fa hands-clapping >}}
 
 ::: {.callout-tip collapse="true"}
 # Further resources for interactions and moderation
 
-[Interactions in Multiple Regression](https://christopherjwilson.github.io/APRM23/multipleRegression.html#all-predictors-at-once-testing-interactions)
-
-[Moderation](https://christopherjwilson.github.io/APRM23/moderation.html)
+[Moderation analysis](https://christopherjwilson.github.io/intro_to_r/moderation.html)
 
 [Conducting moderation analysis](https://www.youtube.com/watch?v=BR050BbER6s&ab_channel=StatisticsofDOOM)
-
 :::
-
-
-
