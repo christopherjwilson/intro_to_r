@@ -446,6 +446,24 @@ Dr Christopher Wilson
 </div>
 </div>
 </section>
+<section id="distinguishing-between-moderation-and-mediation" class="slide level2">
+<h2>Distinguishing between moderation and mediation</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="grViz html-widget html-fill-item" id="htmlwidget-5594cb8146bcb01ea2ca" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-5594cb8146bcb01ea2ca">{"x":{"diagram":"\n\tdigraph moderation_model { \n\t  # Nodes  \n\t  node [shape = rectangle, fontname = Arial, fontsize=9]\n\t  iv    [pos = \"-1,1!\", label = \"Temperature\"]\n\t  blank [pos =  \"0,1!\", label = \"\", width = 0.001, height = 0.001]\n\t  mod   [pos =  \"0,2!\", label = \"Likelihood\nof rain\"]\n\t  dv    [pos =  \"1,1!\", label = \"People\nat the\nbeach\"]\n\t    \n\t  # Hide moderator edges\n\t  { rank = same; blank mod }\n\t  \n\t  # Edges\n\t  edge [fontname = Arial, fontsize=8]\n\t  mod -> blank\n\t  iv -> blank [dir = none]\n\t  blank -> dv [minlen = 1]\n\n\t  # Graph\n\t  graph [layout = neato, overlap = true, outputorder = edgesfirst]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="distinguishing-between-moderation-and-mediation-1" class="slide level2">
+<h2>Distinguishing between moderation and mediation</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="grViz html-widget html-fill-item" id="htmlwidget-4e3fe236cc4ee4a2ba55" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-4e3fe236cc4ee4a2ba55">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\",\n       label = \"\",\n       labelloc = \"t\",\n       labeljust = \"c\",\n       fontname = \"Helvetica\",\n       fontcolor = \"gray30\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Screen time\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"1,1!\"] \n  \"2\" [label = \"Social Media\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"3,3!\"] \n  \"3\" [label = \"Lonliness\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"5,1!\"] \n\"1\"->\"2\" [color = \"blue\", fontsize = \"16\"] \n\"2\"->\"3\" [color = \"green\", fontsize = \"16\"] \n\"1\"->\"3\" [color = \"red\", fontsize = \"16\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
 <section id="what-type-of-research-question" class="slide level2 smaller">
 <h2>What type of research question?</h2>
 <p>Mediation is an analysis technique. However, we use it to answer the following type of research question:</p>
@@ -461,8 +479,8 @@ Dr Christopher Wilson
 <h2>Visualising mediation</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-e4708a8417aa9131d543" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-e4708a8417aa9131d543">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\",\n       label = \"\",\n       labelloc = \"t\",\n       labeljust = \"c\",\n       fontname = \"Helvetica\",\n       fontcolor = \"gray30\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Therapy\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"1,1!\"] \n  \"2\" [label = \"Practice\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"3,3!\"] \n  \"3\" [label = \"Mental Health\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"5,1!\"] \n\"1\"->\"2\" [color = \"blue\", fontsize = \"16\"] \n\"2\"->\"3\" [color = \"green\", fontsize = \"16\"] \n\"1\"->\"3\" [color = \"red\", fontsize = \"16\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-b599342e0a28bcc79282" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-b599342e0a28bcc79282">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\",\n       label = \"\",\n       labelloc = \"t\",\n       labeljust = \"c\",\n       fontname = \"Helvetica\",\n       fontcolor = \"gray30\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Therapy\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"1,1!\"] \n  \"2\" [label = \"Practice\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"3,3!\"] \n  \"3\" [label = \"Mental Health\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"5,1!\"] \n\"1\"->\"2\" [color = \"blue\", fontsize = \"16\"] \n\"2\"->\"3\" [color = \"green\", fontsize = \"16\"] \n\"1\"->\"3\" [color = \"red\", fontsize = \"16\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -511,8 +529,8 @@ Dr Christopher Wilson
 <h2>Visualising mediation</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-b2c6149c1b06ca51cc80" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-b2c6149c1b06ca51cc80">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\",\n       label = \"\",\n       labelloc = \"t\",\n       labeljust = \"c\",\n       fontname = \"Helvetica\",\n       fontcolor = \"gray30\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Therapy\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"1,1!\"] \n  \"2\" [label = \"Practice\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"3,3!\"] \n  \"3\" [label = \"Mental Health\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"5,1!\"] \n\"1\"->\"2\" [color = \"blue\", fontsize = \"16\"] \n\"2\"->\"3\" [color = \"green\", fontsize = \"16\"] \n\"1\"->\"3\" [color = \"red\", fontsize = \"16\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-9d8305594c610e02f977" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-9d8305594c610e02f977">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\",\n       label = \"\",\n       labelloc = \"t\",\n       labeljust = \"c\",\n       fontname = \"Helvetica\",\n       fontcolor = \"gray30\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Therapy\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"1,1!\"] \n  \"2\" [label = \"Practice\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"3,3!\"] \n  \"3\" [label = \"Mental Health\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"5,1!\"] \n\"1\"->\"2\" [color = \"blue\", fontsize = \"16\"] \n\"2\"->\"3\" [color = \"green\", fontsize = \"16\"] \n\"1\"->\"3\" [color = \"red\", fontsize = \"16\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -742,7 +760,7 @@ Simulations: 1000 </code></pre>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="fu">plot</span>(fitMed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="mediation_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
+<img data-src="mediation_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
 <section id="step-3.2-plot-the-mediation-analysis-of-the-models-1" class="slide level2 smaller">
 <h2>Step 3.2: Plot the mediation analysis of the models</h2>
 <p>The plot reiterates what was on the previous slide:</p>
@@ -1004,9 +1022,9 @@ Simulations: 1000 </code></pre>
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: 1050,
+        width: 1280,
 
-        height: 700,
+        height: 720,
 
         // Factor of the display size that should remain empty around the content
         margin: 0.1,
