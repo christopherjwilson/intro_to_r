@@ -126,7 +126,7 @@ There are some considerations:
 
 ```{r echo=T, message=FALSE, warning=FALSE}
 
-model1 <- lm(data = data, lm(depression ~ age + gender + stress + loneliness + selfesteem))
+model1 <- lm(data = data, depression ~ age + gender + stress + loneliness + selfesteem)
 
 ```
 

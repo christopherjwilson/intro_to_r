@@ -522,7 +522,7 @@ Dr Christopher Wilson
 <li>The process is the same as what we have done previously. The additional predictors are added to the model.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> data, <span class="fu">lm</span>(depression <span class="sc">~</span> age <span class="sc">+</span> gender <span class="sc">+</span> stress <span class="sc">+</span> loneliness <span class="sc">+</span> selfesteem))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> data, depression <span class="sc">~</span> age <span class="sc">+</span> gender <span class="sc">+</span> stress <span class="sc">+</span> loneliness <span class="sc">+</span> selfesteem)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="visualising-this-model" class="slide level2">
@@ -722,8 +722,8 @@ R-square of y on all x: 0.8583
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = lm(depression ~ age + gender + stress + loneliness + 
-    selfesteem), data = data)
+lm(formula = depression ~ age + gender + stress + loneliness + 
+    selfesteem, data = data)
 
 Coefficients:
 (Intercept)          age      gender1       stress   loneliness   selfesteem  
@@ -762,8 +762,8 @@ Heteroscedasticity 4.2079 0.04024 Assumptions NOT satisfied!</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = lm(depression ~ age + gender + stress + loneliness + 
-    selfesteem), data = data)
+lm(formula = depression ~ age + gender + stress + loneliness + 
+    selfesteem, data = data)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
