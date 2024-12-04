@@ -35,5 +35,8 @@
   },
   "regression.qmd": {
     "regression.html": "82f74026"
+  },
+  "ggplot.qmd": {
+    "ggplot.html": "c060a3f8"
   }
 }

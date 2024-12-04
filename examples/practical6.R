@@ -29,7 +29,7 @@ library(mediation)
 fitM <- lm(pmi ~ cond,     data=practical6_data) #IV on M; 
 fitY <- lm(reaction ~ cond + pmi, data=practical6_data) #IV and M on DV; 
 
-
+set.seed(123)
 fitMed <- mediate(fitM, fitY, treat="cond", mediator="pmi", sims = 1000)
 summary(fitMed)
 
@@ -37,4 +37,5 @@ plot(fitMed)
 
 gvlma(fitM)
 plot(fitM)
-gvlmafitMgvlma(fitY)
+gvlmafit
+gvlma(fitY)

@@ -678,5 +678,85 @@
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Simple Regression in R</span>"
     ]
+  },
+  {
+    "objectID": "ggplot.html",
+    "href": "ggplot.html",
+    "title": "8  Creating plots with ggplot2 in R",
+    "section": "",
+    "text": "8.1 The “grammar of visualisation” with ggplot\nWith ggplot, graphs are made up of 3 components: - A dataset - A coordinate system (e.g., the X and Y axes) - Visual marks to represent data (geoms)\nIn the above example, the dataset is the studentData that we used previously. The grades variable is mapped to the X axis. The hoursOfStudy variable is mapped to the Y axis. The graph is created using the following code:\nlibrary(ggplot2)\n\nggplot(data=studentData, aes(x=grades,y=hoursOfStudy)) +\n  geom_point()\nIn this code:",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Creating plots with ggplot2 in R</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot.html#the-grammar-of-visualisation-with-ggplot",
+    "href": "ggplot.html#the-grammar-of-visualisation-with-ggplot",
+    "title": "8  Creating plots with ggplot2 in R",
+    "section": "",
+    "text": "We specify the dataset and the variables for the X and Y axes.\nWe specify the geom that will represent the data points visually (in this case, each datum is a point).\n\n\n\n\n\n\n\n\nRemember the + operator\n\n\n\n\nThe layers of a ggplot are separated using the + operator. That is, we first specify the dataset and the variables for the X and Y axes, and then we add a +, then the geom that will represent the data points visually.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Creating plots with ggplot2 in R</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot.html#adding-more-variables-to-a-plot",
+    "href": "ggplot.html#adding-more-variables-to-a-plot",
+    "title": "8  Creating plots with ggplot2 in R",
+    "section": "8.2 Adding more variables to a plot",
+    "text": "8.2 Adding more variables to a plot\nOne of the things that makes ggplot so powerful is that you can add more variables to a plot. You can map these variables to different aesthetic attributes of the plot, such as colour, shape, or size.\nThis can be done either in the ggplot() function or in the geom_point() function.\n\n8.2.1 Example: assigning a variable to colour (2 different approaches)\n\n1ggplot(data=studentData, aes(x=grades,y=hoursOfStudy, color = route)) +\n2  geom_point()\n\n\n1\n\nThe color aesthetic is mapped to the route variable in the main ggplot() function.\n\n2\n\nThe geom_point() function is used to represent the data points visually and it takes its colour from the main ggplot() function.\n\n\n\n\n\n\n\n\n\n\n\n\n1ggplot(data=studentData, aes(x=grades,y=hoursOfStudy)) +\n2  geom_point(aes(color = route))\n\n\n1\n\nThe color aesthetic is not mentioned in the main ggplot() function.\n\n2\n\nThe color aesthetic is mapped to the route variable in the geom_point() function.\n\n\n\n\n\n\n\n\n\n\n\n\n\n8.2.2 Example: assigning a variable to size\n\n1ggplot(data=studentData, aes(x=grades,y=hoursOfStudy, size = satisfactionLevel, colour = route)) +\n2  geom_point()\n\n\n1\n\nThe size aesthetic is mapped to the satisfactionLevel variable in the main ggplot() function.\n\n2\n\nThe geom_point() function is used to represent the data points visually and it takes its size from the main ggplot() function.\n\n\n\n\n\n\n\n\n\n\n\n\n\n8.2.3 Example: assigning a variable to shape\n\n1ggplot(data=studentData, aes(x=grades,y=hoursOfStudy, size = satisfactionLevel, colour = route, shape = hasDepdendants)) +\n2  geom_point()\n\n\n1\n\nThe shape aesthetic is mapped to the hasDepdendants variable in the main ggplot() function.\n\n2\n\nThe geom_point() function is used to represent the data points visually and it takes its shape from the main ggplot() function.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Creating plots with ggplot2 in R</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot.html#different-types-of-geoms-bar-charts",
+    "href": "ggplot.html#different-types-of-geoms-bar-charts",
+    "title": "8  Creating plots with ggplot2 in R",
+    "section": "8.3 Different types of geoms: bar charts",
+    "text": "8.3 Different types of geoms: bar charts\nThe geom_point() function is just one of many geoms that you can use in ggplot. Another common geom is geom_col(), which is used to create bar charts.\nWhen creating a bar chart there are 2 approaches:\n\nsummarise the data before plotting\nlet ggplot do the summarising for you\n\n\n8.3.1 Example: summarising the data before plotting\n\nlibrary(dplyr)\n\nstudentData %&gt;%\n  group_by(route) %&gt;%\n  summarise(meanHours = mean(hoursOfStudy)) %&gt;%\n  ggplot(aes(x = route, y = meanHours)) +\n  geom_col()\n\n\n\n\n\n\n\n\nIn the above code, we first use the group_by() and summarise() functions from the dplyr package to calculate the mean number of hours of study for each route (see previous lessons for this). We then use the ggplot() function to create a plot with the route variable on the X axis and the meanHours variable on the Y axis. Finally, we use the geom_col() function to create the bar chart.\n\n\n\n\n\n\nRemember to refer to the summarised variable in the ggplot() function\n\n\n\nWhen you summarise the data, remember to refer to the summarised variable in the ggplot() function, not the original variable. In the above example, we use meanHours in the ggplot() function, not hoursOfStudy.\nIf you find it easier, you can save the summarised data as a new object and then use this in the ggplot() function.\n\n\n\n\n8.3.2 Example: letting ggplot do the summarising for you\n\nggplot(data=studentData, aes(x = route, y = hoursOfStudy)) + \n  stat_summary(fun = mean, geom = \"col\")\n\n\n\n\n\n\n\n\nIn the above code, we use the stat_summary() function to calculate the mean number of hours of study for each route. We specify that we want to calculate the mean using the fun = mean argument, and we specify that we want to create a bar chart using the geom = \"col\" argument.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Creating plots with ggplot2 in R</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot.html#changing-the-titles-and-legends-of-a-plot",
+    "href": "ggplot.html#changing-the-titles-and-legends-of-a-plot",
+    "title": "8  Creating plots with ggplot2 in R",
+    "section": "8.4 Changing the titles and legends of a plot",
+    "text": "8.4 Changing the titles and legends of a plot\nYou can change the titles and legends of a plot using the labs() function. This function allows you to change the title of the plot, the titles of the X and Y axes, and the legend title.\n\nstudentData %&gt;%\n  group_by(route) %&gt;%\n  summarise(meanHours = mean(hoursOfStudy)) %&gt;%\n  ggplot(aes(x = route, y = meanHours)) +\n  geom_col() +\n  labs(title = \"Mean hours of study by route\",\n       x = \"Route\",\n       y = \"Mean hours of study\",\n       caption = \"Source: Student data\")\n\n\n\n\n\n\n\n\nIn the above code, we use the labs() function to change the title of the plot to “Mean hours of study by route”, the title of the X axis to “Route”, the title of the Y axis to “Mean hours of study”, and the caption to “Source: Student data”.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Creating plots with ggplot2 in R</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot.html#themes-in-ggplot",
+    "href": "ggplot.html#themes-in-ggplot",
+    "title": "8  Creating plots with ggplot2 in R",
+    "section": "8.5 Themes in ggplot",
+    "text": "8.5 Themes in ggplot\nYou can change all of the colours and other appearance elements in ggplot. However, it can be easier to change the appearance of a plot using themes. Themes allow you to change the background colour, the colour of the text, the size of the text, and other aspects of the appearance of the plot.\n\nstudentData %&gt;%\n  group_by(route) %&gt;%\n  summarise(meanHours = mean(hoursOfStudy)) %&gt;%\n  ggplot(aes(x = route, y = meanHours)) +\n  geom_col() +\n  labs(title = \"Mean hours of study by route\",\n       x = \"Route\",\n       y = \"Mean hours of study\",\n       caption = \"Source: Student data\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\nIn the above code, we use the theme_minimal() function to change the appearance of the plot to a minimal theme. There are many other themes that you can use, such as theme_light(), theme_dark(), and theme_bw().",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Creating plots with ggplot2 in R</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot.html#saving-plots-in-ggplot",
+    "href": "ggplot.html#saving-plots-in-ggplot",
+    "title": "8  Creating plots with ggplot2 in R",
+    "section": "8.6 Saving plots in ggplot",
+    "text": "8.6 Saving plots in ggplot\nThe best way to save plots (and get reliable results) is to save them using the ggsave() function. This function allows you to save plots in a variety of formats, such as PDF, PNG, and JPEG. For publication-quality plots, it is best to save them in PDF format, because this format is scalable and resolution independent.\n\nstudentData %&gt;%\n  group_by(route) %&gt;%\n  summarise(meanHours = mean(hoursOfStudy)) %&gt;%\n  ggplot(aes(x = route, y = meanHours)) +\n  geom_col() +\n  labs(title = \"Mean hours of study by route\",\n       x = \"Route\",\n       y = \"Mean hours of study\",\n       caption = \"Source: Student data\") +\n  theme_minimal()\n\nggsave(\"studentData_plot.pdf\", width = 6, height = 4, dpi = 300)\n\nIn the above code, we use the ggsave() function to save the plot as a PDF file called “studentData_plot.pdf”. We specify the width of the plot as 6 inches, the height of the plot as 4 inches, and the resolution as 300 dots per inch (dpi). dpi is not actually used for PDF files, but it is useful for other file formats, such as PNG and eps.\nIn terms of specifying the width and height of the plot, it can take some fiddling around to get the right dimensions. You can specify the width and height in pixels, but it is generally better to specify them in inches, because this is a more standard unit of measurement for plots. I recommend thinking in terms of the aspect ratio of the plot, rather than the exact dimensions. For example, if you want a wide plot, you might specify the width as 6 inches and the height as 4 inches. If you want a square plot, you might specify the width and height as 4 inches each. If you want a tall plot, you might specify the width as 4 inches and the height as 6 inches.\nOnce the aspect ratio feels right, you can adjust the width and height to get the exact right dimensions for your plot.\n\n\n\n\n\n\nPlots will save into the working directory\n\n\n\nWhen you save a plot using the ggsave() function, the plot will be saved into the working directory. You can specify a different directory by specifying the full path to the file, such as “C:/Users/username/Documents/studentData_plot.pdf”.\nIt’s easier just to set the working directory to the folder where you want to save the plots!",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Creating plots with ggplot2 in R</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot.html#summary",
+    "href": "ggplot.html#summary",
+    "title": "8  Creating plots with ggplot2 in R",
+    "section": "8.7 Summary",
+    "text": "8.7 Summary\nIn this chapter, you have learned how to create plots with ggplot in R. You have learned about the “grammar of visualisation” with ggplot, including the dataset, the coordinate system, and the visual marks that represent the data. You have learned how to write a graph function to display multiple variables on a plot, how to amend the titles and legends of a plot, and how to save plots in PDF or image formats.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Creating plots with ggplot2 in R</span>"
+    ]
   }
 ]
