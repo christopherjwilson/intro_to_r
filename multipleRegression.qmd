@@ -1,0 +1,311 @@
+# Multiple Regression and Heirarchical Regression
+
+<iframe src="https://teesside.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=107176f8-2ebc-4f24-9bdc-adaa008f75a9&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;captions=false&amp;interactivity=all" height="405" width="100%" style="border: 1px solid #464646;" allowfullscreen allow="autoplay">
+
+</iframe>
+```{r, include=FALSE}
+
+library(tidyverse)
+regression_data <- read.csv("Datasets/regression_data.csv")
+regression_data$treatment_group <- factor(regression_data$treatment_group)
+```
+
+::: callout-tip
+By the end of this session, you will be able to:
+
+-   Compare multiple regression to simple regression
+-   Describe the assumptions of multiple regression
+-   Consider sample size in regression
+-   Interpret the output of Multiple regression
+-   Conduct and interpret hierarchical multiple regression
+:::
+
+## What is multiple regression?
+
+Multiple regression ia an extension of simple regression that allows us to predict an outcome variable (Y) based on multiple predictors (X1, X2 ...).
+
+$$ Y = b_1X_1 + b_2X_2 + b_0 $$
+
+(The constant can be referred to in the equation as **c** or **b0** )
+
+## What are the assumptions of Multiple Regression?
+
+They are primarily the same as simple regression, so look back at the assumptions of simple regression in that section. The additional assumption of no **multicollinearity**  applies, due to having multiple predictors.  The multicollinearity assumption means that predictors should not be highly correlated. If they were, it would be difficult to determine the unique contribution of each predictor to the model.
+
+### What is multicollinearity?
+
+Multicollinearity means that predictors correlated highly with each other.
+This is not good because:
+    -   It makes it difficult to determine the role of individual predictors
+    -   Increases the error of the model (higher standard errors)
+    -   Difficult to identify significant predictors - wider confidence interval
+
+### Testing multicollinearity
+
+To test for multicollinearity, we can use the `mctest()` function in R. This function is part of the `mctest` package. It performs several tests for multicollinearity, including the Variance Inflation Factor (VIF) and the Condition Index (CI).
+
+To run the test, you pass the regression model to the `mctest()` function. The function will then return the results of the tests.
+
+```{r}
+## use the mctest package
+# install.packages(‘mctest’)
+
+library(mctest)
+
+m1 <- lm(aggression_level ~ treatment_group + treatment_duration + trust_score, data=regression_data) #<1>
+
+mctest(m1) #<2>
+
+```
+
+1. In this code, we are running a regression model with three predictors (treatment group, treatment duration, and trust score) and the outcome variable aggression level.
+
+2. We then pass the regression model to the `mctest()` function to test for multicollinearity.
+
+The `mctest()` function also takes an additional argument, `type`, which specifies whether you want, the main tests, each individual predictor, or both. The default is `type = "main"`, which will run the main tests.
+
+## Sample size for multiple regression
+
+-   Is based on the number of predictors
+-   More predictors = more participants needed
+-   **Do a power analysis**
+-   Loose "rule of thumb" = 10-15 participants per predictor
+
+## Approaches to multiple regression: All predictors at once
+
+> Research question: Do a client's treatment duration and treatment group predict aggression level?
+
+```{r}
+model1 <- lm(data = regression_data, aggression_level ~ treatment_duration + treatment_group)
+```
+
+-   Here we are including all of the predictors at the same time
+-   Note that we are using a plus sign + between each predictor
+    -   This means that no interactions will be tested
+
+### Using categorical predictors in R
+
+-   Treatment group is a categorical (also called "nominal" or "factor") variable
+-   No special "dummy coding" is required in R to use categorical predictors in regression
+-   R will use the first group as the reference category and test whether being in another group shows a significant difference
+-   R chooses the reference group based on numerical value or alphabetical order
+-   If you want you can change the reference category or "force" it using the relevel function:
+
+```{r}
+regression_data$treatment_group <- relevel(regression_data$treatment_group, ref = "therapy1")
+```
+
+**More information in categorical predictors in section** \@ref(catreg)
+
+### Reviewing the output
+
+```{r}
+summary(model1)
+```
+
+-   Multiple R\^2 = Total variance in outcome that is explained by the model
+-   p-value = Statistical significance of the model
+-   Coefficients = Contribution of each predictor to the model
+    -   Pr = Significance of the individual predictor
+    -   Estimate = Change in the outcome level that occurs when the predictor increases by 1 unit of measurement
+
+### All predictors at once (testing interactions)
+
+> Research questions: - Do a client's treatment duration and treatment group predict aggression level - Do the predictors interact?
+
+```{r}
+model2 <- lm(data = regression_data, aggression_level ~ treatment_duration * treatment_group)
+```
+
+-   Here we are including all of the predictors at the same time
+-   Note that we are using an asterisk \* between each predictor
+    -   This means that interactions will be tested
+
+Reviewing the output
+
+<code style="font-size: 1em; width=100%;">
+
+```{r}
+
+summary(model2) %>% coefficients
+
+```
+
+</code>
+
+-   We get additional information in the coefficients table about the interaction between variables
+    -   e.g. does the interaction between level of trust and treatment duration predict the outcome (aggression level)?
+-   We can see from the output that none of the interactions are significant
+
+### Hierarchical multiple regression: Theory driven "blocks" of variables
+
+-   It might be the case that we have previous research or theory to guide how we run the analysis
+-   For example, we might know that treatment duration and therapy group are likely to predict the outcome
+-   We might want to check whether client's level of trust in the clinician has any **additional** impact on our ability to predict the outcome (aggression level)
+
+> -   To do this, we run three regression models
+>     -   Model 0: the constant (baseline)
+>     -   Model 1: treatment duration and therapy group
+>     -   Model 2: treatment duration and therapy group and trust score
+
+-   We then compare the two regression models to see if:
+    -   Model 1 is better than Model 0 (the constant)
+    -   Model 2 is better than Model 1
+
+**Hierarchical multiple regression: Running and comparing 2 models**
+
+```{r}
+## run regression using the same method as above
+model0 <- lm(data = regression_data, aggression_level ~ 1)
+model1 <- lm(data = regression_data, aggression_level ~ treatment_duration + treatment_group)
+model2 <- lm(data = regression_data, aggression_level ~ treatment_duration + treatment_group + trust_score)
+
+## use the aov() command to compare the models
+anova(model0,model1,model2)
+```
+
+-   We can see that:
+    -   Model 1 (treatment duration and treatment group) is significant relative to the constant (Model 0)
+    -   Model 2 (treatment duration, treatment group and trust score) shows no significant change compared to Model 1
+
+### Stepwise multiple regression: computational selection of predictors
+
+-   Stepwise multiple regression is controversial because:
+
+    -   The computer selects which predictors to include based on Akaike information criterion (AIC)
+        -   This is a calculation of the quality of statistical models when they are compared to each other
+
+    > ### What's the problem?
+    >
+    > -   This selection is not based on any underlying theory or understanding of the real-life relationship between the variables
+
+### Stepwise multiple regression: loading the MASS package and run the full model
+
+1.  **install and load the MASS package**
+2.  **run a regression model with all of the variables**
+3.  use the *stepAIC()* command on the full model to run stepwise regression
+4.  View the best model
+
+```{r}
+library(MASS)
+
+# Run the full model 
+full.model <- lm(data = regression_data, aggression_level ~ treatment_duration + treatment_group + trust_score)
+
+```
+
+### Stepwise multiple regression: Use stepAIC( ) with options
+
+-   **Trace** *(TRUE or FALSE)*: do we want to see the steps that were involved in selecting the best model ?
+-   **Direction** *("forward", "backward" or "both")*:
+    -   start with no variables and add them *(forward)*
+    -   start with all variables and subtract them *(backward)*
+    -   use both approaches *(both)*
+
+<code style="font-size: 1em; width=100%;">
+
+```{r}
+# Run stepwise
+step.model <- stepAIC(full.model, direction = "both", trace = TRUE)
+
+```
+
+</code>
+
+### Stepwise multiple regression: Display the best model
+
+1.  install and load the MASS package
+2.  run a regression model with all of the variables
+3.  **use the *stepAIC()* command on the full model to run stepwise regression**
+4.  **View best model**
+
+```{r}
+#view the stepwise output
+summary(step.model)
+```
+
+## Using regression with categorical predictors (more information) {#catreg}
+
+**In the below video, you can click the icon in the top right of the video to change the layout (and remove my face, if you want!)**
+
+<iframe src="https://teesside.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=01cdd2e6-c7dd-4677-a5b9-ae1b00caa8b7&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;captions=false&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay">
+
+</iframe>
+
+People are often taught to use ANOVA to compare groups (i.e. if you have a categorical IV) and regression if you have continuous IVs. However, ANOVA and regression are the same thing, so it is possible to use regression to do analysis instead of ANOVA or ANCOVA.
+
+However, it might be difficult to understand how this is, so let's look at an example. The dataset **Baumann** compares 3 different methods of teaching reading comprehension. For this example, we will just look at the variable post.test.1 as the DV.
+
+### ANOVA Approach
+
+ANOVA asks the question in the following way:
+
+> Is there a difference in reading comprehension scores between teaching groups?
+
+The analysis takes the following approach:
+
+-   What are the means of groups 1,2 and 3?
+-   Are the means of groups 1,2 and 3 different?
+-   Is the difference in means of groups 1,2 and 3 statistically significant?
+
+If we were to summarise the data, we might present it in the following way:
+
+```{r data_summary, echo=FALSE, message=FALSE, warning=FALSE}
+Baumann <- carData::Baumann
+knitr::kable(
+
+
+
+Baumann %>% group_by(group) %>% summarise(mean = mean(post.test.1), sd = sd(post.test.1))
+)
+
+
+```
+
+In the table above we can see that the mean scores are different and highest in the DRTA group.
+
+If we were to run an ANOVA on the data, we might present it in the following way:
+
+```{r anova_approach, echo=FALSE, message=FALSE, warning=FALSE}
+require(broom) # for tidy()
+require(knitr) # for kable()
+aov(post.test.1 ~ group, data = Baumann) %>% tidy() %>% knitr::kable()
+
+```
+
+Notice that the ANOVA output tells us that the difference between groups is significant (p \< 0.05) but we cannot tell yet which of the 3 groups are significantly different from each other.
+
+### Regression approach
+
+Regression asks the question the following way:
+
+> Does teaching group predict reading comprehension score?
+
+The analysis takes the following approach:
+
+-   Let's use the mean of group 1 as a reference point (i.e. the intercept).
+-   What's the difference between the intercept and the mean scores of the other groups (i.e. the coefficients)?
+-   Are any of the coefficients statistically significant?
+
+If we run a regression analysis, we might present the results like this:
+
+```{r regression_approach, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+Model1 <- lm(post.test.1 ~ group, data = Baumann)
+
+c(summary(Model1)$r.squared) %>% kable(col.names = "R2")
+
+
+
+Model1 %>% aov() %>% tidy() %>% kable()
+Model1 %>% tidy() %>% knitr::kable()
+
+
+```
+
+### Interpreting regression output
+
+If we look at the coefficient (estimate) for the intercept (see regression output above), we can see that the value is the same as the mean of the Basal group in the previous section (See table of mean and sd, above).
+
+Furthermore, if we look at the estimates of DRTA and Strat, we can see that the values are the difference between their mean score, and the score for of the intercept (BASAL) group. So we can see whether DTRA and STRAT groups are significantly different from the BASAL group.
+
+If we wanted to compare the groups differently (e.g. using Strat as the reference point), we can use the relevel function and run the regression analysis again (See [Using categorical predictors in R])
