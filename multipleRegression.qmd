@@ -33,7 +33,12 @@ They are primarily the same as simple regression, so look back at the assumption
 
 ### What is multicollinearity?
 
-Multicollinearity means that predictors correlated highly with each other. This is not good because: - It makes it difficult to determine the role of individual predictors - Increases the error of the model (higher standard errors) - Difficult to identify significant predictors - wider confidence interval
+Multicollinearity means that predictors correlated highly with each other. This is not good because: 
+
+- It makes it difficult to determine the role of individual predictors 
+- Increases the error of the model (higher standard errors) 
+- Difficult to identify significant predictors 
+- Wider confidence interval
 
 ### Testing multicollinearity
 

@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./multipleRegression.html" rel="next">
 <link href="./correlation.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -187,6 +188,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Simple Regression in R</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multipleRegression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Multiple Regression and Heirarchical Regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Creating plots with ggplot2 in R</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -215,7 +228,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#residuals-the-residuals" id="toc-residuals-the-residuals" class="nav-link" data-scroll-target="#residuals-the-residuals"><span class="header-section-number">9.3.2</span> <strong>Residuals:</strong> The residuals</a></li>
   <li><a href="#coefficients-the-beta-values" id="toc-coefficients-the-beta-values" class="nav-link" data-scroll-target="#coefficients-the-beta-values"><span class="header-section-number">9.3.3</span> <strong>Coefficients:</strong> The beta values</a></li>
   </ul></li>
-  <li><a href="#regression-with-a-categorical-predictor-variable" id="toc-regression-with-a-categorical-predictor-variable" class="nav-link" data-scroll-target="#regression-with-a-categorical-predictor-variable"><span class="header-section-number">9.4</span> Regression with a categorical predictor variable</a></li>
+  <li><a href="#catreg" id="toc-catreg" class="nav-link" data-scroll-target="#catreg"><span class="header-section-number">9.4</span> Regression with a categorical predictor variable</a></li>
   <li><a href="#comparing-multiple-levels-of-predictor-variables-estimated-marginal-means" id="toc-comparing-multiple-levels-of-predictor-variables-estimated-marginal-means" class="nav-link" data-scroll-target="#comparing-multiple-levels-of-predictor-variables-estimated-marginal-means"><span class="header-section-number">9.5</span> Comparing multiple levels of predictor variables (estimated marginal means)</a></li>
   </ul></li>
   </ul>
@@ -557,8 +570,8 @@ F-statistic: 0.6795 on 1 and 98 DF,  p-value: 0.4118</code></pre>
 </ul>
 </section>
 </section>
-<section id="regression-with-a-categorical-predictor-variable" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="regression-with-a-categorical-predictor-variable"><span class="header-section-number">9.4</span> Regression with a categorical predictor variable</h2>
+<section id="catreg" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="catreg"><span class="header-section-number">9.4</span> Regression with a categorical predictor variable</h2>
 <p>So far, we have conducted a regression analysis with a continuous predictor variable. Now, let’s consider a regression analysis with a categorical predictor variable.</p>
 <iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=e8096534-43d8-4187-bce3-b22200c21181&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="338" width="600" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="Regression with categorical predictors + multiple comparisons with estimated marginal means">
 </iframe>
@@ -1178,6 +1191,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./multipleRegression.html" class="pagination-link" aria-label="Multiple Regression and Heirarchical Regression">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Multiple Regression and Heirarchical Regression</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
