@@ -220,6 +220,66 @@
     ]
   },
   {
+    "objectID": "power_effectSize.html",
+    "href": "power_effectSize.html",
+    "title": "4  Sampling, power and effect size",
+    "section": "",
+    "text": "4.1 Different measures of effect size\nThere are different ways to calculate effect size depending on the type of data and the statistical test used. Here are some common effect size measures:\nIn the following sections, we will calculate the effect size for different types of data using some of these measures.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sampling, power and effect size</span>"
+    ]
+  },
+  {
+    "objectID": "power_effectSize.html#different-measures-of-effect-size",
+    "href": "power_effectSize.html#different-measures-of-effect-size",
+    "title": "4  Sampling, power and effect size",
+    "section": "",
+    "text": "Cohen’s d: This is a measure of the difference between two means in standard deviation units. It is commonly used in t-tests and ANOVA tests.\nEta-squared (\\(\\eta^2\\)): This is a measure of the proportion of variance in the dependent variable that is explained by the independent variable. It is commonly used in ANOVA tests.\nPhi coefficient (\\(\\phi\\)): This is a measure of the association between two binary variables. It is commonly used in chi-square tests.\nCorrelation coefficient (\\(r\\)): This is a measure of the strength and direction of the relationship between two continuous variables. It is commonly used in correlation tests.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sampling, power and effect size</span>"
+    ]
+  },
+  {
+    "objectID": "power_effectSize.html#calculating-cohens-d",
+    "href": "power_effectSize.html#calculating-cohens-d",
+    "title": "4  Sampling, power and effect size",
+    "section": "4.2 Calculating Cohen’s d",
+    "text": "4.2 Calculating Cohen’s d\nCohen’s d is a measure of the difference between two means in standard deviation units. It is calculated as the difference between the means divided by the pooled standard deviation. The formula for Cohen’s d is:\n\\[ d = \\frac{{\\bar{X}_1 - \\bar{X}_2}}{{s_p}} \\]\nwhere:\n\n\\(\\bar{X}_1\\) and \\(\\bar{X}_2\\) are the means of the two groups.\n\\(s_p\\) is the pooled standard deviation, calculated as:\n\n\\[s_p = \\sqrt{\\frac{{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}}{{n_1 + n_2 - 2}}} \\]\nwhere:\n\n\\(n_1\\) and \\(n_2\\) are the sample sizes of the two groups.\n\\(s_1\\) and \\(s_2\\) are the standard deviations of the two groups.\n\nLet’s calculate Cohen’s d for a hypothetical dataset with two groups. The dataset contains the following information:\n\nGroup 1: Mean = 10, Standard deviation = 2, Sample size = 30\nGroup 2: Mean = 12, Standard deviation = 3, Sample size = 30\n\nTo calculate Cohen’s d, we first need to calculate the pooled standard deviation (\\(s_p\\)) using the formula above. Then, we can calculate Cohen’s d using the formula for Cohen’s d.\nLet’s calculate Cohen’s d for this dataset using R:\n\n# Calculate Cohen's d\n\n# Group 1\n\nmean1 &lt;- 10\n\nsd1 &lt;- 2\n\nn1 &lt;- 30\n\n# Group 2\n\nmean2 &lt;- 12\n\nsd2 &lt;- 3\n\nn2 &lt;- 30\n\n# Calculate pooled standard deviation\n\nsp &lt;- sqrt(((n1 - 1) * sd1^2 + (n2 - 1) * sd2^2) / (n1 + n2 - 2))\n\n# Calculate Cohen's d\n\nd &lt;- (mean1 - mean2) / sp\n\n\nd\n\n[1] -0.7844645\n\n\nThe calculated value of Cohen’s d is -0.7844645. This negative value indicates that the mean of Group 1 is smaller than the mean of Group 2 by approximately 0.78 standard deviations.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sampling, power and effect size</span>"
+    ]
+  },
+  {
+    "objectID": "power_effectSize.html#calculating-eta-squared-and-other-effect-size-measures",
+    "href": "power_effectSize.html#calculating-eta-squared-and-other-effect-size-measures",
+    "title": "4  Sampling, power and effect size",
+    "section": "4.3 Calculating Eta-squared and other effect size measures",
+    "text": "4.3 Calculating Eta-squared and other effect size measures\nIt is possible to calculate other effect size measures such as Eta-squared, Phi coefficient. However, these measures are most commonly calculated using the output of statistical tests such as ANOVA and chi-square tests etc. To obtain these measures for the purpose of sample size calculation, you would usually look at previous studies or meta analyses to determine the expected effect size. For clinical research, you may also use the minimal clinically important difference (MCID) as a guide to determine the effect size.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sampling, power and effect size</span>"
+    ]
+  },
+  {
+    "objectID": "power_effectSize.html#power-analysis",
+    "href": "power_effectSize.html#power-analysis",
+    "title": "4  Sampling, power and effect size",
+    "section": "4.4 Power analysis",
+    "text": "4.4 Power analysis\nPower analysis is a method used to determine the sample size required to detect an effect of a given size with a certain level of confidence. It is important to conduct a power analysis before conducting a study to ensure that the sample size is adequate to detect the effect of interest.\nTo conduct a power analysis, you need to specify the following parameters:\n\nThe effect size: The size of the effect you want to detect. This is usually determined based on previous studies, meta-analyses or MCID.\nThe significance level (\\(\\alpha\\)): The probability of rejecting the null hypothesis when it is true (Type 1 error rate). This is commonly set at 0.05.\nThe power (\\(1 - \\beta\\)): The probability of correctly rejecting the null hypothesis when it is false (1 - Type 2 error rate). This is commonly set at 0.80 or 0.90.\nThe number of groups or conditions: The number of groups or conditions in the study.\n\nThe sample size required to achieve a desired power level can be calculated using power analysis functions in R. There are many packages in r for power analysis. The package pwr is one such package that provides functions to calculate the sample size required for different types of statistical tests.\nThe functions for some basic research designs are:\n\npwr.t.test(): For t-tests\npwr.anova.test(): For ANOVA tests\npwr.chisq.test(): For chi-square tests\npwr.f2.test(): For regression models\n\nLet’s calculate the sample size required to achieve a power of 0.80 for a t-test with the example data we used earlier. We will use the pwr.t.test() function from the pwr package to calculate the sample size required to achieve a power of 0.80 for a t-test with the following parameters:\n\nEffect size (Cohen’s d) = -0.7844645\nSignificance level (\\(\\alpha\\)) = 0.05\n\n\n# Load the pwr package\n\n\nlibrary(pwr)\n\n# Calculate the sample size required for a t-test\n# using the d value calculated earlier\n\npwr.t.test(d = d, sig.level = 0.05, power = 0.80)\n\n\n     Two-sample t test power calculation \n\n              n = 26.50429\n              d = 0.7844645\n      sig.level = 0.05\n          power = 0.8\n    alternative = two.sided\n\nNOTE: n is number in *each* group\n\n\nThe output of the pwr.t.test() function provides the sample size required to achieve a power of 0.80 for a t-test with the specified effect size and significance level. The output includes the following information:\n\nn = The sample size required for each group to achieve a power of 0.80.\nd = The effect size (Cohen’s d) used in the power analysis.\nsig.level = The significance level used in the power analysis.\npower = The power level achieved with the specified sample size.\n\nThe sample size required to achieve a power of 0.80 for a t-test with the specified effect size and significance level is 26.5 for each group. Since the sample size must be a whole number, we would need to round up to the nearest whole number. Therefore, the sample size required for each group is 27.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sampling, power and effect size</span>"
+    ]
+  },
+  {
+    "objectID": "power_effectSize.html#more-complex-power-analysis",
+    "href": "power_effectSize.html#more-complex-power-analysis",
+    "title": "4  Sampling, power and effect size",
+    "section": "4.5 More complex power analysis",
+    "text": "4.5 More complex power analysis\nFor more complex designs, different approaches to power analysis might be necessary, such as using simulation. This is possible to do in R, but is beyond the scope of this chapter.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sampling, power and effect size</span>"
+    ]
+  },
+  {
     "objectID": "basic_tests.html",
     "href": "basic_tests.html",
     "title": "5  Basic statistical tests",
@@ -227,66 +287,6 @@
     "text": "5.1 Independent t-test\nThe independent t-test is used to compare the means of two independent groups. In R, you can use the t.test() function to perform an independent t-test. Here is an example:\n# This example uses the mtcars dataset, which is a built-in dataset in R that contains data on various car models.\n\n# Load the mtcars dataset\n\ndata(mtcars)\n\n# Independent t-test example: Is there a difference in fuel efficiency between automatic and manual cars?\n# the variable am is a binary variable indicating the type of transmission (0 = automatic, 1 = manual)\n\n# Perform the independent t-test\n\nt_test_result &lt;- t.test(mpg ~ am, data = mtcars)\n\n# Print the result\n\nt_test_result\n\n\n    Welch Two Sample t-test\n\ndata:  mpg by am\nt = -3.7671, df = 18.332, p-value = 0.001374\nalternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0\n95 percent confidence interval:\n -11.280194  -3.209684\nsample estimates:\nmean in group 0 mean in group 1 \n       17.14737        24.39231\nIn this example, we are comparing the fuel efficiency (mpg) of automatic and manual cars in the mtcars dataset. The mpg variable is the dependent variable, and the am variable is the independent variable. The t.test() function is used to perform the independent t-test, and the result is stored in the t_test_result variable.\nIf we look at the output, we can see the following:",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Basic statistical tests</span>"
-    ]
-  },
-  {
-    "objectID": "power_effectSize.html",
-    "href": "power_effectSize.html",
-    "title": "6  Sampling, power and effect size",
-    "section": "",
-    "text": "6.1 Different measures of effect size\nThere are different ways to calculate effect size depending on the type of data and the statistical test used. Here are some common effect size measures:\nIn the following sections, we will calculate the effect size for different types of data using some of these measures.",
-    "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Sampling, power and effect size</span>"
-    ]
-  },
-  {
-    "objectID": "power_effectSize.html#different-measures-of-effect-size",
-    "href": "power_effectSize.html#different-measures-of-effect-size",
-    "title": "6  Sampling, power and effect size",
-    "section": "",
-    "text": "Cohen’s d: This is a measure of the difference between two means in standard deviation units. It is commonly used in t-tests and ANOVA tests.\nEta-squared (\\(\\eta^2\\)): This is a measure of the proportion of variance in the dependent variable that is explained by the independent variable. It is commonly used in ANOVA tests.\nPhi coefficient (\\(\\phi\\)): This is a measure of the association between two binary variables. It is commonly used in chi-square tests.\nCorrelation coefficient (\\(r\\)): This is a measure of the strength and direction of the relationship between two continuous variables. It is commonly used in correlation tests.",
-    "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Sampling, power and effect size</span>"
-    ]
-  },
-  {
-    "objectID": "power_effectSize.html#calculating-cohens-d",
-    "href": "power_effectSize.html#calculating-cohens-d",
-    "title": "6  Sampling, power and effect size",
-    "section": "6.2 Calculating Cohen’s d",
-    "text": "6.2 Calculating Cohen’s d\nCohen’s d is a measure of the difference between two means in standard deviation units. It is calculated as the difference between the means divided by the pooled standard deviation. The formula for Cohen’s d is:\n\\[ d = \\frac{{\\bar{X}_1 - \\bar{X}_2}}{{s_p}} \\]\nwhere:\n\n\\(\\bar{X}_1\\) and \\(\\bar{X}_2\\) are the means of the two groups.\n\\(s_p\\) is the pooled standard deviation, calculated as:\n\n\\[s_p = \\sqrt{\\frac{{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}}{{n_1 + n_2 - 2}}} \\]\nwhere:\n\n\\(n_1\\) and \\(n_2\\) are the sample sizes of the two groups.\n\\(s_1\\) and \\(s_2\\) are the standard deviations of the two groups.\n\nLet’s calculate Cohen’s d for a hypothetical dataset with two groups. The dataset contains the following information:\n\nGroup 1: Mean = 10, Standard deviation = 2, Sample size = 30\nGroup 2: Mean = 12, Standard deviation = 3, Sample size = 30\n\nTo calculate Cohen’s d, we first need to calculate the pooled standard deviation (\\(s_p\\)) using the formula above. Then, we can calculate Cohen’s d using the formula for Cohen’s d.\nLet’s calculate Cohen’s d for this dataset using R:\n\n# Calculate Cohen's d\n\n# Group 1\n\nmean1 &lt;- 10\n\nsd1 &lt;- 2\n\nn1 &lt;- 30\n\n# Group 2\n\nmean2 &lt;- 12\n\nsd2 &lt;- 3\n\nn2 &lt;- 30\n\n# Calculate pooled standard deviation\n\nsp &lt;- sqrt(((n1 - 1) * sd1^2 + (n2 - 1) * sd2^2) / (n1 + n2 - 2))\n\n# Calculate Cohen's d\n\nd &lt;- (mean1 - mean2) / sp\n\n\nd\n\n[1] -0.7844645\n\n\nThe calculated value of Cohen’s d is -0.7844645. This negative value indicates that the mean of Group 1 is smaller than the mean of Group 2 by approximately 0.78 standard deviations.",
-    "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Sampling, power and effect size</span>"
-    ]
-  },
-  {
-    "objectID": "power_effectSize.html#calculating-eta-squared-and-other-effect-size-measures",
-    "href": "power_effectSize.html#calculating-eta-squared-and-other-effect-size-measures",
-    "title": "6  Sampling, power and effect size",
-    "section": "6.3 Calculating Eta-squared and other effect size measures",
-    "text": "6.3 Calculating Eta-squared and other effect size measures\nIt is possible to calculate other effect size measures such as Eta-squared, Phi coefficient. However, these measures are most commonly calculated using the output of statistical tests such as ANOVA and chi-square tests etc. To obtain these measures for the purpose of sample size calculation, you would usually look at previous studies or meta analyses to determine the expected effect size. For clinical research, you may also use the minimal clinically important difference (MCID) as a guide to determine the effect size.",
-    "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Sampling, power and effect size</span>"
-    ]
-  },
-  {
-    "objectID": "power_effectSize.html#power-analysis",
-    "href": "power_effectSize.html#power-analysis",
-    "title": "6  Sampling, power and effect size",
-    "section": "6.4 Power analysis",
-    "text": "6.4 Power analysis\nPower analysis is a method used to determine the sample size required to detect an effect of a given size with a certain level of confidence. It is important to conduct a power analysis before conducting a study to ensure that the sample size is adequate to detect the effect of interest.\nTo conduct a power analysis, you need to specify the following parameters:\n\nThe effect size: The size of the effect you want to detect. This is usually determined based on previous studies, meta-analyses or MCID.\nThe significance level (\\(\\alpha\\)): The probability of rejecting the null hypothesis when it is true (Type 1 error rate). This is commonly set at 0.05.\nThe power (\\(1 - \\beta\\)): The probability of correctly rejecting the null hypothesis when it is false (1 - Type 2 error rate). This is commonly set at 0.80 or 0.90.\nThe number of groups or conditions: The number of groups or conditions in the study.\n\nThe sample size required to achieve a desired power level can be calculated using power analysis functions in R. There are many packages in r for power analysis. The package pwr is one such package that provides functions to calculate the sample size required for different types of statistical tests.\nThe functions for some basic research designs are:\n\npwr.t.test(): For t-tests\npwr.anova.test(): For ANOVA tests\npwr.chisq.test(): For chi-square tests\npwr.f2.test(): For regression models\n\nLet’s calculate the sample size required to achieve a power of 0.80 for a t-test with the example data we used earlier. We will use the pwr.t.test() function from the pwr package to calculate the sample size required to achieve a power of 0.80 for a t-test with the following parameters:\n\nEffect size (Cohen’s d) = -0.7844645\nSignificance level (\\(\\alpha\\)) = 0.05\n\n\n# Load the pwr package\n\n\nlibrary(pwr)\n\n# Calculate the sample size required for a t-test\n# using the d value calculated earlier\n\npwr.t.test(d = d, sig.level = 0.05, power = 0.80)\n\n\n     Two-sample t test power calculation \n\n              n = 26.50429\n              d = 0.7844645\n      sig.level = 0.05\n          power = 0.8\n    alternative = two.sided\n\nNOTE: n is number in *each* group\n\n\nThe output of the pwr.t.test() function provides the sample size required to achieve a power of 0.80 for a t-test with the specified effect size and significance level. The output includes the following information:\n\nn = The sample size required for each group to achieve a power of 0.80.\nd = The effect size (Cohen’s d) used in the power analysis.\nsig.level = The significance level used in the power analysis.\npower = The power level achieved with the specified sample size.\n\nThe sample size required to achieve a power of 0.80 for a t-test with the specified effect size and significance level is 26.5 for each group. Since the sample size must be a whole number, we would need to round up to the nearest whole number. Therefore, the sample size required for each group is 27.",
-    "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Sampling, power and effect size</span>"
-    ]
-  },
-  {
-    "objectID": "power_effectSize.html#more-complex-power-analysis",
-    "href": "power_effectSize.html#more-complex-power-analysis",
-    "title": "6  Sampling, power and effect size",
-    "section": "6.5 More complex power analysis",
-    "text": "6.5 More complex power analysis\nFor more complex designs, different approaches to power analysis might be necessary, such as using simulation. This is possible to do in R, but is beyond the scope of this chapter.",
-    "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Sampling, power and effect size</span>"
     ]
   },
   {
@@ -400,6 +400,16 @@
     ]
   },
   {
+    "objectID": "correlation.html#visualising-correlation",
+    "href": "correlation.html#visualising-correlation",
+    "title": "6  Correlation in R",
+    "section": "6.2 Visualising correlation",
+    "text": "6.2 Visualising correlation\nWe can visualise correlation using a scatterplot. This is a graph where each data point is plotted on a graph, with one variable on the x axis and the other on the y axis. If the data points form something resembling a straight line, with all of the data points in a consistent pattern, then we have a strong correlation. If the data points are scattered, then we have a weaker correlation. However, if the data points are inconsistent or more diffuse, the correlation is weaker. The direction of the line tells us the direction of the correlation.\n\n\n\n\n\n\n\n\n\nVisualising the data in this way can give us a good idea of the strength and direction of the correlation. However, it is not a substitute for running the correlation itself. At the same time, correlation coefficients can be misleading on their own. It is always a good idea to visualise the data as well.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Correlation in R</span>"
+    ]
+  },
+  {
     "objectID": "correlation.html#how-is-correlation-calculated",
     "href": "correlation.html#how-is-correlation-calculated",
     "title": "6  Correlation in R",
@@ -410,211 +420,11 @@
     ]
   },
   {
-    "objectID": "correlation.html#running-correlation-in-r",
-    "href": "correlation.html#running-correlation-in-r",
-    "title": "5  Correlation",
-    "section": "5.3 Running correlation in R",
-    "text": "5.3 Running correlation in R\n\nStep 1: Check assumptions\n\nData,distribution,linearity\n\nStep 2: Run correlation\nStep 3: Check R value\nStep 4: Check significance\n\n\n5.3.1 Check assumptions: data\n\nParametric tests require interval or ratio data\nIf the data are ordinal then a non-parametric correlation is used\n\n\nWhat type of data are treatment duration and aggression level?\n\n\n\n5.3.2 Check assumptions: distribution\n\nParametric tests require normally distributed data\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5.3.3 Check assumptions: distribution #2\n\nParametric tests require normally distributed data\n\n\nshapiro.test(regression_data$treatment_duration)\n\n\n    Shapiro-Wilk normality test\n\ndata:  regression_data$treatment_duration\nW = 0.94971, p-value = 0.0007939\n\n\n\nshapiro.test(regression_data$aggression_level)\n\n\n    Shapiro-Wilk normality test\n\ndata:  regression_data$aggression_level\nW = 0.9928, p-value = 0.8756\n\n\n\nThe normality assumption is less of an issue when sample size is &gt; 30\n\n\n\n5.3.4 Checking assumptions: linearity\n\n\n\n\n\n\n\n\n\n\nregression_data %&gt;% ggplot(aes(x=treatment_duration,y=aggression_level)) +\n  geom_point()\n\n\n\n\n\n\n\n\n\nHere we are looking to see if the relationship is linear\n\n\n\n5.3.5 Run correlation\n\nR can run correlations using the cor.test() command\n\n\ncor.test(regression_data$treatment_duration,regression_data$aggression_level)\n\n\n    Pearson's product-moment correlation\n\ndata:  regression_data$treatment_duration and regression_data$aggression_level\nt = -9.5503, df = 98, p-value = 1.146e-15\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n -0.7838251 -0.5765006\nsample estimates:\n       cor \n-0.6942996 \n\n\n\n\n5.3.6 Check r Value (correlation value)\n\nThe r value tells us the strength and direction of the relationship\nIn the output it is labelled as “cor” (short for correlation)\n\n\ncor.test(regression_data$treatment_duration,regression_data$aggression_level)\n\n\n    Pearson's product-moment correlation\n\ndata:  regression_data$treatment_duration and regression_data$aggression_level\nt = -9.5503, df = 98, p-value = 1.146e-15\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n -0.7838251 -0.5765006\nsample estimates:\n       cor \n-0.6942996 \n\n\n\n\n5.3.7 Check the significance of the correlation\n\nWe can see that the significance by looking at the p value\n\nThe significance is 1.146^-15\nThis means: 0.0000000000000001146\n\nTherefore p value &lt; 0.05\n\n\ncor.test(regression_data$treatment_duration,regression_data$aggression_level)\n\n\n    Pearson's product-moment correlation\n\ndata:  regression_data$treatment_duration and regression_data$aggression_level\nt = -9.5503, df = 98, p-value = 1.146e-15\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n -0.7838251 -0.5765006\nsample estimates:\n       cor \n-0.6942996",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation</span>"
-    ]
-  },
-  {
-    "objectID": "correlation.html#what-is-regression",
-    "href": "correlation.html#what-is-regression",
-    "title": "5  Correlation and simple regression",
-    "section": "6.1 What is regression?",
-    "text": "6.1 What is regression?\n\nTesting to see if we can make predictions based on data that are correlated\n\n\nWe found a strong correlation between treatment duration and agression levels. Can we use this data to predict aggression levels of other clients, based on their treatment duration?\n\n\nWhen we carry out regression, we get a information about:\n\nHow much variance in the outcome is explained by the predictor\nHow confident we can be about these results generalising (i.e. significance)\nHow much error we can expect from anu predictions that we make (i.e. standard error of the estimate)\nThe figures we need to calculate a predicted outcome value (i.e. coefficient values)",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
-    ]
-  },
-  {
-    "objectID": "correlation.html#how-is-regression-calculated",
-    "href": "correlation.html#how-is-regression-calculated",
-    "title": "5  Correlation and simple regression",
-    "section": "6.2 How is regression calculated?",
-    "text": "6.2 How is regression calculated?\n\n\n\n\n\n\n\n\n\n\nWhen we run a regression analysis, a calculation is done to select the “line of best fit”\nThis is a “prediction line” that minimises the overall amount of error\n\nError = difference between the data points and the line",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
-    ]
-  },
-  {
-    "objectID": "correlation.html#the-regression-equation",
-    "href": "correlation.html#the-regression-equation",
-    "title": "5  Correlation and simple regression",
-    "section": "6.3 The regression equation",
-    "text": "6.3 The regression equation\n\n\n\n\n\n\n\n\n\n\nOnce the line of best fit is calculated, predictions are based on this line\nTo make predictions we need the intercept and slope of the line\n\nIntercept or constant= where the line crosses the y axis\nSlope or beta = the angle of the line\n\nPredictions are made using the calculation for a line: Y = bX + c\nYou can think of the equation like this:\n\npredicted outcome value = beta coefficient * value of predictor + constant",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
-    ]
-  },
-  {
-    "objectID": "correlation.html#running-regression-in-r",
-    "href": "correlation.html#running-regression-in-r",
-    "title": "5  Correlation and simple regression",
-    "section": "6.4 Running regression in R",
-    "text": "6.4 Running regression in R\n\nStep 1: Run regression\nStep 2: Check assumptions\n\nData\nDistribution\nLinearity\nHomogeneity of variance\nUncorrelated predictors\nIndpendence of residuals\nNo influental cases / outliers\n\nStep 3: Check R^2 value\nStep 4: Check model significance\nStep 5: Check coefficient values",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
-    ]
-  },
-  {
-    "objectID": "correlation.html#run-regression",
-    "href": "correlation.html#run-regression",
-    "title": "5  Correlation and simple regression",
-    "section": "6.5 Run regression",
-    "text": "6.5 Run regression\n\nWe use the lm() command to run regression while saving the results\nWe then use the summary() function to check the results\n\n\nmodel1 &lt;- lm(formula= aggression_level ~ treatment_duration ,data=regression_data)\nsummary(model1)\n\n\nCall:\nlm(formula = aggression_level ~ treatment_duration, data = regression_data)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-3.4251 -1.1493 -0.0593  0.8814  3.4542 \n\nCoefficients:\n                   Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)         12.3300     0.7509   16.42  &lt; 2e-16 ***\ntreatment_duration  -0.6933     0.0726   -9.55 1.15e-15 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.551 on 98 degrees of freedom\nMultiple R-squared:  0.4821,    Adjusted R-squared:  0.4768 \nF-statistic: 91.21 on 1 and 98 DF,  p-value: 1.146e-15",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
-    ]
-  },
-  {
-    "objectID": "correlation.html#what-are-residuals",
-    "href": "correlation.html#what-are-residuals",
-    "title": "5  Correlation and simple regression",
-    "section": "6.6 What are residuals?",
-    "text": "6.6 What are residuals?\n\nIn regression, the assumptions apply to the residuals, not the data themselves\nResidual just means the difference between the data point and the regression line",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
-    ]
-  },
-  {
-    "objectID": "correlation.html#check-assumptions-distribution-1",
-    "href": "correlation.html#check-assumptions-distribution-1",
-    "title": "5  Correlation",
-    "section": "6.7 Check assumptions: distribution",
-    "text": "6.7 Check assumptions: distribution\n\nUsing the plot() command on our regression model will give us some useful diagnostic plots\nThe second plot that it outputs shows the normality\n\n\nplot(model1, which=2)\n\n\n\n\n\n\n\n\n\nWe could also use a histogram to check the distribution\nNotice how we can use the $ sign to get the residuals from the model\n\n\nhist(model1$residuals)",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation</span>"
-    ]
-  },
-  {
-    "objectID": "correlation.html#check-assumptions-linearity",
-    "href": "correlation.html#check-assumptions-linearity",
-    "title": "5  Correlation and simple regression",
-    "section": "6.8 Check assumptions: linearity",
-    "text": "6.8 Check assumptions: linearity\n\nUsing the plot() command on our regression model will give us some useful diagnostic plots\nThe first plot that it outputs shows the residuals vs the fitted values\nHere, we want to see them spread out, with the line being horizontal and straight\n\n\nplot(model1, which=1)\n\n\n\n\n\n\n\n\n\nThere is a slight amount of curvilinearity here but nothing to be worried about",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
-    ]
-  },
-  {
-    "objectID": "correlation.html#check-assumptions-homogeneity-of-variance-1",
-    "href": "correlation.html#check-assumptions-homogeneity-of-variance-1",
-    "title": "5  Correlation and simple regression",
-    "section": "6.9 Check assumptions: Homogeneity of Variance #1",
-    "text": "6.9 Check assumptions: Homogeneity of Variance #1\n\nWe can use the sample plot to check Homogeneity of Variance\nWe want the variance to be constant across the data set. We do not want the variance to change at different points in the data\n\n\nplot(model1, which=1)\n\n\n\n\n\n\n\n\n\nA violation of Homogeneity of Variance would usually look like a funnel, with the data narrowing",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
-    ]
-  },
-  {
-    "objectID": "correlation.html#check-assumptions-influential-cases",
-    "href": "correlation.html#check-assumptions-influential-cases",
-    "title": "5  Correlation and simple regression",
-    "section": "6.10 Check assumptions: Influential cases",
-    "text": "6.10 Check assumptions: Influential cases\n\nWe need to check that there are no extreme outliers - they could throw off our predictions\nWe are looking for participants that have high rediduals + high leverage\n\nSome guidance suggests anything higher than 1 is an influential case\nOthers suggest 4/n is the cut off point (4 divided by number of participants)\n\n\n\nplot(model1, which=4)\n\n\n\n\n\n\n\n\n\nWe are looking for participants that have high rediduals + high leverage\n\nNo cases over 1\nMany are over 0.04 (4/n = 0.04)\n\n\n\nplot(model1, which=5)",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
-    ]
-  },
-  {
-    "objectID": "correlation.html#check-the-r-squared-value",
-    "href": "correlation.html#check-the-r-squared-value",
-    "title": "5  Correlation and simple regression",
-    "section": "6.11 Check the r squared value",
-    "text": "6.11 Check the r squared value\n\nr^2 = the amount of variance in the outcome that is explained by the predictor(s)\nThe closer this value is to 1, the more useful our regression model is for predicting the outcome\n\n\nmodelSummary &lt;- summary(model1)\nmodelSummary\n\n\nCall:\nlm(formula = aggression_level ~ treatment_duration, data = regression_data)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-3.4251 -1.1493 -0.0593  0.8814  3.4542 \n\nCoefficients:\n                   Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)         12.3300     0.7509   16.42  &lt; 2e-16 ***\ntreatment_duration  -0.6933     0.0726   -9.55 1.15e-15 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.551 on 98 degrees of freedom\nMultiple R-squared:  0.4821,    Adjusted R-squared:  0.4768 \nF-statistic: 91.21 on 1 and 98 DF,  p-value: 1.146e-15\n\n\n\nThe r^2 of 0.482052 means that 48% of the variance in aggression level is explained by treatment duration",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
-    ]
-  },
-  {
-    "objectID": "correlation.html#check-model-significance",
-    "href": "correlation.html#check-model-significance",
-    "title": "5  Correlation and simple regression",
-    "section": "6.12 Check model significance",
-    "text": "6.12 Check model significance\n\nThe model significance is displayed at the very end of the output\n\np-value: 1.146e-15\nAs p &lt; 0.05, the model is significant\n\n\n\nmodelSummary\n\n\nCall:\nlm(formula = aggression_level ~ treatment_duration, data = regression_data)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-3.4251 -1.1493 -0.0593  0.8814  3.4542 \n\nCoefficients:\n                   Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)         12.3300     0.7509   16.42  &lt; 2e-16 ***\ntreatment_duration  -0.6933     0.0726   -9.55 1.15e-15 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.551 on 98 degrees of freedom\nMultiple R-squared:  0.4821,    Adjusted R-squared:  0.4768 \nF-statistic: 91.21 on 1 and 98 DF,  p-value: 1.146e-15",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
-    ]
-  },
-  {
-    "objectID": "correlation.html#check-coefficient-values",
-    "href": "correlation.html#check-coefficient-values",
-    "title": "5  Correlation and simple regression",
-    "section": "6.13 Check coefficient values",
-    "text": "6.13 Check coefficient values\n\nThe coefficient values are displayed in the coefficients table\nIf we have more than one predictor, they are all listed here\n\n\nmodelSummary$coefficients\n\n                     Estimate Std. Error   t value     Pr(&gt;|t|)\n(Intercept)        12.3300211 0.75087601 16.420848 6.840516e-30\ntreatment_duration -0.6933201 0.07259671 -9.550297 1.145898e-15\n\n\n\nThe beta coefficient for treatment duration is in the Estimate column\nFor every unit increase in treatment duration, aggression level decreases by 0.69",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
-    ]
-  },
-  {
-    "objectID": "correlation.html#the-regression-equation-1",
-    "href": "correlation.html#the-regression-equation-1",
-    "title": "5  Correlation and simple regression",
-    "section": "6.14 The regression equation",
-    "text": "6.14 The regression equation\n\nThe regression equation is:\n\nOutcome = predictor value * beta coefficient + constant\n\nFor this model, that is:\n\nAggression level = treatment duration * -0.69 + 12.33\n\nmodelSummary$coefficients\n\n                     Estimate Std. Error   t value     Pr(&gt;|t|)\n(Intercept)        12.3300211 0.75087601 16.420848 6.840516e-30\ntreatment_duration -0.6933201 0.07259671 -9.550297 1.145898e-15",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
-    ]
-  },
-  {
-    "objectID": "correlation.html#accounting-for-error-in-predictions",
-    "href": "correlation.html#accounting-for-error-in-predictions",
-    "title": "5  Correlation and simple regression",
-    "section": "6.15 Accounting for error in predictions",
-    "text": "6.15 Accounting for error in predictions\n\nWe also know that the accuracy of predictions will be within a certain margin of error\nThis is known as standard error of the estimate or residual standard error\n\n\nmodelSummary\n\n\nCall:\nlm(formula = aggression_level ~ treatment_duration, data = regression_data)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-3.4251 -1.1493 -0.0593  0.8814  3.4542 \n\nCoefficients:\n                   Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)         12.3300     0.7509   16.42  &lt; 2e-16 ***\ntreatment_duration  -0.6933     0.0726   -9.55 1.15e-15 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.551 on 98 degrees of freedom\nMultiple R-squared:  0.4821,    Adjusted R-squared:  0.4768 \nF-statistic: 91.21 on 1 and 98 DF,  p-value: 1.146e-15",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
-    ]
-  },
-  {
-    "objectID": "intro.html#revision-quiz",
-    "href": "intro.html#revision-quiz",
-    "title": "1  Introduction to R and R Studio",
-    "section": "Revision Quiz",
-    "text": "Revision Quiz\n\nWhat is the purpose of R scripts in the context of data analysis? r mcq(c( \"To create interactive visualizations\", \"To organize files and folders on your computer\", answer =  \"To type and save analysis code for later use\", \"To display the output of R code immediately\"))\nWhat does the Environment in R Studio primarily display? r mcq(c( \"The R script files\", \"Publication-ready outputs\", answer = \"Objects (data, analysis, plots) currently in memory\",  \"The R package installation menu\"))\nWhich of the following is a reason to learn and use R? r mcq(c( \"It is a closed-source software\", \"It is used exclusively by programmers\", answer = \"It has a large number of packages and a wide community of users\",  \"It doesn't require any coding skills\"))\nHow can you install an R package in R Studio? r mcq(c( \"By clicking 'Load' in the Environment section\", \"By running the package's executable file\", answer = \"By using the 'install.packages()' function\", \"By copying the package files to the working directory\"))\nWhat does the ‘Run’ button do in R Studio? r mcq(c( \"It compiles the R script into a standalone program\", \"It generates publication-ready outputs\", answer = \"It runs the code in the R script\",  \"It opens the R package manager\"))\nHow can you load a previously installed R package? r mcq(c( \"By clicking the 'Load' button in the Console\", \"By typing 'install.packages()' in the Console\", answer =  \"By using the 'library(package_name)' command\", \"By copying the package files to the working directory\"))\nTrue or False: You can work on multiple datasets at the same time using R / R Studio? r torf(TRUE)\nWhat advantage does using R scripts for analysis provide? r mcq(c( \"They enable real-time collaboration with other users\", \"They allow you to create complex interactive visualizations\",answer =  \"They encourage transparency and reproducibility of analysis\", \"They automatically generate publication-ready reports\"))\nWhat is the main role of the R Console in R Studio? r mcq(c( \"To create interactive visualizations\", \"To dispay objects in memory\", \"To organize and manage files in the workspace\", answer = \"To provide an interactive environment to run R code\"))\n“What is the difference between R and R Studio? r mcq(c( answer = \"R is a statistical programming language, while R Studio is a software developed for using R to do analysis\", \"R is a data visualization tool, while R Studio is a statistical analysis software\", \"R is used for web development, while R Studio is used for machine learning\",  \"R is the name of the software, while R Studio is a community forum\"))”",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to R and R Studio</span>"
-    ]
-  },
-  {
     "objectID": "correlation.html#which-correlation-to-use",
     "href": "correlation.html#which-correlation-to-use",
     "title": "6  Correlation in R",
     "section": "6.4 Which correlation to use?",
     "text": "6.4 Which correlation to use?\nWhen we run correlation in R, we use the cor.test() command. This command will give us the correlation value, the p value and the confidence intervals.\nWe can specify a Pearson correlation (the default) or a Spearman correlation (for non-parametric data).\n\n6.4.1 Running correlation in R\n\nR can run correlations using the cor.test() command\n\n\ncor.test(regression_data$treatment_duration,regression_data$aggression_level) \n\n\n    Pearson's product-moment correlation\n\ndata:  regression_data$treatment_duration and regression_data$aggression_level\nt = -9.5503, df = 98, p-value = 1.146e-15\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n -0.7838251 -0.5765006\nsample estimates:\n       cor \n-0.6942996 \n\n\nIn the above example, we are testing the correlation between treatment duration and aggression level. Each variable is separated by a comma.\n\n\n6.4.2 Interpreting the output\n\nThe r value tells us the strength and direction of the relationship\nIn the output it is labelled as “cor” (short for correlation)\n\nCorrelation values can range from -1 to 1. The closer the value is to 1, the stronger the relationship. The closer the value is to 0, the weaker the relationship. Positive values indicate a positive relationship (i.e. as one variable increases, so does the other). Negative values indicate a negative relationship (i.e. as one variable increases, the other decreases).\n\ncor.test(regression_data$treatment_duration,regression_data$aggression_level)\n\n\n    Pearson's product-moment correlation\n\ndata:  regression_data$treatment_duration and regression_data$aggression_level\nt = -9.5503, df = 98, p-value = 1.146e-15\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n -0.7838251 -0.5765006\nsample estimates:\n       cor \n-0.6942996 \n\n\n\n\n6.4.3 Check the significance of the correlation\n\nWe can see that the significance by looking at the p value\n\nThe significance is 1.146^-15\nThis means: 0.0000000000000001146\n\nTherefore p value &lt; 0.05\n\n\ncor.test(regression_data$treatment_duration,regression_data$aggression_level)\n\n\n    Pearson's product-moment correlation\n\ndata:  regression_data$treatment_duration and regression_data$aggression_level\nt = -9.5503, df = 98, p-value = 1.146e-15\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n -0.7838251 -0.5765006\nsample estimates:\n       cor \n-0.6942996 \n\n\n\n\n\n\n\n\nExponent values\n\n\n\nWhen we see a value like 1.146e-15, this is a shorthand way of writing a very small number. The e-15 means that we move the decimal point 15 places to the left. So 1.146e-15 is the same as 0.000000000000001146",
-    "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Correlation in R</span>"
-    ]
-  },
-  {
-    "objectID": "correlation.html#exponent-values",
-    "href": "correlation.html#exponent-values",
-    "title": "6  Correlation in R",
-    "section": "6.5 Exponent values",
-    "text": "6.5 Exponent values\nWhen we see a value like 1.146e-15, this is a shorthand way of writing a very small number. The e-15 means that we move the decimal point 15 places to the left. So 1.146e-15 is the same as 0.000000000000001146",
-    "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Correlation in R</span>"
-    ]
-  },
-  {
-    "objectID": "correlation.html#check-assumptions-distribution",
-    "href": "correlation.html#check-assumptions-distribution",
-    "title": "5  Correlation and simple regression",
-    "section": "6.7 Check assumptions: distribution",
-    "text": "6.7 Check assumptions: distribution\n\nUsing the plot() command on our regression model will give us some useful diagnostic plots\nThe second plot that it outputs shows the normality\n\n\nplot(model1, which=2)\n\n\n\n\n\n\n\n\n\nWe could also use a histogram to check the distribution\nNotice how we can use the $ sign to get the residuals from the model\n\n\nhist(model1$residuals)",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Correlation and simple regression</span>"
-    ]
-  },
-  {
-    "objectID": "correlation.html#visualising-correlation",
-    "href": "correlation.html#visualising-correlation",
-    "title": "6  Correlation in R",
-    "section": "6.2 Visualising correlation",
-    "text": "6.2 Visualising correlation\nWe can visualise correlation using a scatterplot. This is a graph where each data point is plotted on a graph, with one variable on the x axis and the other on the y axis. If the data points form something resembling a straight line, with all of the data points in a consistent pattern, then we have a strong correlation. If the data points are scattered, then we have a weaker correlation. However, if the data points are inconsistent or more diffuse, the correlation is weaker. The direction of the line tells us the direction of the correlation.\n\n\n\n\n\n\n\n\n\nVisualising the data in this way can give us a good idea of the strength and direction of the correlation. However, it is not a substitute for running the correlation itself. At the same time, correlation coefficients can be misleading on their own. It is always a good idea to visualise the data as well.",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Correlation in R</span>"
     ]
@@ -660,8 +470,8 @@
     ]
   },
   {
-    "objectID": "regression.html#regression-with-a-categorical-predictor-variable",
-    "href": "regression.html#regression-with-a-categorical-predictor-variable",
+    "objectID": "regression.html#catreg",
+    "href": "regression.html#catreg",
     "title": "7  Simple Regression in R",
     "section": "9.4 Regression with a categorical predictor variable",
     "text": "9.4 Regression with a categorical predictor variable\nSo far, we have conducted a regression analysis with a continuous predictor variable. Now, let’s consider a regression analysis with a categorical predictor variable.\n\n\nOur next hypothesis is that the level of depression is different for each treatment group. We can test this hypothesis using a regression model with a categorical predictor variable. Let’s conduct a regression analysis with the treatment variable as the predictor variable. If there are 2 levels of the predictor variable, then the model will compare the two levels. If there are more than 2 levels, then the model will compare each level to the reference level. By default, R uses the first level of the predictor variable as the reference level. Howeverm you can specify a different reference level using the relevel() function.\n\n# specify the reference level - this is more useful when we have more than 2 levels\n\n0regression_data$treatment_group &lt;- as.factor(regression_data$treatment_group)\n1regression_data$treatment &lt;- relevel(regression_data$treatment_group, ref = \"therapy1\")\n\n# Fit a regression model with a categorical predictor variable\n\n2regression_model2 &lt;- lm(aggression_level ~ treatment_group, data = regression_data)\n\n# Summary of the model\n\n3summary(regression_model2)\n\n\n0\n\nWe convert the treatment variable to a factor variable using the as.factor() function. This is necessary for R to recognize the variable as a categorical variable.\n\n1\n\nWe specify the reference level for the treatment variable using the relevel() function. In this case, we set the reference level to “therapy1”. This is likely the default level, but we are specifying it here for clarity. If we had more than 2 levels, we could specify a different reference level using the ref argument. For example, `ref = “control”\n\n2\n\nWe fit a regression model with the treatment_group variable as the predictor variable. The outcome variable is aggression_level. The data are specified using the data argument.\n\n3\n\nWe view the results of the regression model using the summary() function. The output includes the coefficients, standard errors, t-values, p-values, and R-squared value of the model.\n\n\n\n\n\nCall:\nlm(formula = aggression_level ~ treatment_group, data = regression_data)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-4.6800 -1.4882 -0.0185  1.3460  4.4131 \n\nCoefficients:\n                        Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)               4.6800     0.2843  16.464  &lt; 2e-16 ***\ntreatment_grouptherapy2   1.3201     0.4103   3.217  0.00175 ** \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.05 on 98 degrees of freedom\nMultiple R-squared:  0.09554,   Adjusted R-squared:  0.08631 \nF-statistic: 10.35 on 1 and 98 DF,  p-value: 0.001753\n\n\nThe output tells us that the model is significant, and that the beta values for the treatment_group therapy2 is different from the reference group (therapy1) which is the intercept of this model. The beta values are the difference in the outcome variable between the reference group and the other groups. The beta value for the reference group is the mean of the outcome variable (aggression_level) for that group. The beta values for therapy2 is the difference in the mean outcome variable for that group and the reference group.\n\n\n\n\n\n\nInterpreting the results of a regression model with a categorical predictor variable\n\n\n\nWhen we have a categorical predictor variable, the interpretation of the beta values changes. The beta values are the difference in the outcome variable between the reference category and the other categories. The reference category is the category that is not included in the model. The beta value for the reference category is the mean of the outcome variable for that category. The beta values for the other categories are the difference in the outcome variable between that category and the reference category.\nIf you want to see this done another way, if your predictor has 2 levels, you can conduct a t-test and compare the means of the two groups. The t-test will give you the same results as the regression model. The t-test is a simpler way to compare the means of two groups, but the regression model is more flexible and can handle more complex models (by adding more predictor variables).\n\n\n\n\n\n\n\n\nTesting assumptions with a categorical predictor variable\n\n\n\nWhen we have a categorical predictor variable, we need to be careful about how we interpret the assumptions of linear regression. The assumptions of linearity, normality and homoscedasticity are still relevant. However, because we have a categorical predictor, the plots will look different. We need to check the assumptions for each level of the categorical predictor variable. Some of the plots will change to reflect this.",
@@ -680,83 +490,123 @@
     ]
   },
   {
+    "objectID": "multipleRegression.html",
+    "href": "multipleRegression.html",
+    "title": "8  Multiple Regression and Heirarchical Regression",
+    "section": "",
+    "text": "8.1 What is multiple regression?\nMultiple regression ia an extension of simple regression that allows us to predict an outcome variable (Y) based on multiple predictors (X1, X2 …).\n\\[ Y = b_1X_1 + b_2X_2 + b_0 \\]\n(The constant can be referred to in the equation as c or b0 )",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Multiple Regression and Heirarchical Regression</span>"
+    ]
+  },
+  {
+    "objectID": "multipleRegression.html#what-are-the-assumptions-of-multiple-regression",
+    "href": "multipleRegression.html#what-are-the-assumptions-of-multiple-regression",
+    "title": "8  Multiple Regression and Heirarchical Regression",
+    "section": "8.2 What are the assumptions of Multiple Regression?",
+    "text": "8.2 What are the assumptions of Multiple Regression?\nThey are primarily the same as simple regression, so look back at the assumptions of simple regression in that section. The additional assumption of no multicollinearity applies, due to having multiple predictors. The multicollinearity assumption means that predictors should not be highly correlated. If they were, it would be difficult to determine the unique contribution of each predictor to the model.\n\n8.2.1 What is multicollinearity?\nMulticollinearity means that predictors correlated highly with each other. This is not good because: - It makes it difficult to determine the role of individual predictors - Increases the error of the model (higher standard errors) - Difficult to identify significant predictors - wider confidence interval\n\n\n8.2.2 Testing multicollinearity\nTo test for multicollinearity, we can use the mctest() function in R. This function is part of the mctest package. It performs several tests for multicollinearity, including the Variance Inflation Factor (VIF) and the Condition Index (CI).\nTo run the test, you pass the regression model to the mctest() function. The function will then return the results of the tests.\n\n## use the mctest package\n# install.packages(‘mctest’)\n\nlibrary(mctest)\n\n1m1 &lt;- lm(aggression_level ~ treatment_group + treatment_duration + trust_score, data=regression_data)\n\n2mctest(m1)\n\n\n1\n\nIn this code, we are running a regression model with three predictors (treatment group, treatment duration, and trust score) and the outcome variable aggression level.\n\n2\n\nWe then pass the regression model to the mctest() function to test for multicollinearity.\n\n\n\n\n\nCall:\nomcdiag(mod = mod, Inter = TRUE, detr = detr, red = red, conf = conf, \n    theil = theil, cn = cn)\n\n\nOverall Multicollinearity Diagnostics\n\n                       MC Results detection\nDeterminant |X'X|:         0.9229         0\nFarrar Chi-Square:         7.7960         0\nRed Indicator:             0.1547         0\nSum of Lambda Inverse:     3.1728         0\nTheil's Method:           -0.8800         0\nCondition Number:         13.6549         0\n\n1 --&gt; COLLINEARITY is detected by the test \n0 --&gt; COLLINEARITY is not detected by the test\n\n\nThe mctest() function also takes an additional argument, type, which specifies whether you want, the main tests, each individual predictor, or both. The default is type = \"main\", which will run the main tests.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Multiple Regression and Heirarchical Regression</span>"
+    ]
+  },
+  {
+    "objectID": "multipleRegression.html#sample-size-for-multiple-regression",
+    "href": "multipleRegression.html#sample-size-for-multiple-regression",
+    "title": "8  Multiple Regression and Heirarchical Regression",
+    "section": "8.3 Sample size for multiple regression",
+    "text": "8.3 Sample size for multiple regression\nAs the number of predictors increases, the sample size needed to run a multiple regression analysis also increases. A common rule of thumb is to have at least 10-15 participants per predictor. However, this is a loose rule, and the actual number of participants needed will depend on the complexity of the model and the effect size. Always run a power analysis to determine the sample size needed for your study.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Multiple Regression and Heirarchical Regression</span>"
+    ]
+  },
+  {
+    "objectID": "multipleRegression.html#approaches-to-multiple-regression-all-predictors-at-once",
+    "href": "multipleRegression.html#approaches-to-multiple-regression-all-predictors-at-once",
+    "title": "8  Multiple Regression and Heirarchical Regression",
+    "section": "8.4 Approaches to multiple regression: All predictors at once",
+    "text": "8.4 Approaches to multiple regression: All predictors at once\nThere are different ways we could run a multiple regression analysis depending on our research question and how we conceptualise the relationship between the predictors and the outcome. One way is to include all predictors at the same time. This is useful when we want to know the combined predictive power of all the predictors at the same time.\n\nResearch question: Do a client’s treatment duration and treatment group predict aggression level?\n\n\n1model1 &lt;- lm(data = regression_data, aggression_level ~ treatment_duration + treatment_group)\n\n\n1\n\nHere we are including all of the predictors at the same time. Note that we are using a plus sign + between each predictor - this means that no interactions will be tested.\n\n\n\n\n\n8.4.1 Using categorical predictors in R\n\nTreatment group is a categorical (also called “nominal” or “factor”) variable\nNo special “dummy coding” is required in R to use categorical predictors in regression\nR will use the first group as the reference category and test whether being in another group shows a significant difference\nR chooses the reference group based on numerical value or alphabetical order\nIf you want you can change the reference category or “force” it using the relevel function:\n\n\nregression_data$treatment_group &lt;- relevel(regression_data$treatment_group, ref = \"therapy1\")\n\nMore information in categorical predictors in section @ref(catreg)\n\n\n8.4.2 Reviewing the output\nThe output from this approach will look the same as simple regression, except there will be an additional row for each predictor in the model in the coefficients table.\n\nsummary(model1)\n\n\nCall:\nlm(formula = aggression_level ~ treatment_duration + treatment_group, \n    data = regression_data)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-2.9468 -1.1104  0.0205  0.9621  3.4481 \n\nCoefficients:\n                        Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)             11.58713    0.77331  14.984  &lt; 2e-16 ***\ntreatment_duration      -0.66024    0.07119  -9.274 4.96e-15 ***\ntreatment_grouptherapy2  0.85032    0.30449   2.793   0.0063 ** \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.5 on 97 degrees of freedom\nMultiple R-squared:  0.5206,    Adjusted R-squared:  0.5107 \nF-statistic: 52.67 on 2 and 97 DF,  p-value: 3.267e-16\n\n\nAs a reminder of what the output tells us:\n\nMultiple \\(R^2\\) = Total variance in outcome that is explained by the model\np-value = Statistical significance of the model\nCoefficients = Contribution of each predictor to the model\n\nPr = Significance of the individual predictor\nEstimate = Change in the outcome level that occurs when the predictor increases by 1 unit of measurement (for continuous predictors) or the difference in the mean outcome level between the predictor and the reference category (for categorical predictors)\n\n\n\n\n8.4.3 All predictors at once (testing interactions)\nIt might be the case that we are interested in whether the predictors interact with each other to predict the outcome. For example, we might want to know if the effect of treatment duration on aggression level depends on the treatment group.\n\nResearch questions:\n\n\nDo a client’s treatment duration and treatment group predict aggression level\nDo the predictors interact?\n\n\n1model2 &lt;- lm(data = regression_data, aggression_level ~ treatment_duration * treatment_group)\n\n\n1\n\nHere we are including all of the predictors at the same time. Note that we are using an asterisk * between each predictor. This means that interactions will be tested.\n\n\n\n\nReviewing the output\n\n\nsummary(model2) %&gt;% coefficients\n\n                                             Estimate Std. Error    t value\n(Intercept)                                12.3529190  1.1006127 11.2236751\ntreatment_duration                         -0.7334435  0.1033086 -7.0995381\ntreatment_grouptherapy2                    -0.5615517  1.4753596 -0.3806202\ntreatment_duration:treatment_grouptherapy2  0.1394649  0.1425977  0.9780305\n                                               Pr(&gt;|t|)\n(Intercept)                                3.599000e-19\ntreatment_duration                         2.166226e-10\ntreatment_grouptherapy2                    7.043260e-01\ntreatment_duration:treatment_grouptherapy2 3.305175e-01\n\n\n\nIn the output, we get additional information in the coefficients table about the interaction between variables. We can see from the output that none of the interactions are significant. This being the case, we would not interpret the main effects of the predictors in the model, and instead, we would interpret the results based on the interaction between the predictors.\n\nThere is more information on interactions in regression in the section on moderation.\n\n\n\n8.4.4 Hierarchical multiple regression: Theory driven “blocks” of variables\nWhen we have multiple predictors, it might be the case that we have previous research or theory to guide how we run the analysis. For example, we might know that treatment duration and therapy group are likely to predict the outcome, based on the results of previous studies. However, we might also want to check whether client’s level of trust in the clinician has any additional impact on our ability to predict the outcome (aggression level).\nThis being the case, we could run a hierarchical multiple regression analysis. This is where we run the regression in “blocks” (groups) of variables. We start with a baseline model (Model 0) and then add additional predictors in each subsequent model.\nHow we group our predictors will depend on our research question and the theory behind the relationship between the predictors and the outcome. As such, we should have a clear rationale for how we group our predictors.\nTo do this, we run three regression models:\n\nModel 0: the constant (intercept)\nModel 1: treatment duration and therapy group\nModel 2: treatment duration and therapy group and trust score\n\nWe then compare the two regression models to see if:\n\nModel 1 is better than Model 0 (the intercept)\nModel 2 is better than Model 1\n\nThe intercept (null) model is the simplest model we can run. It is a model that only includes the constant (intercept) and no predictors. This model is used as a baseline to compare the other models to. Therefore, we don’t really interpret the null model in isolation, rather, we examine whether another model (with predictors) is more useful in predicting the outcome than the null model.\nHierarchical multiple regression: Running and comparing 2 models\n\n## run regression using the same method as above\n1model0 &lt;- lm(data = regression_data, aggression_level ~ 1)\n2model1 &lt;- lm(data = regression_data, aggression_level ~ treatment_duration + treatment_group)\n3model2 &lt;- lm(data = regression_data, aggression_level ~ treatment_duration + treatment_group + trust_score)\n\n\n## use the aov() command to compare the models\n4anova(model0,model1,model2)\n\n\n1\n\nHere we are running the null model (Model 0) with only the intercept\n\n2\n\nHere we are running Model 1 with treatment duration and treatment group\n\n3\n\nHere we are running Model 2 with treatment duration, treatment group, and trust score\n\n4\n\nWe then use the anova() command to compare the models\n\n\n\n\nAnalysis of Variance Table\n\nModel 1: aggression_level ~ 1\nModel 2: aggression_level ~ treatment_duration + treatment_group\nModel 3: aggression_level ~ treatment_duration + treatment_group + trust_score\n  Res.Df    RSS Df Sum of Sq       F    Pr(&gt;F)    \n1     99 455.27                                   \n2     97 218.26  2   237.013 52.2195 4.507e-16 ***\n3     96 217.86  1     0.399  0.1757     0.676    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\nWhen we run the anova() command, we get an output that tells us whether the additional predictors in each model significantly change the R^2 value of the model (reducing the residual variance of the model). We can see from the output that Model 1 is significantly better than the null model (Model 0), and Model 2 is not significantly better than Model 1.\n\n\n8.4.5 Model performance metrics\nWhen we run a hierarchical multiple regression analysis, we are interested in whether the additional predictors in each model significantly change the R^2 value of the model. However, adding additional predictors to the model will always increase the R^2 value of the model somewhat, even if the predictors are not useful This is because the R^2 value is based on the amount of variance in the outcome that is explained by the predictors in the model.\nBecause of this, we should also consider other metrics of model performance, such as the AIC (Akaike Information Criterion) and BIC (Bayesian Information Criterion). These metrics take into account the number of predictors in the model and penalise the model for having too many predictors. A lower AIC or BIC value indicates a better model. The AIC() and BIC() functions in R can be used to calculate these metrics.\n\n1AIC(model0,model1,model2)\n\n2BIC(model0,model1,model2)\n\n\n1\n\nHere we are using the AIC() function to calculate the AIC value for each model\n\n2\n\nHere we are using the BIC() function to calculate the BIC value for each model\n\n\n\n\n       df      AIC\nmodel0  2 439.3603\nmodel1  4 369.8394\nmodel2  5 371.6566\n       df      BIC\nmodel0  2 444.5707\nmodel1  4 380.2601\nmodel2  5 384.6825\n\n\nWe can see from the output that Model 1 has the lowest AIC and BIC values, indicating that it is the best model of the three. We phrase this has having the best fit to the data, given the number of predictors in the model. Although, in this example, model 2 is not significantly better than model 1, it could be the case that you have a different research question or theory where the anova() test would show that the model with the additional predictors is significantly better. You could then use the AIC and BIC values to determine which model is actually the best fit to the data.\nRemember that the accuracy of your models will depend on the quality of your data and the assumptions of regression being met. How you interpret the results will depend on your research question and the theory behind the relationship between the predictors and the outcome. The analysis cannot prove causation, only association. It is up to you to design your study and analysis to best answer your research question.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Multiple Regression and Heirarchical Regression</span>"
+    ]
+  },
+  {
     "objectID": "ggplot.html",
     "href": "ggplot.html",
-    "title": "8  Creating plots with ggplot2 in R",
+    "title": "9  Creating plots with ggplot2 in R",
     "section": "",
-    "text": "8.1 The “grammar of visualisation” with ggplot\nWith ggplot, graphs are made up of 3 components: - A dataset - A coordinate system (e.g., the X and Y axes) - Visual marks to represent data (geoms)\nIn the above example, the dataset is the studentData that we used previously. The grades variable is mapped to the X axis. The hoursOfStudy variable is mapped to the Y axis. The graph is created using the following code:\nlibrary(ggplot2)\n\nggplot(data=studentData, aes(x=grades,y=hoursOfStudy)) +\n  geom_point()\nIn this code:",
+    "text": "9.1 The “grammar of visualisation” with ggplot\nWith ggplot, graphs are made up of 3 components: - A dataset - A coordinate system (e.g., the X and Y axes) - Visual marks to represent data (geoms)\nIn the above example, the dataset is the studentData that we used previously. The grades variable is mapped to the X axis. The hoursOfStudy variable is mapped to the Y axis. The graph is created using the following code:\nlibrary(ggplot2)\n\nggplot(data=studentData, aes(x=grades,y=hoursOfStudy)) +\n  geom_point()\nIn this code:",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Creating plots with ggplot2 in R</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Creating plots with ggplot2 in R</span>"
     ]
   },
   {
     "objectID": "ggplot.html#the-grammar-of-visualisation-with-ggplot",
     "href": "ggplot.html#the-grammar-of-visualisation-with-ggplot",
-    "title": "8  Creating plots with ggplot2 in R",
+    "title": "9  Creating plots with ggplot2 in R",
     "section": "",
     "text": "We specify the dataset and the variables for the X and Y axes.\nWe specify the geom that will represent the data points visually (in this case, each datum is a point).\n\n\n\n\n\n\n\n\nRemember the + operator\n\n\n\n\nThe layers of a ggplot are separated using the + operator. That is, we first specify the dataset and the variables for the X and Y axes, and then we add a +, then the geom that will represent the data points visually.",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Creating plots with ggplot2 in R</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Creating plots with ggplot2 in R</span>"
     ]
   },
   {
     "objectID": "ggplot.html#adding-more-variables-to-a-plot",
     "href": "ggplot.html#adding-more-variables-to-a-plot",
-    "title": "8  Creating plots with ggplot2 in R",
-    "section": "8.2 Adding more variables to a plot",
-    "text": "8.2 Adding more variables to a plot\nOne of the things that makes ggplot so powerful is that you can add more variables to a plot. You can map these variables to different aesthetic attributes of the plot, such as colour, shape, or size.\nThis can be done either in the ggplot() function or in the geom_point() function.\n\n8.2.1 Example: assigning a variable to colour (2 different approaches)\n\n1ggplot(data=studentData, aes(x=grades,y=hoursOfStudy, color = route)) +\n2  geom_point()\n\n\n1\n\nThe color aesthetic is mapped to the route variable in the main ggplot() function.\n\n2\n\nThe geom_point() function is used to represent the data points visually and it takes its colour from the main ggplot() function.\n\n\n\n\n\n\n\n\n\n\n\n\n1ggplot(data=studentData, aes(x=grades,y=hoursOfStudy)) +\n2  geom_point(aes(color = route))\n\n\n1\n\nThe color aesthetic is not mentioned in the main ggplot() function.\n\n2\n\nThe color aesthetic is mapped to the route variable in the geom_point() function.\n\n\n\n\n\n\n\n\n\n\n\n\n\n8.2.2 Example: assigning a variable to size\n\n1ggplot(data=studentData, aes(x=grades,y=hoursOfStudy, size = satisfactionLevel, colour = route)) +\n2  geom_point()\n\n\n1\n\nThe size aesthetic is mapped to the satisfactionLevel variable in the main ggplot() function.\n\n2\n\nThe geom_point() function is used to represent the data points visually and it takes its size from the main ggplot() function.\n\n\n\n\n\n\n\n\n\n\n\n\n\n8.2.3 Example: assigning a variable to shape\n\n1ggplot(data=studentData, aes(x=grades,y=hoursOfStudy, size = satisfactionLevel, colour = route, shape = hasDepdendants)) +\n2  geom_point()\n\n\n1\n\nThe shape aesthetic is mapped to the hasDepdendants variable in the main ggplot() function.\n\n2\n\nThe geom_point() function is used to represent the data points visually and it takes its shape from the main ggplot() function.",
+    "title": "9  Creating plots with ggplot2 in R",
+    "section": "9.2 Adding more variables to a plot",
+    "text": "9.2 Adding more variables to a plot\nOne of the things that makes ggplot so powerful is that you can add more variables to a plot. You can map these variables to different aesthetic attributes of the plot, such as colour, shape, or size.\nThis can be done either in the ggplot() function or in the geom_point() function.\n\n9.2.1 Example: assigning a variable to colour (2 different approaches)\n\n1ggplot(data=studentData, aes(x=grades,y=hoursOfStudy, color = route)) +\n2  geom_point()\n\n\n1\n\nThe color aesthetic is mapped to the route variable in the main ggplot() function.\n\n2\n\nThe geom_point() function is used to represent the data points visually and it takes its colour from the main ggplot() function.\n\n\n\n\n\n\n\n\n\n\n\n\n1ggplot(data=studentData, aes(x=grades,y=hoursOfStudy)) +\n2  geom_point(aes(color = route))\n\n\n1\n\nThe color aesthetic is not mentioned in the main ggplot() function.\n\n2\n\nThe color aesthetic is mapped to the route variable in the geom_point() function.\n\n\n\n\n\n\n\n\n\n\n\n\n\n9.2.2 Example: assigning a variable to size\n\n1ggplot(data=studentData, aes(x=grades,y=hoursOfStudy, size = satisfactionLevel, colour = route)) +\n2  geom_point()\n\n\n1\n\nThe size aesthetic is mapped to the satisfactionLevel variable in the main ggplot() function.\n\n2\n\nThe geom_point() function is used to represent the data points visually and it takes its size from the main ggplot() function.\n\n\n\n\n\n\n\n\n\n\n\n\n\n9.2.3 Example: assigning a variable to shape\n\n1ggplot(data=studentData, aes(x=grades,y=hoursOfStudy, size = satisfactionLevel, colour = route, shape = hasDepdendants)) +\n2  geom_point()\n\n\n1\n\nThe shape aesthetic is mapped to the hasDepdendants variable in the main ggplot() function.\n\n2\n\nThe geom_point() function is used to represent the data points visually and it takes its shape from the main ggplot() function.",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Creating plots with ggplot2 in R</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Creating plots with ggplot2 in R</span>"
     ]
   },
   {
     "objectID": "ggplot.html#different-types-of-geoms-bar-charts",
     "href": "ggplot.html#different-types-of-geoms-bar-charts",
-    "title": "8  Creating plots with ggplot2 in R",
-    "section": "8.3 Different types of geoms: bar charts",
-    "text": "8.3 Different types of geoms: bar charts\nThe geom_point() function is just one of many geoms that you can use in ggplot. Another common geom is geom_col(), which is used to create bar charts.\nWhen creating a bar chart there are 2 approaches:\n\nsummarise the data before plotting\nlet ggplot do the summarising for you\n\n\n8.3.1 Example: summarising the data before plotting\n\nlibrary(dplyr)\n\nstudentData %&gt;%\n  group_by(route) %&gt;%\n  summarise(meanHours = mean(hoursOfStudy)) %&gt;%\n  ggplot(aes(x = route, y = meanHours)) +\n  geom_col()\n\n\n\n\n\n\n\n\nIn the above code, we first use the group_by() and summarise() functions from the dplyr package to calculate the mean number of hours of study for each route (see previous lessons for this). We then use the ggplot() function to create a plot with the route variable on the X axis and the meanHours variable on the Y axis. Finally, we use the geom_col() function to create the bar chart.\n\n\n\n\n\n\nRemember to refer to the summarised variable in the ggplot() function\n\n\n\nWhen you summarise the data, remember to refer to the summarised variable in the ggplot() function, not the original variable. In the above example, we use meanHours in the ggplot() function, not hoursOfStudy.\nIf you find it easier, you can save the summarised data as a new object and then use this in the ggplot() function.\n\n\n\n\n8.3.2 Example: letting ggplot do the summarising for you\n\nggplot(data=studentData, aes(x = route, y = hoursOfStudy)) + \n  stat_summary(fun = mean, geom = \"col\")\n\n\n\n\n\n\n\n\nIn the above code, we use the stat_summary() function to calculate the mean number of hours of study for each route. We specify that we want to calculate the mean using the fun = mean argument, and we specify that we want to create a bar chart using the geom = \"col\" argument.",
+    "title": "9  Creating plots with ggplot2 in R",
+    "section": "9.3 Different types of geoms: bar charts",
+    "text": "9.3 Different types of geoms: bar charts\nThe geom_point() function is just one of many geoms that you can use in ggplot. Another common geom is geom_col(), which is used to create bar charts.\nWhen creating a bar chart there are 2 approaches:\n\nsummarise the data before plotting\nlet ggplot do the summarising for you\n\n\n9.3.1 Example: summarising the data before plotting\n\nlibrary(dplyr)\n\nstudentData %&gt;%\n  group_by(route) %&gt;%\n  summarise(meanHours = mean(hoursOfStudy)) %&gt;%\n  ggplot(aes(x = route, y = meanHours)) +\n  geom_col()\n\n\n\n\n\n\n\n\nIn the above code, we first use the group_by() and summarise() functions from the dplyr package to calculate the mean number of hours of study for each route (see previous lessons for this). We then use the ggplot() function to create a plot with the route variable on the X axis and the meanHours variable on the Y axis. Finally, we use the geom_col() function to create the bar chart.\n\n\n\n\n\n\nRemember to refer to the summarised variable in the ggplot() function\n\n\n\nWhen you summarise the data, remember to refer to the summarised variable in the ggplot() function, not the original variable. In the above example, we use meanHours in the ggplot() function, not hoursOfStudy.\nIf you find it easier, you can save the summarised data as a new object and then use this in the ggplot() function.\n\n\n\n\n9.3.2 Example: letting ggplot do the summarising for you\n\nggplot(data=studentData, aes(x = route, y = hoursOfStudy)) + \n  stat_summary(fun = mean, geom = \"col\")\n\n\n\n\n\n\n\n\nIn the above code, we use the stat_summary() function to calculate the mean number of hours of study for each route. We specify that we want to calculate the mean using the fun = mean argument, and we specify that we want to create a bar chart using the geom = \"col\" argument.",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Creating plots with ggplot2 in R</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Creating plots with ggplot2 in R</span>"
     ]
   },
   {
     "objectID": "ggplot.html#changing-the-titles-and-legends-of-a-plot",
     "href": "ggplot.html#changing-the-titles-and-legends-of-a-plot",
-    "title": "8  Creating plots with ggplot2 in R",
-    "section": "8.4 Changing the titles and legends of a plot",
-    "text": "8.4 Changing the titles and legends of a plot\nYou can change the titles and legends of a plot using the labs() function. This function allows you to change the title of the plot, the titles of the X and Y axes, and the legend title.\n\nstudentData %&gt;%\n  group_by(route) %&gt;%\n  summarise(meanHours = mean(hoursOfStudy)) %&gt;%\n  ggplot(aes(x = route, y = meanHours)) +\n  geom_col() +\n  labs(title = \"Mean hours of study by route\",\n       x = \"Route\",\n       y = \"Mean hours of study\",\n       caption = \"Source: Student data\")\n\n\n\n\n\n\n\n\nIn the above code, we use the labs() function to change the title of the plot to “Mean hours of study by route”, the title of the X axis to “Route”, the title of the Y axis to “Mean hours of study”, and the caption to “Source: Student data”.",
+    "title": "9  Creating plots with ggplot2 in R",
+    "section": "9.4 Changing the titles and legends of a plot",
+    "text": "9.4 Changing the titles and legends of a plot\nYou can change the titles and legends of a plot using the labs() function. This function allows you to change the title of the plot, the titles of the X and Y axes, and the legend title.\n\nstudentData %&gt;%\n  group_by(route) %&gt;%\n  summarise(meanHours = mean(hoursOfStudy)) %&gt;%\n  ggplot(aes(x = route, y = meanHours)) +\n  geom_col() +\n  labs(title = \"Mean hours of study by route\",\n       x = \"Route\",\n       y = \"Mean hours of study\",\n       caption = \"Source: Student data\")\n\n\n\n\n\n\n\n\nIn the above code, we use the labs() function to change the title of the plot to “Mean hours of study by route”, the title of the X axis to “Route”, the title of the Y axis to “Mean hours of study”, and the caption to “Source: Student data”.",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Creating plots with ggplot2 in R</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Creating plots with ggplot2 in R</span>"
     ]
   },
   {
     "objectID": "ggplot.html#themes-in-ggplot",
     "href": "ggplot.html#themes-in-ggplot",
-    "title": "8  Creating plots with ggplot2 in R",
-    "section": "8.5 Themes in ggplot",
-    "text": "8.5 Themes in ggplot\nYou can change all of the colours and other appearance elements in ggplot. However, it can be easier to change the appearance of a plot using themes. Themes allow you to change the background colour, the colour of the text, the size of the text, and other aspects of the appearance of the plot.\n\nstudentData %&gt;%\n  group_by(route) %&gt;%\n  summarise(meanHours = mean(hoursOfStudy)) %&gt;%\n  ggplot(aes(x = route, y = meanHours)) +\n  geom_col() +\n  labs(title = \"Mean hours of study by route\",\n       x = \"Route\",\n       y = \"Mean hours of study\",\n       caption = \"Source: Student data\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\nIn the above code, we use the theme_minimal() function to change the appearance of the plot to a minimal theme. There are many other themes that you can use, such as theme_light(), theme_dark(), and theme_bw().",
+    "title": "9  Creating plots with ggplot2 in R",
+    "section": "9.5 Themes in ggplot",
+    "text": "9.5 Themes in ggplot\nYou can change all of the colours and other appearance elements in ggplot. However, it can be easier to change the appearance of a plot using themes. Themes allow you to change the background colour, the colour of the text, the size of the text, and other aspects of the appearance of the plot.\n\nstudentData %&gt;%\n  group_by(route) %&gt;%\n  summarise(meanHours = mean(hoursOfStudy)) %&gt;%\n  ggplot(aes(x = route, y = meanHours)) +\n  geom_col() +\n  labs(title = \"Mean hours of study by route\",\n       x = \"Route\",\n       y = \"Mean hours of study\",\n       caption = \"Source: Student data\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\nIn the above code, we use the theme_minimal() function to change the appearance of the plot to a minimal theme. There are many other themes that you can use, such as theme_light(), theme_dark(), and theme_bw().",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Creating plots with ggplot2 in R</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Creating plots with ggplot2 in R</span>"
     ]
   },
   {
     "objectID": "ggplot.html#saving-plots-in-ggplot",
     "href": "ggplot.html#saving-plots-in-ggplot",
-    "title": "8  Creating plots with ggplot2 in R",
-    "section": "8.6 Saving plots in ggplot",
-    "text": "8.6 Saving plots in ggplot\nThe best way to save plots (and get reliable results) is to save them using the ggsave() function. This function allows you to save plots in a variety of formats, such as PDF, PNG, and JPEG. For publication-quality plots, it is best to save them in PDF format, because this format is scalable and resolution independent.\n\nstudentData %&gt;%\n  group_by(route) %&gt;%\n  summarise(meanHours = mean(hoursOfStudy)) %&gt;%\n  ggplot(aes(x = route, y = meanHours)) +\n  geom_col() +\n  labs(title = \"Mean hours of study by route\",\n       x = \"Route\",\n       y = \"Mean hours of study\",\n       caption = \"Source: Student data\") +\n  theme_minimal()\n\nggsave(\"studentData_plot.pdf\", width = 6, height = 4, dpi = 300)\n\nIn the above code, we use the ggsave() function to save the plot as a PDF file called “studentData_plot.pdf”. We specify the width of the plot as 6 inches, the height of the plot as 4 inches, and the resolution as 300 dots per inch (dpi). dpi is not actually used for PDF files, but it is useful for other file formats, such as PNG and eps.\nIn terms of specifying the width and height of the plot, it can take some fiddling around to get the right dimensions. You can specify the width and height in pixels, but it is generally better to specify them in inches, because this is a more standard unit of measurement for plots. I recommend thinking in terms of the aspect ratio of the plot, rather than the exact dimensions. For example, if you want a wide plot, you might specify the width as 6 inches and the height as 4 inches. If you want a square plot, you might specify the width and height as 4 inches each. If you want a tall plot, you might specify the width as 4 inches and the height as 6 inches.\nOnce the aspect ratio feels right, you can adjust the width and height to get the exact right dimensions for your plot.\n\n\n\n\n\n\nPlots will save into the working directory\n\n\n\nWhen you save a plot using the ggsave() function, the plot will be saved into the working directory. You can specify a different directory by specifying the full path to the file, such as “C:/Users/username/Documents/studentData_plot.pdf”.\nIt’s easier just to set the working directory to the folder where you want to save the plots!",
+    "title": "9  Creating plots with ggplot2 in R",
+    "section": "9.6 Saving plots in ggplot",
+    "text": "9.6 Saving plots in ggplot\nThe best way to save plots (and get reliable results) is to save them using the ggsave() function. This function allows you to save plots in a variety of formats, such as PDF, PNG, and JPEG. For publication-quality plots, it is best to save them in PDF format, because this format is scalable and resolution independent.\n\nstudentData %&gt;%\n  group_by(route) %&gt;%\n  summarise(meanHours = mean(hoursOfStudy)) %&gt;%\n  ggplot(aes(x = route, y = meanHours)) +\n  geom_col() +\n  labs(title = \"Mean hours of study by route\",\n       x = \"Route\",\n       y = \"Mean hours of study\",\n       caption = \"Source: Student data\") +\n  theme_minimal()\n\nggsave(\"studentData_plot.pdf\", width = 6, height = 4, dpi = 300)\n\nIn the above code, we use the ggsave() function to save the plot as a PDF file called “studentData_plot.pdf”. We specify the width of the plot as 6 inches, the height of the plot as 4 inches, and the resolution as 300 dots per inch (dpi). dpi is not actually used for PDF files, but it is useful for other file formats, such as PNG and eps.\nIn terms of specifying the width and height of the plot, it can take some fiddling around to get the right dimensions. You can specify the width and height in pixels, but it is generally better to specify them in inches, because this is a more standard unit of measurement for plots. I recommend thinking in terms of the aspect ratio of the plot, rather than the exact dimensions. For example, if you want a wide plot, you might specify the width as 6 inches and the height as 4 inches. If you want a square plot, you might specify the width and height as 4 inches each. If you want a tall plot, you might specify the width as 4 inches and the height as 6 inches.\nOnce the aspect ratio feels right, you can adjust the width and height to get the exact right dimensions for your plot.\n\n\n\n\n\n\nPlots will save into the working directory\n\n\n\nWhen you save a plot using the ggsave() function, the plot will be saved into the working directory. You can specify a different directory by specifying the full path to the file, such as “C:/Users/username/Documents/studentData_plot.pdf”.\nIt’s easier just to set the working directory to the folder where you want to save the plots!",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Creating plots with ggplot2 in R</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Creating plots with ggplot2 in R</span>"
     ]
   },
   {
     "objectID": "ggplot.html#summary",
     "href": "ggplot.html#summary",
-    "title": "8  Creating plots with ggplot2 in R",
-    "section": "8.7 Summary",
-    "text": "8.7 Summary\nIn this chapter, you have learned how to create plots with ggplot in R. You have learned about the “grammar of visualisation” with ggplot, including the dataset, the coordinate system, and the visual marks that represent the data. You have learned how to write a graph function to display multiple variables on a plot, how to amend the titles and legends of a plot, and how to save plots in PDF or image formats.",
+    "title": "9  Creating plots with ggplot2 in R",
+    "section": "9.7 Summary",
+    "text": "9.7 Summary\nIn this chapter, you have learned how to create plots with ggplot in R. You have learned about the “grammar of visualisation” with ggplot, including the dataset, the coordinate system, and the visual marks that represent the data. You have learned how to write a graph function to display multiple variables on a plot, how to amend the titles and legends of a plot, and how to save plots in PDF or image formats.",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Creating plots with ggplot2 in R</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Creating plots with ggplot2 in R</span>"
     ]
   }
 ]
