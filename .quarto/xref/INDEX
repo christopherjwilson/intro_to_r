@@ -62,5 +62,26 @@
   },
   "slides/factorAnalysis.qmd": {
     "factorAnalysis.html": "dffdc9fc"
+  },
+  "practicals/practical1.qmd": {
+    "practical1.html": "c6525865"
+  },
+  "practicals/multiplePredictors.qmd": {
+    "multiplePredictors.html": "58f664dd"
+  },
+  "practicals/mediation.qmd": {
+    "mediation.html": "a9fc2424"
+  },
+  "practicals/moderation.qmd": {
+    "moderation.html": "49439a93"
+  },
+  "practicals/regression.qmd": {
+    "regression.html": "96d0c5e6"
+  },
+  "practicals/practical2.qmd": {
+    "practical2.html": "e82ec92b"
+  },
+  "practicals/factorAnalysis.qmd": {
+    "factorAnalysis.html": "2fae0646"
   }
 }

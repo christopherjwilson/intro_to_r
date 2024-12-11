@@ -39,9 +39,7 @@ To import data into R, you can use the a command that relates to the type of dat
 ```{r}
 practical4_data <- read.csv("practical4_data.csv")
 
-# change the gender variable to a factor
 
-practical4_data$gender <- as.factor(practical4_data$gender)
 
 
 ```
@@ -54,7 +52,7 @@ You can also use the menu to import data. To do this, click on the <if>Import Da
 ::: callout-note
 # Task
 
-Import the data from the file **practical4_data.csv** into R. Save the data in a variable called **practical3_data**.
+Import the data from the file **practical4_data.csv** into R. Save the data in a variable called **practical4_data**.
 
 Check the data has been imported correctly
 :::
