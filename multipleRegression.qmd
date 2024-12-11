@@ -102,7 +102,7 @@ summary(model1)
 
 As a reminder of what the output tells us:
 
--   Multiple R\^2 = Total variance in outcome that is explained by the model
+-   Multiple $R^2$ = Total variance in outcome that is explained by the model
 -   p-value = Statistical significance of the model
 -   Coefficients = Contribution of each predictor to the model
     -   Pr = Significance of the individual predictor
