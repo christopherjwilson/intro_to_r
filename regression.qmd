@@ -1,4 +1,5 @@
 # Simple Regression in R
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, fig.align="center")
 library(tidyverse)
@@ -10,9 +11,6 @@ regression_data <- read.csv("Datasets/regression_data.csv")
 
 -   Conduct and interpret a regression analysis in R
 :::
-
-
-
 
 # What is regression analysis?
 
@@ -26,13 +24,15 @@ When we say simple regression, we mean that there is only one predictor variable
 Regression analysis can show that two variables are related, but it does not prove that one variable causes the other. To establish causation, you need a research design that can rule out alternative explanations, i.e., an experiment.
 :::
 
-<iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=507d34bd-a8da-43fc-9cbf-b22200a92173&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="338" width="600" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="Simple Regression in R" ></iframe>
+<iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=507d34bd-a8da-43fc-9cbf-b22200a92173&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="338" width="600" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="Simple Regression in R">
+
+</iframe>
 
 # Simple regression in R
 
 In R, we can conduct a simple regression analysis using the `lm()` function. The `lm()` function stands for linear model and is used to fit linear models. The syntax for the `lm()` function is:
 
-```r
+``` r
 lm(y ~ x, data)
 ```
 
@@ -48,8 +48,7 @@ regression_model <- lm(trust_score ~ treatment_duration, data = regression_data)
 
 ```
 
-1. We fit a simple regression model using the `lm()` function. The outcome variable is `trust_score`, and the predictor variable is `treatment_duration`. The data are specified using the `data` argument.
-
+1.  We fit a simple regression model using the `lm()` function. The outcome variable is `trust_score`, and the predictor variable is `treatment_duration`. The data are specified using the `data` argument.
 
 ::: {.callout-tip collapse="true"}
 # What is the model?
@@ -65,16 +64,14 @@ Fit refers to the idea that we want to know if this model is a good fit for the 
 We might find that our first model is not a good fit for the data. In this case, we might try a different model. We will learn next week how to compare different models to see which one is the best fit for the data.
 :::
 
-
-
 ## Checking model assumptions
 
 Before interpreting the results of a regression analysis, it is essential to check the assumptions of the model. The key assumptions of linear regression are:
 
-1. **Linearity**: The relationship between the predictor and outcome variables is linear.
-2. **Independence**: The residuals (errors) are independent of each other.
-3. **Homoscedasticity**: The residuals have constant variance.
-4. **Normality**: The residuals are normally distributed.
+1.  **Linearity**: The relationship between the predictor and outcome variables is linear.
+2.  **Independence**: The residuals (errors) are independent of each other.
+3.  **Homoscedasticity**: The residuals have constant variance.
+4.  **Normality**: The residuals are normally distributed.
 
 We can check these assumptions using diagnostic plots. The `plot()` function in R can be used to create diagnostic plots for the regression model.
 
@@ -86,9 +83,7 @@ plot(regression_model) #<1>
 
 ```
 
-1. We create diagnostic plots for the regression model using the `plot()` function. The diagnostic plots include a scatterplot of the residuals against the fitted values, a Q-Q plot of the residuals, a scale-location plot, and a plot of the residuals against the predictor variable.
-
-
+1.  We create diagnostic plots for the regression model using the `plot()` function. The diagnostic plots include a scatterplot of the residuals against the fitted values, a Q-Q plot of the residuals, a scale-location plot, and a plot of the residuals against the predictor variable.
 
 ## Check the assumptions
 
@@ -109,7 +104,6 @@ plot(model) #<1>
 ### The assumption of independence
 
 This assumption is the idea that each observation is independent of the others. In other words, the value of one observation (e.g. a participant's score) should not be related to the value of another participant's score. This is not interpreted from the plots, but is an assumption that should be considered when collecting data. For example, you would not use this approach to analyse data from a repeated measures design, because the observations are not independent.
-
 
 ### The assumption of linearity
 
@@ -181,7 +175,6 @@ Leverage is the idea that a particular outlier might have a lot of influence on 
 **What do we do if this assumption is violated?:** Outliers will affect the calculation of variances (e.g. sum of squares or standard deviation) that are used in many calculations related to the regression model. If there are influentual cases, we should consider removing them from the analysis. When doing so, it is important to explain why you removed them, and be transparent about how this affected the model results.
 :::
 
-
 ## Interpret the regression model results
 
 To view the results of the regression model, we use the <func>summary()</func> function.
@@ -195,9 +188,7 @@ summary(regression_model) #<1>
 
 ```
 
-1. We view the results of the regression model using the `summary()` function. The output includes the coefficients, standard errors, t-values, p-values, and R-squared value of the model.
-
-
+1.  We view the results of the regression model using the `summary()` function. The output includes the coefficients, standard errors, t-values, p-values, and R-squared value of the model.
 
 ### **Call:** The regression formula
 
@@ -227,13 +218,13 @@ The final section in the output shows:
 
 -   **p-value**. This is the p value for the F statistic (the significance of the overall regression model, with all of the predictors).
 
+## Regression with a categorical predictor variable  {#catreg}
 
+So far, we have conducted a regression analysis with a continuous predictor variable. Now, let's consider a regression analysis with a categorical predictor variable.
 
-## Regression with a categorical predictor variable
+<iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=e8096534-43d8-4187-bce3-b22200c21181&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="338" width="600" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="Regression with categorical predictors + multiple comparisons with estimated marginal means">
 
-So far, we have conducted a regression analysis with a continuous predictor variable. Now, let's consider a regression analysis with a categorical predictor variable. 
-
-<iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=e8096534-43d8-4187-bce3-b22200c21181&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="338" width="600" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="Regression with categorical predictors + multiple comparisons with estimated marginal means" ></iframe>
+</iframe>
 
 Our next hypothesis is that the level of depression is different for each treatment group. We can test this hypothesis using a regression model with a categorical predictor variable. Let's conduct a regression analysis with the `treatment` variable as the predictor variable. If there are 2 levels of the predictor variable, then the model will compare the two levels. If there are more than 2 levels, then the model will compare each level to the reference level. By default, R uses the first level of the predictor variable as the reference level. Howeverm you can specify a different reference level using the `relevel()` function.
 
@@ -254,34 +245,29 @@ summary(regression_model2) #<3>
 
 
 ```
-0. We convert the `treatment` variable to a factor variable using the `as.factor()` function. This is necessary for R to recognize the variable as a categorical variable.
-1. We specify the reference level for the `treatment` variable using the `relevel()` function. In this case, we set the reference level to "therapy1". This is likely the default level, but we are specifying it here for clarity. If we had more than 2 levels, we could specify a different reference level using the `ref` argument. For example, `ref = "control"
 
-2. We fit a regression model with the `treatment_group` variable as the predictor variable. The outcome variable is `aggression_level`. The data are specified using the `data` argument.
+0.  We convert the `treatment` variable to a factor variable using the `as.factor()` function. This is necessary for R to recognize the variable as a categorical variable.
 
-3. We view the results of the regression model using the `summary()` function. The output includes the coefficients, standard errors, t-values, p-values, and R-squared value of the model.
+1.  We specify the reference level for the `treatment` variable using the `relevel()` function. In this case, we set the reference level to "therapy1". This is likely the default level, but we are specifying it here for clarity. If we had more than 2 levels, we could specify a different reference level using the `ref` argument. For example, \`ref = "control"
 
+2.  We fit a regression model with the `treatment_group` variable as the predictor variable. The outcome variable is `aggression_level`. The data are specified using the `data` argument.
+
+3.  We view the results of the regression model using the `summary()` function. The output includes the coefficients, standard errors, t-values, p-values, and R-squared value of the model.
 
 The output tells us that the model is significant, and that the beta values for the treatment_group therapy2 is different from the reference group (therapy1) which is the intercept of this model. The beta values are the difference in the outcome variable between the reference group and the other groups. The beta value for the reference group is the mean of the outcome variable (aggression_level) for that group. The beta values for therapy2 is the difference in the mean outcome variable for that group and the reference group.
 
-
 ::: callout-tip
-
 # Interpreting the results of a regression model with a categorical predictor variable
 
 When we have a categorical predictor variable, the interpretation of the beta values changes. The beta values are the difference in the outcome variable between the reference category and the other categories. The reference category is the category that is not included in the model. The beta value for the reference category is the mean of the outcome variable for that category. The beta values for the other categories are the difference in the outcome variable between that category and the reference category.
 
-If you want to see this done another way, if your predictor has 2 levels, you can conduct a t-test and compare the means of the two groups. The t-test will give you the same results as the regression model. The t-test is a simpler way to compare the means of two groups, but the regression model is more flexible and can handle more complex models (by adding more predictor variables). 
-
+If you want to see this done another way, if your predictor has 2 levels, you can conduct a t-test and compare the means of the two groups. The t-test will give you the same results as the regression model. The t-test is a simpler way to compare the means of two groups, but the regression model is more flexible and can handle more complex models (by adding more predictor variables).
 :::
-
-
 
 ::: callout-warning
 # Testing assumptions with a categorical predictor variable
 
 When we have a categorical predictor variable, we need to be careful about how we interpret the assumptions of linear regression. The assumptions of linearity, normality and homoscedasticity are still relevant. However, because we have a categorical predictor, the plots will look different. We need to check the assumptions for each level of the categorical predictor variable. Some of the plots will change to reflect this.
-
 :::
 
 ## Comparing multiple levels of predictor variables (estimated marginal means)
@@ -289,7 +275,6 @@ When we have a categorical predictor variable, we need to be careful about how w
 If we have more than 2 levels of the predictor variable, we can compare each level to the reference level. We can also compare all levels to each other using the `emmeans` package. The `emmeans` package provides estimated marginal means for the levels of a predictor variable. We can use the `emmeans()` function to calculate the estimated marginal means for the levels of the predictor variable.
 
 For this example, let's use the mtcar dataset, which contains information about cars. We will conduct a regression analysis with the `cyl` variable as the predictor variable and the `mpg` variable as the outcome variable. The `cyl` variable has 3 levels (4, 6, and 8 cylinders). We will compare the mean `mpg` for each level of the `cyl` variable.
-
 
 ```{r}
 
@@ -321,19 +306,15 @@ emmeans(regression_model3, pairwise ~ cyl) #<3>
 
 ```
 
-1. We fit a regression model with the `cyl` variable as the predictor variable and the `mpg` variable as the outcome variable.
+1.  We fit a regression model with the `cyl` variable as the predictor variable and the `mpg` variable as the outcome variable.
 
-2. We view the results of the regression model using the `summary()` function. The output includes the coefficients, standard errors, t-values, p-values, and R-squared value of the model.
+2.  We view the results of the regression model using the `summary()` function. The output includes the coefficients, standard errors, t-values, p-values, and R-squared value of the model.
 
-3. We use the `emmeans()` function from the `emmeans` package to calculate the estimated marginal means for the levels of the `cyl` variable. The `pairwise ~ cyl` argument specifies that we want to compare the levels of the `cyl` variable with pairwise comparisons.
-
+3.  We use the `emmeans()` function from the `emmeans` package to calculate the estimated marginal means for the levels of the `cyl` variable. The `pairwise ~ cyl` argument specifies that we want to compare the levels of the `cyl` variable with pairwise comparisons.
 
 The output tells us that the mean `mpg` for the 4-cylinder cars is significantly different from the mean `mpg` for the 6-cylinder cars and the 8-cylinder cars. The mean `mpg` for the 6-cylinder cars is also significantly different from the mean `mpg` for the 8-cylinder cars. The estimated marginal means provide a way to compare the levels of the predictor variable and determine if there are significant differences between them.
 
-
-
 ::: callout-tip
-
 # What are estimated marginal means?
 
 Estimated marginal means are the predicted means of the outcome variable for each level of the predictor variable. They are calculated by averaging the predicted values of the outcome variable for each level of the predictor variable, while holding all other variables constant. Estimated marginal means provide a way to compare the levels of the predictor variable and determine if there are significant differences between them.
@@ -347,6 +328,4 @@ When reporting the results of a regression analysis, it is common to report the 
 ### What are Tukey corrected p-values?
 
 Tukey corrected p-values are used to adjust for multiple comparisons in a pairwise comparison analysis. When conducting multiple comparisons between the levels of a predictor variable, there is an increased risk of making a Type I error (false positive) due to the number of comparisons being made. Tukey corrected p-values adjust for this increased risk. This means that the p-values are adjusted to account for the number of comparisons being made, reducing the likelihood of making a false positive conclusion.
-
-:::   
-
+:::
