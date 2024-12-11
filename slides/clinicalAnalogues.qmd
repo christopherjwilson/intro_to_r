@@ -1,0 +1,83 @@
+---
+bibliography: references.bib
+---
+
+# Clinical Analogue Studies {background-image="images/cog1.jpg" background-color="black"}
+
+## What are clinical analogue studies?
+
+- Clinical analogue studies are studies that use non-clinical samples to study processes related to psychopathology.
+
+    - For example: The role of attention in PTSD
+    - Is this a form of attentional bias towards threat stimuli or an inability to disengage from threat stimuli?
+
+- They allow us to study processes related to psychopathology in a controlled environment.
+
+- They allow specific variables to be manipulated to identify mechanisms of change.
+
+## Why use clinical analogue studies? #1
+
+- Research with clinical groups is often correlational which does not allow drawing conclusions about what causation.
+
+- The use of experimental designs with clinical population can be ethically problematic, as exposure to stimuli (e.g., stressors) to measure "in the moment" effects, could be traumatic.
+
+- Retrospective reports lack objective information about external stumuli or order of events.
+
+:::{.aside}
+[@EhringEtAl2011]
+:::
+
+## Why use clinical analogue studies? #2
+
+- Subclinical measurements can allow accurate modelling of relevant processes (e.g. Depression: @HillEtAl1987). 
+
+- Allows design of studies to better understand the relationship between:
+    - treatment -> process  
+    - process -> outcome 
+
+[@EhringEtAl2022]
+
+- Allows control and focus on specific variables to identify mechanisms of change [@EhringEtAl2022]
+
+## Intervention -> process -> outcome
+
+![](images/moderation.png)
+
+## Clinical relevance of analogue studies
+
+-  "the nature and intensity of the target problem, not the clinical status of the subjects, are the critical variables in analogue research" (e.g., fear and phobias: @BorkovecRachman1979, p. 253).
+
+- Basic research has helped identify etiological factors in the development of many disorders (e.g. OCD: @Gibbs1996)
+
+- Symptoms can be prevalent in non-clinical populations, with similar qualitative expressions of experience and similar causal and maintenance factors [@AbramowitzEtAl2014, @AbramowitzEtAl2001, @PuckettEtAl]
+
+## Limitations of clinical analogue studies? #1
+
+Potential issues with clinical analogue studies include:
+
+- Ecological validity: the extent to which the findings of a research study are able to be generalized to real-life settings.
+
+- External validity: the extent to which the findings of a research study are able to be generalized to other people, settings, and times.
+
+- Comorbidity: the presence of one or more additional disorders (or diseases) co-occurring with a primary disorder or disease.
+
+## Limitations of clinical analogue studies? #2 {.smaller}
+
+However, it has been argued that the limitations of clinical analogue studies are often overstated [@AbramowitzEtAl2014] and that the weaknesses of clinical analogue studies are often shared with clinical studies (i.e. poor research is poor research, regardless of the sample):
+
+- Lack of sufficient power in studies
+- Reliance on findings from single studies that have yet to be replicated
+- Weakness in research designs
+- Over-reliance on or misunderstanding of NHST
+- Diagnostic unreliability
+- Selective reporting of results
+
+
+# Takeaways:
+
+- Clinical analogue studies are studies are an improtant part of studying processes related to psychopathology.
+
+- They can help us break down the intervention -> process -> outcome relationship.
+
+- They need to be well designed and well conducted to be useful.
+

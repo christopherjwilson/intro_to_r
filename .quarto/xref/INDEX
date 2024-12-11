@@ -41,5 +41,26 @@
   },
   "multipleRegression.qmd": {
     "multipleRegression.html": "ab54565b"
+  },
+  "slides/Lecture1.qmd": {
+    "Lecture1.html": "c2b9f728"
+  },
+  "slides/powerAndEffectSize.qmd": {
+    "powerAndEffectSize.html": "2a8fecf8"
+  },
+  "slides/moderation.qmd": {
+    "moderation.html": "e1b68d90"
+  },
+  "slides/multiplePredictors.qmd": {
+    "multiplePredictors.html": "71ae955d"
+  },
+  "slides/linearModels.qmd": {
+    "linearModels.html": "2c933f77"
+  },
+  "slides/mediation.qmd": {
+    "mediation.html": "c31ccdbb"
+  },
+  "slides/factorAnalysis.qmd": {
+    "factorAnalysis.html": "dffdc9fc"
   }
 }

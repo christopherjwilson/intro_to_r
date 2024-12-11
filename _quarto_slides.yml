@@ -1,0 +1,12 @@
+project:
+  output-dir: docs
+  render:
+    - slides/Lecture1.qmd
+    - slides/powerAndEffectSize.qmd
+    - slides/linearModels.qmd
+    - slides/multiplePredictors.qmd
+    - slides/moderation.qmd
+    - slides/mediation.qmd
+    - slides/factorAnalysis.qmd
+    
+format: revealjs
