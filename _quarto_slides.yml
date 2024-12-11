@@ -8,5 +8,3 @@ project:
     - slides/moderation.qmd
     - slides/mediation.qmd
     - slides/factorAnalysis.qmd
-    
-format: revealjs

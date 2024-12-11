@@ -1,11 +1,10 @@
 project:
   output-dir: docs
   render:
-    - practicals/practical1.qmd
-    - practicals/practical2.qmd
-    - practicals/regression.qmd
-    - practicals/multiplePredictors.qmd
-    - practicals/moderation.qmd
-    - practicals/mediation.qmd
-    - practicals/factorAnalysis.qmd
-    
+    - slides/Lecture1.qmd
+    - slides/powerAndEffectSize.qmd
+    - slides/linearModels.qmd
+    - slides/multiplePredictors.qmd
+    - slides/moderation.qmd
+    - slides/mediation.qmd
+    - slides/factorAnalysis.qmd
