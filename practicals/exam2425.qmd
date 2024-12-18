@@ -35,7 +35,7 @@ Previous research has indicated that age and gender may be important predictors 
 
 The psychologist is interested understanding:
 
-1. Are there differences in mean resilience change my gender?
+1. Are there differences in mean resilience change by gender?
 
 1. Does the number of treatment sessions predict resilience change, when controlling for the other variables? What is the contribution of the number of treatment sessions to the prediction of resilience change?
 
