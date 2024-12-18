@@ -1,0 +1,32 @@
+/* edit this file to add custom styles */
+
+.inline-figure { border: none; }
+.quarto-cover-image { display: block; }
+/* named colours */
+:root {
+  --pink: #983E82;
+  --orange: #E2A458;
+  --yellow: #F5DC70;
+  --green: #59935B;
+  --blue: #467AAC;
+  --purple: #61589C;
+}
+
+
+/* custom styles */
+
+.code-annotation-container-grid {
+
+  font-size: smaller;
+
+}
+
+
+
+.reveal pre code {
+  display: block;
+  padding: 5px;
+  overflow: auto;
+  max-height: 60%;
+  word-wrap: normal;
+}
