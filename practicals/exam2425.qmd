@@ -1,0 +1,44 @@
+---
+title: "Formative Exercise (Statistics with R)"
+subtitle: "Research Methods 1: Doctorate in Clinical Psychology"
+execute:
+  echo: false
+  eval: false
+  warning: false
+  message: false
+Institution: "Teesside University"
+format:
+  html:
+    css: ["../include/style.css","../include/glossary.css","../include/booktem.css", "../include/webex.css", "../include/rstudio_default_code.css"]
+    include-after-body: ["../include/webex.js"]
+---
+
+For this exercise you will need to download the following dataset: [formative_data.csv](formative_data.csv)
+
+Right click and select <if>Save link as...</if> to download the file. Save it in the same folder as your script.
+
+# Research Overview
+
+A clinical psychologist is interested in understanding what factors predict resilience. They have collected a dataset of 10,000 observations on the following variables:
+
+- `resilience_change`: a continuous variable representing the change in resilience from baseline to follow-up (higher scores indicate greater improvement in resilience). The original resilience score was based on a questionnaire with a final value measured on a scale from 0 to 100.
+- `age`: a continuous variable representing the age of the participant.
+- `gender`: a categorical variable representing the gender that the participant identifies as.
+- `self-sufficiency`: a continuous variable representing the self-sufficiency of the participant. This was measured using a questionnaire with a final value measured on a scale from 1 to 30.
+- `help_seeking`: a categorical variable representing whether the participant sought help during the study (yes or no).
+- `n_sessions`: a continuous variable representing the number of sessions attended by the participant.
+- `sleep_hrs`: a continuous variable representing the average number of hours of sleep per night.
+
+Previous research has indicated that age and gender may be important predictors of resilience. In addition, there is a theoretical model which posits that help-seeking behavior and self-sufficiency may also be important. 
+
+## Research Questions
+
+The psychologist is interested understanding:
+
+1. Are there differences in mean resilience change my gender?
+
+1. Does the number of treatment sessions predict resilience change, when controlling for the other variables? What is the contribution of the number of treatment sessions to the prediction of resilience change?
+
+1. What is the best model to predict resilience change based on the variables available?
+
+1. Does age moderate the relationship between self-sufficiency and resilience change?
