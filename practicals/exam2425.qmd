@@ -13,7 +13,7 @@ format:
     include-after-body: ["../include/webex.js"]
 ---
 
-For this exercise you will need to download the following dataset: [formative_data.csv](formative_data.csv)
+For this exercise you will need to download the following dataset: [data_formative.csv](data_formative.csv)
 
 Right click and select <if>Save link as...</if> to download the file. Save it in the same folder as your script.
 
