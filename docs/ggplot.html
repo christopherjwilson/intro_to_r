@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>10&nbsp; Creating plots with ggplot2 in R – Introduction to R for Clinical Psychology</title>
+<title>11&nbsp; Creating plots with ggplot2 in R – Introduction to R for Clinical Psychology</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./moderation.html" rel="prev">
+<link href="./mediation.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -114,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ggplot.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Creating plots with ggplot2 in R</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ggplot.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Creating plots with ggplot2 in R</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -201,8 +201,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./mediation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mediation analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./ggplot.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Creating plots with ggplot2 in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Creating plots with ggplot2 in R</span></span></a>
   </div>
 </li>
     </ul>
@@ -215,22 +221,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-grammar-of-visualisation-with-ggplot" id="toc-the-grammar-of-visualisation-with-ggplot" class="nav-link active" data-scroll-target="#the-grammar-of-visualisation-with-ggplot"><span class="header-section-number">10.1</span> The “grammar of visualisation” with ggplot</a></li>
-  <li><a href="#adding-more-variables-to-a-plot" id="toc-adding-more-variables-to-a-plot" class="nav-link" data-scroll-target="#adding-more-variables-to-a-plot"><span class="header-section-number">10.2</span> Adding more variables to a plot</a>
+  <li><a href="#the-grammar-of-visualisation-with-ggplot" id="toc-the-grammar-of-visualisation-with-ggplot" class="nav-link active" data-scroll-target="#the-grammar-of-visualisation-with-ggplot"><span class="header-section-number">11.1</span> The “grammar of visualisation” with ggplot</a></li>
+  <li><a href="#adding-more-variables-to-a-plot" id="toc-adding-more-variables-to-a-plot" class="nav-link" data-scroll-target="#adding-more-variables-to-a-plot"><span class="header-section-number">11.2</span> Adding more variables to a plot</a>
   <ul class="collapse">
-  <li><a href="#example-assigning-a-variable-to-colour-2-different-approaches" id="toc-example-assigning-a-variable-to-colour-2-different-approaches" class="nav-link" data-scroll-target="#example-assigning-a-variable-to-colour-2-different-approaches"><span class="header-section-number">10.2.1</span> Example: assigning a variable to colour (2 different approaches)</a></li>
-  <li><a href="#example-assigning-a-variable-to-size" id="toc-example-assigning-a-variable-to-size" class="nav-link" data-scroll-target="#example-assigning-a-variable-to-size"><span class="header-section-number">10.2.2</span> Example: assigning a variable to size</a></li>
-  <li><a href="#example-assigning-a-variable-to-shape" id="toc-example-assigning-a-variable-to-shape" class="nav-link" data-scroll-target="#example-assigning-a-variable-to-shape"><span class="header-section-number">10.2.3</span> Example: assigning a variable to shape</a></li>
+  <li><a href="#example-assigning-a-variable-to-colour-2-different-approaches" id="toc-example-assigning-a-variable-to-colour-2-different-approaches" class="nav-link" data-scroll-target="#example-assigning-a-variable-to-colour-2-different-approaches"><span class="header-section-number">11.2.1</span> Example: assigning a variable to colour (2 different approaches)</a></li>
+  <li><a href="#example-assigning-a-variable-to-size" id="toc-example-assigning-a-variable-to-size" class="nav-link" data-scroll-target="#example-assigning-a-variable-to-size"><span class="header-section-number">11.2.2</span> Example: assigning a variable to size</a></li>
+  <li><a href="#example-assigning-a-variable-to-shape" id="toc-example-assigning-a-variable-to-shape" class="nav-link" data-scroll-target="#example-assigning-a-variable-to-shape"><span class="header-section-number">11.2.3</span> Example: assigning a variable to shape</a></li>
   </ul></li>
-  <li><a href="#different-types-of-geoms-bar-charts" id="toc-different-types-of-geoms-bar-charts" class="nav-link" data-scroll-target="#different-types-of-geoms-bar-charts"><span class="header-section-number">10.3</span> Different types of geoms: bar charts</a>
+  <li><a href="#different-types-of-geoms-bar-charts" id="toc-different-types-of-geoms-bar-charts" class="nav-link" data-scroll-target="#different-types-of-geoms-bar-charts"><span class="header-section-number">11.3</span> Different types of geoms: bar charts</a>
   <ul class="collapse">
-  <li><a href="#example-summarising-the-data-before-plotting" id="toc-example-summarising-the-data-before-plotting" class="nav-link" data-scroll-target="#example-summarising-the-data-before-plotting"><span class="header-section-number">10.3.1</span> Example: summarising the data before plotting</a></li>
-  <li><a href="#example-letting-ggplot-do-the-summarising-for-you" id="toc-example-letting-ggplot-do-the-summarising-for-you" class="nav-link" data-scroll-target="#example-letting-ggplot-do-the-summarising-for-you"><span class="header-section-number">10.3.2</span> Example: letting ggplot do the summarising for you</a></li>
+  <li><a href="#example-summarising-the-data-before-plotting" id="toc-example-summarising-the-data-before-plotting" class="nav-link" data-scroll-target="#example-summarising-the-data-before-plotting"><span class="header-section-number">11.3.1</span> Example: summarising the data before plotting</a></li>
+  <li><a href="#example-letting-ggplot-do-the-summarising-for-you" id="toc-example-letting-ggplot-do-the-summarising-for-you" class="nav-link" data-scroll-target="#example-letting-ggplot-do-the-summarising-for-you"><span class="header-section-number">11.3.2</span> Example: letting ggplot do the summarising for you</a></li>
   </ul></li>
-  <li><a href="#changing-the-titles-and-legends-of-a-plot" id="toc-changing-the-titles-and-legends-of-a-plot" class="nav-link" data-scroll-target="#changing-the-titles-and-legends-of-a-plot"><span class="header-section-number">10.4</span> Changing the titles and legends of a plot</a></li>
-  <li><a href="#themes-in-ggplot" id="toc-themes-in-ggplot" class="nav-link" data-scroll-target="#themes-in-ggplot"><span class="header-section-number">10.5</span> Themes in ggplot</a></li>
-  <li><a href="#saving-plots-in-ggplot" id="toc-saving-plots-in-ggplot" class="nav-link" data-scroll-target="#saving-plots-in-ggplot"><span class="header-section-number">10.6</span> Saving plots in ggplot</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">10.7</span> Summary</a></li>
+  <li><a href="#changing-the-titles-and-legends-of-a-plot" id="toc-changing-the-titles-and-legends-of-a-plot" class="nav-link" data-scroll-target="#changing-the-titles-and-legends-of-a-plot"><span class="header-section-number">11.4</span> Changing the titles and legends of a plot</a></li>
+  <li><a href="#themes-in-ggplot" id="toc-themes-in-ggplot" class="nav-link" data-scroll-target="#themes-in-ggplot"><span class="header-section-number">11.5</span> Themes in ggplot</a></li>
+  <li><a href="#saving-plots-in-ggplot" id="toc-saving-plots-in-ggplot" class="nav-link" data-scroll-target="#saving-plots-in-ggplot"><span class="header-section-number">11.6</span> Saving plots in ggplot</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">11.7</span> Summary</a></li>
   </ul>
 </nav>
     </div>
@@ -239,7 +245,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Creating plots with ggplot2 in R</span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Creating plots with ggplot2 in R</span></h1>
 </div>
 
 
@@ -276,8 +282,8 @@ At the end of this chapter, you will be able to:
 </div>
 <iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=be7697ca-97d7-40d1-8a58-af4100ff0c16&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="338" width="600" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="Plots with GGPlot in R">
 </iframe>
-<section id="the-grammar-of-visualisation-with-ggplot" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="the-grammar-of-visualisation-with-ggplot"><span class="header-section-number">10.1</span> The “grammar of visualisation” with ggplot</h2>
+<section id="the-grammar-of-visualisation-with-ggplot" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="the-grammar-of-visualisation-with-ggplot"><span class="header-section-number">11.1</span> The “grammar of visualisation” with ggplot</h2>
 <p>With ggplot, graphs are made up of 3 components: - A dataset - A coordinate system (e.g., the X and Y axes) - Visual marks to represent data <strong>(geoms)</strong></p>
 <div class="cell">
 <div class="cell-output-display">
@@ -332,12 +338,12 @@ Remember the <code>+</code> operator
 </div>
 </div>
 </section>
-<section id="adding-more-variables-to-a-plot" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="adding-more-variables-to-a-plot"><span class="header-section-number">10.2</span> Adding more variables to a plot</h2>
+<section id="adding-more-variables-to-a-plot" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="adding-more-variables-to-a-plot"><span class="header-section-number">11.2</span> Adding more variables to a plot</h2>
 <p>One of the things that makes ggplot so powerful is that you can add more variables to a plot. You can map these variables to different aesthetic attributes of the plot, such as colour, shape, or size.</p>
 <p>This can be done either in the <code>ggplot()</code> function or in the <code>geom_point()</code> function.</p>
-<section id="example-assigning-a-variable-to-colour-2-different-approaches" class="level3" data-number="10.2.1">
-<h3 data-number="10.2.1" class="anchored" data-anchor-id="example-assigning-a-variable-to-colour-2-different-approaches"><span class="header-section-number">10.2.1</span> Example: assigning a variable to colour (2 different approaches)</h3>
+<section id="example-assigning-a-variable-to-colour-2-different-approaches" class="level3" data-number="11.2.1">
+<h3 data-number="11.2.1" class="anchored" data-anchor-id="example-assigning-a-variable-to-colour-2-different-approaches"><span class="header-section-number">11.2.1</span> Example: assigning a variable to colour (2 different approaches)</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-2-1" class="code-annotation-target"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>studentData, <span class="fu">aes</span>(<span class="at">x=</span>grades,<span class="at">y=</span>hoursOfStudy, <span class="at">color =</span> route)) <span class="sc">+</span></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-2-2" class="code-annotation-target"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -385,8 +391,8 @@ Remember the <code>+</code> operator
 </div>
 </div>
 </section>
-<section id="example-assigning-a-variable-to-size" class="level3" data-number="10.2.2">
-<h3 data-number="10.2.2" class="anchored" data-anchor-id="example-assigning-a-variable-to-size"><span class="header-section-number">10.2.2</span> Example: assigning a variable to size</h3>
+<section id="example-assigning-a-variable-to-size" class="level3" data-number="11.2.2">
+<h3 data-number="11.2.2" class="anchored" data-anchor-id="example-assigning-a-variable-to-size"><span class="header-section-number">11.2.2</span> Example: assigning a variable to size</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-4-1" class="code-annotation-target"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>studentData, <span class="fu">aes</span>(<span class="at">x=</span>grades,<span class="at">y=</span>hoursOfStudy, <span class="at">size =</span> satisfactionLevel, <span class="at">colour =</span> route)) <span class="sc">+</span></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-4-2" class="code-annotation-target"><a href="#annotated-cell-4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -411,8 +417,8 @@ Remember the <code>+</code> operator
 </div>
 </div>
 </section>
-<section id="example-assigning-a-variable-to-shape" class="level3" data-number="10.2.3">
-<h3 data-number="10.2.3" class="anchored" data-anchor-id="example-assigning-a-variable-to-shape"><span class="header-section-number">10.2.3</span> Example: assigning a variable to shape</h3>
+<section id="example-assigning-a-variable-to-shape" class="level3" data-number="11.2.3">
+<h3 data-number="11.2.3" class="anchored" data-anchor-id="example-assigning-a-variable-to-shape"><span class="header-section-number">11.2.3</span> Example: assigning a variable to shape</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-5-1" class="code-annotation-target"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>studentData, <span class="fu">aes</span>(<span class="at">x=</span>grades,<span class="at">y=</span>hoursOfStudy, <span class="at">size =</span> satisfactionLevel, <span class="at">colour =</span> route, <span class="at">shape =</span> hasDepdendants)) <span class="sc">+</span></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-5-2" class="code-annotation-target"><a href="#annotated-cell-5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -438,16 +444,16 @@ Remember the <code>+</code> operator
 </div>
 </section>
 </section>
-<section id="different-types-of-geoms-bar-charts" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="different-types-of-geoms-bar-charts"><span class="header-section-number">10.3</span> Different types of geoms: bar charts</h2>
+<section id="different-types-of-geoms-bar-charts" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="different-types-of-geoms-bar-charts"><span class="header-section-number">11.3</span> Different types of geoms: bar charts</h2>
 <p>The <code>geom_point()</code> function is just one of many geoms that you can use in ggplot. Another common geom is <code>geom_col()</code>, which is used to create bar charts.</p>
 <p>When creating a bar chart there are 2 approaches:</p>
 <ol type="1">
 <li>summarise the data before plotting</li>
 <li>let ggplot do the summarising for you</li>
 </ol>
-<section id="example-summarising-the-data-before-plotting" class="level3" data-number="10.3.1">
-<h3 data-number="10.3.1" class="anchored" data-anchor-id="example-summarising-the-data-before-plotting"><span class="header-section-number">10.3.1</span> Example: summarising the data before plotting</h3>
+<section id="example-summarising-the-data-before-plotting" class="level3" data-number="11.3.1">
+<h3 data-number="11.3.1" class="anchored" data-anchor-id="example-summarising-the-data-before-plotting"><span class="header-section-number">11.3.1</span> Example: summarising the data before plotting</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -480,8 +486,8 @@ Remember to refer to the summarised variable in the <code>ggplot()</code> functi
 </div>
 </div>
 </section>
-<section id="example-letting-ggplot-do-the-summarising-for-you" class="level3" data-number="10.3.2">
-<h3 data-number="10.3.2" class="anchored" data-anchor-id="example-letting-ggplot-do-the-summarising-for-you"><span class="header-section-number">10.3.2</span> Example: letting ggplot do the summarising for you</h3>
+<section id="example-letting-ggplot-do-the-summarising-for-you" class="level3" data-number="11.3.2">
+<h3 data-number="11.3.2" class="anchored" data-anchor-id="example-letting-ggplot-do-the-summarising-for-you"><span class="header-section-number">11.3.2</span> Example: letting ggplot do the summarising for you</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>studentData, <span class="fu">aes</span>(<span class="at">x =</span> route, <span class="at">y =</span> hoursOfStudy)) <span class="sc">+</span> </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"col"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -496,8 +502,8 @@ Remember to refer to the summarised variable in the <code>ggplot()</code> functi
 <p>In the above code, we use the <code>stat_summary()</code> function to calculate the mean number of hours of study for each route. We specify that we want to calculate the mean using the <code>fun = mean</code> argument, and we specify that we want to create a bar chart using the <code>geom = "col"</code> argument.</p>
 </section>
 </section>
-<section id="changing-the-titles-and-legends-of-a-plot" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="changing-the-titles-and-legends-of-a-plot"><span class="header-section-number">10.4</span> Changing the titles and legends of a plot</h2>
+<section id="changing-the-titles-and-legends-of-a-plot" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="changing-the-titles-and-legends-of-a-plot"><span class="header-section-number">11.4</span> Changing the titles and legends of a plot</h2>
 <p>You can change the titles and legends of a plot using the <code>labs()</code> function. This function allows you to change the title of the plot, the titles of the X and Y axes, and the legend title.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>studentData <span class="sc">%&gt;%</span></span>
@@ -519,8 +525,8 @@ Remember to refer to the summarised variable in the <code>ggplot()</code> functi
 </div>
 <p>In the above code, we use the <code>labs()</code> function to change the title of the plot to “Mean hours of study by route”, the title of the X axis to “Route”, the title of the Y axis to “Mean hours of study”, and the caption to “Source: Student data”.</p>
 </section>
-<section id="themes-in-ggplot" class="level2" data-number="10.5">
-<h2 data-number="10.5" class="anchored" data-anchor-id="themes-in-ggplot"><span class="header-section-number">10.5</span> Themes in ggplot</h2>
+<section id="themes-in-ggplot" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="themes-in-ggplot"><span class="header-section-number">11.5</span> Themes in ggplot</h2>
 <p>You can change all of the colours and other appearance elements in ggplot. However, it can be easier to change the appearance of a plot using themes. Themes allow you to change the background colour, the colour of the text, the size of the text, and other aspects of the appearance of the plot.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>studentData <span class="sc">%&gt;%</span></span>
@@ -543,8 +549,8 @@ Remember to refer to the summarised variable in the <code>ggplot()</code> functi
 </div>
 <p>In the above code, we use the <code>theme_minimal()</code> function to change the appearance of the plot to a minimal theme. There are many other themes that you can use, such as <code>theme_light()</code>, <code>theme_dark()</code>, and <code>theme_bw()</code>.</p>
 </section>
-<section id="saving-plots-in-ggplot" class="level2" data-number="10.6">
-<h2 data-number="10.6" class="anchored" data-anchor-id="saving-plots-in-ggplot"><span class="header-section-number">10.6</span> Saving plots in ggplot</h2>
+<section id="saving-plots-in-ggplot" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="saving-plots-in-ggplot"><span class="header-section-number">11.6</span> Saving plots in ggplot</h2>
 <p>The best way to save plots (and get reliable results) is to save them using the <code>ggsave()</code> function. This function allows you to save plots in a variety of formats, such as PDF, PNG, and JPEG. For publication-quality plots, it is best to save them in PDF format, because this format is scalable and resolution independent.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>studentData <span class="sc">%&gt;%</span></span>
@@ -578,8 +584,8 @@ Plots will save into the working directory
 </div>
 </div>
 </section>
-<section id="summary" class="level2" data-number="10.7">
-<h2 data-number="10.7" class="anchored" data-anchor-id="summary"><span class="header-section-number">10.7</span> Summary</h2>
+<section id="summary" class="level2" data-number="11.7">
+<h2 data-number="11.7" class="anchored" data-anchor-id="summary"><span class="header-section-number">11.7</span> Summary</h2>
 <p>In this chapter, you have learned how to create plots with ggplot in R. You have learned about the “grammar of visualisation” with ggplot, including the dataset, the coordinate system, and the visual marks that represent the data. You have learned how to write a graph function to display multiple variables on a plot, how to amend the titles and legends of a plot, and how to save plots in PDF or image formats.</p>
 
 
@@ -1008,8 +1014,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./moderation.html" class="pagination-link" aria-label="Moderation">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Moderation</span></span>
+      <a href="./mediation.html" class="pagination-link" aria-label="Mediation analysis">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mediation analysis</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

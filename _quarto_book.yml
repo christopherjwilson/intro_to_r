@@ -17,6 +17,7 @@ book:
     - regression.qmd
     - multipleRegression.qmd
     - moderation.qmd
+    - mediation.qmd
     - ggplot.qmd
 
 bibliography: references.bib
