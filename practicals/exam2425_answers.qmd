@@ -1,0 +1,198 @@
+---
+title: "Formative Exercise (Statistics with R)"
+subtitle: "Research Methods 1: Doctorate in Clinical Psychology"
+execute:
+  echo: true
+  eval: true
+  warning: false
+  message: false
+Institution: "Teesside University"
+format:
+  html:
+    css: ["include/style.css","include/glossary.css","include/booktem.css", "include/webex.css", "include/rstudio_default_code.css"]
+    include-after-body: ["include/webex.js"]
+---
+
+For this exercise you will need to download the following dataset: [formative_data.csv](formative_data.csv)
+
+Right click and select <if>Save link as...</if> to download the file. Save it in the same folder as your script.
+
+# Research Overview
+
+A clinical psychologist is interested in understanding what factors predict resilience. They have collected a dataset of 10,000 observations on the following variables:
+
+- `resilience_change`: a continuous variable representing the change in resilience from baseline to follow-up (higher scores indicate greater improvement in resilience). The original resilience score was based on a questionnaire with a final value measured on a scale from 0 to 100.
+- `age`: a continuous variable representing the age of the participant.
+- `gender`: a categorical variable representing the gender that the participant identifies as.
+- `self-sufficiency`: a continuous variable representing the self-sufficiency of the participant. This was measured using a questionnaire with a final value measured on a scale from 1 to 30.
+- `help_seeking`: a categorical variable representing whether the participant sought help during the study (yes or no).
+- `n_sessions`: a continuous variable representing the number of sessions attended by the participant.
+- `sleep_hrs`: a continuous variable representing the average number of hours of sleep per night.
+
+Previous research has indicated that age and gender may be important predictors of resilience. In addition, there is a theoretical model which posits that help-seeking behavior and self-sufficiency may also be important. 
+
+::: callout
+
+## Loading in the data
+
+
+```{r}
+
+library(tidyverse)
+data <- read_csv("data_formative.csv")
+```
+:::
+
+
+
+## Research Questions
+
+The psychologist is interested understanding:
+
+1. Are there differences in mean resilience change by gender?
+
+::: callout
+
+This could be interpreted a couple of different ways. One way is to just describe the means of resilience for each gender. The other is to ask if there is a significant difference in the mean resilience change between genders. Depending on how exactly the later questions are approached, you could conceivably add this question to the regression models.
+
+The simplest approach would probably be to just run a t-test (or non-parametric equivalent) comparing the means of resilience between gender.
+
+## The difference in means between genders:
+
+```{r}
+
+data %>%
+  group_by(gender) %>% 
+  summarise(mean_resilience_change = mean(resilience_change), 
+            sd_resilience_change = sd(resilience_change),
+            n = n()) 
+
+```
+
+In this code, we are using the `group_by` function to group the data by the `gender` variable. We then use the `summarise` function to calculate the mean, standard deviation, and number of observations for the `resilience_change` variable within each group. This will give us the mean resilience.
+
+## Significance test for the difference in means between gender
+
+```{r}
+
+t.test(resilience_change ~ gender, data = data)
+
+```
+
+In this code, we are using the `t.test` function to compare the means of the `resilience_change` variable between the two levels of the `gender` variable. This will give us a p-value indicating whether there is a significant difference in the mean resilience change between genders.
+
+:::
+
+2. Does the number of treatment sessions predict resilience change, when controlling for the other variables? What is the contribution of the number of treatment sessions to the prediction of resilience change?
+
+
+::: callout
+
+This question is asking us to determine if the number of treatment sessions is a significant predictor of resilience change, but wants to isolate the contribution of this variable above and beyond the other variables in the model. This can be done using a heirarchical regression analysis.
+
+The way we organise the models depends on previous research and theory. For example, the information provided suggests that age and gender might be important predictors of resilience, so we might want to include these variables in the model first. Then we are told that help-seeking behavior and self-sufficiency are also important, so we might want to add these variables next. Finally, we can add the number of treatment sessions to see if it contributes significantly to the prediction of resilience change.
+
+## Hierarchical regression analysis
+
+
+```{r}
+
+null_model <- lm(resilience_change ~ 1, data = data)
+
+
+model1 <- lm(resilience_change ~ age + gender, data = data)
+
+model2 <- lm(resilience_change ~ age + gender + sleep_hrs, data = data)
+
+model3 <- lm(resilience_change ~ age + gender + sleep_hrs + self_sufficiency + help_seeking, data = data)
+
+model4 <- lm(resilience_change ~ age + gender + sleep_hrs + self_sufficiency + help_seeking + n_sessions, data = data)
+
+```
+
+In this code, we are fitting a series of linear regression models to the data. The `null_model` is a model with no predictors, which will give us the baseline prediction of resilience change. We then fit a series of models with different combinations of predictors, as described above. 
+
+We now need to compare the models to see which one is the best fit and to answer our research question. To do that, we can use the `anova` function to test whether the addition of the variables for each model significantly improves the model fit. We can also use the AIC function to compare the model fit, where reduced AIC values indicate better fit.
+
+It is also important to check the assumptions of the model, such as normality of residuals, homoscedasticity, and multicollinearity. When we are looking at several models, we might wait to check these assumptions until we have selected the best model.
+
+```{r}
+
+anova(null_model, model1, model2, model3, model4)
+
+AIC(null_model, model1, model2, model3, model4)
+
+```
+
+In this code, we are using the `anova` function to compare the models. The output will show us whether the addition of the variables for each model significantly improves the model fit. We are also using the `AIC` function to compare the model fit, where reduced AIC values indicate better fit.
+
+We can see from the output that the addition of the `n_sessions` variable in `model4` significantly improves the model fit compared to the other models. This suggests that the number of treatment sessions is a significant predictor of resilience change, even when controlling for the other variables.
+
+To further check this, we can also comapre the R-squared values of the models to see how much variance in resilience change is explained by the addition of the `n_sessions` variable.
+
+```{r}
+#  This shows us the complete summary of the models
+summary(model3)
+summary(model4)
+
+# If we wanted, we could subtract the R-squared values of the models to see how much variance in resilience change is explained by the addition of the `n_sessions` variable.
+
+summary(model4)$r.squared - summary(model3)$r.squared
+
+
+```
+The results show us that nearly 91% of the variance in resilience change is explained by the addition of the `n_sessions` variable.
+
+This would suggest that the biggest predictor of resilience change is the number of treatment sessions attended by the participant. However, the other variables also contribute to the prediction of resilience change.
+
+## Checking assumptions of the final model
+
+```{r}
+library(gvlma)
+library(mctest)
+# Checking the assumptions of the final model
+
+plot(model4)
+gvlma(model4)
+mctest(model4)
+```
+
+This code checks the assumptions of the final model. The `plot` function will show us diagnostic plots of the model, which can help us assess the assumptions of normality of residuals, homoscedasticity, and linearity. The `gvlma` function will perform a global validation of the linear model assumptions, and the `mctest` function will perform multicollinearity tests.
+
+We can see from the output that the assumptions of the model are met, which suggests that there are no issues with inferring from this model.
+:::
+
+
+1. What is the best model to predict resilience change based on the variables available?
+
+::: callout
+
+This question is asking us to determine the best model to predict resilience change based on the variables available. This is asking if any of the earlier models are better than the final model with all the variables included.
+
+In the previous question, we found that the model with all the variables included was the best fit, it had the lowest AIC value and the highest R-squared value. This suggests that the best model to predict resilience change is the one that includes all the variables.
+
+This might not be the case in all situations, so it is important to compare the models.
+
+:::
+
+1. Does age moderate the relationship between self-sufficiency and resilience change?
+
+::: callout
+
+This question is asking us to determine if age moderates (changes) the relationship between self-sufficiency and resilience change. This can be done using an interaction term in a regression analysis.
+
+## Moderation analysis
+
+
+```{r}
+
+moderation_model <- lm(resilience_change ~ age * self_sufficiency, data = data)
+
+summary(moderation_model)
+
+```
+
+
+In this code, we are fitting a linear regression model to the data with an interaction term between `age` and `self_sufficiency`. This will allow us to determine if age moderates the relationship between self-sufficiency and resilience change. The `summary` function will show us the results of the model.
+
+The results of the model will show us if the interaction term is not significant, which would indicate that age does not influence the relationship between self-sufficiency and resilience change. As such, we would not take further action on this question.

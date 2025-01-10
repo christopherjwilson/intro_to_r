@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.55">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Formative Exercise (Statistics with R)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="exam2425_answers_files/libs/clipboard/clipboard.min.js"></script>
+<script src="exam2425_answers_files/libs/quarto-html/quarto.js"></script>
+<script src="exam2425_answers_files/libs/quarto-html/popper.min.js"></script>
+<script src="exam2425_answers_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="exam2425_answers_files/libs/quarto-html/anchor.min.js"></script>
+<link href="exam2425_answers_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="exam2425_answers_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="exam2425_answers_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="exam2425_answers_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="exam2425_answers_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+<link rel="stylesheet" href="include/style.css">
+<link rel="stylesheet" href="include/glossary.css">
+<link rel="stylesheet" href="include/booktem.css">
+<link rel="stylesheet" href="include/webex.css">
+<link rel="stylesheet" href="include/rstudio_default_code.css">
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Formative Exercise (Statistics with R)</h1>
+<p class="subtitle lead">Research Methods 1: Doctorate in Clinical Psychology</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>For this exercise you will need to download the following dataset: <a href="formative_data.csv">formative_data.csv</a></p>
+<p>Right click and select <if>Save link as…</if> to download the file. Save it in the same folder as your script.</p>
+<section id="research-overview" class="level1">
+<h1>Research Overview</h1>
+<p>A clinical psychologist is interested in understanding what factors predict resilience. They have collected a dataset of 10,000 observations on the following variables:</p>
+<ul>
+<li><code>resilience_change</code>: a continuous variable representing the change in resilience from baseline to follow-up (higher scores indicate greater improvement in resilience). The original resilience score was based on a questionnaire with a final value measured on a scale from 0 to 100.</li>
+<li><code>age</code>: a continuous variable representing the age of the participant.</li>
+<li><code>gender</code>: a categorical variable representing the gender that the participant identifies as.</li>
+<li><code>self-sufficiency</code>: a continuous variable representing the self-sufficiency of the participant. This was measured using a questionnaire with a final value measured on a scale from 1 to 30.</li>
+<li><code>help_seeking</code>: a categorical variable representing whether the participant sought help during the study (yes or no).</li>
+<li><code>n_sessions</code>: a continuous variable representing the number of sessions attended by the participant.</li>
+<li><code>sleep_hrs</code>: a continuous variable representing the average number of hours of sleep per night.</li>
+</ul>
+<p>Previous research has indicated that age and gender may be important predictors of resilience. In addition, there is a theoretical model which posits that help-seeking behavior and self-sufficiency may also be important.</p>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Loading in the data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data_formative.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<section id="research-questions" class="level2">
+<h2 class="anchored" data-anchor-id="research-questions">Research Questions</h2>
+<p>The psychologist is interested understanding:</p>
+<ol type="1">
+<li>Are there differences in mean resilience change by gender?</li>
+</ol>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>This could be interpreted a couple of different ways. One way is to just describe the means of resilience for each gender. The other is to ask if there is a significant difference in the mean resilience change between genders. Depending on how exactly the later questions are approached, you could conceivably add this question to the regression models.</p>
+<p>The simplest approach would probably be to just run a t-test (or non-parametric equivalent) comparing the means of resilience between gender.</p>
+<section id="the-difference-in-means-between-genders" class="level2">
+<h2 class="anchored" data-anchor-id="the-difference-in-means-between-genders">The difference in means between genders:</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gender) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_resilience_change =</span> <span class="fu">mean</span>(resilience_change), </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_resilience_change =</span> <span class="fu">sd</span>(resilience_change),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">n =</span> <span class="fu">n</span>()) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 4
+  gender mean_resilience_change sd_resilience_change     n
+  &lt;chr&gt;                   &lt;dbl&gt;                &lt;dbl&gt; &lt;int&gt;
+1 f                        14.2                 7.75  4903
+2 m                        14.2                 7.75  5097</code></pre>
+</div>
+</div>
+<p>In this code, we are using the <code>group_by</code> function to group the data by the <code>gender</code> variable. We then use the <code>summarise</code> function to calculate the mean, standard deviation, and number of observations for the <code>resilience_change</code> variable within each group. This will give us the mean resilience.</p>
+</section>
+<section id="significance-test-for-the-difference-in-means-between-gender" class="level2">
+<h2 class="anchored" data-anchor-id="significance-test-for-the-difference-in-means-between-gender">Significance test for the difference in means between gender</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(resilience_change <span class="sc">~</span> gender, <span class="at">data =</span> data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  resilience_change by gender
+t = -0.054411, df = 9983.3, p-value = 0.9566
+alternative hypothesis: true difference in means between group f and group m is not equal to 0
+95 percent confidence interval:
+ -0.3122099  0.2953453
+sample estimates:
+mean in group f mean in group m 
+       14.21660        14.22503 </code></pre>
+</div>
+</div>
+<p>In this code, we are using the <code>t.test</code> function to compare the means of the <code>resilience_change</code> variable between the two levels of the <code>gender</code> variable. This will give us a p-value indicating whether there is a significant difference in the mean resilience change between genders.</p>
+</section>
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Does the number of treatment sessions predict resilience change, when controlling for the other variables? What is the contribution of the number of treatment sessions to the prediction of resilience change?</li>
+</ol>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>This question is asking us to determine if the number of treatment sessions is a significant predictor of resilience change, but wants to isolate the contribution of this variable above and beyond the other variables in the model. This can be done using a heirarchical regression analysis.</p>
+<p>The way we organise the models depends on previous research and theory. For example, the information provided suggests that age and gender might be important predictors of resilience, so we might want to include these variables in the model first. Then we are told that help-seeking behavior and self-sufficiency are also important, so we might want to add these variables next. Finally, we can add the number of treatment sessions to see if it contributes significantly to the prediction of resilience change.</p>
+<section id="hierarchical-regression-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="hierarchical-regression-analysis">Hierarchical regression analysis</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>null_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(resilience_change <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> data)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(resilience_change <span class="sc">~</span> age <span class="sc">+</span> gender, <span class="at">data =</span> data)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(resilience_change <span class="sc">~</span> age <span class="sc">+</span> gender <span class="sc">+</span> sleep_hrs, <span class="at">data =</span> data)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(resilience_change <span class="sc">~</span> age <span class="sc">+</span> gender <span class="sc">+</span> sleep_hrs <span class="sc">+</span> self_sufficiency <span class="sc">+</span> help_seeking, <span class="at">data =</span> data)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>model4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(resilience_change <span class="sc">~</span> age <span class="sc">+</span> gender <span class="sc">+</span> sleep_hrs <span class="sc">+</span> self_sufficiency <span class="sc">+</span> help_seeking <span class="sc">+</span> n_sessions, <span class="at">data =</span> data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In this code, we are fitting a series of linear regression models to the data. The <code>null_model</code> is a model with no predictors, which will give us the baseline prediction of resilience change. We then fit a series of models with different combinations of predictors, as described above.</p>
+<p>We now need to compare the models to see which one is the best fit and to answer our research question. To do that, we can use the <code>anova</code> function to test whether the addition of the variables for each model significantly improves the model fit. We can also use the AIC function to compare the model fit, where reduced AIC values indicate better fit.</p>
+<p>It is also important to check the assumptions of the model, such as normality of residuals, homoscedasticity, and multicollinearity. When we are looking at several models, we might wait to check these assumptions until we have selected the best model.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(null_model, model1, model2, model3, model4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Model 1: resilience_change ~ 1
+Model 2: resilience_change ~ age + gender
+Model 3: resilience_change ~ age + gender + sleep_hrs
+Model 4: resilience_change ~ age + gender + sleep_hrs + self_sufficiency + 
+    help_seeking
+Model 5: resilience_change ~ age + gender + sleep_hrs + self_sufficiency + 
+    help_seeking + n_sessions
+  Res.Df    RSS Df Sum of Sq          F    Pr(&gt;F)    
+1   9999 600077                                      
+2   9997 600038  2        39 4.6303e+00  0.009772 ** 
+3   9996 593311  1      6727 1.5804e+03 &lt; 2.2e-16 ***
+4   9994 587407  2      5904 6.9360e+02 &lt; 2.2e-16 ***
+5   9993  42532  1    544875 1.2802e+05 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(null_model, model1, model2, model3, model4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           df      AIC
+null_model  2 69327.50
+model1      4 69330.84
+model2      5 69220.11
+model3      7 69124.10
+model4      8 42871.40</code></pre>
+</div>
+</div>
+<p>In this code, we are using the <code>anova</code> function to compare the models. The output will show us whether the addition of the variables for each model significantly improves the model fit. We are also using the <code>AIC</code> function to compare the model fit, where reduced AIC values indicate better fit.</p>
+<p>We can see from the output that the addition of the <code>n_sessions</code> variable in <code>model4</code> significantly improves the model fit compared to the other models. This suggests that the number of treatment sessions is a significant predictor of resilience change, even when controlling for the other variables.</p>
+<p>To further check this, we can also comapre the R-squared values of the models to see how much variance in resilience change is explained by the addition of the <code>n_sessions</code> variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  This shows us the complete summary of the models</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = resilience_change ~ age + gender + sleep_hrs + self_sufficiency + 
+    help_seeking, data = data)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-19.7145  -6.3736  -0.0175   6.4489  17.0652 
+
+Coefficients:
+                   Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)      23.7735974  0.7736511  30.729  &lt; 2e-16 ***
+age              -0.0041729  0.0070299  -0.594    0.553    
+genderm          -0.0008818  0.1533719  -0.006    0.995    
+sleep_hrs        -0.4867454  0.0452291 -10.762  &lt; 2e-16 ***
+self_sufficiency -0.2395591  0.0267414  -8.958  &lt; 2e-16 ***
+help_seekingYes  -0.6712538  0.1534162  -4.375 1.22e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 7.667 on 9994 degrees of freedom
+Multiple R-squared:  0.02111,   Adjusted R-squared:  0.02062 
+F-statistic: 43.11 on 5 and 9994 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = resilience_change ~ age + gender + sleep_hrs + self_sufficiency + 
+    help_seeking + n_sessions, data = data)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-8.3320 -1.3759 -0.0001  1.3834  8.1351 
+
+Coefficients:
+                  Estimate Std. Error  t value Pr(&gt;|t|)    
+(Intercept)      36.750205   0.211322  173.906   &lt;2e-16 ***
+age              -0.001098   0.001892   -0.580    0.562    
+genderm          -0.029112   0.041272   -0.705    0.481    
+sleep_hrs        -0.481613   0.012171  -39.571   &lt;2e-16 ***
+self_sufficiency -0.194704   0.007197  -27.053   &lt;2e-16 ***
+help_seekingYes  -0.618218   0.041284  -14.975   &lt;2e-16 ***
+n_sessions       -2.851420   0.007969 -357.800   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.063 on 9993 degrees of freedom
+Multiple R-squared:  0.9291,    Adjusted R-squared:  0.9291 
+F-statistic: 2.183e+04 on 6 and 9993 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If we wanted, we could subtract the R-squared values of the models to see how much variance in resilience change is explained by the addition of the `n_sessions` variable.</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model4)<span class="sc">$</span>r.squared <span class="sc">-</span> <span class="fu">summary</span>(model3)<span class="sc">$</span>r.squared</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9080089</code></pre>
+</div>
+</div>
+<p>The results show us that nearly 91% of the variance in resilience change is explained by the addition of the <code>n_sessions</code> variable.</p>
+<p>This would suggest that the biggest predictor of resilience change is the number of treatment sessions attended by the participant. However, the other variables also contribute to the prediction of resilience change.</p>
+</section>
+<section id="checking-assumptions-of-the-final-model" class="level2">
+<h2 class="anchored" data-anchor-id="checking-assumptions-of-the-final-model">Checking assumptions of the final model</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gvlma)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mctest)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking the assumptions of the final model</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="exam2425_answers_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="exam2425_answers_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="exam2425_answers_files/figure-html/unnamed-chunk-7-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="exam2425_answers_files/figure-html/unnamed-chunk-7-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gvlma</span>(model4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = resilience_change ~ age + gender + sleep_hrs + self_sufficiency + 
+    help_seeking + n_sessions, data = data)
+
+Coefficients:
+     (Intercept)               age           genderm         sleep_hrs  
+       36.750205         -0.001098         -0.029112         -0.481613  
+self_sufficiency   help_seekingYes        n_sessions  
+       -0.194704         -0.618218         -2.851420  
+
+
+ASSESSMENT OF THE LINEAR MODEL ASSUMPTIONS
+USING THE GLOBAL TEST ON 4 DEGREES-OF-FREEDOM:
+Level of Significance =  0.05 
+
+Call:
+ gvlma(x = model4) 
+
+                    Value p-value                Decision
+Global Stat        4.6253 0.32795 Assumptions acceptable.
+Skewness           0.1730 0.67747 Assumptions acceptable.
+Kurtosis           1.1936 0.27460 Assumptions acceptable.
+Link Function      3.0613 0.08018 Assumptions acceptable.
+Heteroscedasticity 0.1973 0.65689 Assumptions acceptable.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mctest</span>(model4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+omcdiag(mod = mod, Inter = TRUE, detr = detr, red = red, conf = conf, 
+    theil = theil, cn = cn)
+
+
+Overall Multicollinearity Diagnostics
+
+                       MC Results detection
+Determinant |X'X|:         0.9983         0
+Farrar Chi-Square:        17.2725         0
+Red Indicator:             0.0107         0
+Sum of Lambda Inverse:     6.0035         0
+Theil's Method:           -4.6421         0
+Condition Number:         31.0195         1
+
+1 --&gt; COLLINEARITY is detected by the test 
+0 --&gt; COLLINEARITY is not detected by the test</code></pre>
+</div>
+</div>
+<p>This code checks the assumptions of the final model. The <code>plot</code> function will show us diagnostic plots of the model, which can help us assess the assumptions of normality of residuals, homoscedasticity, and linearity. The <code>gvlma</code> function will perform a global validation of the linear model assumptions, and the <code>mctest</code> function will perform multicollinearity tests.</p>
+<p>We can see from the output that the assumptions of the model are met, which suggests that there are no issues with inferring from this model.</p>
+</section>
+</div>
+</div>
+</div>
+<ol type="1">
+<li>What is the best model to predict resilience change based on the variables available?</li>
+</ol>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>This question is asking us to determine the best model to predict resilience change based on the variables available. This is asking if any of the earlier models are better than the final model with all the variables included.</p>
+<p>In the previous question, we found that the model with all the variables included was the best fit, it had the lowest AIC value and the highest R-squared value. This suggests that the best model to predict resilience change is the one that includes all the variables.</p>
+<p>This might not be the case in all situations, so it is important to compare the models.</p>
+</div>
+</div>
+</div>
+<ol type="1">
+<li>Does age moderate the relationship between self-sufficiency and resilience change?</li>
+</ol>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>This question is asking us to determine if age moderates (changes) the relationship between self-sufficiency and resilience change. This can be done using an interaction term in a regression analysis.</p>
+<section id="moderation-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="moderation-analysis">Moderation analysis</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>moderation_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(resilience_change <span class="sc">~</span> age <span class="sc">*</span> self_sufficiency, <span class="at">data =</span> data)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(moderation_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = resilience_change ~ age * self_sufficiency, data = data)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-20.1676  -6.3616  -0.0032   6.4517  17.9562 
+
+Coefficients:
+                      Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)          23.333874   2.302537  10.134   &lt;2e-16 ***
+age                  -0.086661   0.060492  -1.433   0.1520    
+self_sufficiency     -0.362001   0.093029  -3.891   0.0001 ***
+age:self_sufficiency  0.003287   0.002444   1.345   0.1788    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 7.716 on 9996 degrees of freedom
+Multiple R-squared:  0.008285,  Adjusted R-squared:  0.007987 
+F-statistic: 27.84 on 3 and 9996 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>In this code, we are fitting a linear regression model to the data with an interaction term between <code>age</code> and <code>self_sufficiency</code>. This will allow us to determine if age moderates the relationship between self-sufficiency and resilience change. The <code>summary</code> function will show us the results of the model.</p>
+<p>The results of the model will show us if the interaction term is not significant, which would indicate that age does not influence the relationship between self-sufficiency and resilience change. As such, we would not take further action on this question.</p>
+</section>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
