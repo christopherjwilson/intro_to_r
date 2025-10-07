@@ -1,0 +1,154 @@
+---
+format:
+  revealjs:
+    css: "include/style.css"
+    chalkboard: true
+    #multiplex: true
+    slide-number: c/t
+    drop:
+      shortcut: "]"
+      engine: webr
+      webr:
+        packages:
+          - tidyverse
+revealjs-plugins:
+  - drop
+bibliography: references.bib
+title: "Research on the programme"
+subtitle: DClin Research Methods 1
+author: Dr Christopher Wilson / Dr Alan Bowman
+institute: Teesside University
+
+logo: "logo.jpg"
+csl: apa.csl
+width: 1280
+---
+
+## Overview
+
+-   Introduction to the module
+
+-   Outline of approach to learning on the module
+
+-   Discussion of research as a trainee
+
+## What are the aims of the module?
+
+-   Refresh and develop the knowledge and skills gained from undergraduate research teaching. ​
+
+-   Develop a critical understanding of research methods. ​
+
+-   Develop skills in qualitative and quantitative forms of analysis. ​
+
+-   Designed to explicitly prepare you for further research activity (e.g., small scale projects and doctoral thesis). ​
+
+-   Please see module handbook for more information. ​
+
+## What will we be doing?
+
+-   Some of the sessions are focused on qualitative research
+
+-   Some are on quantitative research
+
+-   Some are focused on thesis development
+
+# How are the sessions structured? {.section}
+
+# Using R for statistical analysis {.section}
+
+## Why learn R?
+
+-   Free and open source
+-   Widely used in academia and in the [NHS](https://nhsrcommunity.com/)
+-   Powerful and flexible
+
+```{=html}
+<iframe width="780" height="300" src="https://nhsrcommunity.com/"></iframe>
+```
+
+## Benefits of learning R
+
+-   It separates the analysis and interpretation from a single software package
+
+-   Your code is reproducible and can be shared with others
+
+-   It forces you to understand what you are doing (if you work through the code)
+
+# 
+
+R software is already installed on the university machines, and will be available in the labs that the sessions take place in. You can download R on your personal machine too.
+
+You can also use Posit cloud (not for confidential data)
+
+# 
+
+<https://christopherjwilson.github.io/intro_to_r/> <iframe width="900" height="600" src="https://christopherjwilson.github.io/intro_to_r/"></iframe>
+
+# Research Methods Assignments (Year 1) {.section}
+
+## Formative Assignments
+
+There are 2 formative assignments during the module:
+
+-   Formative 1: Statistics Assignment (Jan)
+-   Formative 2: Qualitative Reflection (Feb)
+
+Full details and dates are on Blackboard site
+
+## Summative Assignment
+
+There is 1 summative assignment for the module:
+
+-   Research panel presentation (May)
+
+We will have sessions to help you prepare for this. The presentation will be based on your research proposal for your thesis.
+
+## Small scale service improvement projects
+
+-   Completing a SSSIP is a requirement of training.
+
+-   You will complete an SSSIP whilst on placement.
+
+-   You are required to submit a report of your SSSIP early in second year, for the Y2 research methods module. 
+
+-   However, most trainees complete conduct the SSSIP during placements one or two. 
+
+-   Please read the research handbook for more information. 
+
+# Approaching to research methods in the programme {.section}
+
+## Year 1
+
+The quantitative portion of the module is built around some key concepts:
+
+- Designing research that examines *why* things happen, not just *what* happens
+
+- Understanding the importance of robust design and sample size in clinical research
+
+- Applying a modelling approach to analysis to answer these types of questions
+
+## Some things to consider
+
+- Limitations in research design come primarily from the conceptualisation of the research question
+
+- If you have developed a clear research question, the analysis should be clear 
+
+- You will not use all the techniques we cover, but understanding them will help you understand the literature and design your own research
+
+## Some questions
+
+![scan the qr code to respond](qr.png)
+
+## Responses
+
+<iframe width="640px" height="480px" src="https://forms.office.com/Pages/DesignPageV2.aspx?origin=NeoPortalPage&subpage=design&id=WxHSQ16ltkad97AziOz8YIq5JS4atlxFmSD9MKOKizlUOEtZTFhZUU9YOFNRQVpXVzdJRkVZQUFWNC4u&embed=true&topview=Presentation" frameborder="0" marginwidth="0" marginheight="0" style="border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
+
+## Questions
+
+For questions about this module, please use the discussion board on Blackboard.
+
+For other queries:
+
+Dr Christopher Wilson
+
+Christopher.wilson@tees.ac.uk
