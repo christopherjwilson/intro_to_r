@@ -95,5 +95,8 @@
   },
   "practicals/exam2425_answers.qmd": {
     "exam2425_answers.html": "8fc7226e"
+  },
+  "slides/induction_session.qmd": {
+    "induction_session.html": "750de276"
   }
 }

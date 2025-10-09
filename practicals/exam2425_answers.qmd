@@ -7,10 +7,7 @@ execute:
   warning: false
   message: false
 Institution: "Teesside University"
-format:
-  html:
-    css: ["include/style.css","include/glossary.css","include/booktem.css", "include/webex.css", "include/rstudio_default_code.css"]
-    include-after-body: ["include/webex.js"]
+format: html
 ---
 
 For this exercise you will need to download the following dataset: [formative_data.csv](formative_data.csv)

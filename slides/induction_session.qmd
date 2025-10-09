@@ -34,15 +34,15 @@ width: 1280
 
 ## What are the aims of the module?
 
--   Refresh and develop the knowledge and skills gained from undergraduate research teaching. ​
+-   Refresh and develop the knowledge and skills gained from undergraduate research teaching. 
 
--   Develop a critical understanding of research methods. ​
+-   Develop a critical understanding of research methods. 
 
--   Develop skills in qualitative and quantitative forms of analysis. ​
+-   Develop skills in qualitative and quantitative forms of analysis. 
 
--   Designed to explicitly prepare you for further research activity (e.g., small scale projects and doctoral thesis). ​
+-   Designed to explicitly prepare you for further research activity (e.g., small scale projects and doctoral thesis). 
 
--   Please see module handbook for more information. ​
+-   Please see module handbook for more information. 
 
 ## What will we be doing?
 
@@ -127,6 +127,16 @@ The quantitative portion of the module is built around some key concepts:
 
 - Applying a modelling approach to analysis to answer these types of questions
 
+## How the classes will work
+
+- Each session will have a lecture component and a practical component
+
+- The practical component will outline a specific analysis approach
+
+- There is some reading that is relevant to each session (on BB)
+
+- There is an outline of some key R skills that we will use in each session (on BB)
+
 ## Some things to consider
 
 - Limitations in research design come primarily from the conceptualisation of the research question
@@ -142,6 +152,13 @@ The quantitative portion of the module is built around some key concepts:
 ## Responses
 
 <iframe width="640px" height="480px" src="https://forms.office.com/Pages/DesignPageV2.aspx?origin=NeoPortalPage&subpage=design&id=WxHSQ16ltkad97AziOz8YIq5JS4atlxFmSD9MKOKizlUOEtZTFhZUU9YOFNRQVpXVzdJRkVZQUFWNC4u&embed=true&topview=Presentation" frameborder="0" marginwidth="0" marginheight="0" style="border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
+
+## Before next session
+
+- Ensure you have R and RStudio installed and working on your device
+
+You can use the videos on [https://christopherjwilson.github.io/intro_to_r/intro.html](https://christopherjwilson.github.io/intro_to_r/intro.html) to help you
+
 
 ## Questions
 

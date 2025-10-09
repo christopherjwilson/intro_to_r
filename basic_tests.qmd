@@ -77,8 +77,12 @@ data(sleep)
 # Paired t-test example: Is there a difference in sleep duration between the two drugs?
 
 # Perform the paired t-test
+# The paired t-test now requires the data to be in wide format, (data from each group in separate columns). If this is not the case, we need to reshape the data first. 
 
-paired_t_test_result <- t.test(sleep$extra ~ sleep$group, paired = TRUE)
+sleep2 <- reshape(sleep, direction = "wide",
+                  idvar = "ID", timevar = "group")
+
+paired_t_test_result <- t.test(sleep2$extra.1, sleep2$extra.2, paired = TRUE)
 
 # Print the result
 
@@ -109,8 +113,12 @@ data(sleep)
 # Wilcoxon signed-rank test example: Is there a difference in sleep duration between the two drugs?
 
 # Perform the Wilcoxon signed-rank test
+# The wilcoxin now requires the data to be in wide format, (data from each group in separate columns). If this is not the case, we need to reshape the data first. 
 
-wilcoxon_test_result <- wilcox.test(sleep$extra ~ sleep$group, paired = TRUE)
+sleep2 <- reshape(sleep, direction = "wide",
+                  idvar = "ID", timevar = "group")
+
+wilcoxon_test_result <- wilcox.test(sleep2$extra.1, sleep2$extra.2, paired = TRUE)
 
 # Print the result
 
