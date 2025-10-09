@@ -76,9 +76,11 @@ width: 1280
 
 # 
 
-R software is already installed on the university machines, and will be available in the labs that the sessions take place in. You can download R on your personal machine too.
+You should ensure both R and R Studio are installed on the laptop you intend to use in class. For NHS laptops, contact NHS IT. You can download R and R Studio on your personal machine too.
 
 You can also use Posit cloud (not for confidential data)
+
+Details here: [https://christopherjwilson.github.io/intro_to_r/intro.html](https://christopherjwilson.github.io/intro_to_r/intro.html)
 
 # 
 
