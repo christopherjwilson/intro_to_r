@@ -3,7 +3,7 @@ format:
   revealjs:
     css: "include/style.css"
     chalkboard: true
-    multiplex: true
+    #multiplex: true
     slide-number: c/t
     drop:
       shortcut: "]"
@@ -77,15 +77,15 @@ Sometimes referred to as "Type 1" clinical research [@ComerKendall2013]
 -   Rarely (unfortunately) followed through to the point of application.
 
 ::: notes
-```         
-## Experimental psychopathology research example {.smaller}
+      
+
 
 Attentional bias towards negatively valent stimuli is a known feature of depression/anxiety and other comorbid diagnoses.
 
 This is measured in a lab using a dot probe task.
 
 However, an additional component of those with PTSD is a difficulty disengaging attention from the stimuli afterwards.
-```
+
 :::
 
 ## Quasi experimental psychopathology research {.smaller}
