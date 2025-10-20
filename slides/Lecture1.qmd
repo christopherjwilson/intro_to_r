@@ -36,7 +36,7 @@ There are many ongoing discussions in clinical psychology research. They will be
 
 ## Linking this to the development of your own thesis project...
 
--   Twp of the most important (but sometimes neglected) aspects of the thesis project are the **rationale and the research question**.
+-   Two of the most important (but sometimes neglected) aspects of the thesis project are the **rationale and the research question**.
 
 -   A project with a clear research question and strong rationale, is one that has deep connections to the existing theoretical models and prior findings on a topic.
 
@@ -60,11 +60,29 @@ There are many ongoing discussions in clinical psychology research. They will be
 [@Blampied1998Research; @ComerKendall2013; @Kazdin2021Research; @2005Handbook; @Sanderson1991Research]
 :::
 
+:::{.notes}
+
+However, there can be a perception that "clinically relevant" research is research the has a clinical sample.
+
+This is only a section of clinically-relevant research.
+
+If we focus on the research that is designed to look at the causes of, or find explanations for clinical pathologies, we can subdivide that into several types...
+
+:::
+
 ## Types of psychopathology research
 
 ![](images/psychopathologyResearch.png)
 
 [@ComerKendall2013]
+
+::: {.notes}
+
+Comer and Kednall outline 4 types of clinical research and explain what can and cannot be understood through each of them.
+
+The key here is to recognise that the inclusion of a clinical sample allows us to answer certain questions, actually but stops us from answering others
+
+:::
 
 ## Experimental psychopathology research
 
@@ -101,7 +119,7 @@ Sometimes referred to as "Type II" clinical research [@ComerKendall2013]
 -   If the IV is a clinical intervention, then could examine variables that either prevent or ameliorate psychopathology
 
 ::: notes
-\## Quasi experimental research example
+Quasi experimental research example
 
 @FelminghamEtAl2010 recorded fMRI data in both male and female participants with a diagnosis of PTSD.
 
@@ -118,7 +136,7 @@ Sometimes referred to as "Type II" clinical research [@ComerKendall2013]
 
     -   This could tell us something about how or why psychopathology might develop.
 
--   Type II might to gain a deeper understanding of the processs or experiences.
+-   Type II might to gain a deeper understanding of the processes or experiences.
 
     -   A study could not attempt to explain a causal relationship between the variables.
 
