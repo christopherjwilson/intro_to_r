@@ -248,7 +248,7 @@ text(0, 0.01, "95%", cex=0.8)
 
 -   Some of these differences will even result in p-values below 0.05.
 
--   This is why we can't say that a p-value of 0.05 means that the null hypothesis is false.
+-  It's important to recognise that false positives (Type 1 error) can happen. Smaller samples are subject to more random variation and lack of control in study design can lead to suprious conclusions.
 
 ## The problem with statistical significance {.smaller}
 

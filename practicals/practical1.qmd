@@ -175,12 +175,22 @@ The object **result** (which was created earlier) is the argument for the functi
 
 ::: callout-note
 # Task
+- Get the ages of the people on your table.
 
-1.  Calculate the mean of the object **ages** and save it to an object called **mean_age**. Print the object **mean_age** in the console.
+- Save them to an object called **ages** copying this example code:
 
-2.  Use the sd() function to calculate the standard deviation of the object **ages** and save it to an object called **sd_age**. Print the object **sd_age** in the console.
+``` r
+ages <- c(23,45,32) #<1>
 
-3.  Create a new object called **ages_doubled** that contains the object **ages** multiplied by 2. Print the object **ages_doubled** in the console.
+```
+
+1. In this code 
+
+- Calculate the mean of the object **ages** and save it to an object called **mean_age**. Print the object **mean_age** in the console.
+
+- Use the sd() function to calculate the standard deviation of the object **ages** and save it to an object called **sd_age**. Print the object **sd_age** in the console.
+
+- Create a new object called **ages_doubled** that contains the object **ages** multiplied by 2. Print the object **ages_doubled** in the console.
 :::
 
 ::: callout-important
