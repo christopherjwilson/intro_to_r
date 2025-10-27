@@ -28,7 +28,27 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-  </style>
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
   <link rel="stylesheet" href="powerAndEffectSize_files/libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
   <link rel="stylesheet" href="include/style.css">
   <link href="powerAndEffectSize_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -222,7 +242,7 @@ Dr Christopher Wilson
 <section id="section-4" class="slide level2">
 <h2></h2>
 
-<img data-src="powerAndEffectSize_files/figure-revealjs/unnamed-chunk-5-1.png" width="576" class="r-stretch"></section>
+<img data-src="powerAndEffectSize_files/figure-revealjs/unnamed-chunk-4-1.gif" class="r-stretch"></section>
 <section id="what-is-statistical-significance-2" class="slide level2">
 <h2>What is statistical significance?</h2>
 <ul>
@@ -231,12 +251,20 @@ Dr Christopher Wilson
 <li><p>This is 5% threshold is an arbitrary choice, and is not used for any theoretical reason.</p></li>
 </ul>
 </section>
-<section id="section-5" class="slide level2 smaller">
+<section id="section-5" class="slide level2">
 <h2></h2>
 
-<img data-src="powerAndEffectSize_files/figure-revealjs/unnamed-chunk-6-1.png" class="quarto-figure quarto-figure-center r-stretch" width="768"><ul>
+<img data-src="powerAndEffectSize_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center r-stretch" width="768"><ul>
 <li><p>For example: for a difference between 2 means, we could still obtain a difference of up to 1.96 standard deviations, 95% of the time, even if the null hypothesis were true.</p></li>
 <li><p>There’s still a 5% chance (2.5% + 2.5%) of obtaining a difference higher than 1.96 standard deviations, even if the null hypothesis were true.</p></li>
+</ul>
+</section>
+<section id="small-samples-and-p-values" class="slide level2">
+<h2>Small samples and p values</h2>
+<ul>
+<li><p>Small samples increase the likelihood of false positives (significant results that don’t reflect the population)</p></li>
+<li><p>This is because the true pattern in the population is not perfectly reflected in small samples.</p></li>
+<li><p>Within small samples, there will be random variation that can lead to differences between groups.</p></li>
 </ul>
 </section></section>
 <section>
@@ -245,10 +273,10 @@ Dr Christopher Wilson
 <ul>
 <li><p>Even when the null hypothesis is true, we can still obtain a range of differences when we sample from the population.</p></li>
 <li><p>Some of these differences will even result in p-values below 0.05.</p></li>
-<li><p>It’s important to recognise that false positives (Type 1 error) can happen. Smaller samples are subject to more random variation and lack of control in study design can lead to suprious conclusions.</p></li>
+<li><p>It’s important to recognise that false positives (Type 1 error) can happen. Smaller samples are subject to more random variation and lack of control in study design can lead to spurious conclusions.</p></li>
 </ul>
 </section>
-<section id="the-problem-with-statistical-significance" class="slide level2 smaller">
+<section id="the-problem-with-statistical-significance" class="slide level2">
 <h2>The problem with statistical significance</h2>
 <blockquote>
 <p>“It’s science’s dirtiest secret: The ‘scientific method’ of testing hypotheses by statistical analysis stands on a flimsy foundation.”</p>
@@ -258,13 +286,13 @@ Dr Christopher Wilson
 <p>A: Because that’s still what the scientific community and journal editors use.</p>
 <p>Q: Why do so many people still use p = 0.05?</p>
 <p>A: Because that’s what they were taught in college or grad school.</p>
-<p><span class="citation" data-cites="WassersteinLazar2016">[@WassersteinLazar2016]</span></p>
+<p><span class="citation" data-cites="WassersteinLazar2016">(<a href="#/references" role="doc-biblioref" onclick="">Wasserstein &amp; Lazar, 2016</a>)</span></p>
 </section>
 <section id="what-is-the-problem-with-statistical-significance" class="slide level2">
 <h2>What is the problem with statistical significance?</h2>
-<p>“Researchers commonly use p-values to answer the question: How strongly does the evidence favor the alternative hypothesis relative to the null hypothesis? p-Values themselves do not directly answer this question and are often misinterpreted” <span class="citation" data-cites="BenjaminBerger2019">[@BenjaminBerger2019]</span></p>
+<p>“Researchers commonly use p-values to answer the question: How strongly does the evidence favor the alternative hypothesis relative to the null hypothesis? p-Values themselves do not directly answer this question and are often misinterpreted” <span class="citation" data-cites="BenjaminBerger2019">(<a href="#/references" role="doc-biblioref" onclick="">Benjamin &amp; Berger, 2019</a>)</span></p>
 </section>
-<section id="the-asa-statement-on-p-values" class="slide level2 smaller">
+<section id="the-asa-statement-on-p-values" class="slide level2">
 <h2>The ASA statement on p-values</h2>
 <ol type="1">
 <li>P-values can indicate how incompatible the data are with a specified statistical model.</li>
@@ -274,7 +302,7 @@ Dr Christopher Wilson
 <li>A p-value, or statistical significance, does not measure the size of an effect or the importance of a result.</li>
 <li>By itself, a p-value does not provide a good measure of evidence regarding a model or hypothesis.</li>
 </ol>
-<p><span class="citation" data-cites="WassersteinLazar2016">[@WassersteinLazar2016]</span></p>
+<p><span class="citation" data-cites="WassersteinLazar2016">(<a href="#/references" role="doc-biblioref" onclick="">Wasserstein &amp; Lazar, 2016</a>)</span></p>
 </section>
 
 </section>
@@ -315,7 +343,7 @@ Dr Christopher Wilson
 </ul>
 
 <img data-src="images/clinical_relevance.jpg" class="r-stretch quarto-figure-center"><p class="caption">In a later class, Dr Alan Bowman will discuss clinically meaningful results</p></section>
-<section id="how-do-we-report-confidence-intervals" class="slide level2 smaller">
+<section id="how-do-we-report-confidence-intervals" class="slide level2">
 <h2>How do we report Confidence Intervals?</h2>
 <p>To report confidence intervals in APA style, we need to report the lower and upper bounds of the interval, and the confidence level.</p>
 <p>For example:</p>
@@ -349,7 +377,7 @@ Dr Christopher Wilson
 <section id="lets-look-again-at-the-data" class="slide level2">
 <h2>Let’s look again at the data:</h2>
 
-<img data-src="powerAndEffectSize_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"><p>There’s not much difference between the two groups. Does that mean there is no difference?</p>
+<img data-src="powerAndEffectSize_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"><p>There’s not much difference between the two groups. Does that mean there is no difference?</p>
 </section></section>
 <section>
 <section id="effect-sizes-and-designing-studies-with-sufficient-power" class="title-slide slide level1 center">
@@ -369,7 +397,7 @@ Dr Christopher Wilson
 </ul></li>
 </ul>
 </section>
-<section id="what-is-effect-size" class="slide level2 smaller">
+<section id="what-is-effect-size" class="slide level2">
 <h2>What is effect size?</h2>
 <ul>
 <li>When we conduct research, we are usually asking a question about a difference or a relationship.
@@ -383,7 +411,7 @@ Dr Christopher Wilson
 <p>Effect size is a standardized measure of the magnitude of an effect</p>
 </blockquote>
 </section>
-<section id="which-measure-of-effect-size-should-i-use" class="slide level2 smaller">
+<section id="which-measure-of-effect-size-should-i-use" class="slide level2">
 <h2>Which measure of effect size should I use?</h2>
 <ul>
 <li>There are many measures of effect size, some of the most common are:
@@ -398,12 +426,12 @@ Dr Christopher Wilson
 <li>The choice of effect size measure depends on the type of study and the type of data collected.</li>
 </ul>
 </section>
-<section id="small-medium-and-large-effect-sizes" class="slide level2 smaller">
+<section id="small-medium-and-large-effect-sizes" class="slide level2">
 <h2>Small, medium and large effect sizes?</h2>
 <ul>
 <li><p>Often people talk in terms of small, medium and large effect sizes. This is not very helpful, as it is not clear what these terms mean.</p></li>
 <li><p>It is better to understand the literature in your field, and to know what effect sizes are typically found in studies similar to yours.</p></li>
-<li><p>However, we need to be careful <span class="citation" data-cites="AlbersLakens2018">[@AlbersLakens2018]</span>:</p>
+<li><p>However, we need to be careful <span class="citation" data-cites="AlbersLakens2018">(<a href="#/references" role="doc-biblioref" onclick="">Albers &amp; Lakens, 2018</a>)</span>:</p>
 <ul>
 <li><p>effect size estimates from small studies are inaccurate</p></li>
 <li><p>publication bias inflates effect sizes.</p></li>
@@ -411,7 +439,7 @@ Dr Christopher Wilson
 <li><p>“Follow-up” bias, is an issue with people deciding whether or not to conduct studies based on the effects found in pilot data</p></li>
 </ul>
 </section>
-<section id="dont-use-pilot-data-to-estimate-effect-size" class="slide level2 smaller">
+<section id="dont-use-pilot-data-to-estimate-effect-size" class="slide level2">
 <h2>Don’t use pilot data to estimate effect size</h2>
 <ul>
 <li><p>This can lead to seriously underpowered study designs, especially when the sample size of the pilot and/or the true effect size is small to medium.</p></li>
@@ -419,9 +447,9 @@ Dr Christopher Wilson
 <li><p>Instead:</p>
 <ul>
 <li>Determine the smallest effect size of interest (SESOI), based on either utility or theoretical arguments, and use the SESOI in an a-priori power analysis.</li>
-<li>Sequential analysis might be appropriate <span class="citation" data-cites="Lakens2014">[@Lakens2014]</span><br>
+<li>Sequential analysis might be appropriate <span class="citation" data-cites="Lakens2014">(<a href="#/references" role="doc-biblioref" onclick="">Lakens, 2014</a>)</span><br>
 </li>
-<li>A “safeguard” power analysis can be used (underestimates the effect from published studies) <span class="citation" data-cites="PeruginiEtAl2014">[@PeruginiEtAl2014]</span></li>
+<li>A “safeguard” power analysis can be used (underestimates the effect from published studies) <span class="citation" data-cites="PeruginiEtAl2014">(<a href="#/references" role="doc-biblioref" onclick="">Perugini et al., 2014</a>)</span></li>
 </ul></li>
 </ul>
 </section>
@@ -470,14 +498,45 @@ Dr Christopher Wilson
 </ul>
 </section>
 
+<section>
+<section id="alternatives-to-null-hypothesis-significance-testing" class="title-slide slide level1 center">
+<h1>Alternatives to Null Hypothesis Significance Testing</h1>
+
+</section>
+<section id="different-approaches" class="slide level2">
+<h2>Different approaches</h2>
+<ul>
+<li>Confidence intervals (focus on precision of estimates)</li>
+<li>Bayesian statistics (a focus on estimating parameters and updating beliefs based on data)</li>
+<li>Estimation statistics (focus on effect sizes and confidence intervals)</li>
+<li>E-values (focus on the evidence for or against a hypothesis)</li>
+</ul>
+</section></section>
 <section id="we-will-learn-how-to-calculate-effect-size-confidence-intervals-and-power-in-r" class="title-slide slide level1 center">
 <h1>We will learn how to calculate effect size, confidence intervals and power in R</h1>
 
 </section>
 
-<section id="references" class="title-slide slide level1 center">
+<section id="references" class="title-slide slide level1 smaller scrollable">
 <h1>References</h1>
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-AlbersLakens2018" class="csl-entry" role="listitem">
+Albers, C., &amp; Lakens, D. (2018). When power analyses based on pilot data are biased: <span>Inaccurate</span> effect size estimators and follow-up bias. <em>Journal of Experimental Social Psychology</em>, <em>74</em>, 187–195. <a href="https://doi.org/10.1016/j.jesp.2017.09.004">https://doi.org/10.1016/j.jesp.2017.09.004</a>
+</div>
+<div id="ref-BenjaminBerger2019" class="csl-entry" role="listitem">
+Benjamin, D. J., &amp; Berger, J. O. (2019). Three <span>Recommendations</span> for <span>Improving</span> the <span>Use</span> of p-<span>Values</span>. <em>The American Statistician</em>, <em>73</em>, 186–191. <a href="https://doi.org/10.1080/00031305.2018.1543135">https://doi.org/10.1080/00031305.2018.1543135</a>
+</div>
+<div id="ref-Lakens2014" class="csl-entry" role="listitem">
+Lakens, D. (2014). Performing high-powered studies efficiently with sequential analyses. <em>European Journal of Social Psychology</em>, <em>44</em>(7), 701–710. <a href="https://doi.org/10.1002/ejsp.2023">https://doi.org/10.1002/ejsp.2023</a>
+</div>
+<div id="ref-PeruginiEtAl2014" class="csl-entry" role="listitem">
+Perugini, M., Gallucci, M., &amp; Costantini, G. (2014). Safeguard <span>Power</span> as a <span>Protection Against Imprecise Power Estimates</span>. <em>Perspectives on Psychological Science</em>, <em>9</em>(3), 319–332. <a href="https://doi.org/10.1177/1745691614528519">https://doi.org/10.1177/1745691614528519</a>
+</div>
+<div id="ref-WassersteinLazar2016" class="csl-entry" role="listitem">
+Wasserstein, R. L., &amp; Lazar, N. A. (2016). The <span>ASA Statement</span> on p-<span>Values</span>: <span>Context</span>, <span>Process</span>, and <span>Purpose</span>. <em>The American Statistician</em>, <em>70</em>(2), 129–133. <a href="https://doi.org/10.1080/00031305.2016.1154108">https://doi.org/10.1080/00031305.2016.1154108</a>
+</div>
+</div>
 </section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">

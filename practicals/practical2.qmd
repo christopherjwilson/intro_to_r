@@ -5,12 +5,13 @@ Subtitle: "PSY4179 Research Methods 1"
 Institution: "Teesside University"
 format:
   html:
-    css: ["include/style.css","include/glossary.css","include/booktem.css", "include/webex.css", "include/rstudio_default_code.css"]
-    include-after-body: ["include/webex.js"]
+    css: ["../include/glossary.css","../include/booktem.css", "../include/webex.css"]
+    include-in-header: ["../include/webex.js"]
 ---
 
 ```{r setup, include=FALSE}
 library(webexercises)
+library(dplyr)
 ```
 
 ::: {.callout-tip collapse="true"}
@@ -70,9 +71,9 @@ library(dplyr) #<1>
 
 ## Using the pipe operator to chain commands
 
-Often in our analysis, we want to perform a series of operations on our data. For example, we might want to filter the data, then summarise it, then plot it. In R, we can do this by chaining commands together using the pipe operator **\|\>**.
+Often in our analysis, we want to perform a series of operations on our data. For example, we might want to filter the data, then summarise it, then plot it. In R, we can do this by chaining commands together using the pipe operator **\%\>\%**.
 
-This is made using the <pc>\|</pc> and <pc>\></pc> keys on your keyboard.
+This is made using the <pc>\%</pc>, <pc>\></pc> and <pc>\%</pc> keys on your keyboard.
 
 The purpose of the pipe operator is to make your code easier to read. For example, consider the following code:
 
@@ -86,7 +87,7 @@ filter(practical2_data, age > 25)   #<1>
 However, for more complicated analysis, code can be difficult to read. Now consider the following code:
 
 ```{r eval = FALSE, warning=FALSE, message=FALSE}
-practical2_data |> filter(age > 25) #<1>
+practical2_data %>% filter(age > 25) #<1>
 ```
 
 1.  The above code starts with the data and then uses the pipe operator to "pass" that information to the next function. Because of this,we don't need to specify the dataset in the <func>filter()</func> function. The code also goes from left to right, which makes it easier to read.
@@ -99,7 +100,7 @@ One of the things that the <pkg>dplyr</pkg> package allows you to do is to filte
 
 ```{r eval = FALSE, warning=FALSE, message=FALSE}
 library(dplyr)
-practical2_data |> filter(age > 21) #<1>
+practical2_data %>% filter(age > 21) #<1>
 ```
 
 1.  The first argument is the name of the dataset you want to filter. The second argument is the condition you want to filter by. In this case, we are filtering the data so that only rows where the age is greater than 21 are selected.
@@ -116,8 +117,8 @@ Save the result to an object called **data_over18**.
 
 ```{r echo=FALSE}
 
-data_over18 <- practical2_data |> filter( age > 18)
-n_over18 <- practical2_data |> filter( age > 18) |> count()
+data_over18 <- practical2_data %>% filter( age > 18)
+n_over18 <- practical2_data %>% filter( age > 18) %>% count()
 
 ```
 
@@ -131,7 +132,7 @@ Another feature of the <pkg>dplyr</pkg> package is the ability to summarise data
 
 ```{r eval = FALSE, warning=FALSE, message=FALSE}
 
-data_over18 |> group_by(treatment_group) |> summarise(mean_age = mean(age)) #<1>
+data_over18 %>% group_by(treatment_group) %>% summarise(mean_age = mean(age)) #<1>
 ```
 
 1.  The code above uses the <func>group_by()</func> function to group the data by the variable **treatment_group**. It then uses the <func>summarise()</func> function to calculate the mean age for each group.
@@ -169,7 +170,7 @@ install.packages("effsize") #<1>
 
 Now we can load the package and calculate the effect size.
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 
 # load the effsize package
 
@@ -195,7 +196,7 @@ Save the result to an object called **effect_size**.
 :::
 
 ::: {.webex-check .webex-box}
-The effect size is `r fitb(effect_size$estimate |> round(2))`.
+The effect size is `r fitb(effect_size$estimate %>% round(2))`.
 :::
 
 # Calculate the sample size for conducting a new study, based on this effect
@@ -224,7 +225,7 @@ To figure this out, we need to use a power analysis. We will use the power.t.tes
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE, eval=FALSE}
 
-power.t.test(d = 0.6, sig.level = 0.05, power = 0.8, type = "two.sample") #<1>
+power.t.test(d = effectSize, sig.level = 0.05, power = 0.8, type = "two.sample") #<1>
 
 ```
 
@@ -244,7 +245,7 @@ Calculate the sample size required for conducting a new study, based on this eff
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
-sampleSize <- power.t.test(d = effect_size$estimate, sig.level = 0.05, power = 0.8, type = "two.sample")$n |> round(0)
+sampleSize <- power.t.test(d = effect_size$estimate, sig.level = 0.05, power = 0.8, type = "two.sample")$n %>% round(0)
 
 ```
 

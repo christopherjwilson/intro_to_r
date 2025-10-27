@@ -21,6 +21,7 @@ author: Dr Christopher Wilson
 institute: Teesside University
 logo: "logo.jpg"
 csl: apa.csl
+bibliography: references.bib
 ---
 
 ## Learning outcomes
@@ -169,12 +170,18 @@ p + ylim(c(0, 1))
 
 ## 
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=6, fig.height=4}
 
 
-# Plot a the p-values using ggplot2. use a scatterplot with the x-axis being the sample number and the y-axis being the p-value.
 
 
+## 
+
+```{r}
+    #| label: animation-chunk-print
+    #| echo: true
+    #| fig-anim: true  # This is often the key to making it work automatically
+
+ 
 p <- p+  geom_point() +
   geom_hline(aes(yintercept = 0.05), color = "red", linetype = "dashed", size = 1) +
   ggtitle("P-Values") +
@@ -187,21 +194,13 @@ p1 <- p + transition_states(1:100, transition_length = 2) +
   shadow_mark() +
   enter_fade() 
 
-animate(p1, fps = 5, duration = 20, end_pause = 10)
-
+animate(p1, fps = 5, duration = 20, end_pause = 20)
 
 
 
 
 ```
 
-## 
-
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=6, fig.height=4}
-
-p
-
-```
 
 ## What is statistical significance?
 
@@ -211,7 +210,7 @@ p
 
 -   This is 5% threshold is an arbitrary choice, and is not used for any theoretical reason.
 
-##  {.smaller}
+##  
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8, fig.height=5, fig.align='center'}
 
@@ -242,15 +241,23 @@ text(0, 0.01, "95%", cex=0.8)
 
 -   There's still a 5% chance (2.5% + 2.5%) of obtaining a difference higher than 1.96 standard deviations, even if the null hypothesis were true.
 
+## Small samples and p values
+
+- Small samples increase the likelihood of false positives (significant results that don't reflect the population)
+
+- This is because the true pattern in the population is not perfectly reflected in small samples.
+
+- Within small samples, there will be random variation that can lead to differences between groups.
+
 # Takeaways
 
 -   Even when the null hypothesis is true, we can still obtain a range of differences when we sample from the population.
 
 -   Some of these differences will even result in p-values below 0.05.
 
--  It's important to recognise that false positives (Type 1 error) can happen. Smaller samples are subject to more random variation and lack of control in study design can lead to suprious conclusions.
+-  It's important to recognise that false positives (Type 1 error) can happen. Smaller samples are subject to more random variation and lack of control in study design can lead to spurious conclusions.
 
-## The problem with statistical significance {.smaller}
+## The problem with statistical significance 
 
 > "It's science's dirtiest secret: The 'scientific method' of testing hypotheses by statistical analysis stands on a flimsy foundation."
 
@@ -270,7 +277,7 @@ A: Because that's what they were taught in college or grad school.
 
 "Researchers commonly use p-values to answer the question: How strongly does the evidence favor the alternative hypothesis relative to the null hypothesis? p-Values themselves do not directly answer this question and are often misinterpreted" [@BenjaminBerger2019]
 
-## The ASA statement on p-values {.smaller}
+## The ASA statement on p-values 
 
 1.  P-values can indicate how incompatible the data are with a specified statistical model.
 2.  P-values do not measure the probability that the studied hypothesis is true, or the probability that the data were produced by random chance alone.
@@ -338,7 +345,7 @@ A: Because that's what they were taught in college or grad school.
 
 ![In a later class, Dr Alan Bowman will discuss clinically meaningful results](images/clinical_relevance.jpg){fig-align="center"}
 
-## How do we report Confidence Intervals? {.smaller}
+## How do we report Confidence Intervals? 
 
 To report confidence intervals in APA style, we need to report the lower and upper bounds of the interval, and the confidence level.
 
@@ -383,7 +390,7 @@ There's not much difference between the two groups. Does that mean there is no d
     -   Publication bias
     -   Questionable research practices (small sample sizes, etc.)
 
-## What is effect size? {.smaller}
+## What is effect size? 
 
 -   When we conduct research, we are usually asking a question about a difference or a relationship.
     -   For example, we might be interested in whether there is a difference in the mean score on a measure between clinical two groups.
@@ -392,7 +399,7 @@ There's not much difference between the two groups. Does that mean there is no d
 
 > Effect size is a standardized measure of the magnitude of an effect
 
-## Which measure of effect size should I use? {.smaller}
+## Which measure of effect size should I use? 
 
 -   There are many measures of effect size, some of the most common are:
     -   Cohen's d
@@ -403,7 +410,7 @@ There's not much difference between the two groups. Does that mean there is no d
     -   R squared
 -   The choice of effect size measure depends on the type of study and the type of data collected.
 
-## Small, medium and large effect sizes? {.smaller}
+## Small, medium and large effect sizes? 
 
 -   Often people talk in terms of small, medium and large effect sizes. This is not very helpful, as it is not clear what these terms mean.
 
@@ -417,7 +424,7 @@ There's not much difference between the two groups. Does that mean there is no d
 
 -   "Follow-up" bias, is an issue with people deciding whether or not to conduct studies based on the effects found in pilot data
 
-## Don't use pilot data to estimate effect size {.smaller}
+## Don't use pilot data to estimate effect size 
 
 -   This can lead to seriously underpowered study designs, especially when the sample size of the pilot and/or the true effect size is small to medium.
 
@@ -456,6 +463,10 @@ What does this mean?
 
 ##  {background-iframe="https://christopherjwilson.shinyapps.io/app1/" background-interactive="true"}
 
+
+
+
+
 # Takeaways
 
 -   Power is ability to detect an effect if it exists
@@ -465,6 +476,15 @@ What does this mean?
 -   We need to ensure that our study has sufficient power to detect this effect size
 
 -   Very large samples will show very small effects as statistically significant (but these may not be important)
+
+# Alternatives to Null Hypothesis Significance Testing
+
+## Different approaches
+
+- Confidence intervals  (focus on precision of estimates)
+- Bayesian statistics (a focus on estimating parameters and updating beliefs based on data)
+- Estimation statistics (focus on effect sizes and confidence intervals)
+- E-values (focus on the evidence for or against a hypothesis)
 
 # We will learn how to calculate effect size, confidence intervals and power in R
 
