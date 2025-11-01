@@ -35,7 +35,7 @@ sim_data <- function(nsims) {
     
     t_test_result <- t.test(value ~ group, data = data)
     
-    simulated_data[[i]] <<- list(
+    simulated_data[[i]] <- list(
       t_statistic = t_test_result$statistic,
       p_value = t_test_result$p.value,
       conf_int = t_test_result$conf.int,

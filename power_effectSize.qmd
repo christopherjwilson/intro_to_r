@@ -155,6 +155,195 @@ The output of the `pwr.t.test()` function provides the sample size required to a
 
 The sample size required to achieve a power of 0.80 for a t-test with the specified effect size and significance level is 26.5 for each group. Since the sample size must be a whole number, we would need to round up to the nearest whole number. Therefore, the sample size required for each group is 27.
 
-## More complex power analysis
+## Power analysis by simulation
 
-For more complex designs, different approaches to power analysis might be necessary, such as using simulation. This is possible to do in R, but is beyond the scope of this chapter.
+For more complex designs, different approaches to power analysis might be necessary, such as using simulation. This is approach us based on simulating the type of data you expect to see in your study.
+
+That is to say, if you are planning a study based on a difference between two means, you would simulate the data based on the expected means, and standard deviations. Or if you are planning a regression study, you would simulate data based on the expected regression coefficients. By doing this, you can create many simulated datasets that reflect the design of your planned study.
+
+You would then analyze the simulated data using the statistical test you plan to use in your study and record whether the null hypothesis is rejected. By repeating this process many times (for example, creating 1000 simulated data sets), you can estimate the power of your study based on the proportion of simulations where the null hypothesis is rejected. This represents the power of your study to detect the effect of interest.
+
+### Step 1: Simulate the data
+
+```{r}
+library(dplyr)
+# simulate some data: 
+# 2 groups, treatment and control
+# wellbeing outcome mesasure with different means
+
+n <- 20 # number of p per group
+m1 <- 20 # mean g1
+m2 <- 30 # mean g2
+
+
+# create outcome data for group
+
+outcome1 <- rnorm(n, m1, sd = 1)
+outcome2 <- rnorm(n, m2, sd = 1)
+
+# combine both of these groups into a single vector
+
+outcome <- c(outcome1,outcome2)
+
+# create grouping variable
+
+group1 <- rep("control", n)
+group2 <- rep("treatment", n)
+
+group <- c(group1, group2)
+
+# combine into data frame
+
+data <- data.frame(group,outcome)
+
+```
+
+The above code simulates data for a study with two groups (treatment and control) and a continuous outcome variable (wellbeing). The treatment group has a higher mean wellbeing score than the control group. The difference between the means is the important element here, as it represents the effect size we want to detect. When planning a study, you would set these values based on previous research or clinical relevance.
+
+::: {.callout-tip}
+## Why do we keep the standard deviations the same for each group in the simulation?
+
+In the simulation, we keep the standard deviations the same for each group to simplify the analysis and focus on the effect of the difference in means. By keeping the standard deviations constant, we can isolate the impact of the mean difference on the statistical power of the test. However, there might be situations where the standard deviations differ between groups, and in such cases, the simulation can be adjusted accordingly to reflect the expected variability in the data.
+:::
+::: {.callout-tip}
+## Do the exact mean values matter?
+
+Yes and no, the exact mean values themselves do not matter as much as the difference between them (the effect size). In power analysis, we are primarily concerned with the magnitude of the effect we want to detect, rather than the specific values of the means. Therefore, when simulating data for power analysis, it is more important to focus on the difference between the means rather than their absolute values.
+:::
+::: {.callout-tip}
+## Can we simulate a specific effect size directly?
+
+Yes, you can simulate a specific effect size directly by calculating the means based on the desired effect size and standard deviation. For example, if you want to simulate a Cohen's d of 0.2 with a standard deviation of 1, you can set the means of the two groups accordingly. In such a case, the mean of group 1 could be set to 0, and the mean of group 2 could be set to 0.2 (since Cohen's d = (mean2 - mean1) / sd). This way, you can directly control the effect size in your simulation.
+
+:::
+
+
+### Step 2: Analyze the data
+
+```{r}
+
+# run a t-test
+
+test <- t.test(data$outcome ~ data$group)
+
+# get the values from t-test
+
+pval <- test$p.value
+is_sig <- test$p.value < 0.05
+
+data.frame(pval, is_sig)
+
+```
+
+The above code runs a t-test on the simulated data and extracts the p-value and whether the result is statistically significant (p < 0.05). This is the analysis you would perform on your actual study data. By creating a column indicating whether the result is significant, we can later use this information to estimate the power of the study.
+
+### Step 3: Repeat the simulation
+
+In order to repeat the simulation many times, we can wrap the above code into a function and then use a loop or an apply function to run the simulation multiple times. The complete function code would look like this:
+
+```{r}
+
+sim_data <- function(n,m1,m2) {
+
+# create outcome data for group
+
+outcome1 <- rnorm(n, m1, sd = 1)
+outcome2 <- rnorm(n, m2, sd = 1)
+
+# combine both of these groups into a single vector
+
+outcome <- c(outcome1,outcome2)
+
+# create grouping variable
+
+group1 <- rep("control", n)
+group2 <- rep("treatment", n)
+
+group <- c(group1, group2)
+
+# combine into data frame
+
+data <- data.frame(group,outcome)
+
+# run a t-test
+
+test <- t.test(data$outcome ~ data$group)
+
+# get the values from t-test
+
+pval <- test$p.value
+is_sig <- test$p.value < 0.05
+
+data.frame(pval, is_sig)
+}
+
+```
+
+The code above is the same as before, but wrapped in a function called `sim_data()`. The function takes three arguments: `n` (the sample size per group), `m1` (the mean for group 1), and `m2` (the mean for group 2). The function returns a data frame with the p-value and whether the result is significant. By using this function, we can easily repeat the simulation multiple times.
+
+::: {.callout-tip}
+
+## Why use a function for the simulation?
+
+Using a function for the simulation allows us to encapsulate the simulation logic in a reusable way. This makes it easier to run the simulation multiple times with different parameters (e.g., sample size, means) without having to rewrite the code each time. It also improves code organization and readability, making it clear what the simulation does and what inputs it requires.
+:::
+::: {.callout-tip}
+## What are the inputs to the function?
+
+These are the values what we might want to vary when planning a study. The sample size per group (`n`) is important because it directly affects the power of the study. The means for each group (`m1` and `m2`) determine the effect size we want to detect. By varying these inputs, we can modify the sample size and effect size in our simulations to see how they impact the power of the study.
+:::
+
+### Step 4: Estimate power
+
+```{r}
+
+results_data <- list()
+
+# run the simulation 
+
+for(i in 1:1000) {
+ simdata <-  sim_data(n,m1,m2)
+  results_data[[i]] <- simdata
+  
+  
+}
+
+#bind the rows
+results_data <- bind_rows(results_data)
+
+# calculate power
+# what proportion were significant?
+
+mean(results_data$is_sig)
+
+```
+
+There are a few things happening in the above code. First, we create an empty list called `results_data` to store the results of each simulation.
+
+Then, we use a for loop to run the `sim_data()` function 1000 times, storing the results in the `results_data` list. After the loop, we combine all the results into a single data frame using `bind_rows()`. 
+
+Finally, we calculate the power by taking the mean of the `is_sig` column, which gives us the proportion of simulations where the result was statistically significant.
+
+Normally, we would want the power to be at least 0.80, meaning that we would correctly reject the null hypothesis in at least 80% of the simulations when there is a true effect. If the calculated power is lower than this threshold, we may need to increase the sample size to achieve the desired power level.
+:::
+
+::: {.callout-tip}
+## Why do we use a loop to run the simulation multiple times?
+
+This is a core part of the simulation approach to power analysis. By running the simulation multiple times, we can estimate the variability in the results and get a more accurate estimate of the power of the study. Each simulation represents a possible outcome of the study, and by aggregating the results, we can determine how often we would correctly reject the null hypothesis when there is a true effect.
+:::
+
+::: {.callout-tip}
+## What does the final power estimate represent?
+
+The final power estimate represents the probability of correctly rejecting the null hypothesis when there is a true effect in the population. It is calculated as the proportion of simulations where the result was statistically significant (p < 0.05). A higher power estimate indicates a greater likelihood of detecting a true effect, while a lower power estimate suggests that the study may not have enough sensitivity to detect the effect of interest. Our usual goal is to achieve a power of at least 0.80. This would mean that when we run our real study, we have an 80% chance of detecting an effect of the same size, if it truly exists.
+:::
+
+::: {.callout-tip}
+## Can I increase the required power level?
+
+Yes, you can increase the required power level to 0.90 or even higher if you want to be more confident in detecting a true effect. To do this, you would just need to increase the `n` value (sample size per group) in the simulation function until the power estimate reaches the desired level.
+
+However, keep in mind that increasing the power level will also increase the required sample size, which may have practical implications for the feasibility and cost of the study. It is important to balance the desired power level with the available resources and constraints of the study. In most cases, a power level of 0.80 is considered sufficient.
+
+:::

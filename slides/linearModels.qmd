@@ -3,7 +3,7 @@ format:
   revealjs:
     css: "include/style.css"
     chalkboard: true
-    multiplex: true
+    #multiplex: true
     slide-number: c/t
     drop:
       shortcut: "]"
