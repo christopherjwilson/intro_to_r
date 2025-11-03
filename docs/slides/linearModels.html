@@ -372,8 +372,7 @@ Dr Christopher Wilson
 <h2>The null hypothesis in regression</h2>
 
 <img data-src="linearModels_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><ul>
-<li><p>The null hypothesis is that the line of best fit is no better at predicting the y variable than the mean of the y variable when the x variable = 0</p></li>
-<li><p>In other words, the null hypothesis is that the slope of the line of best fit is 0</p></li>
+<li>The null hypothesis is that the line of best fit is no better at predicting the y variable than the mean of the y variable</li>
 </ul>
 </section>
 <section id="looking-at-regression-output" class="slide level2">
@@ -645,8 +644,6 @@ F-statistic: 6.435 on 2 and 27 DF,  p-value: 0.005183</code></pre>
   <script src="linearModels_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="linearModels_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
   <script src="linearModels_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
-  <script src="linearModels_files/libs/revealjs/plugin/multiplex/socket.io.js"></script>
-  <script src="linearModels_files/libs/revealjs/plugin/multiplex/multiplex.js"></script>
   <script src="linearModels_files/libs/revealjs/plugin/reveal-drop/drop-runtime.js"></script>
   <script src="linearModels_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
@@ -671,7 +668,6 @@ F-statistic: 6.435 on 2 and 27 DF,  p-value: 0.005183</code></pre>
 'jumpToSlide': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true},
-'multiplex': {"secret":null,"id":"440c6795f680ff24","url":"https://reveal-multiplex.glitch.me/"},
 'drop': {"button":true,"shortcut":"]","engine":"webr","webr":{"packages":["tidyverse"]},"pyodide":{"packages":[]}},
 'smaller': false,
  
@@ -846,7 +842,7 @@ F-statistic: 6.435 on 2 and 27 DF,  p-value: 0.005183</code></pre>
         plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, RevealDrop, QuartoSupport,
 
           RevealMath,
-          
+          RevealNotes,
           RevealSearch,
           RevealZoom
         ]

@@ -229,13 +229,13 @@ p + geom_segment(aes(xend = x, yend = .fitted, color = "red"), alpha = 0.5) + gu
 
 # add a horizontal line to the plot at the intercept value
 
-p + geom_hline(yintercept = intercept, linetype = "dashed", color = "red")
+p + geom_hline(yintercept = mean(y), linetype = "dashed", color = "red")
 
 ```
 
--   The null hypothesis is that the line of best fit is no better at predicting the y variable than the mean of the y variable when the x variable = 0
+-   The null hypothesis is that the line of best fit is no better at predicting the y variable than the mean of the y variable
 
--   In other words, the null hypothesis is that the slope of the line of best fit is 0
+
 
 ## Looking at regression output
 
