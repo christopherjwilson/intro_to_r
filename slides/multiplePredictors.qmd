@@ -349,6 +349,34 @@ Lower values indicate better model fit (i.e., the model explains more variance),
 
 -   The final model is the best model in terms of $R^2$ and model fit, suggesting that all of the predictors are important
 
+## How would we report this analysis?
+
+- We would tell the whole story
+
+- If we focus only on the final model, this would be the same value as only running the final model
+
+- The research question is answered by showing the relationship between the models
+
+## Generating a table of the models
+
+```{r, echo=T, message=FALSE, warning=FALSE, eval=T}
+library(dplyr)
+example_data <- read.csv("Datasets/regression_data.csv")
+
+model0 <- lm(aggression_level ~ 1, data = example_data)
+model1 <- lm(aggression_level ~ treatment_group + treatment_duration, data = example_data)
+model2 <- lm(aggression_level ~ treatment_group + treatment_duration + trust_score, data = example_data)
+
+library(sjPlot)
+
+model_table <- tab_model(model0, model1, model2)
+
+```
+
+## Example table of models
+
+![](images/regression_table.png){width="100%"}
+
 ## Final points
 
 -   Model building should be theory driven

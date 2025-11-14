@@ -134,7 +134,10 @@ plot(model2) #<6>
 # compare the models
 
 anova(model0, model1, model2) #<7>
+AIC(model0, model1,model2) #<8>
 
+
+summary(model1)
 
 
 ```
