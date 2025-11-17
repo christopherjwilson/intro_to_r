@@ -110,7 +110,7 @@ summary(model1)
 
 ## Research Scenario
 
-A psychologist is interested in the relationship between anxiety and depression. They believe that the relationship between anxiety and depression is moderated by attention. They ran an study which measured anxiety, attention and depression in 100 participants. The data from this study is in the file **practical5_data.csv**. The anxiety and depression scores are from standardised measures. The attention scores are from a computerised task (measured in milliseconds).
+A psychologist is interested in the relationship between anxiety and depression. They believe that the relationship between anxiety and depression (depression is the outcome variable) is moderated by attention. They ran an study which measured anxiety, attention and depression in 100 participants. The data from this study is in the file **practical5_data.csv**. The anxiety and depression scores are from standardised measures. The attention scores are from a computerised task (measured in milliseconds).
 
 ::: callout-note
 # Task
