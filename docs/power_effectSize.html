@@ -260,7 +260,13 @@ window.Quarto = {
   <li><a href="#calculating-cohens-d" id="toc-calculating-cohens-d" class="nav-link" data-scroll-target="#calculating-cohens-d"><span class="header-section-number">4.2</span> Calculating Cohen’s d</a></li>
   <li><a href="#calculating-eta-squared-and-other-effect-size-measures" id="toc-calculating-eta-squared-and-other-effect-size-measures" class="nav-link" data-scroll-target="#calculating-eta-squared-and-other-effect-size-measures"><span class="header-section-number">4.3</span> Calculating Eta-squared and other effect size measures</a></li>
   <li><a href="#power-analysis" id="toc-power-analysis" class="nav-link" data-scroll-target="#power-analysis"><span class="header-section-number">4.4</span> Power analysis</a></li>
-  <li><a href="#more-complex-power-analysis" id="toc-more-complex-power-analysis" class="nav-link" data-scroll-target="#more-complex-power-analysis"><span class="header-section-number">4.5</span> More complex power analysis</a></li>
+  <li><a href="#power-analysis-by-simulation" id="toc-power-analysis-by-simulation" class="nav-link" data-scroll-target="#power-analysis-by-simulation"><span class="header-section-number">4.5</span> Power analysis by simulation</a>
+  <ul class="collapse">
+  <li><a href="#step-1-simulate-the-data" id="toc-step-1-simulate-the-data" class="nav-link" data-scroll-target="#step-1-simulate-the-data"><span class="header-section-number">4.5.1</span> Step 1: Simulate the data</a></li>
+  <li><a href="#step-2-analyze-the-data" id="toc-step-2-analyze-the-data" class="nav-link" data-scroll-target="#step-2-analyze-the-data"><span class="header-section-number">4.5.2</span> Step 2: Analyze the data</a></li>
+  <li><a href="#step-3-repeat-the-simulation" id="toc-step-3-repeat-the-simulation" class="nav-link" data-scroll-target="#step-3-repeat-the-simulation"><span class="header-section-number">4.5.3</span> Step 3: Repeat the simulation</a></li>
+  <li><a href="#step-4-estimate-power" id="toc-step-4-estimate-power" class="nav-link" data-scroll-target="#step-4-estimate-power"><span class="header-section-number">4.5.4</span> Step 4: Estimate power</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -431,11 +437,257 @@ NOTE: n is number in *each* group</code></pre>
 </ul>
 <p>The sample size required to achieve a power of 0.80 for a t-test with the specified effect size and significance level is 26.5 for each group. Since the sample size must be a whole number, we would need to round up to the nearest whole number. Therefore, the sample size required for each group is 27.</p>
 </section>
-<section id="more-complex-power-analysis" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="more-complex-power-analysis"><span class="header-section-number">4.5</span> More complex power analysis</h2>
-<p>For more complex designs, different approaches to power analysis might be necessary, such as using simulation. This is possible to do in R, but is beyond the scope of this chapter.</p>
+<section id="power-analysis-by-simulation" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="power-analysis-by-simulation"><span class="header-section-number">4.5</span> Power analysis by simulation</h2>
+<p>For more complex designs, different approaches to power analysis might be necessary, such as using simulation. This is approach us based on simulating the type of data you expect to see in your study.</p>
+<p>That is to say, if you are planning a study based on a difference between two means, you would simulate the data based on the expected means, and standard deviations. Or if you are planning a regression study, you would simulate data based on the expected regression coefficients. By doing this, you can create many simulated datasets that reflect the design of your planned study.</p>
+<p>You would then analyze the simulated data using the statistical test you plan to use in your study and record whether the null hypothesis is rejected. By repeating this process many times (for example, creating 1000 simulated data sets), you can estimate the power of your study based on the proportion of simulations where the null hypothesis is rejected. This represents the power of your study to detect the effect of interest.</p>
+<section id="step-1-simulate-the-data" class="level3" data-number="4.5.1">
+<h3 data-number="4.5.1" class="anchored" data-anchor-id="step-1-simulate-the-data"><span class="header-section-number">4.5.1</span> Step 1: Simulate the data</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># simulate some data: </span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 groups, treatment and control</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># wellbeing outcome mesasure with different means</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">20</span> <span class="co"># number of p per group</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="dv">20</span> <span class="co"># mean g1</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="dv">30</span> <span class="co"># mean g2</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># create outcome data for group</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>outcome1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, m1, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>outcome2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, m2, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co"># combine both of these groups into a single vector</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>outcome <span class="ot">&lt;-</span> <span class="fu">c</span>(outcome1,outcome2)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co"># create grouping variable</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>group1 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">"control"</span>, n)</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>group2 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">"treatment"</span>, n)</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>group <span class="ot">&lt;-</span> <span class="fu">c</span>(group1, group2)</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="co"># combine into data frame</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(group,outcome)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The above code simulates data for a study with two groups (treatment and control) and a continuous outcome variable (wellbeing). The treatment group has a higher mean wellbeing score than the control group. The difference between the means is the important element here, as it represents the effect size we want to detect. When planning a study, you would set these values based on previous research or clinical relevance.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Why do we keep the standard deviations the same for each group in the simulation?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In the simulation, we keep the standard deviations the same for each group to simplify the analysis and focus on the effect of the difference in means. By keeping the standard deviations constant, we can isolate the impact of the mean difference on the statistical power of the test. However, there might be situations where the standard deviations differ between groups, and in such cases, the simulation can be adjusted accordingly to reflect the expected variability in the data.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Do the exact mean values matter?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Yes and no, the exact mean values themselves do not matter as much as the difference between them (the effect size). In power analysis, we are primarily concerned with the magnitude of the effect we want to detect, rather than the specific values of the means. Therefore, when simulating data for power analysis, it is more important to focus on the difference between the means rather than their absolute values.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Can we simulate a specific effect size directly?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Yes, you can simulate a specific effect size directly by calculating the means based on the desired effect size and standard deviation. For example, if you want to simulate a Cohen’s d of 0.2 with a standard deviation of 1, you can set the means of the two groups accordingly. In such a case, the mean of group 1 could be set to 0, and the mean of group 2 could be set to 0.2 (since Cohen’s d = (mean2 - mean1) / sd). This way, you can directly control the effect size in your simulation.</p>
+</div>
+</div>
+</section>
+<section id="step-2-analyze-the-data" class="level3" data-number="4.5.2">
+<h3 data-number="4.5.2" class="anchored" data-anchor-id="step-2-analyze-the-data"><span class="header-section-number">4.5.2</span> Step 2: Analyze the data</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run a t-test</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">t.test</span>(data<span class="sc">$</span>outcome <span class="sc">~</span> data<span class="sc">$</span>group)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># get the values from t-test</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>pval <span class="ot">&lt;-</span> test<span class="sc">$</span>p.value</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>is_sig <span class="ot">&lt;-</span> test<span class="sc">$</span>p.value <span class="sc">&lt;</span> <span class="fl">0.05</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(pval, is_sig)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          pval is_sig
+1 1.774442e-26   TRUE</code></pre>
+</div>
+</div>
+<p>The above code runs a t-test on the simulated data and extracts the p-value and whether the result is statistically significant (p &lt; 0.05). This is the analysis you would perform on your actual study data. By creating a column indicating whether the result is significant, we can later use this information to estimate the power of the study.</p>
+</section>
+<section id="step-3-repeat-the-simulation" class="level3" data-number="4.5.3">
+<h3 data-number="4.5.3" class="anchored" data-anchor-id="step-3-repeat-the-simulation"><span class="header-section-number">4.5.3</span> Step 3: Repeat the simulation</h3>
+<p>In order to repeat the simulation many times, we can wrap the above code into a function and then use a loop or an apply function to run the simulation multiple times. The complete function code would look like this:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sim_data <span class="ot">&lt;-</span> <span class="cf">function</span>(n,m1,m2) {</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create outcome data for group</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>outcome1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, m1, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>outcome2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, m2, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># combine both of these groups into a single vector</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>outcome <span class="ot">&lt;-</span> <span class="fu">c</span>(outcome1,outcome2)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># create grouping variable</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>group1 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">"control"</span>, n)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>group2 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">"treatment"</span>, n)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>group <span class="ot">&lt;-</span> <span class="fu">c</span>(group1, group2)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="co"># combine into data frame</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(group,outcome)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="co"># run a t-test</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">t.test</span>(data<span class="sc">$</span>outcome <span class="sc">~</span> data<span class="sc">$</span>group)</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="co"># get the values from t-test</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>pval <span class="ot">&lt;-</span> test<span class="sc">$</span>p.value</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>is_sig <span class="ot">&lt;-</span> test<span class="sc">$</span>p.value <span class="sc">&lt;</span> <span class="fl">0.05</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(pval, is_sig)</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The code above is the same as before, but wrapped in a function called <code>sim_data()</code>. The function takes three arguments: <code>n</code> (the sample size per group), <code>m1</code> (the mean for group 1), and <code>m2</code> (the mean for group 2). The function returns a data frame with the p-value and whether the result is significant. By using this function, we can easily repeat the simulation multiple times.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Why use a function for the simulation?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Using a function for the simulation allows us to encapsulate the simulation logic in a reusable way. This makes it easier to run the simulation multiple times with different parameters (e.g., sample size, means) without having to rewrite the code each time. It also improves code organization and readability, making it clear what the simulation does and what inputs it requires.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>What are the inputs to the function?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>These are the values what we might want to vary when planning a study. The sample size per group (<code>n</code>) is important because it directly affects the power of the study. The means for each group (<code>m1</code> and <code>m2</code>) determine the effect size we want to detect. By varying these inputs, we can modify the sample size and effect size in our simulations to see how they impact the power of the study.</p>
+</div>
+</div>
+</section>
+<section id="step-4-estimate-power" class="level3" data-number="4.5.4">
+<h3 data-number="4.5.4" class="anchored" data-anchor-id="step-4-estimate-power"><span class="header-section-number">4.5.4</span> Step 4: Estimate power</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>results_data <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># run the simulation </span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>) {</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a> simdata <span class="ot">&lt;-</span>  <span class="fu">sim_data</span>(n,m1,m2)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  results_data[[i]] <span class="ot">&lt;-</span> simdata</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">#bind the rows</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>results_data <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(results_data)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate power</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co"># what proportion were significant?</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(results_data<span class="sc">$</span>is_sig)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+<p>There are a few things happening in the above code. First, we create an empty list called <code>results_data</code> to store the results of each simulation.</p>
+<p>Then, we use a for loop to run the <code>sim_data()</code> function 1000 times, storing the results in the <code>results_data</code> list. After the loop, we combine all the results into a single data frame using <code>bind_rows()</code>.</p>
+<p>Finally, we calculate the power by taking the mean of the <code>is_sig</code> column, which gives us the proportion of simulations where the result was statistically significant.</p>
+<p>Normally, we would want the power to be at least 0.80, meaning that we would correctly reject the null hypothesis in at least 80% of the simulations when there is a true effect. If the calculated power is lower than this threshold, we may need to increase the sample size to achieve the desired power level. :::</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Why do we use a loop to run the simulation multiple times?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is a core part of the simulation approach to power analysis. By running the simulation multiple times, we can estimate the variability in the results and get a more accurate estimate of the power of the study. Each simulation represents a possible outcome of the study, and by aggregating the results, we can determine how often we would correctly reject the null hypothesis when there is a true effect.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>What does the final power estimate represent?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The final power estimate represents the probability of correctly rejecting the null hypothesis when there is a true effect in the population. It is calculated as the proportion of simulations where the result was statistically significant (p &lt; 0.05). A higher power estimate indicates a greater likelihood of detecting a true effect, while a lower power estimate suggests that the study may not have enough sensitivity to detect the effect of interest. Our usual goal is to achieve a power of at least 0.80. This would mean that when we run our real study, we have an 80% chance of detecting an effect of the same size, if it truly exists.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Can I increase the required power level?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Yes, you can increase the required power level to 0.90 or even higher if you want to be more confident in detecting a true effect. To do this, you would just need to increase the <code>n</code> value (sample size per group) in the simulation function until the power estimate reaches the desired level.</p>
+<p>However, keep in mind that increasing the power level will also increase the required sample size, which may have practical implications for the feasibility and cost of the study. It is important to balance the desired power level with the available resources and constraints of the study. In most cases, a power level of 0.80 is considered sufficient.</p>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

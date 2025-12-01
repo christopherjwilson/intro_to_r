@@ -768,11 +768,22 @@ window.onload = function() {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ol type="1">
+<ul>
+<li><p>Get the ages of the people on your table.</p></li>
+<li><p>Save them to an object called <strong>ages</strong> copying this example code:</p></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="annotated-cell-9"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="1" onclick="event.preventDefault();" href="">1</a><span id="annotated-cell-9-1" class="code-annotation-target"><a href="#annotated-cell-9-1" aria-hidden="true" tabindex="-1"></a>ages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">23</span>,<span class="dv">45</span>,<span class="dv">32</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-9" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="1" data-code-annotation="1">In this code</span>
+</dd>
+</dl>
+<ul>
 <li><p>Calculate the mean of the object <strong>ages</strong> and save it to an object called <strong>mean_age</strong>. Print the object <strong>mean_age</strong> in the console.</p></li>
 <li><p>Use the sd() function to calculate the standard deviation of the object <strong>ages</strong> and save it to an object called <strong>sd_age</strong>. Print the object <strong>sd_age</strong> in the console.</p></li>
 <li><p>Create a new object called <strong>ages_doubled</strong> that contains the object <strong>ages</strong> multiplied by 2. Print the object <strong>ages_doubled</strong> in the console.</p></li>
-</ol>
+</ul>
 </div>
 </div>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -912,17 +923,17 @@ Tip
 <div id="callout-18" class="callout-18-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>When you save objects in R, you assign them a name and use the &lt;- operator. However, if you use the same name more than once, this will overwrite the existing object. For example, this code contains an error. Can you see what it is?:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="annotated-cell-9"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-9-1"><a href="#annotated-cell-9-1" aria-hidden="true" tabindex="-1"></a></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="1" onclick="event.preventDefault();" href="">1</a><span id="annotated-cell-9-2" class="code-annotation-target"><a href="#annotated-cell-9-2" aria-hidden="true" tabindex="-1"></a>mean_age <span class="ot">&lt;-</span> <span class="fu">mean</span>(data<span class="sc">$</span>age)</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="2" onclick="event.preventDefault();" href="">2</a><span id="annotated-cell-9-3" class="code-annotation-target"><a href="#annotated-cell-9-3" aria-hidden="true" tabindex="-1"></a>mean_age <span class="ot">&lt;-</span> <span class="fu">mean</span>(data<span class="sc">$</span>id)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="annotated-cell-10"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-10-1"><a href="#annotated-cell-10-1" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="1" onclick="event.preventDefault();" href="">1</a><span id="annotated-cell-10-2" class="code-annotation-target"><a href="#annotated-cell-10-2" aria-hidden="true" tabindex="-1"></a>mean_age <span class="ot">&lt;-</span> <span class="fu">mean</span>(data<span class="sc">$</span>age)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="2" onclick="event.preventDefault();" href="">2</a><span id="annotated-cell-10-3" class="code-annotation-target"><a href="#annotated-cell-10-3" aria-hidden="true" tabindex="-1"></a>mean_age <span class="ot">&lt;-</span> <span class="fu">mean</span>(data<span class="sc">$</span>id)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-9" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-9" data-code-lines="2" data-code-annotation="1">The object <strong>mean_age</strong> is assigned the mean of the column <strong>age</strong> in the data frame <strong>data</strong>.</span>
+<span data-code-cell="annotated-cell-10" data-code-lines="2" data-code-annotation="1">The object <strong>mean_age</strong> is assigned the mean of the column <strong>age</strong> in the data frame <strong>data</strong>.</span>
 </dd>
-<dt data-target-cell="annotated-cell-9" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-9" data-code-lines="3" data-code-annotation="2">However, the next line of code assigns the mean of the column <strong>id</strong> in the data frame <strong>data</strong> to the object <strong>mean_age</strong>. This overwrites the existing object <strong>mean_age</strong>.</span>
+<span data-code-cell="annotated-cell-10" data-code-lines="3" data-code-annotation="2">However, the next line of code assigns the mean of the column <strong>id</strong> in the data frame <strong>data</strong> to the object <strong>mean_age</strong>. This overwrites the existing object <strong>mean_age</strong>.</span>
 </dd>
 </dl>
 </div>

@@ -765,6 +765,33 @@ model3  7 499.0346</code></pre>
 <li><p>The final model is the best model in terms of <span class="math inline">\(R^2\)</span> and model fit, suggesting that all of the predictors are important</p></li>
 </ul>
 </section>
+<section id="how-would-we-report-this-analysis" class="slide level2">
+<h2>How would we report this analysis?</h2>
+<ul>
+<li><p>We would tell the whole story</p></li>
+<li><p>If we focus only on the final model, this would be the same value as only running the final model</p></li>
+<li><p>The research question is answered by showing the relationship between the models</p></li>
+</ul>
+</section>
+<section id="generating-a-table-of-the-models" class="slide level2">
+<h2>Generating a table of the models</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb14-2"><a href=""></a>example_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"Datasets/regression_data.csv"</span>)</span>
+<span id="cb14-3"><a href=""></a></span>
+<span id="cb14-4"><a href=""></a>model0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(aggression_level <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> example_data)</span>
+<span id="cb14-5"><a href=""></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(aggression_level <span class="sc">~</span> treatment_group <span class="sc">+</span> treatment_duration, <span class="at">data =</span> example_data)</span>
+<span id="cb14-6"><a href=""></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(aggression_level <span class="sc">~</span> treatment_group <span class="sc">+</span> treatment_duration <span class="sc">+</span> trust_score, <span class="at">data =</span> example_data)</span>
+<span id="cb14-7"><a href=""></a></span>
+<span id="cb14-8"><a href=""></a><span class="fu">library</span>(sjPlot)</span>
+<span id="cb14-9"><a href=""></a></span>
+<span id="cb14-10"><a href=""></a>model_table <span class="ot">&lt;-</span> <span class="fu">tab_model</span>(model0, model1, model2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="example-table-of-models" class="slide level2">
+<h2>Example table of models</h2>
+
+<img data-src="images/regression_table.png" style="width:100.0%" class="r-stretch"></section>
 <section id="final-points" class="slide level2">
 <h2>Final points</h2>
 <ul>
