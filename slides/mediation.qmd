@@ -448,18 +448,29 @@ The plot reiterates what was on the previous slide:
 
 # Mediation analysis with a categorical mediator
 
-## Mediation analysis with a categorical mediator or predictor
+## Mediation analysis with a categorical mediator
 
--   The mediation package can also be used to test for mediation with a categorical mediator or predictor.
+-   The mediation package can also be used to test for mediation with a categorical mediator.
 
 -   The approach is the same as above, but the regression models will specify the mediator or predictor as a factor [example here](https://christopherjwilson.github.io/APRM23/descriptives.html#lets-make-sure-our-data-types-are-correct-1).
 
+<<<<<<< Updated upstream
 ## Mediation analysis with binary outcomes 
 
 -   This will mean that some of the regression models will be logistic regression models, like this :
 
 ```         
 model <- glm(Outcome ~ Predictor,family="binomial",data=myData)
+=======
+## Mediation analysis with binary outcome
+
+- It is also possible to test mediation if your outcome is binary for example (e.g., Yes / No)
+
+-   This will mean that some of the regression models will be logistic regression models, like this (glm is used for logistic regression) :
+
+```         
+model <- glm(Outcome ~ Predictor,family="binomial",data=myData) 
+>>>>>>> Stashed changes
 ```
 
 [example here](https://www.r-bloggers.com/2015/09/how-to-perform-a-logistic-regression-in-r/)
@@ -477,6 +488,8 @@ model <- glm(Outcome ~ Predictor,family="binomial",data=myData)
 -   What is bootstrapping?
 
 -   Mediation analysis with a categorical mediator or predictor
+
+- Mediation analysis with other regression types 
 
 ## References {.smaller}
 
