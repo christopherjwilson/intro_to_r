@@ -424,7 +424,7 @@ paf
 
 ```{r}
 paf1 <- fa(raq,
-nfactors = 2,
+nfactors = 4,
 fm="pa",
 max.iter = 100,
 rotate = "none")
@@ -466,7 +466,7 @@ plot(paf1)
 
 ```{r}
 paf2 <- fa(raq,
-nfactors = 2,
+nfactors = 4,
 fm="pa",
 max.iter = 100,
 rotate = "oblimin") ## oblimin is oblique rotation

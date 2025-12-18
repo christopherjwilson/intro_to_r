@@ -1,0 +1,50 @@
+---
+title: "Formative Exercise (Statistics with R)"
+subtitle: "Research Methods 1: Doctorate in Clinical Psychology"
+execute:
+  echo: false
+  eval: false
+  warning: false
+  message: false
+Institution: "Teesside University"
+format:
+  html:
+    css: ["../include/style.css","../include/glossary.css","../include/booktem.css", "../include/webex.css", "../include/rstudio_default_code.css"]
+    include-after-body: ["../include/webex.js"]
+---
+
+For this exercise you will need to download the following dataset: [data_formative26.csv](data_formative26.csv)
+
+Right click and select <if>Save link as...</if> to download the file. Save it in the same folder as your script.
+
+# Research Overview
+
+A research team is investigating the effectiveness of different psychological treatments on improving mental health outcomes. 500 participants were randomly assigned to one of three conditions: **Treatment as Usual (Control)**, **Cognitive Behavioral Therapy (CBT)**, or **Acceptance and Commitment Therapy (ACT)**.
+
+The primary outcome is a **change score** (post-treatment minus pre-treatment scores); higher values indicate greater improvement. The team also collected data on **Sleep Quality**, **Stress Level**, and **Age**.
+
+Recent literature suggests that while stress is a known factor in recovery, the effectiveness of specific therapies might actually depend on the participant's sleep quality. The team wants you to analyze the data to determine how these variables interact to predict patient improvement.
+
+# Questions
+
+1.  **Descriptive Statistics:** Report the mean and standard deviation of the outcome scores for each of the three treatment conditions.
+
+2.  **Sample Characteristics:** The known population average for sleep quality is 55. Based on your sample’s mean and standard deviation, how do these participants compare to the general population?
+
+3.  **Data Filtering:** The research team has decided to restrict their analysis to adults aged 18–65. Filter the dataset accordingly and provide the updated mean and standard deviation for the outcome scores by group.
+
+4.  **Model Building:** Conduct an analysis to investigate the researchers' main questions. You should use an approach that allows you to see the incremental contribution of treatment groups, covariates, and interactions.
+
+5.  **Covariate Influence:** Does the initial level of stress significantly influence the improvement in mental health scores?
+
+6.  **Treatment Interaction:** Does the data support the idea that the effectiveness of CBT or ACT is dependent on a participant's sleep quality? Explain your reasoning using your model’s output.
+
+7.  **Moderation Effects:** If a relationship exists between treatment and sleep quality, identify the specific conditions under which sleep quality significantly predicts the outcome.
+
+8.  **Synthesis:** Provide a brief interpretation of your findings regarding the effectiveness of these treatments in relation to sleep and stress. What should the researchers conclude?
+
+9.  **Assumption Testing:** Evaluate the diagnostic plots for your final model. Are there any violations that suggest we should be cautious with our interpretation?
+
+### Technical Note for Question 7
+
+> If you are using the `rockchalk` package to test and plot your slopes, ensure the **continuous variable** is assigned to the x-axis (`plotx`) and the **categorical variable** is assigned as the moderator (`modx`). Although sleep is the moderator, the order does not matter when plotting, and having the categorical variable as the 3 separate slopes will avoid errors.
