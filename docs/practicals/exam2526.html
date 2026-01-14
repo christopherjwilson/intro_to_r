@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -81,22 +116,383 @@ ul.task-list li input[type="checkbox"] {
 <section id="questions" class="level1">
 <h1>Questions</h1>
 <ol type="1">
-<li><p><strong>Descriptive Statistics:</strong> Report the mean and standard deviation of the outcome scores for each of the three treatment conditions.</p></li>
-<li><p><strong>Sample Characteristics:</strong> The known population average for sleep quality is 55. Based on your sample’s mean and standard deviation, how do these participants compare to the general population?</p></li>
-<li><p><strong>Data Filtering:</strong> The research team has decided to restrict their analysis to adults aged 18–65. Filter the dataset accordingly and provide the updated mean and standard deviation for the outcome scores by group.</p></li>
-<li><p><strong>Model Building:</strong> Conduct an analysis to investigate the researchers’ main questions. You should use an approach that allows you to see the incremental contribution of treatment groups, covariates, and interactions.</p></li>
-<li><p><strong>Covariate Influence:</strong> Does the initial level of stress significantly influence the improvement in mental health scores?</p></li>
-<li><p><strong>Treatment Interaction:</strong> Does the data support the idea that the effectiveness of CBT or ACT is dependent on a participant’s sleep quality? Explain your reasoning using your model’s output.</p></li>
-<li><p><strong>Moderation Effects:</strong> If a relationship exists between treatment and sleep quality, identify the specific conditions under which sleep quality significantly predicts the outcome.</p></li>
-<li><p><strong>Synthesis:</strong> Provide a brief interpretation of your findings regarding the effectiveness of these treatments in relation to sleep and stress. What should the researchers conclude?</p></li>
-<li><p><strong>Assumption Testing:</strong> Evaluate the diagnostic plots for your final model. Are there any violations that suggest we should be cautious with our interpretation?</p></li>
+<li><strong>Descriptive Statistics:</strong> Report the mean and standard deviation of the outcome scores for each of the three treatment conditions.</li>
 </ol>
-<section id="technical-note-for-question-7" class="level3">
-<h3 class="anchored" data-anchor-id="technical-note-for-question-7">Technical Note for Question 7</h3>
-<blockquote class="blockquote">
-<p>If you are using the <code>rockchalk</code> package to test and plot your slopes, ensure the <strong>continuous variable</strong> is assigned to the x-axis (<code>plotx</code>) and the <strong>categorical variable</strong> is assigned as the moderator (<code>modx</code>). Although sleep is the moderator, the order does not matter when plotting, and having the categorical variable as the 3 separate slopes will avoid errors.</p>
-</blockquote>
-</section>
+<p><strong>Answer:</strong> Here we can use one of several approaches to calculate the mean and standard deviation by group. One approach is to use the <code>dplyr</code> (also present in the <code>tidyverse</code>) package to group the data by treatment condition and then summarize the mean and standard deviation for each group.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>formative_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data_formative26.csv"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>summary_stats <span class="ot">&lt;-</span> formative_data <span class="sc">%&gt;%</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(treatment_condition) <span class="sc">%&gt;%</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_outcome =</span> <span class="fu">mean</span>(outcome),</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_outcome =</span> <span class="fu">sd</span>(outcome)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>summary_stats</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  treatment_condition mean_outcome sd_outcome
+  &lt;chr&gt;                      &lt;dbl&gt;      &lt;dbl&gt;
+1 ACT                         7.81       7.09
+2 CBT                         3.45       5.66
+3 control                    -2.07       5.38</code></pre>
+</div>
+</div>
+<p>Another approach is to use the descriptive statistics functions from the <code>psych</code> package:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">describeBy</span>(formative_data<span class="sc">$</span>outcome, <span class="at">group =</span> formative_data<span class="sc">$</span>treatment_condition)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ Descriptive statistics by group 
+group: ACT
+   vars   n mean   sd median trimmed  mad   min   max range skew kurtosis   se
+X1    1 146 7.81 7.09      8    7.65 5.92 -7.13 30.89 38.01 0.32     0.33 0.59
+------------------------------------------------------------ 
+group: CBT
+   vars   n mean   sd median trimmed  mad    min   max range skew kurtosis   se
+X1    1 176 3.45 5.66   3.15    3.42 5.25 -13.86 20.61 34.47 0.08     0.47 0.43
+------------------------------------------------------------ 
+group: control
+   vars   n  mean   sd median trimmed  mad    min  max range  skew kurtosis  se
+X1    1 178 -2.07 5.38  -1.78   -1.99 5.64 -14.25 11.8 26.05 -0.07    -0.58 0.4</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li><strong>Sample Characteristics:</strong> The known population average for sleep quality is 55. Based on your sample’s mean and standard deviation, how do these participants compare to the general population?</li>
+</ol>
+<p><strong>Answer:</strong> To compare the sample’s mean sleep quality to the known population average, we can calculate the sample mean and standard deviation for sleep quality and then compare it to the population average of 55.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sleep_stats <span class="ot">&lt;-</span> formative_data <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_sleep =</span> <span class="fu">mean</span>(sleep_quality, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_sleep =</span> <span class="fu">sd</span>(sleep_quality, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>sleep_stats</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  mean_sleep sd_sleep
+1   49.56254 9.165177</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now we can compare the sample mean to the population average</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>We might also consider conducting a one-sample t-test to see if the sample mean significantly differs from the population mean:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>t_test_result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(formative_data<span class="sc">$</span>sleep_quality, <span class="at">mu =</span> <span class="dv">55</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>t_test_result</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  formative_data$sleep_quality
+t = -13.266, df = 499, p-value &lt; 2.2e-16
+alternative hypothesis: true mean is not equal to 55
+95 percent confidence interval:
+ 48.75724 50.36784
+sample estimates:
+mean of x 
+ 49.56254 </code></pre>
+</div>
+</div>
+<ol start="3" type="1">
+<li><strong>Data Filtering:</strong> The research team has decided to restrict their analysis to adults aged 18–65. Filter the dataset accordingly and provide the updated mean and standard deviation for the outcome scores by group.</li>
+</ol>
+<p><strong>Answer:</strong> We can filter the dataset to include only participants aged 18 to 65 and then recalculate the mean and standard deviation for the outcome scores by treatment group.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> formative_data <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age <span class="sc">&gt;=</span> <span class="dv">18</span> <span class="sc">&amp;</span> age <span class="sc">&lt;=</span> <span class="dv">65</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>filtered_summary_stats <span class="ot">&lt;-</span> filtered_data <span class="sc">%&gt;%</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(treatment_condition) <span class="sc">%&gt;%</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_outcome =</span> <span class="fu">mean</span>(outcome, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_outcome =</span> <span class="fu">sd</span>(outcome, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>filtered_summary_stats</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  treatment_condition mean_outcome sd_outcome
+  &lt;chr&gt;                      &lt;dbl&gt;      &lt;dbl&gt;
+1 ACT                         7.78       7.19
+2 CBT                         3.44       5.77
+3 control                    -2.21       5.29</code></pre>
+</div>
+</div>
+<ol start="4" type="1">
+<li><strong>Model Building:</strong> Conduct an analysis to investigate the researchers’ main questions. You should use an approach that allows you to see the incremental contribution of treatment groups, covariates, and interactions.</li>
+</ol>
+<p><strong>Answer:</strong> We can use hierarchical multiple regression to investigate the effects of treatment groups, covariates (sleep quality and stress level), and their interactions on the outcome scores. We will build five models (including the null model) to see the incremental contribution of each set of predictors:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Null model</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>model0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(outcome <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> filtered_data)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Model 1: Treatment only</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(outcome <span class="sc">~</span> treatment_condition, <span class="at">data =</span> filtered_data)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Model 2: Treatment + stress</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(outcome <span class="sc">~</span> treatment_condition <span class="sc">+</span> stress_level, <span class="at">data =</span> filtered_data)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Model 3: Treatment + stress + sleep</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(outcome <span class="sc">~</span> treatment_condition <span class="sc">+</span> sleep_quality <span class="sc">+</span> stress_level, <span class="at">data =</span> filtered_data)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Model 4: Full model with interaction</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>model4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(outcome <span class="sc">~</span> treatment_condition <span class="sc">*</span> sleep_quality <span class="sc">+</span> stress_level, <span class="at">data =</span> filtered_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>We then need to compare the models using ANOVA and check the summary of each model:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model0, model1, model2,model3, model4)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Model 1: outcome ~ 1
+Model 2: outcome ~ treatment_condition
+Model 3: outcome ~ treatment_condition + stress_level
+Model 4: outcome ~ treatment_condition + sleep_quality + stress_level
+Model 5: outcome ~ treatment_condition * sleep_quality + stress_level
+  Res.Df   RSS Df Sum of Sq        F    Pr(&gt;F)    
+1    463 24651                                    
+2    461 16956  2    7695.1 135.7771 &lt; 2.2e-16 ***
+3    460 15905  1    1050.9  37.0858 2.399e-09 ***
+4    459 13500  1    2405.0  84.8719 &lt; 2.2e-16 ***
+5    457 12950  2     549.6   9.6966 7.511e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(model0, model1, model2, model3, model4)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       df      AIC
+model0  2 3164.099
+model1  4 2994.467
+model2  5 2966.778
+model3  6 2892.705
+model4  8 2877.421</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model4)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = outcome ~ treatment_condition * sleep_quality + 
+    stress_level, data = filtered_data)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-16.0809  -3.4940   0.1367   3.4062  14.2141 
+
+Coefficients:
+                                         Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)                              -1.80545    2.88899  -0.625    0.532
+treatment_conditionCBT                   -1.44104    3.32052  -0.434    0.665
+treatment_conditioncontrol                3.60124    3.36965   1.069    0.286
+sleep_quality                             0.35584    0.04588   7.755 5.79e-14
+stress_level                             -0.26913    0.05059  -5.320 1.63e-07
+treatment_conditionCBT:sleep_quality     -0.04579    0.06653  -0.688    0.492
+treatment_conditioncontrol:sleep_quality -0.27534    0.06631  -4.152 3.93e-05
+                                            
+(Intercept)                                 
+treatment_conditionCBT                      
+treatment_conditioncontrol                  
+sleep_quality                            ***
+stress_level                             ***
+treatment_conditionCBT:sleep_quality        
+treatment_conditioncontrol:sleep_quality ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 5.323 on 457 degrees of freedom
+Multiple R-squared:  0.4747,    Adjusted R-squared:  0.4678 
+F-statistic: 68.82 on 6 and 457 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<ol start="5" type="1">
+<li><strong>Covariate Influence:</strong> Does the initial level of stress significantly influence the improvement in mental health scores?</li>
+</ol>
+<p><strong>Answer:</strong> To determine if the initial level of stress significantly influences the improvement in mental health scores, we can examine the coefficients and p-values for the stress_level variable in the regression models that include it (Model 3 and Model 4). We might also want to run a model where sleep is not included to isolate the effect of stress.</p>
+<ol start="6" type="1">
+<li><strong>Treatment Interaction:</strong> Does the data support the idea that the effectiveness of CBT or ACT is dependent on a participant’s sleep quality? Explain your reasoning using your model’s output.</li>
+</ol>
+<p><strong>Answer:</strong> To assess whether the effectiveness of CBT or ACT depends on sleep quality, we need to look at the interaction terms between treatment and sleep quality in Model 4. If the interaction terms are statistically significant (p &lt; .05), this would suggest that the effect of treatment on outcome scores varies depending on sleep quality. We can interpret the coefficients to understand how sleep quality modifies the treatment effects. Since sleep definitely interacts with treatment, we can say that the answer is yes.</p>
+<ol start="7" type="1">
+<li><strong>Moderation Effects:</strong> If a relationship exists between treatment and sleep quality, identify the specific conditions under which sleep quality significantly predicts the outcome.</li>
+</ol>
+<p><strong>Answer:</strong> To identify the specific conditions under which sleep quality significantly predicts the outcome, we can use the <code>rockchalk</code> package to plot the slopes of the interaction between treatment condition and sleep quality. This will help visualize how sleep quality affects the outcome for each treatment group.</p>
+<p>It it also possible to use the <code>interactions</code> package to create interaction plots and test the slopes for significance.</p>
+<p>However, to test the points of significance with a categorical variable on the x-axis, we need to use the emmmeans package to probe the interaction further.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># relevel the treatment condition to set Control as the reference group</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>filtered_data<span class="sc">$</span>treatment_condition <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(filtered_data<span class="sc">$</span>treatment_condition)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>filtered_data<span class="sc">$</span>treatment_condition <span class="ot">&lt;-</span> <span class="fu">relevel</span>(filtered_data<span class="sc">$</span>treatment_condition, <span class="at">ref =</span> <span class="st">"control"</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rockchalk)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>modelSleep <span class="ot">&lt;-</span> <span class="fu">lm</span>(outcome <span class="sc">~</span> treatment_condition <span class="sc">*</span> sleep_quality <span class="sc">+</span> stress_level, <span class="at">data =</span> filtered_data)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="do">## plot the interactions</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>ps <span class="ot">&lt;-</span> <span class="fu">plotSlopes</span>(modelSleep, </span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>                           <span class="at">plotx =</span> <span class="st">"treatment_condition"</span>, </span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>                           <span class="at">modx =</span> <span class="st">"sleep_quality"</span>, </span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>                           <span class="at">modxVals =</span> <span class="st">"std.dev."</span>, <span class="co"># This picks Mean, +1SD, and -1SD</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>                           <span class="at">xlab =</span> <span class="st">"Treatment Condition"</span>, </span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="exam2526_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># alternative approach </span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(interactions)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">interact_plot</span>(modelSleep, </span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">pred =</span> treatment_condition, </span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">modx =</span> sleep_quality, </span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">modx.values =</span> <span class="st">"plus-minus"</span>, <span class="co"># Plots Mean +/- 1 SD</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">plot.points =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="exam2526_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using emmeans to understand the significant differences</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># most basic version</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>emmeans_results <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(modelSleep, <span class="sc">~</span> treatment_condition <span class="sc">*</span> sleep_quality)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co"># pairwise comparisons</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(emmeans_results)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> contrast                                                                 
+ control sleep_quality49.4598275862069 - ACT sleep_quality49.4598275862069
+ control sleep_quality49.4598275862069 - CBT sleep_quality49.4598275862069
+ ACT sleep_quality49.4598275862069 - CBT sleep_quality49.4598275862069    
+ estimate    SE  df t.ratio p.value
+   -10.02 0.613 457 -16.335  &lt;.0001
+    -6.31 0.595 457 -10.614  &lt;.0001
+     3.71 0.625 457   5.930  &lt;.0001
+
+P value adjustment: tukey method for comparing a family of 3 estimates </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># complete implementation</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>emmeans_results <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  modelSleep, <span class="sc">~</span> treatment_condition <span class="sc">*</span> sleep_quality, </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">at =</span> <span class="fu">list</span>(<span class="at">sleep_quality =</span> <span class="fu">c</span>(<span class="fu">mean</span>(filtered_data<span class="sc">$</span>sleep_quality) <span class="sc">-</span> <span class="fu">sd</span>(filtered_data<span class="sc">$</span>sleep_quality),</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>                              <span class="fu">mean</span>(filtered_data<span class="sc">$</span>sleep_quality), </span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>                              <span class="fu">mean</span>(filtered_data<span class="sc">$</span>sleep_quality) <span class="sc">+</span> <span class="fu">sd</span>(filtered_data<span class="sc">$</span>sleep_quality)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>                              )</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(emmeans_results)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> contrast                                                                     
+ control sleep_quality40.3578663200678 - ACT sleep_quality40.3578663200678    
+ control sleep_quality40.3578663200678 - CBT sleep_quality40.3578663200678    
+ control sleep_quality40.3578663200678 - control sleep_quality49.4598275862069
+ control sleep_quality40.3578663200678 - ACT sleep_quality49.4598275862069    
+ control sleep_quality40.3578663200678 - CBT sleep_quality49.4598275862069    
+ control sleep_quality40.3578663200678 - control sleep_quality58.561788852346 
+ control sleep_quality40.3578663200678 - ACT sleep_quality58.561788852346     
+ control sleep_quality40.3578663200678 - CBT sleep_quality58.561788852346     
+ ACT sleep_quality40.3578663200678 - CBT sleep_quality40.3578663200678        
+ ACT sleep_quality40.3578663200678 - control sleep_quality49.4598275862069    
+ ACT sleep_quality40.3578663200678 - ACT sleep_quality49.4598275862069        
+ ACT sleep_quality40.3578663200678 - CBT sleep_quality49.4598275862069        
+ ACT sleep_quality40.3578663200678 - control sleep_quality58.561788852346     
+ ACT sleep_quality40.3578663200678 - ACT sleep_quality58.561788852346         
+ ACT sleep_quality40.3578663200678 - CBT sleep_quality58.561788852346         
+ CBT sleep_quality40.3578663200678 - control sleep_quality49.4598275862069    
+ CBT sleep_quality40.3578663200678 - ACT sleep_quality49.4598275862069        
+ CBT sleep_quality40.3578663200678 - CBT sleep_quality49.4598275862069        
+ CBT sleep_quality40.3578663200678 - control sleep_quality58.561788852346     
+ CBT sleep_quality40.3578663200678 - ACT sleep_quality58.561788852346         
+ CBT sleep_quality40.3578663200678 - CBT sleep_quality58.561788852346         
+ control sleep_quality49.4598275862069 - ACT sleep_quality49.4598275862069    
+ control sleep_quality49.4598275862069 - CBT sleep_quality49.4598275862069    
+ control sleep_quality49.4598275862069 - control sleep_quality58.561788852346 
+ control sleep_quality49.4598275862069 - ACT sleep_quality58.561788852346     
+ control sleep_quality49.4598275862069 - CBT sleep_quality58.561788852346     
+ ACT sleep_quality49.4598275862069 - CBT sleep_quality49.4598275862069        
+ ACT sleep_quality49.4598275862069 - control sleep_quality58.561788852346     
+ ACT sleep_quality49.4598275862069 - ACT sleep_quality58.561788852346         
+ ACT sleep_quality49.4598275862069 - CBT sleep_quality58.561788852346         
+ CBT sleep_quality49.4598275862069 - control sleep_quality58.561788852346     
+ CBT sleep_quality49.4598275862069 - ACT sleep_quality58.561788852346         
+ CBT sleep_quality49.4598275862069 - CBT sleep_quality58.561788852346         
+ control sleep_quality58.561788852346 - ACT sleep_quality58.561788852346      
+ control sleep_quality58.561788852346 - CBT sleep_quality58.561788852346      
+ ACT sleep_quality58.561788852346 - CBT sleep_quality58.561788852346          
+ estimate    SE  df t.ratio p.value
+   -7.511 0.884 457  -8.497  &lt;.0001
+   -4.222 0.851 457  -4.963  &lt;.0001
+   -0.733 0.436 457  -1.679  0.7591
+  -10.750 0.772 457 -13.920  &lt;.0001
+   -7.044 0.757 457  -9.303  &lt;.0001
+   -1.465 0.873 457  -1.679  0.7591
+  -13.988 0.872 457 -16.042  &lt;.0001
+   -9.866 0.899 457 -10.977  &lt;.0001
+    3.289 0.850 457   3.871  0.0039
+    6.778 0.749 457   9.046  &lt;.0001
+   -3.239 0.418 457  -7.755  &lt;.0001
+    0.467 0.756 457   0.617  0.9995
+    6.045 0.850 457   7.113  &lt;.0001
+   -6.478 0.835 457  -7.755  &lt;.0001
+   -2.355 0.898 457  -2.622  0.1802
+    3.489 0.710 457   4.915  &lt;.0001
+   -6.528 0.735 457  -8.877  &lt;.0001
+   -2.822 0.439 457  -6.433  &lt;.0001
+    2.756 0.815 457   3.380  0.0222
+   -9.767 0.842 457 -11.604  &lt;.0001
+   -5.644 0.877 457  -6.433  &lt;.0001
+  -10.017 0.613 457 -16.335  &lt;.0001
+   -6.311 0.595 457 -10.614  &lt;.0001
+   -0.733 0.436 457  -1.679  0.7591
+  -13.256 0.734 457 -18.048  &lt;.0001
+   -9.133 0.767 457 -11.910  &lt;.0001
+    3.706 0.625 457   5.930  &lt;.0001
+    9.284 0.732 457  12.677  &lt;.0001
+   -3.239 0.418 457  -7.755  &lt;.0001
+    0.884 0.791 457   1.118  0.9714
+    5.578 0.717 457   7.777  &lt;.0001
+   -6.944 0.747 457  -9.297  &lt;.0001
+   -2.822 0.439 457  -6.433  &lt;.0001
+  -12.523 0.836 457 -14.975  &lt;.0001
+   -8.401 0.865 457  -9.707  &lt;.0001
+    4.122 0.890 457   4.631  0.0002
+
+P value adjustment: tukey method for comparing a family of 9 estimates </code></pre>
+</div>
+</div>
+<p>The code above will help identify the specific conditions (i.e., levels of sleep quality) under which sleep quality significantly predicts the outcome for each treatment group. The first selection is mean - 1 SD, the second is the mean, and the third is mean + 1 SD. It is up to you to specify which levels are meaningful for your analysis, but for this example, the three levels are consistent with the previous plots.</p>
+<p>The pairwise comparisons will then compare each combination of treatment condition and sleep quality level to see where significant differences are.</p>
+<ol start="8" type="1">
+<li><strong>Synthesis:</strong> Provide a brief interpretation of your findings regarding the effectiveness of these treatments in relation to sleep and stress. What should the researchers conclude?</li>
+</ol>
+<p><strong>Answer:</strong> Based on the analysis, we found that treatment and stress levels significantly predict improvement in mental health scores. The interaction between treatment condition and sleep quality was also significant, indicating that the effectiveness of CBT and ACT varies depending on the participant’s sleep quality.</p>
+<p>When conducting the moderation analysis, we observed that for participants with higher sleep quality, both CBT and ACT were more effective compared to the control group. However, for participants with lower sleep quality, the effectiveness of these treatments was diminished.</p>
+<p>Using emmeans pairwise comparisons, we identified specific conditions under which sleep quality significantly predicted outcomes (too many significant values to list here). The interaction was generally significant across most levels of sleep quality.</p>
+<p>Overall, this suggests that sleep quality is an important factor to consider when evaluating treatment effectiveness, even when controlling for stress levels.</p>
+<ol start="9" type="1">
+<li><strong>Assumption Testing:</strong> Evaluate the diagnostic plots for your final model. Are there any violations that suggest we should be cautious with our interpretation?</li>
+</ol>
+<p><strong>Answer:</strong> To evaluate the diagnostic plots for the final model (Model 4), we can use the <code>plot()</code> function in R, which provides several diagnostic plots to assess the assumptions of linear regression, including normality of residuals, homoscedasticity, and leverage points. We can also use the <code>mctest()</code> package to test for multicollinearity.</p>
 </section>
 
 </main>
