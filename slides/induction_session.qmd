@@ -21,7 +21,7 @@ institute: Teesside University
 
 logo: "logo.jpg"
 csl: apa.csl
-width: 1280
+width: 1800
 ---
 
 ## Overview
@@ -63,7 +63,7 @@ width: 1280
 - Powerful and flexible
 
 ```{=html}
-<iframe width="780" height="300" src="https://nhsrcommunity.com/"></iframe>
+<iframe width="900" height="600" src="https://nhsrcommunity.com/"></iframe>
 ```
 
 ## Benefits of learning R
@@ -147,15 +147,7 @@ The quantitative portion of the module is built around some key concepts:
 
 - You will not use all the techniques we cover, but understanding them will help you understand the literature and design your own research
 
-## Some questions
 
-![scan the qr code to respond](qr.png)
-
-## Responses
-
-<iframe width="640px" height="480px" src="https://forms.office.com/Pages/DesignPageV2.aspx?origin=NeoPortalPage&amp;subpage=design&amp;id=WxHSQ16ltkad97AziOz8YIq5JS4atlxFmSD9MKOKizlUOEtZTFhZUU9YOFNRQVpXVzdJRkVZQUFWNC4u&amp;embed=true&amp;topview=Presentation" frameborder="0" marginwidth="0" marginheight="0" style="border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen>
-
-</iframe>
 
 ## Before next session
 
@@ -163,7 +155,10 @@ The quantitative portion of the module is built around some key concepts:
 
 You can use the videos on <https://christopherjwilson.github.io/intro_to_r/intro.html> to help you
 
-## Questions
+
+# Questions?
+
+## Further Questions
 
 For questions about this module, please use the discussion board on Blackboard.
 
