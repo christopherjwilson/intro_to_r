@@ -17,7 +17,7 @@ library(tidyverse)
 
 # Load the album_sales dataset. The location of the dataset will be different based on where you saved it on your computer.
 
-album_sales <- read.csv("Datasets/album_sales.csv")
+album_sales <- read.csv("datasets/album_sales.csv")
 
 # Display the first few rows of the dataset
 

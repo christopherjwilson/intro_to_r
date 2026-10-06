@@ -1,72 +1,22 @@
 render_book_slides <- function(...) {
-
-  # copy the file _quarto_book.yml to _quarto.yml
-  file.copy("_quarto_book.yml", "_quarto.yml", overwrite = T)
-  # render the book
-  quarto::quarto_render(..., as_job = FALSE)
- 
-  # copy the file 
-  file.copy("_quarto_slides.yml", "_quarto.yml", overwrite = T)
-  quarto::quarto_render(..., as_job = FALSE)
+  # 1. Render the book
+  quarto::quarto_render(as_job = FALSE)
   
+  # 2. Render all slides using the slides sub-project
+  quarto::quarto_render(input = "slides", as_job = FALSE)
   
-  file.copy("_quarto_practicals.yml", "_quarto.yml", overwrite = T)
-  quarto::quarto_render(..., as_job = FALSE)
-
+  # 3. Render practicals using the practicals profile
+  quarto::quarto_render(profile = "practicals", as_job = FALSE)
   
+  # 4. Copy static assets (PDFs and CSVs)
+  copy_assets <- function(from_dir, to_dir, ext) {
+    files <- list.files(from_dir, pattern = paste0("\\", ext, "$"), full.names = TRUE)
+    dir.create(to_dir, recursive = TRUE, showWarnings = FALSE)
+    file.copy(files, to_dir, overwrite = TRUE)
+  }
   
-  ## copy all pdf files from slides to docs/slides
-  # Define the directory to search
-  source_dir <- "slides/"
-  # Specify the file extension to copy (e.g., ".pdf")
-  file_extension <- ".pdf"
-  # Get a list of all files with the specified extension
-  pdf_files <- list.files(source_dir, pattern = file_extension)
-  # Destination directory where you want to copy the files
-  dest_dir <- "docs/slides/"
-  # copy the files to the destination directory
-  file.copy(file.path(source_dir, pdf_files), dest_dir, overwrite = TRUE)
-  
-  # Define the directory to search
-  source_dir <- "slides/"
-  # Specify the file extension to copy (e.g., ".csv")
-  file_extension <- ".csv"
-  # Get a list of all files with the specified extension
-  csv_files <- list.files(source_dir, pattern = file_extension)
-  # Destination directory where you want to copy the files
-  dest_dir <- "docs/slides/"
-  # copy the files to the destination directory
-  file.copy(file.path(source_dir, csv_files), dest_dir, overwrite = TRUE)
-  
-  ## As above, copy all the csv and pdf files in the practicals folder to the docs/practicals folder
-  
-  # Define the directory to search
-  source_dir <- "practicals/"
-  # Specify the file extension to copy (e.g., ".csv")
-  file_extension <- ".csv"
-  # Get a list of all files with the specified extension
-  csv_files <- list.files(source_dir, pattern = file_extension)
-  # Destination directory where you want to copy the files
-  dest_dir <- "docs/practicals/"
-  # copy the files to the destination directory
-  file.copy(file.path(source_dir, csv_files), dest_dir, overwrite = TRUE)
-  
-  # Define the directory to search
-  source_dir <- "practicals/"
-  # Specify the file extension to copy (e.g., ".csv")
-  file_extension <- ".pdf"
-  # Get a list of all files with the specified extension
-  pdf_files <- list.files(source_dir, pattern = file_extension)
-  # Destination directory where you want to copy the files
-  dest_dir <- "docs/practicals/"
-  # copy the files to the destination directory
-  file.copy(file.path(source_dir, pdf_files), dest_dir, overwrite = TRUE)
-  
+  copy_assets("slides", "docs/slides", ".pdf")
+  copy_assets("slides", "docs/slides", ".csv")
+  copy_assets("practicals", "docs/practicals", ".pdf")
+  copy_assets("practicals", "docs/practicals", ".csv")
 }
-
-render_book_slides()
-
-
-
-
-

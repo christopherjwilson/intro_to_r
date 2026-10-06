@@ -6,8 +6,8 @@
 <script src="multiplePredictors_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="multiplePredictors_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="multiplePredictors_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="multiplePredictors_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.25">
+<link href="multiplePredictors_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="Dr Christopher Wilson">
   <title>Multiple regression models</title>
@@ -17,10 +17,16 @@
   <link rel="stylesheet" href="multiplePredictors_files/libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="multiplePredictors_files/libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -95,7 +101,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="multiplePredictors_files/libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
+  <link rel="stylesheet" href="multiplePredictors_files/libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
   <link rel="stylesheet" href="include/style.css">
   <link href="multiplePredictors_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="multiplePredictors_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -203,7 +209,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Dr Christopher Wilson 
+Dr Christopher Wilson
 </div>
         <p class="quarto-title-affiliation">
             Teesside University
@@ -332,7 +338,7 @@ Dr Christopher Wilson
 <li>The process is the same as what we have done previously. The additional predictors are added to the model.</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> data, depression <span class="sc">~</span> age <span class="sc">+</span> gender <span class="sc">+</span> stress <span class="sc">+</span> loneliness <span class="sc">+</span> selfesteem)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-label="1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> data, depression <span class="sc">~</span> age <span class="sc">+</span> gender <span class="sc">+</span> stress <span class="sc">+</span> loneliness <span class="sc">+</span> selfesteem)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="visualising-this-model" class="slide level2">
@@ -425,9 +431,9 @@ Dr Christopher Wilson
 <li>We can test for multicollinearity using the <func>mctest()</func> function, from the <pkg>mctest</pkg> package</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1"></a><span class="fu">library</span>(mctest)</span>
-<span id="annotated-cell-2-2"><a href="#annotated-cell-2-2"></a></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1" onclick="event.preventDefault();" href="">1</a><span id="annotated-cell-2-3" class="code-annotation-target"><a href="#annotated-cell-2-3"></a><span class="fu">mctest</span>(model1, <span class="at">type=</span> <span class="st">"b"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1" aria-label="1"></a><span class="fu">library</span>(mctest)</span>
+<span id="annotated-cell-2-2"><a href="#annotated-cell-2-2" aria-label="2"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1" onclick="event.preventDefault();" href="">1</a><span id="annotated-cell-2-3" class="code-annotation-target"><a href="#annotated-cell-2-3" aria-label="3"></a><span class="fu">mctest</span>(model1, <span class="at">type=</span> <span class="st">"b"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
@@ -441,9 +447,9 @@ Dr Christopher Wilson
 <section id="section" class="slide level2">
 <h2></h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy"><code class="sourceCode r"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1"></a><span class="fu">library</span>(mctest)</span>
-<span id="annotated-cell-3-2"><a href="#annotated-cell-3-2"></a></span>
-<span id="annotated-cell-3-3"><a href="#annotated-cell-3-3"></a><span class="fu">mctest</span>(model1, <span class="at">type=</span> <span class="st">"b"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy"><code class="sourceCode r"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1" aria-label="1"></a><span class="fu">library</span>(mctest)</span>
+<span id="annotated-cell-3-2"><a href="#annotated-cell-3-2" aria-label="2"></a></span>
+<span id="annotated-cell-3-3"><a href="#annotated-cell-3-3" aria-label="3"></a><span class="fu">mctest</span>(model1, <span class="at">type=</span> <span class="st">"b"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -518,17 +524,17 @@ R-square of y on all x: 0.8583
 <li><p>We can use this in combination with our diagnostic plots (from last week)</p></li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="fu">library</span>(gvlma)</span>
-<span id="cb3-2"><a href=""></a></span>
-<span id="cb3-3"><a href=""></a><span class="fu">gvlma</span>(model1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="" aria-label="1"></a><span class="fu">library</span>(gvlma)</span>
+<span id="cb3-2"><a href="" aria-label="2"></a></span>
+<span id="cb3-3"><a href="" aria-label="3"></a><span class="fu">gvlma</span>(model1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="viewing-the-output-of-gvlma" class="slide level2 smaller">
 <h2>Viewing the output of gvlma()</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">library</span>(gvlma)</span>
-<span id="cb4-2"><a href=""></a></span>
-<span id="cb4-3"><a href=""></a><span class="fu">gvlma</span>(model1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-label="1"></a><span class="fu">library</span>(gvlma)</span>
+<span id="cb4-2"><a href="" aria-label="2"></a></span>
+<span id="cb4-3"><a href="" aria-label="3"></a><span class="fu">gvlma</span>(model1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -568,7 +574,7 @@ Heteroscedasticity 4.2079 0.04024 Assumptions NOT satisfied!</code></pre>
 <section id="section-1" class="slide level2">
 <h2></h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">summary</span>(model1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-label="1"></a><span class="fu">summary</span>(model1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -644,13 +650,13 @@ F-statistic:   235 on 5 and 194 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="running-the-analysis-1" class="slide level2">
 <h2>Running the analysis</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-7"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1" onclick="event.preventDefault();" href="">1</a><span id="annotated-cell-7-1" class="code-annotation-target"><a href="#annotated-cell-7-1"></a>model0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(depression <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> data)</span>
-<span id="annotated-cell-7-2"><a href="#annotated-cell-7-2"></a></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="2" onclick="event.preventDefault();" href="">2</a><span id="annotated-cell-7-3" class="code-annotation-target"><a href="#annotated-cell-7-3"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(depression <span class="sc">~</span> age <span class="sc">+</span> gender, <span class="at">data =</span> data)</span>
-<span id="annotated-cell-7-4"><a href="#annotated-cell-7-4"></a></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="3" onclick="event.preventDefault();" href="">3</a><span id="annotated-cell-7-5" class="code-annotation-target"><a href="#annotated-cell-7-5"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(depression<span class="sc">~</span> age <span class="sc">+</span> gender <span class="sc">+</span> stress <span class="sc">+</span> loneliness, <span class="at">data =</span> data)</span>
-<span id="annotated-cell-7-6"><a href="#annotated-cell-7-6"></a></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="4" onclick="event.preventDefault();" href="">4</a><span id="annotated-cell-7-7" class="code-annotation-target"><a href="#annotated-cell-7-7"></a>model3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(depression <span class="sc">~</span> age <span class="sc">+</span> gender <span class="sc">+</span> stress <span class="sc">+</span> loneliness <span class="sc">+</span> selfesteem, <span class="at">data =</span> data)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-7"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1" onclick="event.preventDefault();" href="">1</a><span id="annotated-cell-7-1" class="code-annotation-target"><a href="#annotated-cell-7-1" aria-label="1"></a>model0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(depression <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> data)</span>
+<span id="annotated-cell-7-2"><a href="#annotated-cell-7-2" aria-label="2"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="2" onclick="event.preventDefault();" href="">2</a><span id="annotated-cell-7-3" class="code-annotation-target"><a href="#annotated-cell-7-3" aria-label="3"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(depression <span class="sc">~</span> age <span class="sc">+</span> gender, <span class="at">data =</span> data)</span>
+<span id="annotated-cell-7-4"><a href="#annotated-cell-7-4" aria-label="4"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="3" onclick="event.preventDefault();" href="">3</a><span id="annotated-cell-7-5" class="code-annotation-target"><a href="#annotated-cell-7-5" aria-label="5"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(depression<span class="sc">~</span> age <span class="sc">+</span> gender <span class="sc">+</span> stress <span class="sc">+</span> loneliness, <span class="at">data =</span> data)</span>
+<span id="annotated-cell-7-6"><a href="#annotated-cell-7-6" aria-label="6"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="4" onclick="event.preventDefault();" href="">4</a><span id="annotated-cell-7-7" class="code-annotation-target"><a href="#annotated-cell-7-7" aria-label="7"></a>model3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(depression <span class="sc">~</span> age <span class="sc">+</span> gender <span class="sc">+</span> stress <span class="sc">+</span> loneliness <span class="sc">+</span> selfesteem, <span class="at">data =</span> data)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-7" data-target-annotation="1">1</dt>
@@ -679,7 +685,7 @@ F-statistic:   235 on 5 and 194 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li>We can compare the models using the <func>anova()</func> function</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="fu">anova</span>(model0, model1, model2, model3)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="" aria-label="1"></a><span class="fu">anova</span>(model0, model1, model2, model3)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
 
@@ -688,7 +694,7 @@ Model 2: depression ~ age + gender
 Model 3: depression ~ age + gender + stress + loneliness
 Model 4: depression ~ age + gender + stress + loneliness + selfesteem
   Res.Df    RSS Df Sum of Sq        F  Pr(&gt;F)    
-1    199 832.35                                  
+1    199 832.36                                  
 2    197 826.62  2      5.73   4.7127 0.01003 *  
 3    195 259.75  2    566.88 466.2325 &lt; 2e-16 ***
 4    194 117.94  1    141.81 233.2590 &lt; 2e-16 ***
@@ -728,7 +734,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <li>We can use the built-in <func>AIC()</func> and <func>BIC()</func> functions to calculate these measures</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="fu">AIC</span>(model0, model1, model2, model3)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="" aria-label="1"></a><span class="fu">AIC</span>(model0, model1, model2, model3)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       df      AIC
 model0  2 856.7637
@@ -736,7 +742,7 @@ model1  4 859.3821
 model2  6 631.8528
 model3  7 475.9464</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="fu">BIC</span>(model0, model1, model2, model3)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="" aria-label="1"></a><span class="fu">BIC</span>(model0, model1, model2, model3)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       df      BIC
 model0  2 863.3604
@@ -776,16 +782,16 @@ model3  7 499.0346</code></pre>
 <section id="generating-a-table-of-the-models" class="slide level2">
 <h2>Generating a table of the models</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb14-2"><a href=""></a>example_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"Datasets/regression_data.csv"</span>)</span>
-<span id="cb14-3"><a href=""></a></span>
-<span id="cb14-4"><a href=""></a>model0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(aggression_level <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> example_data)</span>
-<span id="cb14-5"><a href=""></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(aggression_level <span class="sc">~</span> treatment_group <span class="sc">+</span> treatment_duration, <span class="at">data =</span> example_data)</span>
-<span id="cb14-6"><a href=""></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(aggression_level <span class="sc">~</span> treatment_group <span class="sc">+</span> treatment_duration <span class="sc">+</span> trust_score, <span class="at">data =</span> example_data)</span>
-<span id="cb14-7"><a href=""></a></span>
-<span id="cb14-8"><a href=""></a><span class="fu">library</span>(sjPlot)</span>
-<span id="cb14-9"><a href=""></a></span>
-<span id="cb14-10"><a href=""></a>model_table <span class="ot">&lt;-</span> <span class="fu">tab_model</span>(model0, model1, model2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="" aria-label="1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb14-2"><a href="" aria-label="2"></a>example_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"Datasets/regression_data.csv"</span>)</span>
+<span id="cb14-3"><a href="" aria-label="3"></a></span>
+<span id="cb14-4"><a href="" aria-label="4"></a>model0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(aggression_level <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> example_data)</span>
+<span id="cb14-5"><a href="" aria-label="5"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(aggression_level <span class="sc">~</span> treatment_group <span class="sc">+</span> treatment_duration, <span class="at">data =</span> example_data)</span>
+<span id="cb14-6"><a href="" aria-label="6"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(aggression_level <span class="sc">~</span> treatment_group <span class="sc">+</span> treatment_duration <span class="sc">+</span> trust_score, <span class="at">data =</span> example_data)</span>
+<span id="cb14-7"><a href="" aria-label="7"></a></span>
+<span id="cb14-8"><a href="" aria-label="8"></a><span class="fu">library</span>(sjPlot)</span>
+<span id="cb14-9"><a href="" aria-label="9"></a></span>
+<span id="cb14-10"><a href="" aria-label="10"></a>model_table <span class="ot">&lt;-</span> <span class="fu">tab_model</span>(model0, model1, model2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="example-table-of-models" class="slide level2">
@@ -1025,80 +1031,42 @@ model3  7 499.0346</code></pre>
       });
     </script>
     
-
     <script>
-
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-
       // slide changes (different for each slide format).
-
       (function () {
-
         // dispatch for htmlwidgets
-
         function fireSlideEnter() {
-
           const event = window.document.createEvent("Event");
-
           event.initEvent("slideenter", true, true);
-
           window.document.dispatchEvent(event);
-
         }
-
-    
 
         function fireSlideChanged(previousSlide, currentSlide) {
-
           fireSlideEnter();
 
-    
-
           // dispatch for shiny
-
           if (window.jQuery) {
-
             if (previousSlide) {
-
               window.jQuery(previousSlide).trigger("hidden");
-
             }
-
             if (currentSlide) {
-
               window.jQuery(currentSlide).trigger("shown");
-
             }
-
           }
-
         }
-
-    
 
         // hookup for slidy
-
         if (window.w3c_slidy) {
-
           window.w3c_slidy.add_observer(function (slide_num) {
-
             // slide_num starts at position 1
-
             fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-
           });
-
         }
 
-    
-
       })();
-
     </script>
-
-    
 
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {

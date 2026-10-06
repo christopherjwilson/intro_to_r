@@ -1,32 +1,26 @@
-
 # Creating plots with ggplot2 in R
 
 ::: callout-tip
 ## At the end of this chapter, you will be able to:
 
--   Describe the ggplot "grammar of visualisation": coordinates and geoms
--   Write a graph function to display multiple variables on a plot
--   Amend the titles and legends of a plot
--   Save plots in PDF or image formats
-
+- Describe the ggplot "grammar of visualisation": coordinates and geoms
+- Write a graph function to display multiple variables on a plot
+- Amend the titles and legends of a plot
+- Save plots in PDF or image formats
 :::
 
+<iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=be7697ca-97d7-40d1-8a58-af4100ff0c16&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="338" width="600" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="Plots with GGPlot in R">
 
-<iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=be7697ca-97d7-40d1-8a58-af4100ff0c16&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="338" width="600" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="Plots with GGPlot in R" ></iframe>
-
+</iframe>
 
 ```{r import data, include=F}
 library(readr)
-studentData <- as.data.frame(read_csv("Datasets/studentData.csv"))
+studentData <- as.data.frame(read_csv("datasets/studentData.csv"))
 ```
 
 ## The "grammar of visualisation" with ggplot
 
-With ggplot, graphs are made up of 3 components:
-    -   A dataset
-    -   A coordinate system (e.g., the X and Y axes)
-    -   Visual marks to represent data **(geoms)**
-    
+With ggplot, graphs are made up of 3 components: - A dataset - A coordinate system (e.g., the X and Y axes) - Visual marks to represent data **(geoms)**
 
 ```{r  out.width = "100%", echo=F}
 
@@ -47,30 +41,25 @@ ggplot(data=studentData, aes(x=grades,y=hoursOfStudy)) + #<1>
 
 In this code:
 
-1. We specify the dataset and the variables for the X and Y axes.
-2. We specify the **geom** that will represent the data points visually (in this case, each datum is a point).
-
-
+1.  We specify the dataset and the variables for the X and Y axes.
+2.  We specify the **geom** that will represent the data points visually (in this case, each datum is a point).
 
 ```{r  out.width = "100%", echo=F}
 
 knitr::include_graphics("img/ggplot2.png") 
 ```
 
-
 ::: callout-important
-
 ## Remember the `+` operator
 
 - The layers of a ggplot are separated using the `+` operator. That is, we first specify the dataset and the variables for the X and Y axes, and then we add a `+`, then the `geom` that will represent the data points visually.
-
 :::
 
 ## Adding more variables to a plot
 
 One of the things that makes ggplot so powerful is that you can add more variables to a plot. You can map these variables to different aesthetic attributes of the plot, such as colour, shape, or size.
 
-This can be done either in the `ggplot()` function or in the `geom_point()` function. 
+This can be done either in the `ggplot()` function or in the `geom_point()` function.
 
 ### Example: assigning a variable to colour (2 different approaches)
 
@@ -79,21 +68,21 @@ This can be done either in the `ggplot()` function or in the `geom_point()` func
 ggplot(data=studentData, aes(x=grades,y=hoursOfStudy, color = route)) + #<1>
   geom_point() #<2>
 
-```   
+```
 
-1. The `color` aesthetic is mapped to the `route` variable in the main `ggplot()` function.
+1.  The `color` aesthetic is mapped to the `route` variable in the main `ggplot()` function.
 
-2. The `geom_point()` function is used to represent the data points visually and it takes its colour from the main `ggplot()` function.
+2.  The `geom_point()` function is used to represent the data points visually and it takes its colour from the main `ggplot()` function.
 
 ```{r echo=T}
 
 ggplot(data=studentData, aes(x=grades,y=hoursOfStudy)) + #<1>
   geom_point(aes(color = route)) #<2>
 
-``` 
+```
 
-1. The `color` aesthetic is not mentioned in the main `ggplot()` function.
-2. The `color` aesthetic is mapped to the `route` variable in the `geom_point()` function.
+1.  The `color` aesthetic is not mentioned in the main `ggplot()` function.
+2.  The `color` aesthetic is mapped to the `route` variable in the `geom_point()` function.
 
 ### Example: assigning a variable to size
 
@@ -104,10 +93,9 @@ ggplot(data=studentData, aes(x=grades,y=hoursOfStudy, size = satisfactionLevel, 
 
 ```
 
-1. The `size` aesthetic is mapped to the `satisfactionLevel` variable in the main `ggplot()` function.
+1.  The `size` aesthetic is mapped to the `satisfactionLevel` variable in the main `ggplot()` function.
 
-2. The `geom_point()` function is used to represent the data points visually and it takes its size from the main `ggplot()` function.
-
+2.  The `geom_point()` function is used to represent the data points visually and it takes its size from the main `ggplot()` function.
 
 ### Example: assigning a variable to shape
 
@@ -118,10 +106,9 @@ ggplot(data=studentData, aes(x=grades,y=hoursOfStudy, size = satisfactionLevel, 
 
 ```
 
-1. The `shape` aesthetic is mapped to the `hasDepdendants` variable in the main `ggplot()` function.
+1.  The `shape` aesthetic is mapped to the `hasDepdendants` variable in the main `ggplot()` function.
 
-2. The `geom_point()` function is used to represent the data points visually and it takes its shape from the main `ggplot()` function.
-
+2.  The `geom_point()` function is used to represent the data points visually and it takes its shape from the main `ggplot()` function.
 
 ## Different types of geoms: bar charts
 
@@ -129,11 +116,10 @@ The `geom_point()` function is just one of many geoms that you can use in ggplot
 
 When creating a bar chart there are 2 approaches:
 
-1. summarise the data before plotting
-2. let ggplot do the summarising for you
+1.  summarise the data before plotting
+2.  let ggplot do the summarising for you
 
 ### Example: summarising the data before plotting
-
 
 ```{r echo=T, warning=FALSE, message=FALSE}
 
@@ -150,17 +136,14 @@ studentData %>%
 In the above code, we first use the `group_by()` and `summarise()` functions from the `dplyr` package to calculate the mean number of hours of study for each route (see previous lessons for this). We then use the `ggplot()` function to create a plot with the `route` variable on the X axis and the `meanHours` variable on the Y axis. Finally, we use the `geom_col()` function to create the bar chart.
 
 ::: callout-important
-
 ## Remember to refer to the summarised variable in the `ggplot()` function
 
 When you summarise the data, remember to refer to the summarised variable in the `ggplot()` function, not the original variable. In the above example, we use `meanHours` in the `ggplot()` function, not `hoursOfStudy`.
 
 If you find it easier, you can save the summarised data as a new object and then use this in the `ggplot()` function.
-
 :::
 
 ### Example: letting ggplot do the summarising for you
-
 
 ```{r echo=T}
 
@@ -239,22 +222,13 @@ In terms of specifying the width and height of the plot, it can take some fiddli
 Once the aspect ratio feels right, you can adjust the width and height to get the exact right dimensions for your plot.
 
 ::: callout-important
-
 # Plots will save into the working directory
 
 When you save a plot using the `ggsave()` function, the plot will be saved into the working directory. You can specify a different directory by specifying the full path to the file, such as "C:/Users/username/Documents/studentData_plot.pdf".
 
 It's easier just to set the working directory to the folder where you want to save the plots!
-
 :::
-
 
 ## Summary
 
 In this chapter, you have learned how to create plots with ggplot in R. You have learned about the "grammar of visualisation" with ggplot, including the dataset, the coordinate system, and the visual marks that represent the data. You have learned how to write a graph function to display multiple variables on a plot, how to amend the titles and legends of a plot, and how to save plots in PDF or image formats.
-
-
-
-
-
-

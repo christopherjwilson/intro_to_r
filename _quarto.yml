@@ -1,13 +1,35 @@
 project:
+  type: book
   output-dir: docs
+  resources:
+    - "include/"
   render:
-    - practicals/practical1.qmd
-    - practicals/practical2.qmd
-    - practicals/regression.qmd
-    - practicals/multiplePredictors.qmd
-    - practicals/moderation.qmd
-    - practicals/mediation.qmd
-    - practicals/factorAnalysis.qmd
-    - practicals/exam2425.qmd
-    - practicals/exam2425_answers.qmd
-    
+    - "!slides/"
+    - "!practicals/"
+  post-render:
+    - quarto render slides
+    - quarto render practicals
+
+book:
+  title: "Introduction to R for Clinical Psychology"
+  author: "Christopher J Wilson"
+  date: "05/10/2026"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - working_with_data.qmd
+    - descriptive_stats.qmd
+    - power_effectSize.qmd
+    - basic_tests.qmd
+    - correlation.qmd
+    - regression.qmd
+    - multipleRegression.qmd
+    - moderation.qmd
+    - mediation.qmd
+    - ggplot.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo

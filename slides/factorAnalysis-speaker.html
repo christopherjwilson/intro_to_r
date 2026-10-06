@@ -6,8 +6,8 @@
 <script src="factorAnalysis_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="factorAnalysis_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="factorAnalysis_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="factorAnalysis_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.25">
+<link href="factorAnalysis_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="Dr Christopher Wilson">
   <title>Factor Analysis</title>
@@ -17,10 +17,16 @@
   <link rel="stylesheet" href="factorAnalysis_files/libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="factorAnalysis_files/libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -95,7 +101,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="factorAnalysis_files/libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
+  <link rel="stylesheet" href="factorAnalysis_files/libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
   <link rel="stylesheet" href="include/style.css">
   <link href="factorAnalysis_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="factorAnalysis_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -202,7 +208,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Dr Christopher Wilson 
+Dr Christopher Wilson
 </div>
         <p class="quarto-title-affiliation">
             Teesside University
@@ -499,9 +505,9 @@ Dr Christopher Wilson
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>raq.matrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(raq)</span>
-<span id="cb1-2"><a href=""></a></span>
-<span id="cb1-3"><a href=""></a>raq.matrix</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-label="1"></a>raq.matrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(raq)</span>
+<span id="cb1-2"><a href="" aria-label="2"></a></span>
+<span id="cb1-3"><a href="" aria-label="3"></a>raq.matrix</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>             Q01         Q02        Q03         Q04         Q05         Q06
@@ -608,8 +614,8 @@ Q23  0.1224344 -0.03466529 -0.06766437  0.23036940  1.000000000</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="fu">library</span>(corrplot)</span>
-<span id="cb3-2"><a href=""></a><span class="fu">corrplot</span>(raq.matrix, <span class="at">method =</span> <span class="st">"number"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="" aria-label="1"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb3-2"><a href="" aria-label="2"></a><span class="fu">corrplot</span>(raq.matrix, <span class="at">method =</span> <span class="st">"number"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -628,9 +634,9 @@ Q23  0.1224344 -0.03466529 -0.06766437  0.23036940  1.000000000</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">library</span>(psych)</span>
-<span id="cb4-2"><a href=""></a></span>
-<span id="cb4-3"><a href=""></a><span class="fu">cortest.bartlett</span>(raq.matrix, <span class="at">n=</span><span class="dv">2571</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-label="1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb4-2"><a href="" aria-label="2"></a></span>
+<span id="cb4-3"><a href="" aria-label="3"></a><span class="fu">cortest.bartlett</span>(raq.matrix, <span class="at">n=</span><span class="dv">2571</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>$chisq
@@ -652,7 +658,7 @@ $df
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">KMO</span>(raq)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-label="1"></a><span class="fu">KMO</span>(raq)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Kaiser-Meyer-Olkin factor adequacy
@@ -693,7 +699,7 @@ MSA for each item =
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="fu">scree</span>(raq)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="" aria-label="1"></a><span class="fu">scree</span>(raq)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -742,9 +748,9 @@ MSA for each item =
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="fu">library</span>(psych)</span>
-<span id="cb9-2"><a href=""></a></span>
-<span id="cb9-3"><a href=""></a> parallel_analysis <span class="ot">&lt;-</span> <span class="fu">fa.parallel</span>(raq)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="" aria-label="1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb9-2"><a href="" aria-label="2"></a></span>
+<span id="cb9-3"><a href="" aria-label="3"></a> parallel_analysis <span class="ot">&lt;-</span> <span class="fu">fa.parallel</span>(raq)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -758,7 +764,7 @@ MSA for each item =
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a> parallel_analysis</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="" aria-label="1"></a> parallel_analysis</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Call: fa.parallel(x = raq)
@@ -766,15 +772,15 @@ Parallel analysis suggests that the number of factors =  6  and the number of co
 
  Eigen Values of 
   Original factors Resampled data Simulated data Original components
-1             6.64           0.25           0.21                7.29
+1             6.64           0.25           0.26                7.29
 2             0.91           0.15           0.15                1.74
 3             0.63           0.13           0.13                1.32
-4             0.48           0.11           0.12                1.23
+4             0.48           0.12           0.11                1.23
 5             0.29           0.10           0.10                0.99
 6             0.13           0.08           0.08                0.90
   Resampled components Simulated components
 1                 1.17                 1.17
-2                 1.15                 1.14
+2                 1.15                 1.15
 3                 1.13                 1.13
 4                 1.11                 1.11
 5                 1.09                 1.09
@@ -787,13 +793,13 @@ Parallel analysis suggests that the number of factors =  6  and the number of co
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>paf <span class="ot">&lt;-</span> <span class="fu">fa</span>(raq,</span>
-<span id="cb13-2"><a href=""></a><span class="at">nfactors =</span> <span class="dv">6</span>,</span>
-<span id="cb13-3"><a href=""></a><span class="at">fm=</span><span class="st">"pa"</span>,</span>
-<span id="cb13-4"><a href=""></a><span class="at">max.iter =</span> <span class="dv">100</span>,</span>
-<span id="cb13-5"><a href=""></a><span class="at">rotate =</span> <span class="st">"none"</span>)</span>
-<span id="cb13-6"><a href=""></a></span>
-<span id="cb13-7"><a href=""></a>paf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="" aria-label="1"></a>paf <span class="ot">&lt;-</span> <span class="fu">fa</span>(raq,</span>
+<span id="cb13-2"><a href="" aria-label="2"></a><span class="at">nfactors =</span> <span class="dv">6</span>,</span>
+<span id="cb13-3"><a href="" aria-label="3"></a><span class="at">fm=</span><span class="st">"pa"</span>,</span>
+<span id="cb13-4"><a href="" aria-label="4"></a><span class="at">max.iter =</span> <span class="dv">100</span>,</span>
+<span id="cb13-5"><a href="" aria-label="5"></a><span class="at">rotate =</span> <span class="st">"none"</span>)</span>
+<span id="cb13-6"><a href="" aria-label="6"></a></span>
+<span id="cb13-7"><a href="" aria-label="7"></a>paf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Factor Analysis using method =  pa
@@ -840,7 +846,7 @@ df of  the model are 130  and the objective function was  0.23
 The root mean square of the residuals (RMSR) is  0.02 
 The df corrected root mean square of the residuals is  0.02 
 
-The harmonic n.obs is  2571 with the empirical chi square  364.66  with prob &lt;  3.9e-24 
+The harmonic n.obs is  2571 with the empirical chi square  182.33  with prob &lt;  0.0017 
 The total n.obs was  2571  with Likelihood Chi Square =  578.65  with prob &lt;  7.6e-58 
 
 Tucker Lewis Index of factoring reliability =  0.954
@@ -874,13 +880,13 @@ Minimum correlation of possible factor scores     -0.17</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>paf <span class="ot">&lt;-</span> <span class="fu">fa</span>(raq,</span>
-<span id="cb15-2"><a href=""></a><span class="at">nfactors =</span> <span class="dv">6</span>,</span>
-<span id="cb15-3"><a href=""></a><span class="at">fm=</span><span class="st">"pa"</span>,</span>
-<span id="cb15-4"><a href=""></a><span class="at">max.iter =</span> <span class="dv">100</span>,</span>
-<span id="cb15-5"><a href=""></a><span class="at">rotate =</span> <span class="st">"none"</span>)</span>
-<span id="cb15-6"><a href=""></a></span>
-<span id="cb15-7"><a href=""></a>paf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="" aria-label="1"></a>paf <span class="ot">&lt;-</span> <span class="fu">fa</span>(raq,</span>
+<span id="cb15-2"><a href="" aria-label="2"></a><span class="at">nfactors =</span> <span class="dv">6</span>,</span>
+<span id="cb15-3"><a href="" aria-label="3"></a><span class="at">fm=</span><span class="st">"pa"</span>,</span>
+<span id="cb15-4"><a href="" aria-label="4"></a><span class="at">max.iter =</span> <span class="dv">100</span>,</span>
+<span id="cb15-5"><a href="" aria-label="5"></a><span class="at">rotate =</span> <span class="st">"none"</span>)</span>
+<span id="cb15-6"><a href="" aria-label="6"></a></span>
+<span id="cb15-7"><a href="" aria-label="7"></a>paf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Factor Analysis using method =  pa
@@ -927,7 +933,7 @@ df of  the model are 130  and the objective function was  0.23
 The root mean square of the residuals (RMSR) is  0.02 
 The df corrected root mean square of the residuals is  0.02 
 
-The harmonic n.obs is  2571 with the empirical chi square  364.66  with prob &lt;  3.9e-24 
+The harmonic n.obs is  2571 with the empirical chi square  182.33  with prob &lt;  0.0017 
 The total n.obs was  2571  with Likelihood Chi Square =  578.65  with prob &lt;  7.6e-58 
 
 Tucker Lewis Index of factoring reliability =  0.954
@@ -961,13 +967,13 @@ Minimum correlation of possible factor scores     -0.17</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>paf <span class="ot">&lt;-</span> <span class="fu">fa</span>(raq,</span>
-<span id="cb17-2"><a href=""></a><span class="at">nfactors =</span> <span class="dv">6</span>,</span>
-<span id="cb17-3"><a href=""></a><span class="at">fm=</span><span class="st">"pa"</span>,</span>
-<span id="cb17-4"><a href=""></a><span class="at">max.iter =</span> <span class="dv">100</span>,</span>
-<span id="cb17-5"><a href=""></a><span class="at">rotate =</span> <span class="st">"none"</span>)</span>
-<span id="cb17-6"><a href=""></a></span>
-<span id="cb17-7"><a href=""></a>paf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="" aria-label="1"></a>paf <span class="ot">&lt;-</span> <span class="fu">fa</span>(raq,</span>
+<span id="cb17-2"><a href="" aria-label="2"></a><span class="at">nfactors =</span> <span class="dv">6</span>,</span>
+<span id="cb17-3"><a href="" aria-label="3"></a><span class="at">fm=</span><span class="st">"pa"</span>,</span>
+<span id="cb17-4"><a href="" aria-label="4"></a><span class="at">max.iter =</span> <span class="dv">100</span>,</span>
+<span id="cb17-5"><a href="" aria-label="5"></a><span class="at">rotate =</span> <span class="st">"none"</span>)</span>
+<span id="cb17-6"><a href="" aria-label="6"></a></span>
+<span id="cb17-7"><a href="" aria-label="7"></a>paf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Factor Analysis using method =  pa
@@ -1014,7 +1020,7 @@ df of  the model are 130  and the objective function was  0.23
 The root mean square of the residuals (RMSR) is  0.02 
 The df corrected root mean square of the residuals is  0.02 
 
-The harmonic n.obs is  2571 with the empirical chi square  364.66  with prob &lt;  3.9e-24 
+The harmonic n.obs is  2571 with the empirical chi square  182.33  with prob &lt;  0.0017 
 The total n.obs was  2571  with Likelihood Chi Square =  578.65  with prob &lt;  7.6e-58 
 
 Tucker Lewis Index of factoring reliability =  0.954
@@ -1057,71 +1063,71 @@ Minimum correlation of possible factor scores     -0.17</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>paf1 <span class="ot">&lt;-</span> <span class="fu">fa</span>(raq,</span>
-<span id="cb19-2"><a href=""></a><span class="at">nfactors =</span> <span class="dv">2</span>,</span>
-<span id="cb19-3"><a href=""></a><span class="at">fm=</span><span class="st">"pa"</span>,</span>
-<span id="cb19-4"><a href=""></a><span class="at">max.iter =</span> <span class="dv">100</span>,</span>
-<span id="cb19-5"><a href=""></a><span class="at">rotate =</span> <span class="st">"none"</span>)</span>
-<span id="cb19-6"><a href=""></a></span>
-<span id="cb19-7"><a href=""></a>paf1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="" aria-label="1"></a>paf1 <span class="ot">&lt;-</span> <span class="fu">fa</span>(raq,</span>
+<span id="cb19-2"><a href="" aria-label="2"></a><span class="at">nfactors =</span> <span class="dv">4</span>,</span>
+<span id="cb19-3"><a href="" aria-label="3"></a><span class="at">fm=</span><span class="st">"pa"</span>,</span>
+<span id="cb19-4"><a href="" aria-label="4"></a><span class="at">max.iter =</span> <span class="dv">100</span>,</span>
+<span id="cb19-5"><a href="" aria-label="5"></a><span class="at">rotate =</span> <span class="st">"none"</span>)</span>
+<span id="cb19-6"><a href="" aria-label="6"></a></span>
+<span id="cb19-7"><a href="" aria-label="7"></a>paf1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Factor Analysis using method =  pa
-Call: fa(r = raq, nfactors = 2, rotate = "none", max.iter = 100, fm = "pa")
+Call: fa(r = raq, nfactors = 4, rotate = "none", max.iter = 100, fm = "pa")
 Standardized loadings (pattern matrix) based upon correlation matrix
-      PA1   PA2    h2   u2 com
-Q01  0.56  0.12 0.324 0.68 1.1
-Q02 -0.28  0.39 0.228 0.77 1.8
-Q03 -0.61  0.25 0.430 0.57 1.3
-Q04  0.61  0.09 0.377 0.62 1.0
-Q05  0.52  0.05 0.276 0.72 1.0
-Q06  0.53  0.04 0.282 0.72 1.0
-Q07  0.66 -0.01 0.437 0.56 1.0
-Q08  0.53  0.40 0.445 0.56 1.9
-Q09 -0.27  0.46 0.287 0.71 1.6
-Q10  0.40  0.00 0.163 0.84 1.0
-Q11  0.63  0.27 0.472 0.53 1.3
-Q12  0.64 -0.08 0.421 0.58 1.0
-Q13  0.65  0.04 0.421 0.58 1.0
-Q14  0.63 -0.02 0.396 0.60 1.0
-Q15  0.56  0.00 0.315 0.68 1.0
-Q16  0.65 -0.01 0.428 0.57 1.0
-Q17  0.63  0.34 0.511 0.49 1.5
-Q18  0.68 -0.02 0.461 0.54 1.0
-Q19 -0.40  0.28 0.238 0.76 1.8
-Q20  0.40 -0.15 0.187 0.81 1.3
-Q21  0.63 -0.07 0.403 0.60 1.0
-Q22 -0.28  0.29 0.161 0.84 2.0
-Q23 -0.13  0.19 0.053 0.95 1.8
+      PA1   PA2   PA3   PA4   h2   u2 com
+Q01  0.56  0.11 -0.09  0.21 0.37 0.63 1.4
+Q02 -0.28  0.37  0.18  0.10 0.26 0.74 2.6
+Q03 -0.61  0.25  0.20 -0.05 0.47 0.53 1.6
+Q04  0.61  0.08 -0.05  0.20 0.42 0.58 1.3
+Q05  0.52  0.04 -0.01  0.16 0.30 0.70 1.2
+Q06  0.55  0.02  0.49 -0.22 0.59 0.41 2.3
+Q07  0.66 -0.02  0.22  0.01 0.49 0.51 1.2
+Q08  0.55  0.48 -0.28 -0.19 0.65 0.35 2.8
+Q09 -0.27  0.46  0.14  0.19 0.34 0.66 2.2
+Q10  0.40 -0.01  0.16 -0.09 0.20 0.80 1.4
+Q11  0.65  0.31 -0.22 -0.26 0.63 0.37 2.1
+Q12  0.64 -0.10  0.07  0.16 0.45 0.55 1.2
+Q13  0.65  0.02  0.21 -0.08 0.47 0.53 1.2
+Q14  0.63 -0.04  0.16  0.05 0.42 0.58 1.2
+Q15  0.56 -0.01  0.04 -0.09 0.32 0.68 1.1
+Q16  0.65 -0.02 -0.09  0.15 0.46 0.54 1.1
+Q17  0.63  0.36 -0.17 -0.14 0.58 0.42 1.9
+Q18  0.68 -0.04  0.27  0.01 0.54 0.46 1.3
+Q19 -0.40  0.27  0.12  0.05 0.24 0.76 2.0
+Q20  0.41 -0.15 -0.21  0.18 0.27 0.73 2.3
+Q21  0.63 -0.08 -0.08  0.23 0.47 0.53 1.3
+Q22 -0.28  0.29  0.07  0.28 0.25 0.75 3.1
+Q23 -0.13  0.18  0.10  0.24 0.12 0.88 2.9
 
-                       PA1  PA2
-SS loadings           6.67 1.04
-Proportion Var        0.29 0.05
-Cumulative Var        0.29 0.34
-Proportion Explained  0.86 0.14
-Cumulative Proportion 0.86 1.00
+                       PA1  PA2  PA3  PA4
+SS loadings           6.74 1.13 0.81 0.62
+Proportion Var        0.29 0.05 0.04 0.03
+Cumulative Var        0.29 0.34 0.38 0.40
+Proportion Explained  0.72 0.12 0.09 0.07
+Cumulative Proportion 0.72 0.85 0.93 1.00
 
-Mean item complexity =  1.3
-Test of the hypothesis that 2 factors are sufficient.
+Mean item complexity =  1.8
+Test of the hypothesis that 4 factors are sufficient.
 
 df null model =  253  with the objective function =  7.55 with Chi Square =  19334.49
-df of  the model are 208  and the objective function was  1.23 
+df of  the model are 167  and the objective function was  0.46 
 
-The root mean square of the residuals (RMSR) is  0.05 
-The df corrected root mean square of the residuals is  0.05 
+The root mean square of the residuals (RMSR) is  0.03 
+The df corrected root mean square of the residuals is  0.03 
 
-The harmonic n.obs is  2571 with the empirical chi square  3114.53  with prob &lt;  0 
-The total n.obs was  2571  with Likelihood Chi Square =  3155.34  with prob &lt;  0 
+The harmonic n.obs is  2571 with the empirical chi square  440.24  with prob &lt;  1.7e-26 
+The total n.obs was  2571  with Likelihood Chi Square =  1166.49  with prob &lt;  2.1e-149 
 
-Tucker Lewis Index of factoring reliability =  0.812
-RMSEA index =  0.074  and the 90 % confidence intervals are  0.072 0.077
-BIC =  1522.12
-Fit based upon off diagonal values = 0.97
+Tucker Lewis Index of factoring reliability =  0.921
+RMSEA index =  0.048  and the 90 % confidence intervals are  0.046 0.051
+BIC =  -144.8
+Fit based upon off diagonal values = 0.99
 Measures of factor score adequacy             
-                                                   PA1  PA2
-Correlation of (regression) scores with factors   0.96 0.78
-Multiple R square of scores with factors          0.92 0.61
-Minimum correlation of possible factor scores     0.83 0.23</code></pre>
+                                                   PA1  PA2  PA3  PA4
+Correlation of (regression) scores with factors   0.96 0.82 0.79 0.72
+Multiple R square of scores with factors          0.93 0.68 0.63 0.52
+Minimum correlation of possible factor scores     0.85 0.35 0.26 0.05</code></pre>
 </div>
 </div>
 </section>
@@ -1130,7 +1136,7 @@ Minimum correlation of possible factor scores     0.83 0.23</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="fu">plot</span>(paf1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="" aria-label="1"></a><span class="fu">plot</span>(paf1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -1176,77 +1182,79 @@ Minimum correlation of possible factor scores     0.83 0.23</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a>paf2 <span class="ot">&lt;-</span> <span class="fu">fa</span>(raq,</span>
-<span id="cb22-2"><a href=""></a><span class="at">nfactors =</span> <span class="dv">2</span>,</span>
-<span id="cb22-3"><a href=""></a><span class="at">fm=</span><span class="st">"pa"</span>,</span>
-<span id="cb22-4"><a href=""></a><span class="at">max.iter =</span> <span class="dv">100</span>,</span>
-<span id="cb22-5"><a href=""></a><span class="at">rotate =</span> <span class="st">"oblimin"</span>) <span class="do">## oblimin is oblique rotation</span></span>
-<span id="cb22-6"><a href=""></a></span>
-<span id="cb22-7"><a href=""></a>paf2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="" aria-label="1"></a>paf2 <span class="ot">&lt;-</span> <span class="fu">fa</span>(raq,</span>
+<span id="cb22-2"><a href="" aria-label="2"></a><span class="at">nfactors =</span> <span class="dv">4</span>,</span>
+<span id="cb22-3"><a href="" aria-label="3"></a><span class="at">fm=</span><span class="st">"pa"</span>,</span>
+<span id="cb22-4"><a href="" aria-label="4"></a><span class="at">max.iter =</span> <span class="dv">100</span>,</span>
+<span id="cb22-5"><a href="" aria-label="5"></a><span class="at">rotate =</span> <span class="st">"oblimin"</span>) <span class="do">## oblimin is oblique rotation</span></span>
+<span id="cb22-6"><a href="" aria-label="6"></a></span>
+<span id="cb22-7"><a href="" aria-label="7"></a>paf2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Factor Analysis using method =  pa
-Call: fa(r = raq, nfactors = 2, rotate = "oblimin", max.iter = 100, 
+Call: fa(r = raq, nfactors = 4, rotate = "oblimin", max.iter = 100, 
     fm = "pa")
 Standardized loadings (pattern matrix) based upon correlation matrix
-      PA1   PA2    h2   u2 com
-Q01  0.57  0.03 0.324 0.68 1.0
-Q02 -0.12  0.44 0.228 0.77 1.2
-Q03 -0.48  0.36 0.430 0.57 1.8
-Q04  0.61 -0.01 0.377 0.62 1.0
-Q05  0.52 -0.03 0.276 0.72 1.0
-Q06  0.52 -0.05 0.282 0.72 1.0
-Q07  0.63 -0.11 0.437 0.56 1.1
-Q08  0.66  0.32 0.445 0.56 1.4
-Q09 -0.08  0.51 0.287 0.71 1.0
-Q10  0.39 -0.06 0.163 0.84 1.1
-Q11  0.70  0.16 0.472 0.53 1.1
-Q12  0.58 -0.19 0.421 0.58 1.2
-Q13  0.63 -0.07 0.421 0.58 1.0
-Q14  0.59 -0.12 0.396 0.60 1.1
-Q15  0.53 -0.09 0.315 0.68 1.1
-Q16  0.62 -0.12 0.428 0.57 1.1
-Q17  0.73  0.24 0.511 0.49 1.2
-Q18  0.64 -0.13 0.461 0.54 1.1
-Q19 -0.27  0.35 0.238 0.76 1.9
-Q20  0.33 -0.22 0.187 0.81 1.8
-Q21  0.57 -0.18 0.403 0.60 1.2
-Q22 -0.15  0.34 0.161 0.84 1.4
-Q23 -0.05  0.21 0.053 0.95 1.1
+      PA3   PA1   PA2   PA4   h2   u2 com
+Q01  0.51  0.02  0.19  0.08 0.37 0.63 1.3
+Q02 -0.11  0.06  0.03  0.48 0.26 0.74 1.2
+Q03 -0.42  0.03 -0.09  0.36 0.47 0.53 2.1
+Q04  0.53  0.08  0.15  0.06 0.42 0.58 1.2
+Q05  0.43  0.11  0.10  0.03 0.30 0.70 1.3
+Q06 -0.11  0.81  0.02  0.00 0.59 0.41 1.0
+Q07  0.29  0.47  0.04 -0.03 0.49 0.51 1.7
+Q08 -0.01 -0.07  0.84  0.06 0.65 0.35 1.0
+Q09  0.00 -0.01  0.07  0.59 0.34 0.66 1.0
+Q10  0.05  0.35  0.08 -0.07 0.20 0.80 1.2
+Q11 -0.03  0.07  0.75 -0.11 0.63 0.37 1.1
+Q12  0.50  0.24 -0.03 -0.07 0.45 0.55 1.5
+Q13  0.16  0.49  0.13 -0.05 0.47 0.53 1.4
+Q14  0.33  0.38  0.03 -0.04 0.42 0.58 2.0
+Q15  0.15  0.27  0.20 -0.14 0.32 0.68 3.0
+Q16  0.51  0.07  0.15 -0.08 0.46 0.54 1.3
+Q17  0.10  0.07  0.67  0.03 0.58 0.42 1.1
+Q18  0.29  0.53  0.00 -0.03 0.54 0.46 1.6
+Q19 -0.19 -0.03 -0.02  0.36 0.24 0.76 1.6
+Q20  0.48 -0.15  0.02 -0.17 0.27 0.73 1.5
+Q21  0.61  0.05  0.03 -0.07 0.47 0.53 1.0
+Q22  0.15 -0.12 -0.08  0.48 0.25 0.75 1.4
+Q23  0.17 -0.02 -0.11  0.35 0.12 0.88 1.7
 
-                       PA1  PA2
-SS loadings           6.33 1.39
-Proportion Var        0.28 0.06
-Cumulative Var        0.28 0.34
-Proportion Explained  0.82 0.18
-Cumulative Proportion 0.82 1.00
+                       PA3  PA1  PA2  PA4
+SS loadings           3.14 2.39 2.29 1.49
+Proportion Var        0.14 0.10 0.10 0.06
+Cumulative Var        0.14 0.24 0.34 0.40
+Proportion Explained  0.34 0.26 0.25 0.16
+Cumulative Proportion 0.34 0.59 0.84 1.00
 
  With factor correlations of 
-      PA1   PA2
-PA1  1.00 -0.22
-PA2 -0.22  1.00
+      PA3   PA1   PA2   PA4
+PA3  1.00  0.51  0.54 -0.39
+PA1  0.51  1.00  0.46 -0.30
+PA2  0.54  0.46  1.00 -0.20
+PA4 -0.39 -0.30 -0.20  1.00
 
-Mean item complexity =  1.2
-Test of the hypothesis that 2 factors are sufficient.
+Mean item complexity =  1.4
+Test of the hypothesis that 4 factors are sufficient.
 
 df null model =  253  with the objective function =  7.55 with Chi Square =  19334.49
-df of  the model are 208  and the objective function was  1.23 
+df of  the model are 167  and the objective function was  0.46 
 
-The root mean square of the residuals (RMSR) is  0.05 
-The df corrected root mean square of the residuals is  0.05 
+The root mean square of the residuals (RMSR) is  0.03 
+The df corrected root mean square of the residuals is  0.03 
 
-The harmonic n.obs is  2571 with the empirical chi square  3114.53  with prob &lt;  0 
-The total n.obs was  2571  with Likelihood Chi Square =  3155.34  with prob &lt;  0 
+The harmonic n.obs is  2571 with the empirical chi square  440.24  with prob &lt;  1.7e-26 
+The total n.obs was  2571  with Likelihood Chi Square =  1166.49  with prob &lt;  2.1e-149 
 
-Tucker Lewis Index of factoring reliability =  0.812
-RMSEA index =  0.074  and the 90 % confidence intervals are  0.072 0.077
-BIC =  1522.12
-Fit based upon off diagonal values = 0.97
+Tucker Lewis Index of factoring reliability =  0.921
+RMSEA index =  0.048  and the 90 % confidence intervals are  0.046 0.051
+BIC =  -144.8
+Fit based upon off diagonal values = 0.99
 Measures of factor score adequacy             
-                                                   PA1  PA2
-Correlation of (regression) scores with factors   0.96 0.81
-Multiple R square of scores with factors          0.91 0.65
-Minimum correlation of possible factor scores     0.82 0.30</code></pre>
+                                                   PA3  PA1  PA2  PA4
+Correlation of (regression) scores with factors   0.73 0.78 0.82 0.76
+Multiple R square of scores with factors          0.53 0.61 0.67 0.57
+Minimum correlation of possible factor scores     0.06 0.22 0.34 0.14</code></pre>
 </div>
 </div>
 </section>
@@ -1255,7 +1263,7 @@ Minimum correlation of possible factor scores     0.82 0.30</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a><span class="fu">plot</span>(paf1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="" aria-label="1"></a><span class="fu">plot</span>(paf1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -1271,7 +1279,7 @@ Minimum correlation of possible factor scores     0.82 0.30</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a><span class="fu">plot</span>(paf2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="" aria-label="1"></a><span class="fu">plot</span>(paf2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -1531,80 +1539,42 @@ Minimum correlation of possible factor scores     0.82 0.30</code></pre>
       });
     </script>
     
-
     <script>
-
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-
       // slide changes (different for each slide format).
-
       (function () {
-
         // dispatch for htmlwidgets
-
         function fireSlideEnter() {
-
           const event = window.document.createEvent("Event");
-
           event.initEvent("slideenter", true, true);
-
           window.document.dispatchEvent(event);
-
         }
-
-    
 
         function fireSlideChanged(previousSlide, currentSlide) {
-
           fireSlideEnter();
 
-    
-
           // dispatch for shiny
-
           if (window.jQuery) {
-
             if (previousSlide) {
-
               window.jQuery(previousSlide).trigger("hidden");
-
             }
-
             if (currentSlide) {
-
               window.jQuery(currentSlide).trigger("shown");
-
             }
-
           }
-
         }
-
-    
 
         // hookup for slidy
-
         if (window.w3c_slidy) {
-
           window.w3c_slidy.add_observer(function (slide_num) {
-
             // slide_num starts at position 1
-
             fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-
           });
-
         }
 
-    
-
       })();
-
     </script>
-
-    
 
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {

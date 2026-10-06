@@ -5,7 +5,7 @@
 ```{r, include=FALSE}
 
 library(tidyverse)
-regression_data <- read.csv("Datasets/regression_data.csv")
+regression_data <- read.csv("datasets/regression_data.csv")
 regression_data$treatment_group <- factor(regression_data$treatment_group)
 ```
 

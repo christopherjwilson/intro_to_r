@@ -16,7 +16,7 @@ revealjs-plugins:
 bibliography: references.bib
 title: "Research on the programme"
 subtitle: DClin Research Methods 1
-author: Dr Christopher Wilson / Dr Alan Bowman
+author: Dr Christopher Wilson
 institute: Teesside University
 
 logo: "logo.jpg"
@@ -26,31 +26,31 @@ width: 1280
 
 ## Overview
 
--   Introduction to the module
+- Introduction to the module
 
--   Outline of approach to learning on the module
+- Outline of approach to learning on the module
 
--   Discussion of research as a trainee
+- Discussion of research as a trainee
 
 ## What are the aims of the module?
 
--   Refresh and develop the knowledge and skills gained from undergraduate research teaching. 
+- Refresh and develop the knowledge and skills gained from undergraduate research teaching.
 
--   Develop a critical understanding of research methods. 
+- Develop a critical understanding of research methods.
 
--   Develop skills in qualitative and quantitative forms of analysis. 
+- Develop skills in qualitative and quantitative forms of analysis.
 
--   Designed to explicitly prepare you for further research activity (e.g., small scale projects and doctoral thesis). 
+- Designed to explicitly prepare you for further research activity (e.g., small scale projects and doctoral thesis).
 
--   Please see module handbook for more information. 
+- Please see module handbook for more information.
 
 ## What will we be doing?
 
--   Some of the sessions are focused on qualitative research
+- Some of the sessions are focused on qualitative research
 
--   Some are on quantitative research
+- Some are on quantitative research
 
--   Some are focused on thesis development
+- Some are focused on thesis development
 
 # How are the sessions structured? {.section}
 
@@ -58,9 +58,9 @@ width: 1280
 
 ## Why learn R?
 
--   Free and open source
--   Widely used in academia and in the [NHS](https://nhsrcommunity.com/)
--   Powerful and flexible
+- Free and open source
+- Widely used in academia and in the [NHS](https://nhsrcommunity.com/)
+- Powerful and flexible
 
 ```{=html}
 <iframe width="780" height="300" src="https://nhsrcommunity.com/"></iframe>
@@ -68,11 +68,11 @@ width: 1280
 
 ## Benefits of learning R
 
--   It separates the analysis and interpretation from a single software package
+- It separates the analysis and interpretation from a single software package
 
--   Your code is reproducible and can be shared with others
+- Your code is reproducible and can be shared with others
 
--   It forces you to understand what you are doing (if you work through the code)
+- It forces you to understand what you are doing (if you work through the code)
 
 # 
 
@@ -80,7 +80,7 @@ You should ensure both R and R Studio are installed on the laptop you intend to 
 
 You can also use Posit cloud (not for confidential data)
 
-Details here: [https://christopherjwilson.github.io/intro_to_r/intro.html](https://christopherjwilson.github.io/intro_to_r/intro.html)
+Details here: <https://christopherjwilson.github.io/intro_to_r/intro.html>
 
 # 
 
@@ -92,8 +92,8 @@ Details here: [https://christopherjwilson.github.io/intro_to_r/intro.html](https
 
 There are 2 formative assignments during the module:
 
--   Formative 1: Statistics Assignment (Jan)
--   Formative 2: Qualitative Reflection (Feb)
+- Formative 1: Statistics Assignment (Jan)
+- Formative 2: Qualitative Reflection (Feb)
 
 Full details and dates are on Blackboard site
 
@@ -101,21 +101,21 @@ Full details and dates are on Blackboard site
 
 There is 1 summative assignment for the module:
 
--   Research panel presentation (May)
+- Research panel presentation (May)
 
 We will have sessions to help you prepare for this. The presentation will be based on your research proposal for your thesis.
 
 ## Small scale service improvement projects
 
--   Completing a SSSIP is a requirement of training.
+- Completing a SSSIP is a requirement of training.
 
--   You will complete an SSSIP whilst on placement.
+- You will complete an SSSIP whilst on placement.
 
--   You are required to submit a report of your SSSIP early in second year, for the Y2 research methods module. 
+- You are required to submit a report of your SSSIP early in second year, for the Y2 research methods module.
 
--   However, most trainees complete conduct the SSSIP during placements one or two. 
+- However, most trainees complete conduct the SSSIP during placements one or two.
 
--   Please read the research handbook for more information. 
+- Please read the research handbook for more information.
 
 # Approaching to research methods in the programme {.section}
 
@@ -123,7 +123,7 @@ We will have sessions to help you prepare for this. The presentation will be bas
 
 The quantitative portion of the module is built around some key concepts:
 
-- Designing research that examines *why* things happen, not just *what* happens
+- Research and analysis that examines *why* things happen, not just *what* happens
 
 - Understanding the importance of robust design and sample size in clinical research
 
@@ -143,7 +143,7 @@ The quantitative portion of the module is built around some key concepts:
 
 - Limitations in research design come primarily from the conceptualisation of the research question
 
-- If you have developed a clear research question, the analysis should be clear 
+- If you have developed a clear research question, the analysis should be clear
 
 - You will not use all the techniques we cover, but understanding them will help you understand the literature and design your own research
 
@@ -153,14 +153,15 @@ The quantitative portion of the module is built around some key concepts:
 
 ## Responses
 
-<iframe width="640px" height="480px" src="https://forms.office.com/Pages/DesignPageV2.aspx?origin=NeoPortalPage&subpage=design&id=WxHSQ16ltkad97AziOz8YIq5JS4atlxFmSD9MKOKizlUOEtZTFhZUU9YOFNRQVpXVzdJRkVZQUFWNC4u&embed=true&topview=Presentation" frameborder="0" marginwidth="0" marginheight="0" style="border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
+<iframe width="640px" height="480px" src="https://forms.office.com/Pages/DesignPageV2.aspx?origin=NeoPortalPage&amp;subpage=design&amp;id=WxHSQ16ltkad97AziOz8YIq5JS4atlxFmSD9MKOKizlUOEtZTFhZUU9YOFNRQVpXVzdJRkVZQUFWNC4u&amp;embed=true&amp;topview=Presentation" frameborder="0" marginwidth="0" marginheight="0" style="border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen>
+
+</iframe>
 
 ## Before next session
 
 - Ensure you have R and RStudio installed and working on your device
 
-You can use the videos on [https://christopherjwilson.github.io/intro_to_r/intro.html](https://christopherjwilson.github.io/intro_to_r/intro.html) to help you
-
+You can use the videos on <https://christopherjwilson.github.io/intro_to_r/intro.html> to help you
 
 ## Questions
 
@@ -170,4 +171,4 @@ For other queries:
 
 Dr Christopher Wilson
 
-Christopher.wilson@tees.ac.uk
+Christopher.wilson\@tees.ac.uk

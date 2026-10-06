@@ -3,7 +3,7 @@
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, fig.align="center")
 library(tidyverse)
-regression_data <- read.csv("Datasets/regression_data.csv")
+regression_data <- read.csv("datasets/regression_data.csv")
 ```
 
 ::: callout-tip

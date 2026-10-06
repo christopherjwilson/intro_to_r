@@ -74,17 +74,17 @@ Experimenters explained that participants were to answer a short survey about me
 
 The results are data frame with 123 observations on the following 6 variables:
 
--   **cond**: Experimental Condition: 0 low media importance, 1 high media importance. (Importance was manipulated by telling participants that the story would be published either on the front page of a newspaper or inside the economic supplement of the newspaper).
+- **cond**: Experimental Condition: 0 low media importance, 1 high media importance. (Importance was manipulated by telling participants that the story would be published either on the front page of a newspaper or inside the economic supplement of the newspaper).
 
--   **pmi**: Presumed media influence (This was a manipulation check to see that participants felt that publishing the article would affect people’s behaviour and that responses were not different based on age or gender of participants. The value is the mean score of response to two questions.)
+- **pmi**: Presumed media influence (This was a manipulation check to see that participants felt that publishing the article would affect people’s behaviour and that responses were not different based on age or gender of participants. The value is the mean score of response to two questions.)
 
--   **import**: Importance of the issue (Similar to the **pmi** variables, a check was also done to see that participants agreed that the issue is important and that responses were not different based on age or gender of participants. “The article is about an important topic concerning the global economic crisis” and “the decision to publish the article on the front/back page is an indication of the topic’s importance”.)
+- **import**: Importance of the issue (Similar to the **pmi** variables, a check was also done to see that participants agreed that the issue is important and that responses were not different based on age or gender of participants. “The article is about an important topic concerning the global economic crisis” and “the decision to publish the article on the front/back page is an indication of the topic’s importance”.)
 
--   **reaction**: Subjects rated agreement about possible reactions to the story. (The score is the mean of 4 items: “publishing the article might affect my decisions about buying sugar, “I will buy sugar next time I go to the store,” “I will buy more sugar than usual next time I go to the store,” and “I will try to reduce my sugar consumption.”).
+- **reaction**: Subjects rated agreement about possible reactions to the story. (The score is the mean of 4 items: “publishing the article might affect my decisions about buying sugar, “I will buy sugar next time I go to the store,” “I will buy more sugar than usual next time I go to the store,” and “I will try to reduce my sugar consumption.”).
 
--   **gender**: 1 = male, 2 = female
+- **gender**: 1 = male, 2 = female
 
--   **age**: a numeric vector
+- **age**: a numeric vector
 
 ::: callout-note
 # Task:
@@ -94,7 +94,7 @@ Run a mediation analysis to see whether the relationship between **cond** and **
 1.  Use Baron and Kenny (1986) Approach
 2.  Use Preacher and Hayes (2008) Approach
 
--   For each analysis, identify if there is a mediation effect and explain why.
+- For each analysis, identify if there is a mediation effect and explain why.
 
 You will need to use the following packages (install them first, if necessary):
 

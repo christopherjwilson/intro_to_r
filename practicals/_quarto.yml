@@ -1,0 +1,15 @@
+project:
+  type: default
+  output-dir: ../docs/practicals
+  resources:
+    - "*.pdf"
+    - "*.csv"
+  render:
+  - practical1.qmd
+  - practical2.qmd
+  - regression.qmd
+  - multiplePredictors.qmd
+  - moderation.qmd
+  - mediation.qmd
+  - factorAnalysis.qmd
+  - exam2526.qmd

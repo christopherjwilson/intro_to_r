@@ -6,8 +6,8 @@
 <script src="mediation_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="mediation_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="mediation_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="mediation_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.25">
+<link href="mediation_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="Dr Christopher Wilson">
   <title>Mediation Designs</title>
@@ -17,10 +17,16 @@
   <link rel="stylesheet" href="mediation_files/libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="mediation_files/libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -95,7 +101,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="mediation_files/libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
+  <link rel="stylesheet" href="mediation_files/libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
   <link rel="stylesheet" href="include/style.css">
   <link href="mediation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="mediation_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -191,16 +197,11 @@
       margin-right: 0; 
     }
   </style>
-  <link href="mediation_files/libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
-
+  <link href="mediation_files/libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
   <script src="mediation_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-
   <script src="mediation_files/libs/viz-1.8.2/viz.js"></script>
-
   <link href="mediation_files/libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
-
-  <script src="mediation_files/libs/grViz-binding-1.0.11/grViz.js"></script>
-
+  <script src="mediation_files/libs/grViz-binding-1.0.12/grViz.js"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -213,7 +214,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Dr Christopher Wilson 
+Dr Christopher Wilson
 </div>
         <p class="quarto-title-affiliation">
             Teesside University
@@ -252,8 +253,8 @@ Dr Christopher Wilson
 <h2>Distinguishing between moderation and mediation</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-2f22ec701108904b07a9" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-2f22ec701108904b07a9">{"x":{"diagram":"\n\tdigraph moderation_model { \n\t  # Nodes  \n\t  node [shape = rectangle, fontname = Arial, fontsize=9]\n\t  iv    [pos = \"-1,1!\", label = \"Temperature\"]\n\t  blank [pos =  \"0,1!\", label = \"\", width = 0.001, height = 0.001]\n\t  mod   [pos =  \"0,2!\", label = \"Likelihood\nof rain\"]\n\t  dv    [pos =  \"1,1!\", label = \"People\nat the\nbeach\"]\n\t    \n\t  # Hide moderator edges\n\t  { rank = same; blank mod }\n\t  \n\t  # Edges\n\t  edge [fontname = Arial, fontsize=8]\n\t  mod -> blank\n\t  iv -> blank [dir = none]\n\t  blank -> dv [minlen = 1]\n\n\t  # Graph\n\t  graph [layout = neato, overlap = true, outputorder = edgesfirst]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-91fc313eaedce41128c9" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-91fc313eaedce41128c9">{"x":{"diagram":"\n\tdigraph moderation_model { \n\t  # Nodes  \n\t  node [shape = rectangle, fontname = Arial, fontsize=9]\n\t  iv    [pos = \"-1,1!\", label = \"Temperature\"]\n\t  blank [pos =  \"0,1!\", label = \"\", width = 0.001, height = 0.001]\n\t  mod   [pos =  \"0,2!\", label = \"Likelihood\nof rain\"]\n\t  dv    [pos =  \"1,1!\", label = \"People\nat the\nbeach\"]\n\t    \n\t  # Hide moderator edges\n\t  { rank = same; blank mod }\n\t  \n\t  # Edges\n\t  edge [fontname = Arial, fontsize=8]\n\t  mod -> blank\n\t  iv -> blank [dir = none]\n\t  blank -> dv [minlen = 1]\n\n\t  # Graph\n\t  graph [layout = neato, overlap = true, outputorder = edgesfirst]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -261,8 +262,8 @@ Dr Christopher Wilson
 <h2>Distinguishing between moderation and mediation</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-e0b557b0ab7514ffd086" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-e0b557b0ab7514ffd086">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\",\n       label = \"\",\n       labelloc = \"t\",\n       labeljust = \"c\",\n       fontname = \"Helvetica\",\n       fontcolor = \"gray30\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Screen time\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"1,1!\"] \n  \"2\" [label = \"Social Media\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"3,3!\"] \n  \"3\" [label = \"Lonliness\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"5,1!\"] \n\"1\"->\"2\" [color = \"blue\", fontsize = \"16\"] \n\"2\"->\"3\" [color = \"green\", fontsize = \"16\"] \n\"1\"->\"3\" [color = \"red\", fontsize = \"16\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-b4804d22884c47cf44e6" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-b4804d22884c47cf44e6">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\",\n       label = \"\",\n       labelloc = \"t\",\n       labeljust = \"c\",\n       fontname = \"Helvetica\",\n       fontcolor = \"gray30\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Screen time\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"1,1!\"] \n  \"2\" [label = \"Social Media\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"3,3!\"] \n  \"3\" [label = \"Lonliness\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"5,1!\"] \n\"1\"->\"2\" [color = \"blue\", fontsize = \"16\"] \n\"2\"->\"3\" [color = \"green\", fontsize = \"16\"] \n\"1\"->\"3\" [color = \"red\", fontsize = \"16\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -281,8 +282,8 @@ Dr Christopher Wilson
 <h2>Visualising mediation</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-53d140b3c17f5c6a6507" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-53d140b3c17f5c6a6507">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\",\n       label = \"\",\n       labelloc = \"t\",\n       labeljust = \"c\",\n       fontname = \"Helvetica\",\n       fontcolor = \"gray30\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Therapy\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"1,1!\"] \n  \"2\" [label = \"Practice\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"3,3!\"] \n  \"3\" [label = \"Mental Health\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"5,1!\"] \n\"1\"->\"2\" [color = \"blue\", fontsize = \"16\"] \n\"2\"->\"3\" [color = \"green\", fontsize = \"16\"] \n\"1\"->\"3\" [color = \"red\", fontsize = \"16\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-2e261cc0c57cec0c637d" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-2e261cc0c57cec0c637d">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\",\n       label = \"\",\n       labelloc = \"t\",\n       labeljust = \"c\",\n       fontname = \"Helvetica\",\n       fontcolor = \"gray30\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Therapy\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"1,1!\"] \n  \"2\" [label = \"Practice\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"3,3!\"] \n  \"3\" [label = \"Mental Health\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"5,1!\"] \n\"1\"->\"2\" [color = \"blue\", fontsize = \"16\"] \n\"2\"->\"3\" [color = \"green\", fontsize = \"16\"] \n\"1\"->\"3\" [color = \"red\", fontsize = \"16\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -331,8 +332,8 @@ Dr Christopher Wilson
 <h2>Visualising mediation</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-e9c7c10253e1213fdc2e" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-e9c7c10253e1213fdc2e">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\",\n       label = \"\",\n       labelloc = \"t\",\n       labeljust = \"c\",\n       fontname = \"Helvetica\",\n       fontcolor = \"gray30\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Therapy\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"1,1!\"] \n  \"2\" [label = \"Practice\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"3,3!\"] \n  \"3\" [label = \"Mental Health\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"5,1!\"] \n\"1\"->\"2\" [color = \"blue\", fontsize = \"16\"] \n\"2\"->\"3\" [color = \"green\", fontsize = \"16\"] \n\"1\"->\"3\" [color = \"red\", fontsize = \"16\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-9404899ef9513739df8b" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-9404899ef9513739df8b">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\",\n       label = \"\",\n       labelloc = \"t\",\n       labeljust = \"c\",\n       fontname = \"Helvetica\",\n       fontcolor = \"gray30\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Therapy\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"1,1!\"] \n  \"2\" [label = \"Practice\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"3,3!\"] \n  \"3\" [label = \"Mental Health\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"5,1!\"] \n\"1\"->\"2\" [color = \"blue\", fontsize = \"16\"] \n\"2\"->\"3\" [color = \"green\", fontsize = \"16\"] \n\"1\"->\"3\" [color = \"red\", fontsize = \"16\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -357,17 +358,17 @@ Dr Christopher Wilson
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1"></a><span class="co">#1. Total Effect of X on Y</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();" href="">1</a><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X, <span class="at">data=</span>Meddata)</span>
-<span id="annotated-cell-1-3"><a href="#annotated-cell-1-3"></a></span>
-<span id="annotated-cell-1-4"><a href="#annotated-cell-1-4"></a><span class="co">#2. Path A (X on M)</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();" href="">2</a><span id="annotated-cell-1-5" class="code-annotation-target"><a href="#annotated-cell-1-5"></a>fita <span class="ot">&lt;-</span> <span class="fu">lm</span>(M <span class="sc">~</span> X, <span class="at">data=</span>Meddata)</span>
-<span id="annotated-cell-1-6"><a href="#annotated-cell-1-6"></a></span>
-<span id="annotated-cell-1-7"><a href="#annotated-cell-1-7"></a><span class="co">#3. Path B (M on Y)</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3" onclick="event.preventDefault();" href="">3</a><span id="annotated-cell-1-8" class="code-annotation-target"><a href="#annotated-cell-1-8"></a>fitb <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> M, <span class="at">data=</span>Meddata)</span>
-<span id="annotated-cell-1-9"><a href="#annotated-cell-1-9"></a></span>
-<span id="annotated-cell-1-10"><a href="#annotated-cell-1-10"></a><span class="co">#4. Reversed Path C (Y on X, controlling for M)</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="4" onclick="event.preventDefault();" href="">4</a><span id="annotated-cell-1-11" class="code-annotation-target"><a href="#annotated-cell-1-11"></a>fitc <span class="ot">&lt;-</span> <span class="fu">lm</span>(X <span class="sc">~</span> Y <span class="sc">+</span> M, <span class="at">data=</span>Meddata)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1" aria-label="1"></a><span class="co">#1. Total Effect of X on Y</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();" href="">1</a><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2" aria-label="2"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X, <span class="at">data=</span>Meddata)</span>
+<span id="annotated-cell-1-3"><a href="#annotated-cell-1-3" aria-label="3"></a></span>
+<span id="annotated-cell-1-4"><a href="#annotated-cell-1-4" aria-label="4"></a><span class="co">#2. Path A (X on M)</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();" href="">2</a><span id="annotated-cell-1-5" class="code-annotation-target"><a href="#annotated-cell-1-5" aria-label="5"></a>fita <span class="ot">&lt;-</span> <span class="fu">lm</span>(M <span class="sc">~</span> X, <span class="at">data=</span>Meddata)</span>
+<span id="annotated-cell-1-6"><a href="#annotated-cell-1-6" aria-label="6"></a></span>
+<span id="annotated-cell-1-7"><a href="#annotated-cell-1-7" aria-label="7"></a><span class="co">#3. Path B (M on Y)</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3" onclick="event.preventDefault();" href="">3</a><span id="annotated-cell-1-8" class="code-annotation-target"><a href="#annotated-cell-1-8" aria-label="8"></a>fitb <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> M, <span class="at">data=</span>Meddata)</span>
+<span id="annotated-cell-1-9"><a href="#annotated-cell-1-9" aria-label="9"></a></span>
+<span id="annotated-cell-1-10"><a href="#annotated-cell-1-10" aria-label="10"></a><span class="co">#4. Reversed Path C (Y on X, controlling for M)</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="4" onclick="event.preventDefault();" href="">4</a><span id="annotated-cell-1-11" class="code-annotation-target"><a href="#annotated-cell-1-11" aria-label="11"></a>fitc <span class="ot">&lt;-</span> <span class="fu">lm</span>(X <span class="sc">~</span> Y <span class="sc">+</span> M, <span class="at">data=</span>Meddata)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
@@ -394,9 +395,9 @@ Dr Christopher Wilson
 <section id="view-the-results" class="slide level2 smaller scrollable">
 <h2>View the results</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">library</span>(stargazer)</span>
-<span id="cb1-2"><a href=""></a></span>
-<span id="cb1-3"><a href=""></a> <span class="fu">stargazer</span>(fit, fita, fitb, fitc, <span class="at">type =</span> <span class="st">"text"</span>, <span class="at">title =</span> <span class="st">"Baron and Kenny Method"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-label="1"></a><span class="fu">library</span>(stargazer)</span>
+<span id="cb1-2"><a href="" aria-label="2"></a></span>
+<span id="cb1-3"><a href="" aria-label="3"></a> <span class="fu">stargazer</span>(fit, fita, fitb, fitc, <span class="at">type =</span> <span class="st">"text"</span>, <span class="at">title =</span> <span class="st">"Baron and Kenny Method"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Baron and Kenny Method
@@ -436,8 +437,8 @@ Note:                                                                           
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="fu">library</span>(bda)</span>
-<span id="cb3-2"><a href=""></a><span class="fu">mediation.test</span>(Meddata<span class="sc">$</span>M, Meddata<span class="sc">$</span>X, Meddata<span class="sc">$</span>Y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="" aria-label="1"></a><span class="fu">library</span>(bda)</span>
+<span id="cb3-2"><a href="" aria-label="2"></a><span class="fu">mediation.test</span>(Meddata<span class="sc">$</span>M, Meddata<span class="sc">$</span>X, Meddata<span class="sc">$</span>Y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>               Sobel       Aroian      Goodman
@@ -456,18 +457,18 @@ p.value 8.890948e-05 9.536664e-05 8.279019e-05</code></pre>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="co">#Mediate package</span></span>
-<span id="cb5-2"><a href=""></a><span class="fu">library</span>(mediation)</span>
-<span id="cb5-3"><a href=""></a></span>
-<span id="cb5-4"><a href=""></a>fitM <span class="ot">&lt;-</span> <span class="fu">lm</span>(M <span class="sc">~</span> X,     <span class="at">data=</span>Meddata) <span class="co">#IV on M; </span></span>
-<span id="cb5-5"><a href=""></a>fitY <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X <span class="sc">+</span> M, <span class="at">data=</span>Meddata) <span class="co">#IV and M on DV; </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="" aria-label="1"></a><span class="co">#Mediate package</span></span>
+<span id="cb5-2"><a href="" aria-label="2"></a><span class="fu">library</span>(mediation)</span>
+<span id="cb5-3"><a href="" aria-label="3"></a></span>
+<span id="cb5-4"><a href="" aria-label="4"></a>fitM <span class="ot">&lt;-</span> <span class="fu">lm</span>(M <span class="sc">~</span> X,     <span class="at">data=</span>Meddata) <span class="co">#IV on M; </span></span>
+<span id="cb5-5"><a href="" aria-label="5"></a>fitY <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X <span class="sc">+</span> M, <span class="at">data=</span>Meddata) <span class="co">#IV and M on DV; </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
 <section id="step-2-check-assumptions" class="slide level2 scrollable">
 <h2>Step 2: Check assumptions</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">gvlma</span>(fitM) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-label="1"></a><span class="fu">gvlma</span>(fitM) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -492,7 +493,7 @@ Kurtosis           3.22497 0.07252 Assumptions acceptable.
 Link Function      0.05126 0.82088 Assumptions acceptable.
 Heteroscedasticity 0.33561 0.56238 Assumptions acceptable.</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="fu">gvlma</span>(fitY)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="" aria-label="1"></a><span class="fu">gvlma</span>(fitY)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -522,8 +523,8 @@ Heteroscedasticity 0.61907 0.43139 Assumptions acceptable.</code></pre>
 <section id="step-3.1-run-the-mediation-analysis-on-the-models" class="slide level2">
 <h2>Step 3.1: Run the mediation analysis on the models</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>fitMed <span class="ot">&lt;-</span> <span class="fu">mediate</span>(fitM, fitY, <span class="at">treat=</span><span class="st">"X"</span>, <span class="at">mediator=</span><span class="st">"M"</span>)</span>
-<span id="cb10-2"><a href=""></a><span class="fu">summary</span>(fitMed)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="" aria-label="1"></a>fitMed <span class="ot">&lt;-</span> <span class="fu">mediate</span>(fitM, fitY, <span class="at">treat=</span><span class="st">"X"</span>, <span class="at">mediator=</span><span class="st">"M"</span>)</span>
+<span id="cb10-2"><a href="" aria-label="2"></a><span class="fu">summary</span>(fitMed)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Causal Mediation Analysis 
@@ -559,7 +560,7 @@ Simulations: 1000 </code></pre>
 <section id="step-3.2-plot-the-mediation-analysis-of-the-models" class="slide level2 smaller">
 <h2>Step 3.2: Plot the mediation analysis of the models</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="fu">plot</span>(fitMed)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="" aria-label="1"></a><span class="fu">plot</span>(fitMed)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="mediation_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
@@ -605,14 +606,25 @@ Simulations: 1000 </code></pre>
 <h1>Mediation analysis with a categorical mediator</h1>
 
 </section>
-<section id="mediation-analysis-with-a-categorical-mediator-or-predictor" class="slide level2">
-<h2>Mediation analysis with a categorical mediator or predictor</h2>
+<section id="mediation-analysis-with-a-categorical-mediator-1" class="slide level2">
+<h2>Mediation analysis with a categorical mediator</h2>
 <ul>
-<li><p>The mediation package can also be used to test for mediation with a categorical mediator or predictor.</p></li>
+<li><p>The mediation package can also be used to test for mediation with a categorical mediator.</p></li>
 <li><p>The approach is the same as above, but the regression models will specify the mediator or predictor as a factor <a href="https://christopherjwilson.github.io/APRM23/descriptives.html#lets-make-sure-our-data-types-are-correct-1">example here</a>.</p></li>
-<li><p>This will mean that some of the regression models will be logistic regression models, like this :</p></li>
 </ul>
-<pre><code>model &lt;- glm(Outcome ~ Categorical_Predictor,family="binomial",data=myData)</code></pre>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream ## Mediation analysis with binary outcomes</p>
+<ul>
+<li>This will mean that some of the regression models will be logistic regression models, like this :</li>
+</ul>
+<pre><code>model &lt;- glm(Outcome ~ Predictor,family="binomial",data=myData)
+=======
+## Mediation analysis with binary outcome
+
+- It is also possible to test mediation if your outcome is binary for example (e.g., Yes / No)
+
+-   This will mean that some of the regression models will be logistic regression models, like this (glm is used for logistic regression) :
+</code></pre>
+<p>model &lt;- glm(Outcome ~ Predictor,family=“binomial”,data=myData) &gt;&gt;&gt;&gt;&gt;&gt;&gt; Stashed changes ```</p>
 <p><a href="https://www.r-bloggers.com/2015/09/how-to-perform-a-logistic-regression-in-r/">example here</a></p>
 <ul>
 <li>The mediation analysis will then be run as outlined earlier.</li>
@@ -626,6 +638,7 @@ Simulations: 1000 </code></pre>
 <li><p>The Preacher and Hayes (2008) approach to mediation</p></li>
 <li><p>What is bootstrapping?</p></li>
 <li><p>Mediation analysis with a categorical mediator or predictor</p></li>
+<li><p>Mediation analysis with other regression types</p></li>
 </ul>
 </section>
 <section id="references" class="slide level2 smaller">
@@ -860,80 +873,42 @@ Simulations: 1000 </code></pre>
       });
     </script>
     
-
     <script>
-
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-
       // slide changes (different for each slide format).
-
       (function () {
-
         // dispatch for htmlwidgets
-
         function fireSlideEnter() {
-
           const event = window.document.createEvent("Event");
-
           event.initEvent("slideenter", true, true);
-
           window.document.dispatchEvent(event);
-
         }
-
-    
 
         function fireSlideChanged(previousSlide, currentSlide) {
-
           fireSlideEnter();
 
-    
-
           // dispatch for shiny
-
           if (window.jQuery) {
-
             if (previousSlide) {
-
               window.jQuery(previousSlide).trigger("hidden");
-
             }
-
             if (currentSlide) {
-
               window.jQuery(currentSlide).trigger("shown");
-
             }
-
           }
-
         }
-
-    
 
         // hookup for slidy
-
         if (window.w3c_slidy) {
-
           window.w3c_slidy.add_observer(function (slide_num) {
-
             // slide_num starts at position 1
-
             fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-
           });
-
         }
 
-    
-
       })();
-
     </script>
-
-    
 
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
