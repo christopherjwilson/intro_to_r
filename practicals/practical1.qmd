@@ -164,9 +164,9 @@ For example, the function **mean()** calculates the mean of a set of numbers.
 To use a function, you need to provide it with some information. For example, to calculate the mean of a set of numbers, you need to tell the function which numbers to use. For example:
 
 ``` r
-# Calculate the mean of my previous result
+# Calculate the mean of my numbers
 
-mean(result) #<1>
+mean(numbers) #<1>
 ```
 
 1.  In the code above, the function **mean()** is used to calculate the mean of the object **result**.
