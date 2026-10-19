@@ -1,5 +1,5 @@
 /.quarto/
 .Rproj.user
-
 **/*.quarto_ipynb
 .Rproj.user
+.Rhistory
