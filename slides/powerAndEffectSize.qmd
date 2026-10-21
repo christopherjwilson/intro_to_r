@@ -79,7 +79,11 @@ When using sample data to make a categorical decision about a population paramet
 
 ## A Clinical Simulation: Zero Population Difference
 
-Suppose an entire clinical population consists of 2,000 patients with generalized anxiety disorder: - 1,000 receive an active psychological therapy. - 1,000 receive treatment as usual (TAU). - **The Ground Truth:** The treatment has zero effect ($\mu_1 = \mu_2 = 0, \sigma_1 = \sigma_2 = 1$). The null hypothesis is strictly true.
+Suppose an entire clinical population consists of 2,000 patients with generalized anxiety disorder: - 1,000 receive an active psychological therapy. - 1,000 receive treatment as usual (TAU).
+
+\- **The Ground Truth:** The treatment has zero effect ($\mu_1 = \mu_2 = 0, \sigma_1 = \sigma_2 = 1$).
+
+The null hypothesis is strictly true.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=7, fig.height=3.5, fig.align='center'}
 library(ggplot2)
