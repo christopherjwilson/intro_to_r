@@ -175,370 +175,431 @@ Dr Christopher Wilson
 <section id="learning-outcomes" class="slide level2">
 <h2>Learning outcomes</h2>
 <ul>
-<li>Understand the concept of statistical power</li>
-<li>Understand the concept of effect size</li>
-<li>Understand the relationship between power and effect size</li>
-<li>Understand the relationship between power and sample size</li>
-<li>Understand the relationship between effect size and sample size</li>
+<li>Understand the Neyman-Pearson decision framework: Type I (<span class="math inline">\(\alpha\)</span>) and Type II (<span class="math inline">\(\beta\)</span>) errors</li>
+<li>Understand the sampling distribution under the null hypothesis and what <span class="math inline">\(p\)</span>-values represent</li>
+<li>Distinguish between statistical significance and clinical importance</li>
+<li>Understand effect sizes in both unstandardized (clinical scale units) and standardized metrics</li>
+<li>Understand statistical power (<span class="math inline">\(1 - \beta\)</span>) and how it relates to sample size (<span class="math inline">\(N\)</span>), effect size, and <span class="math inline">\(\alpha\)</span></li>
+<li>Understand the risks of underpowered studies: Type M (magnitude) and Type S (sign) errors</li>
 </ul>
 </section>
 <section id="recall-from-last-week" class="slide level2">
-<h2>Recall from last week:</h2>
+<h2>Recall from last week</h2>
 <ul>
 <li><p>One of the common issues with clinical research is that studies are underpowered.</p></li>
-<li><p>Today we are going to look at Power and Effect Size, and how these relate to sample size.</p></li>
-<li><p>Statistical significance, sample power and effect size are 3 inter-related concepts that are important to understand when designing a study.</p></li>
+<li><p>When studies lack statistical power, non-significant findings are uninformative, and significant findings are often exaggerated.</p></li>
+<li><p>Today we examine how statistical significance, effect size, sample size, and statistical power interrelate when designing clinical research.</p></li>
 </ul>
 </section>
 <section>
-<section id="what-is-statistical-significance" class="title-slide slide level1 center">
-<h1>What is statistical significance?</h1>
-<p>Does anyone remember what statistical significance is?</p>
+<section id="part-1-the-decision-framework-and-the-null-hypothesis" class="title-slide slide level1 center">
+<h1>Part 1: The Decision Framework and the Null Hypothesis</h1>
+
 </section>
 <section id="what-is-the-null-hypothesis" class="slide level2">
 <h2>What is the null hypothesis?</h2>
 <ul>
-<li><p>The null hypothesis is the hypothesis that there is no difference between groups, or no relationship between variables.</p></li>
-<li><p>For example, if we are comparing the mean score on a measure between two groups, the null hypothesis is that, in the population, the mean score on the measure is the same for both groups.</p></li>
-<li><p>When we test hypotheses, we are trying to see if our data are compatible with the null hypothesis or not.</p></li>
+<li><p>The null hypothesis (<span class="math inline">\(H_0\)</span>) posited in clinical trials typically asserts that there is no true difference between treatment arms, or no association between variables in the target population.</p></li>
+<li><p>For example, if comparing an intervention group to a treatment-as-usual (TAU) control on depression scores:</p>
+<ul>
+<li><span class="math inline">\(H_0: \mu_{\text{Intervention}} - \mu_{\text{TAU}} = 0\)</span></li>
+<li><span class="math inline">\(H_1: \mu_{\text{Intervention}} - \mu_{\text{TAU}} \neq 0\)</span></li>
+</ul></li>
+<li><p>Statistical hypothesis testing does not evaluate whether our hypothesis is “proven”; it evaluates how compatible the observed sample data are with <span class="math inline">\(H_0\)</span>.</p></li>
 </ul>
 </section>
-<section id="what-is-statistical-significance-1" class="slide level2">
+<section id="the-2-times-2-decision-matrix" class="slide level2">
+<h2>The <span class="math inline">\(2 \times 2\)</span> Decision Matrix</h2>
+<p>When using sample data to make a categorical decision about a population parameter, four outcomes are possible:</p>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 35%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">True State: <span class="math inline">\(H_0\)</span> is True (No Effect)</th>
+<th style="text-align: center;">True State: <span class="math inline">\(H_1\)</span> is True (Real Effect Exists)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Decision: Reject</strong> <span class="math inline">\(H_0\)</span> (“Statistically Significant”)</td>
+<td style="text-align: center;"><strong>Type I Error (</strong><span class="math inline">\(\alpha\)</span>)<br>False Positive Rate (e.g., .05)</td>
+<td style="text-align: center;"><strong>Correct Decision (</strong><span class="math inline">\(1 - \beta\)</span>)<br>Statistical Power (e.g., .80)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Decision: Fail to Reject</strong> <span class="math inline">\(H_0\)</span> (“Not Significant”)</td>
+<td style="text-align: center;"><strong>Correct Decision (</strong><span class="math inline">\(1 - \alpha\)</span>)<br>Specificity (e.g., .95)</td>
+<td style="text-align: center;"><strong>Type II Error (</strong><span class="math inline">\(\beta\)</span>)<br>False Negative Rate (e.g., .20)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Type I error (</strong><span class="math inline">\(\alpha\)</span>): Declaring an ineffective treatment effective.</li>
+<li><strong>Type II error (</strong><span class="math inline">\(\beta\)</span>): Missing a genuine clinical treatment effect.</li>
+</ul>
+</section>
+<section id="what-is-statistical-significance" class="slide level2">
 <h2>What is statistical significance?</h2>
 <ul>
-<li>The term “statistical significance” is a shorthand term, used to describe the probability of obtaining a result as extreme as, or more extreme than, the result we obtained, if the null hypothesis were true.</li>
-</ul>
-<blockquote>
-<p>In short: Statistical significance is a test of how compatible the data are with the null hypothesis. It does not tell us what our data proves, only that it is unlikely that the null hypothesis is true.</p>
-</blockquote>
-</section></section>
-<section>
-<section id="imagine-there-is-a-population-of-2000-people-with-a-particular-condition." class="title-slide slide level1 center">
-<h1>Imagine there is a population of 2000 people with a particular condition.</h1>
-
-</section>
-<section id="section" class="slide level2">
-<h2></h2>
-
-<img data-src="powerAndEffectSize_files/figure-revealjs/unnamed-chunk-1-1.png" width="576" class="r-stretch"><p>Imagine we could see them all, and knew that there was not much difference between those who received treatment and those who did not.</p>
-</section></section>
-<section>
-<section id="now-imagine-that-100-studies-were-done-across-the-country-each-with-a-sample-size-of-20-per-group." class="title-slide slide level1 center">
-<h1>Now, imagine that 100 studies were done across the country, each with a sample size of 20 per group.</h1>
-<blockquote>
-<p>What would the results say?</p>
-</blockquote>
-</section>
-<section id="section-1" class="slide level2">
-<h2></h2>
-
-<img data-src="powerAndEffectSize_files/figure-revealjs/unnamed-chunk-2-1.png" width="576" class="r-stretch"></section></section>
-<section>
-<section id="if-a-t-test-was-done-on-each-of-these-samples-what-would-the-results-say" class="title-slide slide level1 center">
-<h1>If a t-test was done on each of these samples, what would the results say?</h1>
-
-</section>
-<section id="section-2" class="slide level2">
-<h2></h2>
-
-<img data-src="powerAndEffectSize_files/figure-revealjs/unnamed-chunk-3-1.png" width="576" class="r-stretch"></section>
-<section id="section-3" class="slide level2">
-<h2></h2>
-</section>
-<section id="section-4" class="slide level2">
-<h2></h2>
-</section>
-<section id="what-is-statistical-significance-2" class="slide level2">
-<h2>What is statistical significance?</h2>
+<li><strong>The</strong> <span class="math inline">\(p\)</span>-value is the continuous probability of obtaining sample data at least as extreme as the observed result, assuming the null hypothesis is true: <span class="math display">\[p = P(D \ge d_{\text{obs}} \mid H_0)\]</span>
 <ul>
-<li><p>In psychological research, we usually use a p-value of 0.05 as the threshold for statistical significance.</p></li>
-<li><p>This means that, even if the null hypothesis were true, if we were to repeat the study 100 times, we could still find a “extreme” difference, 5 times (5% of the time).</p></li>
-<li><p>This is 5% threshold is an arbitrary choice, and is not used for any theoretical reason.</p></li>
-</ul>
-</section>
-<section id="section-5" class="slide level2">
-<h2></h2>
-
-<img data-src="powerAndEffectSize_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center r-stretch" width="768"><ul>
-<li><p>For example: for a difference between 2 means, we could still obtain a difference of up to 1.96 standard deviations, 95% of the time, even if the null hypothesis were true.</p></li>
-<li><p>There’s still a 5% chance (2.5% + 2.5%) of obtaining a difference higher than 1.96 standard deviations, even if the null hypothesis were true.</p></li>
-</ul>
-</section>
-<section id="small-samples-and-p-values" class="slide level2">
-<h2>Small samples and p values</h2>
+<li>It does <strong>not</strong> indicate the probability that <span class="math inline">\(H_0\)</span> is true (<span class="math inline">\(P(H_0 \mid D)\)</span>).</li>
+<li>It does <strong>not</strong> reflect the clinical magnitude or practical utility of the treatment.</li>
+</ul></li>
+<li><strong>Statistical Significance</strong> is a decision rule applied when the calculated <span class="math inline">\(p\)</span>-value falls at or below a predetermined threshold (<span class="math inline">\(\alpha\)</span>):
 <ul>
-<li><p>Small samples increase the likelihood of false positives (significant results that don’t reflect the population)</p></li>
-<li><p>This is because the true pattern in the population is not perfectly reflected in small samples.</p></li>
-<li><p>Within small samples, there will be random variation that can lead to differences between groups.</p></li>
+<li>If <span class="math inline">\(p \le \alpha\)</span>, we reject <span class="math inline">\(H_0\)</span>.</li>
+<li>The threshold <span class="math inline">\(\alpha = .05\)</span> is a historical convention, representing a tolerated 5% long-run Type I error rate when <span class="math inline">\(H_0\)</span> is true <span class="citation" data-cites="wassersteinASAStatementPValues2016">(<a href="#/references" role="doc-biblioref" onclick="">Wasserstein &amp; Lazar, 2016</a>)</span>.</li>
+</ul></li>
 </ul>
 </section></section>
 <section>
-<section id="takeaways" class="title-slide slide level1 center">
-<h1>Takeaways</h1>
-<ul>
-<li><p>Even when the null hypothesis is true, we can still obtain a range of differences when we sample from the population.</p></li>
-<li><p>Some of these differences will even result in p-values below 0.05.</p></li>
-<li><p>It’s important to recognise that false positives (Type 1 error) can happen. Smaller samples are subject to more random variation and lack of control in study design can lead to spurious conclusions.</p></li>
+<section id="part-2-sampling-variability-under-the-null-h_0-is-true" class="title-slide slide level1 center">
+<h1>Part 2: Sampling Variability Under the Null (<span class="math inline">\(H_0\)</span> is True)</h1>
+
+</section>
+<section id="a-clinical-simulation-zero-population-difference" class="slide level2">
+<h2>A Clinical Simulation: Zero Population Difference</h2>
+<p>Suppose an entire clinical population consists of 2,000 patients with generalized anxiety disorder: - 1,000 receive an active psychological therapy. - 1,000 receive treatment as usual (TAU). - <strong>The Ground Truth:</strong> The treatment has zero effect (<span class="math inline">\(\mu_1 = \mu_2 = 0, \sigma_1 = \sigma_2 = 1\)</span>). The null hypothesis is strictly true.</p>
+
+<img data-src="powerAndEffectSize_files/figure-revealjs/unnamed-chunk-1-1.png" class="quarto-figure quarto-figure-center r-stretch" width="672"></section>
+<section id="running-100-small-clinical-trials-n-20-per-group" class="slide level2">
+<h2>Running 100 Small Clinical Trials (<span class="math inline">\(N = 20\)</span> per group)</h2>
+<p>Now imagine 100 independent research teams draw a random sample of <span class="math inline">\(n = 20\)</span> per arm from this identical population.</p>
+
+<img data-src="powerAndEffectSize_files/figure-revealjs/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center r-stretch" width="672"><p>Even with an identical population, sampling noise produces observed group differences ranging from negative to positive.</p>
+</section>
+<section id="observed-p-values-across-the-100-studies" class="slide level2">
+<h2>Observed <span class="math inline">\(p\)</span>-values Across the 100 Studies</h2>
+<p>What happens when each of the 100 studies runs an independent-samples <span class="math inline">\(t\)</span>-test?</p>
+
+<img data-src="powerAndEffectSize_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center r-stretch" width="768"><ul>
+<li>In this simulation, roughly 5 out of 100 studies yield <span class="math inline">\(p \le .05\)</span>.</li>
+<li>These researchers would claim a “statistically significant” treatment effect despite the true effect being zero.</li>
 </ul>
 </section>
-<section id="the-problem-with-statistical-significance" class="slide level2">
-<h2>The problem with statistical significance</h2>
+<section id="understanding-the-sampling-distribution-under-h_0" class="slide level2">
+<h2>Understanding the Sampling Distribution Under <span class="math inline">\(H_0\)</span></h2>
+
+<img data-src="powerAndEffectSize_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center r-stretch" width="768"><ul>
+<li>For small samples (<span class="math inline">\(n = 20\)</span> per group, <span class="math inline">\(df = 38\)</span>), sampling variability is governed by the <span class="math inline">\(t\)</span>-distribution, not the standard normal distribution.</li>
+<li>The critical value for <span class="math inline">\(\alpha = .05\)</span> is <span class="math inline">\(t = \pm 2.024\)</span> (not <span class="math inline">\(z = \pm 1.96\)</span>).</li>
+<li>Differences are measured in <strong>standard errors of the difference</strong>, not population standard deviations.</li>
+</ul>
+</section>
+<section id="what-small-samples-do-and-do-not-do-to-type-i-error" class="slide level2">
+<h2>What Small Samples Do and Do Not Do to Type I Error</h2>
+<ul>
+<li><strong>What small samples do NOT do:</strong>
+<ul>
+<li>Small samples do <strong>not</strong> increase the nominal Type I error rate (<span class="math inline">\(\alpha\)</span>).</li>
+<li>If <span class="math inline">\(\alpha = .05\)</span> and test assumptions hold, the false positive rate remains exactly 5%, regardless of whether <span class="math inline">\(N = 20\)</span> or <span class="math inline">\(N = 20,000\)</span>.</li>
+</ul></li>
+<li><strong>What small samples DO do:</strong>
+<ul>
+<li><strong>Increase estimation imprecision:</strong> Wide standard errors mean point estimates fluctuate wildly around the truth.</li>
+<li><strong>Produce severe power deficits:</strong> True effects are routinely missed.</li>
+<li><strong>Distort the published literature:</strong> When coupled with publication bias, small significant studies yield heavily inflated effect size estimates.</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="part-3-the-flaws-of-nhst-and-the-role-of-confidence-intervals" class="title-slide slide level1 center">
+<h1>Part 3: The Flaws of NHST and the Role of Confidence Intervals</h1>
+
+</section>
+<section id="the-problem-with-threshold-based-inference" class="slide level2">
+<h2>The Problem with Threshold-Based Inference</h2>
 <blockquote>
 <p>“It’s science’s dirtiest secret: The ‘scientific method’ of testing hypotheses by statistical analysis stands on a flimsy foundation.”</p>
+<p>— George Cobb, Professor Emeritus of Mathematics and Statistics, Mount Holyoke College</p>
 </blockquote>
-<p>In February 2014, George Cobb, Professor Emeritus of Mathematics and Statistics at Mount Holyoke College, posed these questions to an ASA discussion forum:</p>
-<p>Q: Why do so many colleges and grad schools teach p = 0.05?</p>
-<p>A: Because that’s still what the scientific community and journal editors use.</p>
-<p>Q: Why do so many people still use p = 0.05?</p>
-<p>A: Because that’s what they were taught in college or grad school.</p>
-<p><span class="citation" data-cites="WassersteinLazar2016">(<a href="#/references" role="doc-biblioref" onclick="">Wasserstein &amp; Lazar, 2016</a>)</span></p>
-</section>
-<section id="what-is-the-problem-with-statistical-significance" class="slide level2">
-<h2>What is the problem with statistical significance?</h2>
-<p>“Researchers commonly use p-values to answer the question: How strongly does the evidence favor the alternative hypothesis relative to the null hypothesis? p-Values themselves do not directly answer this question and are often misinterpreted” <span class="citation" data-cites="BenjaminBerger2019">(<a href="#/references" role="doc-biblioref" onclick="">Benjamin &amp; Berger, 2019</a>)</span></p>
-</section>
-<section id="the-asa-statement-on-p-values" class="slide level2">
-<h2>The ASA statement on p-values</h2>
-<ol type="1">
-<li>P-values can indicate how incompatible the data are with a specified statistical model.</li>
-<li>P-values do not measure the probability that the studied hypothesis is true, or the probability that the data were produced by random chance alone.</li>
-<li>Scientific conclusions and business or policy decisions should not be based only on whether a p-value passes a specific threshold.</li>
-<li>Proper inference requires full reporting and transparency.</li>
-<li>A p-value, or statistical significance, does not measure the size of an effect or the importance of a result.</li>
-<li>By itself, a p-value does not provide a good measure of evidence regarding a model or hypothesis.</li>
-</ol>
-<p><span class="citation" data-cites="WassersteinLazar2016">(<a href="#/references" role="doc-biblioref" onclick="">Wasserstein &amp; Lazar, 2016</a>)</span></p>
-</section>
-
-</section>
-<section id="takeaways-1" class="title-slide slide level1 center">
-<h1>Takeaways</h1>
 <ul>
-<li><p>p-values can put people into a binary mindset about results (yes/no) when the data collected is likely more complex</p></li>
-<li><p>p-values are not stable from one study to the next, so be careful about interpreting them.</p></li>
-<li><p>p-values are not a good measure of evidence for or against a hypothesis, only how likely the data are to have occurred if the null hypothesis were true.</p></li>
-<li><p>There is no such thing as a “near-significant” result. A p-value of 0.048 is not more “important” than a p-value of 0.05.</p></li>
+<li>Q: Why do so many training programs teach <span class="math inline">\(p \le .05\)</span>?
+<ul>
+<li>A: Because that is what journals and reviewers have historically required.</li>
+</ul></li>
+<li>Q: Why do researchers continue to rely on <span class="math inline">\(p \le .05\)</span>?
+<ul>
+<li>A: Because that is what they were taught in graduate research methods <span class="citation" data-cites="wassersteinASAStatementPValues2016">(<a href="#/references" role="doc-biblioref" onclick="">Wasserstein &amp; Lazar, 2016</a>)</span>.</li>
+</ul></li>
 </ul>
 </section>
-
-<section>
-<section id="confidence-intervals" class="title-slide slide level1 center">
-<h1>Confidence Intervals</h1>
-
+<section id="what-is-the-problem-with-p-values" class="slide level2">
+<h2>What is the Problem with <span class="math inline">\(p\)</span>-values?</h2>
+<blockquote>
+<p>“Researchers commonly use <span class="math inline">\(p\)</span>-values to answer the question: How strongly does the evidence favor the alternative hypothesis relative to the null hypothesis? <span class="math inline">\(p\)</span>-Values themselves do not directly answer this question and are often misinterpreted.”</p>
+<p>— <span class="citation" data-cites="benjaminThreeRecommendationsImproving2019">Benjamin &amp; Berger (<a href="#/references" role="doc-biblioref" onclick="">2019</a>)</span></p>
+</blockquote>
+<ul>
+<li>A <span class="math inline">\(p\)</span>-value near <span class="math inline">\(.05\)</span> provides only weak evidence against the null hypothesis.</li>
+<li>A non-significant <span class="math inline">\(p\)</span>-value (<span class="math inline">\(p &gt; .05\)</span>) does not demonstrate the absence of an effect; it merely indicates that the data are not sufficiently incompatible with <span class="math inline">\(H_0\)</span> under the chosen sample size.</li>
+</ul>
 </section>
-<section id="p-values-are-not-stable-from-one-study-to-the-next" class="slide level2">
-<h2>P-values are not stable from one study to the next</h2>
+<section id="the-asa-statement-on-p-values" class="slide level2">
+<h2>The ASA Statement on <span class="math inline">\(p\)</span>-values</h2>
+<ol type="1">
+<li><span class="math inline">\(p\)</span>-values can indicate how incompatible the data are with a specified statistical model.</li>
+<li><span class="math inline">\(p\)</span>-values do not measure the probability that the studied hypothesis is true, or the probability that the data were produced by random chance alone.</li>
+<li>Scientific conclusions and clinical decisions should not be based solely on whether a <span class="math inline">\(p\)</span>-value passes an arbitrary threshold.</li>
+<li>Proper inference requires full reporting and transparency (no selective reporting or <span class="math inline">\(p\)</span>-hacking).</li>
+<li>A <span class="math inline">\(p\)</span>-value does not measure the size of an effect or the clinical importance of a result.</li>
+<li>By itself, a <span class="math inline">\(p\)</span>-value does not provide a good measure of evidence regarding a model or hypothesis <span class="citation" data-cites="wassersteinASAStatementPValues2016">(<a href="#/references" role="doc-biblioref" onclick="">Wasserstein &amp; Lazar, 2016</a>)</span>.</li>
+</ol>
+</section>
+<section id="p-values-are-instable-across-replications" class="slide level2">
+<h2><span class="math inline">\(p\)</span>-values are Instable Across Replications</h2>
 
-<img data-src="images/ci.jpg" class="r-stretch quarto-figure-center"><p class="caption">p-values and confidence intervals for 25 samples</p></section>
+<img data-src="images/ci.jpg" class="r-stretch quarto-figure-center"><p class="caption">The Dance of the <span class="math inline">\(p\)</span>-Values: Observed <span class="math inline">\(p\)</span>-values fluctuate drastically across identical sample sizes (Cumming, 2014)</p></section>
 <section id="using-confidence-intervals-to-interpret-results" class="slide level2">
-<h2>Using confidence intervals to interpret results</h2>
+<h2>Using Confidence Intervals to Interpret Results</h2>
 <ul>
-<li>Confidence intervals are a better way to interpret results than p-values.</li>
-<li>A confidence interval is a range of values that is likely to contain the true value of a parameter.</li>
-<li>For example, a 95% confidence interval for a mean says:
-<ul>
-<li>If we were to collect the same sample 100 times and calculate a 95% confidence interval of the mean for each sample, 95 of the intervals would contain the true population mean.</li>
-</ul></li>
+<li>A <strong>confidence interval (CI)</strong> reflects the precision of a sample estimate.</li>
+<li><strong>Formal definition:</strong> If we repeated our sampling procedure an infinite number of times under identical conditions, 95% of computed 95% confidence intervals would encompass the true population parameter.</li>
+<li><strong>Informal interpretation:</strong> The 95% CI demarcates the range of parameter values that remain statistically compatible with our sample data at <span class="math inline">\(\alpha = .05\)</span>.</li>
+<li>Unlike <span class="math inline">\(p\)</span>-values, confidence intervals keep the analysis anchored to the original measurement scale.</li>
 </ul>
 </section>
 <section id="what-can-confidence-intervals-tell-us" class="slide level2">
-<h2>What can confidence intervals tell us?</h2>
-<ul>
-<li>Confidence intervals can a range of likely outcomes (if we were to conduct the study repeatedly). The wider they are, the less precise our estimate is.</li>
-</ul>
+<h2>What Can Confidence Intervals Tell Us?</h2>
 
-<img data-src="images/clinical_relevance.jpg" class="r-stretch quarto-figure-center"><p class="caption">In a later class, Dr Alan Bowman will discuss clinically meaningful results</p></section>
-<section id="how-do-we-report-confidence-intervals" class="slide level2">
-<h2>How do we report Confidence Intervals?</h2>
-<p>To report confidence intervals in APA style, we need to report the lower and upper bounds of the interval, and the confidence level.</p>
-<p>For example:</p>
+<img data-src="images/clinical_relevance.jpg" class="r-stretch quarto-figure-center"><p class="caption">Evaluating estimates against clinically meaningful thresholds</p><ul>
+<li>Narrow CIs indicate high precision (large samples); wide CIs indicate substantial uncertainty (small samples).</li>
+<li>CIs allow researchers to assess whether an effect is statistically significant, clinically trivial, or practically meaningful.</li>
+</ul>
+</section>
+<section id="reporting-confidence-intervals-in-apa-style" class="slide level2">
+<h2>Reporting Confidence Intervals in APA Style</h2>
+<p>Always report the point estimate, the confidence level, and both bounds alongside exact <span class="math inline">\(p\)</span>-values:</p>
 <blockquote>
-<p>The results of the t-test showed a significant difference between the two groups, t(18) = 2.43, p = .03, 95% CI [0.02, 0.45].</p>
+<p>“Patients receiving CBT exhibited significantly greater reductions in depressive symptoms than those in the control condition, <span class="math inline">\(t(38) = 2.43\)</span>, <span class="math inline">\(p = .020\)</span>, mean difference <span class="math inline">\(= 4.20\)</span> points, 95% CI <span class="math inline">\([0.70, 7.70]\)</span>, Cohen’s <span class="math inline">\(d = 0.77\)</span>.”</p>
 </blockquote>
-<p>This tells us that the true mean difference between the two groups is likely to be between 0.02 and 0.45. We can decide (depending on our research question) how meaningful this is to us.</p>
-<aside class="notes">
-<p>CI = if we were to repeat the study 100 times, 95 of the confidence intervals would contain the true mean difference.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+<ul>
+<li>This communicates both the central estimate and the bound of uncertainty: the true average reduction could plausibly be as small as 0.70 points or as large as 7.70 points.</li>
+</ul>
 </section></section>
 <section>
-<section id="takeaways-2" class="title-slide slide level1 center">
-<h1>Takeaways</h1>
+<section id="part-4-effect-sizes-and-clinical-importance" class="title-slide slide level1 center">
+<h1>Part 4: Effect Sizes and Clinical Importance</h1>
+
+</section>
+<section id="statistical-significance-does-not-mean-clinical-importance" class="slide level2">
+<h2>Statistical Significance Does Not Mean Clinical Importance</h2>
 <ul>
-<li><p>p-values are not a good measure of the size of an effect or the importance of a result.</p></li>
-<li><p>Confidence intervals are a better way to interpret results than p-values.</p></li>
-<li><p>Confidence intervals can tell us the likely range of outcomes, and a better sense of how precise our estimate of the true value is.</p></li>
+<li>Statistical significance is highly dependent on sample size:
+<ul>
+<li>In a massive sample (<span class="math inline">\(N = 10,000\)</span>), a clinically meaningless change of 0.2 points on the PHQ-9 will produce <span class="math inline">\(p &lt; .001\)</span>.</li>
+<li>In a small sample (<span class="math inline">\(N = 15\)</span>), a clinically transformative reduction of 6 points might yield <span class="math inline">\(p = .12\)</span>.</li>
+</ul></li>
+<li>Clinical psychology requires measuring <strong>magnitude of change</strong>, not merely whether an effect is distinguishable from zero.</li>
 </ul>
 </section>
-<section id="lets-look-again-at-the-data" class="slide level2">
-<h2>Let’s look again at the data:</h2>
-
-<img data-src="powerAndEffectSize_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"><p>There’s not much difference between the two groups. Does that mean there is no difference?</p>
+<section id="what-is-an-effect-size" class="slide level2">
+<h2>What is an Effect Size?</h2>
+<p>An <strong>effect size</strong> is a quantitative index of the magnitude of a difference, relationship, or treatment outcome.</p>
+<ol type="1">
+<li><strong>Unstandardized Effect Sizes:</strong>
+<ul>
+<li>Expressed in the original clinical units of measurement (e.g., points on the Beck Depression Inventory, Hamilton Rating Scale, or minutes of sleep).</li>
+<li>Readily interpretable by clinicians and service users.</li>
+</ul></li>
+<li><strong>Standardized Effect Sizes:</strong>
+<ul>
+<li>Expressed without measurement units, scaling the difference by sample or pooled standard deviation (e.g., Cohen’s <span class="math inline">\(d\)</span>, Hedges’ <span class="math inline">\(g\)</span>, Pearson’s <span class="math inline">\(r\)</span>, Odds Ratios).</li>
+<li>Essential when synthesizing across different clinical measures in meta-analyses.</li>
+</ul></li>
+</ol>
+</section>
+<section id="commonly-used-standardized-effect-sizes" class="slide level2">
+<h2>Commonly Used Standardized Effect Sizes</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Metric</th>
+<th style="text-align: left;">Formula / Description</th>
+<th style="text-align: left;">Common Application</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Cohen’s</strong> <span class="math inline">\(d\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(d = \frac{\bar{X}_1 - \bar{X}_2}{s_{\text{pooled}}}\)</span></td>
+<td style="text-align: left;">Mean differences between two clinical groups</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Hedges’</strong> <span class="math inline">\(g\)</span></td>
+<td style="text-align: left;">Cohen’s <span class="math inline">\(d \times \left(1 - \frac{3}{4(n_1+n_2) - 9}\right)\)</span></td>
+<td style="text-align: left;">Corrects for small-sample upward bias in Cohen’s <span class="math inline">\(d\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Pearson’s</strong> <span class="math inline">\(r\)</span></td>
+<td style="text-align: left;">Standardized covariance between continuous variables</td>
+<td style="text-align: left;">Association between psychometric measures</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Odds Ratio (OR)</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\frac{\text{Odds of outcome in Treatment}}{\text{Odds of outcome in Control}}\)</span></td>
+<td style="text-align: left;">Binary clinical outcomes (e.g., recovery vs.&nbsp;relapse)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Partial</strong> <span class="math inline">\(\eta^2\)</span></td>
+<td style="text-align: left;">Proportion of variance explained by a factor</td>
+<td style="text-align: left;">Factorial ANOVA in multi-arm trials</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="the-problem-with-benchmark-rules-of-thumb" class="slide level2">
+<h2>The Problem with Benchmark Rules of Thumb</h2>
+<ul>
+<li>Jacob Cohen suggested generic benchmarks: small (<span class="math inline">\(d = 0.2\)</span>), medium (<span class="math inline">\(d = 0.5\)</span>), and large (<span class="math inline">\(d = 0.8\)</span>).</li>
+<li>In clinical psychology, generic labels can be misleading:
+<ul>
+<li>An effect of <span class="math inline">\(d = 0.20\)</span> on suicide prevention or all-cause mortality is clinically vital.</li>
+<li>An effect of <span class="math inline">\(d = 0.80\)</span> on a self-report proxy measure with high measurement error may have negligible clinical utility.</li>
+</ul></li>
+<li>Effect sizes must be interpreted relative to:
+<ul>
+<li>The specific clinical population and baseline severity.</li>
+<li>The <strong>Minimal Clinically Important Difference (MCID)</strong>.</li>
+<li>The <strong>Reliable Change Index (RCI)</strong>.</li>
+</ul></li>
+</ul>
+</section>
+<section id="do-not-use-pilot-data-to-estimate-effect-size" class="slide level2">
+<h2>Do Not Use Pilot Data to Estimate Effect Size</h2>
+<ul>
+<li>Clinical researchers often compute <span class="math inline">\(d\)</span> from an underpowered pilot study (<span class="math inline">\(n = 10\)</span> per arm) and plug that estimate into G*Power to plan a definitive trial.</li>
+<li><strong>Why this fails [</strong>@albersWhenPowerAnalyses2018]<strong>:</strong>
+<ul>
+<li>Small sample effect sizes have extreme variance; a sample <span class="math inline">\(d = 0.60\)</span> from <span class="math inline">\(N = 20\)</span> may easily reflect a population effect of <span class="math inline">\(d = 0.15\)</span>.</li>
+<li>“Follow-up bias”: Researchers only proceed to a full trial when the pilot effect happens to land high.</li>
+</ul></li>
+<li><strong>Better alternatives:</strong>
+<ul>
+<li>Define the <strong>Smallest Effect Size of Interest (SESOI)</strong> based on clinical cost-benefit and patient impact <span class="citation" data-cites="lakensPerformingHighpoweredStudies2014">(<a href="#/references" role="doc-biblioref" onclick="">Lakens, 2014</a>)</span>.</li>
+<li>Use safeguard power analysis (taking the lower bound of the CI from prior literature) <span class="citation" data-cites="peruginiSafeguardPowerProtection2014">(<a href="#/references" role="doc-biblioref" onclick="">Perugini et al., 2014</a>)</span>.</li>
+</ul></li>
+</ul>
 </section></section>
 <section>
-<section id="effect-sizes-and-designing-studies-with-sufficient-power" class="title-slide slide level1 center">
-<h1>Effect sizes and designing studies with sufficient power</h1>
+<section id="part-5-statistical-power-and-sample-planning-h_1-is-true" class="title-slide slide level1 center">
+<h1>Part 5: Statistical Power and Sample Planning (<span class="math inline">\(H_1\)</span> is True)</h1>
 
 </section>
-<section id="significance-does-not-mean-importance" class="slide level2">
-<h2>Significance does not mean importance</h2>
+<section id="what-is-statistical-power" class="slide level2">
+<h2>What is Statistical Power?</h2>
 <ul>
-<li>Over the last several decades, psychology research has become too focused on statistical significance.</li>
-<li>A statistically significant result does not mean that the result is meaningful or important.</li>
-<li>The focus on statistical significance has led to a number of problems:
-<ul>
-<li>P-hacking</li>
-<li>Publication bias</li>
-<li>Questionable research practices (small sample sizes, etc.)</li>
-</ul></li>
+<li><strong>Statistical Power (</strong><span class="math inline">\(1 - \beta\)</span>) is the probability of correctly rejecting the null hypothesis when a specific alternative hypothesis (<span class="math inline">\(H_1\)</span>) is true.</li>
+<li>If an intervention genuinely reduces symptoms by <span class="math inline">\(d = 0.50\)</span>, an 80% powered study will successfully detect that effect (<span class="math inline">\(p \le .05\)</span>) 80 times out of 100.</li>
+<li>20 times out of 100, the study will commit a <strong>Type II error (</strong><span class="math inline">\(\beta = .20\)</span>)—failing to detect a genuinely effective treatment.</li>
 </ul>
 </section>
-<section id="what-is-effect-size" class="slide level2">
-<h2>What is effect size?</h2>
-<ul>
-<li>When we conduct research, we are usually asking a question about a difference or a relationship.
-<ul>
-<li>For example, we might be interested in whether there is a difference in the mean score on a measure between clinical two groups.</li>
-<li>Or we might be interested in whether there is a relationship between two variables.</li>
-</ul></li>
-<li>However, different studies use different samples and measures, and so the results of these studies are not directly comparable.</li>
-</ul>
-<blockquote>
-<p>Effect size is a standardized measure of the magnitude of an effect</p>
-</blockquote>
-</section>
-<section id="which-measure-of-effect-size-should-i-use" class="slide level2">
-<h2>Which measure of effect size should I use?</h2>
-<ul>
-<li>There are many measures of effect size, some of the most common are:
-<ul>
-<li>Cohen’s d</li>
-<li>Pearson’s r</li>
-<li>Odds ratio</li>
-<li>Phi coefficient</li>
-<li>Eta squared</li>
-<li>R squared</li>
-</ul></li>
-<li>The choice of effect size measure depends on the type of study and the type of data collected.</li>
-</ul>
-</section>
-<section id="small-medium-and-large-effect-sizes" class="slide level2">
-<h2>Small, medium and large effect sizes?</h2>
-<ul>
-<li><p>Often people talk in terms of small, medium and large effect sizes. This is not very helpful, as it is not clear what these terms mean.</p></li>
-<li><p>It is better to understand the literature in your field, and to know what effect sizes are typically found in studies similar to yours.</p></li>
-<li><p>However, we need to be careful <span class="citation" data-cites="AlbersLakens2018">(<a href="#/references" role="doc-biblioref" onclick="">Albers &amp; Lakens, 2018</a>)</span>:</p>
-<ul>
-<li><p>effect size estimates from small studies are inaccurate</p></li>
-<li><p>publication bias inflates effect sizes.</p></li>
-</ul></li>
-<li><p>“Follow-up” bias, is an issue with people deciding whether or not to conduct studies based on the effects found in pilot data</p></li>
-</ul>
-</section>
-<section id="dont-use-pilot-data-to-estimate-effect-size" class="slide level2">
-<h2>Don’t use pilot data to estimate effect size</h2>
-<ul>
-<li><p>This can lead to seriously underpowered study designs, especially when the sample size of the pilot and/or the true effect size is small to medium.</p></li>
-<li><p>Not only is this approach inaccurate, it is inefficient.</p></li>
-<li><p>Instead:</p>
-<ul>
-<li>Determine the smallest effect size of interest (SESOI), based on either utility or theoretical arguments, and use the SESOI in an a-priori power analysis.</li>
-<li>Sequential analysis might be appropriate <span class="citation" data-cites="Lakens2014">(<a href="#/references" role="doc-biblioref" onclick="">Lakens, 2014</a>)</span><br>
-</li>
-<li>A “safeguard” power analysis can be used (underestimates the effect from published studies) <span class="citation" data-cites="PeruginiEtAl2014">(<a href="#/references" role="doc-biblioref" onclick="">Perugini et al., 2014</a>)</span></li>
-</ul></li>
-</ul>
-</section>
-<section id="when-designing-a-study-we-need-to-ensure-it-has-sufficient-power" class="slide level2">
-<h2>When designing a study, we need to ensure it has sufficient power</h2>
-<p>What does this mean?</p>
-<ul>
-<li>Power is ability to detect an effect if it exists</li>
-<li>If a study has low power, it is not possible for us to tell whether a statistically non-significant result is due to:
-<ul>
-<li>The absence of an effect</li>
-<li>The absence of power to detect an effect</li>
-</ul></li>
-</ul>
-</section>
-<section id="think-of-power-as-the-strength-of-magnification-and-effect-size-as-the-size-of-what-you-are-looking-for" class="slide level2">
-<h2>Think of power as the strength of magnification and effect size as the size of what you are looking for…</h2>
+<section id="the-magnification-analogy" class="slide level2">
+<h2>The Magnification Analogy</h2>
 
-<img data-src="images/image_0.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="thinking-about-statistical-power" class="slide level2">
-<h2>Thinking about statistical power</h2>
-<ul>
-<li><p>We first need to decide what effect size we are interested in detecting. This can be called the smallest effect size of interest (SESOI).</p></li>
-<li><p>We then need to decide how much power we want to have to detect this effect size.</p></li>
-<li><p>A common choice is 80% power, but this is arbitrary. This means:</p></li>
+<img data-src="images/image_0.jpg" class="quarto-figure quarto-figure-center r-stretch"><ul>
+<li><strong>Effect Size:</strong> The size of the object you are searching for.</li>
+<li><strong>Sample Size (</strong><span class="math inline">\(N\)</span>): The magnification strength of your lens.</li>
+<li>A large effect (an elephant) can be seen with low magnification (small <span class="math inline">\(N\)</span>).</li>
+<li>A subtle effect (a microbe) requires a powerful microscope (large <span class="math inline">\(N\)</span>).</li>
 </ul>
-<blockquote>
-<p>With the given effect size and the calculated sample size, we will be able to detect the effect (if it exists) 80% of the time.</p>
-</blockquote>
-</section></section>
-<section>
-<section id="putting-it-all-together" class="title-slide slide level1 center">
-<h1>Putting it all together…</h1>
-
 </section>
-<section id="section-6" class="slide level2" data-background-iframe="https://christopherjwilson.shinyapps.io/app1/" data-background-interactive="true">
+<section id="the-four-interconnected-parameters" class="slide level2">
+<h2>The Four Interconnected Parameters</h2>
+<p>Any statistical test involves four mutually dependent parameters:</p>
+<p><span class="math display">\[\text{Alpha } (\alpha) \quad \longleftrightarrow \quad \text{Sample Size } (N) \quad \longleftrightarrow \quad \text{Effect Size } (\delta) \quad \longleftrightarrow \quad \text{Power } (1 - \beta)\]</span></p>
+<ul>
+<li>If any three are specified, the fourth is mathematically fixed:
+<ul>
+<li>Given <span class="math inline">\(\alpha = .05\)</span>, targeted <span class="math inline">\(d = 0.50\)</span>, and power <span class="math inline">\(= .80\)</span>, required <span class="math inline">\(N\)</span> is fixed.</li>
+<li>Given <span class="math inline">\(\alpha = .05\)</span>, available <span class="math inline">\(N = 30\)</span>, and targeted <span class="math inline">\(d = 0.30\)</span>, power is fixed.</li>
+</ul></li>
+<li><strong>A-priori power analysis:</strong> Determining the required sample size <em>before</em> data collection begins.</li>
+<li><strong>Post-hoc power (“observed power”):</strong> Calculating power based on the observed <span class="math inline">\(p\)</span>-value after data collection. This provides no new information and is circular; do not use it.</li>
+</ul>
+</section>
+<section id="the-consequences-of-underpowered-clinical-research" class="slide level2">
+<h2>The Consequences of Underpowered Clinical Research</h2>
+<p>When studies run with low power (e.g., <span class="math inline">\(1 - \beta = .30\)</span>):</p>
+<ol type="1">
+<li><strong>High False Negative Rate:</strong> Genuinely beneficial treatments are discarded because trials lack power to detect them.</li>
+<li><strong>Type M Error (Magnitude / Exaggeration):</strong>
+<ul>
+<li>In an underpowered study, an effect can only cross the <span class="math inline">\(p \le .05\)</span> threshold if the observed sample effect is much larger than the true population effect.</li>
+<li>This leads to the <strong>Winner’s Curse</strong>: published findings systematically overestimate true treatment efficacy .</li>
+</ul></li>
+<li><strong>Type S Error (Sign):</strong>
+<ul>
+<li>The probability that an observed statistically significant effect is in the opposite direction of the true effect.</li>
+</ul></li>
+<li><strong>Research Ethics:</strong>
+<ul>
+<li>Exposing patients to trial burdens, risk, and clinical procedures in an underpowered study that cannot answer the scientific question is ethically indefensible.</li>
+</ul></li>
+</ol>
+</section>
+<section id="visualizing-statistical-power" class="slide level2">
+<h2>Visualizing Statistical Power</h2>
+</section>
+<section id="section" class="slide level2" data-background-iframe="https://christopherjwilson.shinyapps.io/app1/" data-background-interactive="true">
 <h2></h2>
 </section></section>
-<section id="takeaways-3" class="title-slide slide level1 center">
-<h1>Takeaways</h1>
+<section>
+<section id="part-6-synthesis-and-alternatives" class="title-slide slide level1 center">
+<h1>Part 6: Synthesis and Alternatives</h1>
+
+</section>
+<section id="takeaways-for-clinical-researchers" class="slide level2">
+<h2>Takeaways for Clinical Researchers</h2>
 <ul>
-<li><p>Power is ability to detect an effect if it exists</p></li>
-<li><p>Before conducting a study, we need to know what effect size we are interested in detecting</p></li>
-<li><p>We need to ensure that our study has sufficient power to detect this effect size</p></li>
-<li><p>Very large samples will show very small effects as statistically significant (but these may not be important)</p></li>
+<li>The <span class="math inline">\(p\)</span>-value measures compatibility with <span class="math inline">\(H_0\)</span>; it does not prove an effect or evaluate clinical importance.</li>
+<li>Type I error (<span class="math inline">\(\alpha\)</span>) is fixed by the researcher; small samples do not inflate <span class="math inline">\(\alpha\)</span>, but they cause catastrophic loss of power and severe estimation instability.</li>
+<li>Never use raw pilot effect sizes to justify sample sizes for clinical trials.</li>
+<li>Anchor prospective power calculations to the <strong>Smallest Effect Size of Interest (SESOI)</strong> or the <strong>Minimal Clinically Important Difference (MCID)</strong>.</li>
+<li>Emphasize estimation: report unstandardized mean differences and 95% confidence intervals alongside standardized effect sizes.</li>
 </ul>
 </section>
-
-<section>
-<section id="alternatives-to-null-hypothesis-significance-testing" class="title-slide slide level1 center">
-<h1>Alternatives to Null Hypothesis Significance Testing</h1>
-
-</section>
-<section id="different-approaches" class="slide level2">
-<h2>Different approaches</h2>
+<section id="alternatives-to-binary-nhst" class="slide level2">
+<h2>Alternatives to Binary NHST</h2>
 <ul>
-<li>Confidence intervals (focus on precision of estimates)</li>
-<li>Bayesian statistics (a focus on estimating parameters and updating beliefs based on data)</li>
-<li>Estimation statistics (focus on effect sizes and confidence intervals)</li>
-<li>E-values (focus on the evidence for or against a hypothesis)</li>
+<li><strong>Estimation Statistics:</strong> Focusing on effect sizes and confidence intervals rather than dichotomous <span class="math inline">\(p\)</span>-value cutoffs.</li>
+<li><strong>Equivalence Testing (TOST):</strong> Two One-Sided Tests designed to test for the <em>absence</em> of a meaningful effect within predefined equivalence bounds (<span class="math inline">\(-\Delta\)</span> to <span class="math inline">\(+\Delta\)</span>).</li>
+<li><strong>Bayesian Parameter Estimation:</strong> Updating prior probability distributions to generate posterior credible intervals—allowing direct statements about parameter probabilities: <span class="math display">\[P(\theta \mid D) \propto P(D \mid \theta) P(\theta)\]</span></li>
+<li><strong>E-values &amp; Evidence Ratios:</strong> Quantifying the strength of evidence for one model relative to another rather than relying on arbitrary alpha cutoffs.</li>
+</ul>
+</section>
+<section id="when-planning-your-study-you-should" class="slide level2">
+<h2>When planning your study you should:</h2>
+<ul>
+<li>Identify what is a meaningful effect for your research</li>
+<li>Conduct an apriori power analysis</li>
+<li>Plan the study based on the required sample size</li>
 </ul>
 </section></section>
-<section id="we-will-learn-how-to-calculate-effect-size-confidence-intervals-and-power-in-r" class="title-slide slide level1 center">
-<h1>We will learn how to calculate effect size, confidence intervals and power in R</h1>
-
-</section>
-
 <section id="references" class="title-slide slide level1 smaller scrollable">
 <h1>References</h1>
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
-<div id="ref-AlbersLakens2018" class="csl-entry" role="listitem">
-Albers, C., &amp; Lakens, D. (2018). When power analyses based on pilot data are biased: <span>Inaccurate</span> effect size estimators and follow-up bias. <em>Journal of Experimental Social Psychology</em>, <em>74</em>, 187–195. <a href="https://doi.org/10.1016/j.jesp.2017.09.004">https://doi.org/10.1016/j.jesp.2017.09.004</a>
-</div>
-<div id="ref-BenjaminBerger2019" class="csl-entry" role="listitem">
+<div id="ref-benjaminThreeRecommendationsImproving2019" class="csl-entry" role="listitem">
 Benjamin, D. J., &amp; Berger, J. O. (2019). Three <span>Recommendations</span> for <span>Improving</span> the <span>Use</span> of p-<span>Values</span>. <em>The American Statistician</em>, <em>73</em>, 186–191. <a href="https://doi.org/10.1080/00031305.2018.1543135">https://doi.org/10.1080/00031305.2018.1543135</a>
 </div>
-<div id="ref-Lakens2014" class="csl-entry" role="listitem">
+<div id="ref-lakensPerformingHighpoweredStudies2014" class="csl-entry" role="listitem">
 Lakens, D. (2014). Performing high-powered studies efficiently with sequential analyses. <em>European Journal of Social Psychology</em>, <em>44</em>(7), 701–710. <a href="https://doi.org/10.1002/ejsp.2023">https://doi.org/10.1002/ejsp.2023</a>
 </div>
-<div id="ref-PeruginiEtAl2014" class="csl-entry" role="listitem">
+<div id="ref-peruginiSafeguardPowerProtection2014" class="csl-entry" role="listitem">
 Perugini, M., Gallucci, M., &amp; Costantini, G. (2014). Safeguard <span>Power</span> as a <span>Protection Against Imprecise Power Estimates</span>. <em>Perspectives on Psychological Science</em>, <em>9</em>(3), 319–332. <a href="https://doi.org/10.1177/1745691614528519">https://doi.org/10.1177/1745691614528519</a>
 </div>
-<div id="ref-WassersteinLazar2016" class="csl-entry" role="listitem">
+<div id="ref-wassersteinASAStatementPValues2016" class="csl-entry" role="listitem">
 Wasserstein, R. L., &amp; Lazar, N. A. (2016). The <span>ASA Statement</span> on p-<span>Values</span>: <span>Context</span>, <span>Process</span>, and <span>Purpose</span>. <em>The American Statistician</em>, <em>70</em>(2), 129–133. <a href="https://doi.org/10.1080/00031305.2016.1154108">https://doi.org/10.1080/00031305.2016.1154108</a>
 </div>
 </div>

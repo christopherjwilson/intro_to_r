@@ -26,466 +26,339 @@ bibliography: references.bib
 
 ## Learning outcomes
 
--   Understand the concept of statistical power
--   Understand the concept of effect size
--   Understand the relationship between power and effect size
--   Understand the relationship between power and sample size
--   Understand the relationship between effect size and sample size
+- Understand the Neyman-Pearson decision framework: Type I ($\alpha$) and Type II ($\beta$) errors
+- Understand the sampling distribution under the null hypothesis and what $p$-values represent
+- Distinguish between statistical significance and clinical importance
+- Understand effect sizes in both unstandardized (clinical scale units) and standardized metrics
+- Understand statistical power ($1 - \beta$) and how it relates to sample size ($N$), effect size, and $\alpha$
+- Understand the risks of underpowered studies: Type M (magnitude) and Type S (sign) errors
 
-## Recall from last week:
+## Recall from last week
 
--   One of the common issues with clinical research is that studies are underpowered.
+- One of the common issues with clinical research is that studies are underpowered.
 
--   Today we are going to look at Power and Effect Size, and how these relate to sample size.
+- When studies lack statistical power, non-significant findings are uninformative, and significant findings are often exaggerated.
 
--   Statistical significance, sample power and effect size are 3 inter-related concepts that are important to understand when designing a study.
+- Today we examine how statistical significance, effect size, sample size, and statistical power interrelate when designing clinical research.
 
-# What is statistical significance?
-
-Does anyone remember what statistical significance is?
+# Part 1: The Decision Framework and the Null Hypothesis
 
 ## What is the null hypothesis?
 
--   The null hypothesis is the hypothesis that there is no difference between groups, or no relationship between variables.
+- The null hypothesis ($H_0$) posited in clinical trials typically asserts that there is no true difference between treatment arms, or no association between variables in the target population.
 
--   For example, if we are comparing the mean score on a measure between two groups, the null hypothesis is that, in the population, the mean score on the measure is the same for both groups.
+- For example, if comparing an intervention group to a treatment-as-usual (TAU) control on depression scores:
 
--   When we test hypotheses, we are trying to see if our data are compatible with the null hypothesis or not.
+  - $H_0: \mu_{\text{Intervention}} - \mu_{\text{TAU}} = 0$
+  - $H_1: \mu_{\text{Intervention}} - \mu_{\text{TAU}} \neq 0$
+
+- Statistical hypothesis testing does not evaluate whether our hypothesis is "proven"; it evaluates how compatible the observed sample data are with $H_0$.
+
+## The $2 \times 2$ Decision Matrix
+
+When using sample data to make a categorical decision about a population parameter, four outcomes are possible:
+
+|   | True State: $H_0$ is True (No Effect) | True State: $H_1$ is True (Real Effect Exists) |
+|:--------------------|:------------------------:|:------------------------:|
+| **Decision: Reject** $H_0$ ("Statistically Significant") | **Type I Error (**$\alpha$)<br>False Positive Rate (e.g., .05) | **Correct Decision (**$1 - \beta$)<br>Statistical Power (e.g., .80) |
+| **Decision: Fail to Reject** $H_0$ ("Not Significant") | **Correct Decision (**$1 - \alpha$)<br>Specificity (e.g., .95) | **Type II Error (**$\beta$)<br>False Negative Rate (e.g., .20) |
+
+- **Type I error (**$\alpha$): Declaring an ineffective treatment effective.
+- **Type II error (**$\beta$): Missing a genuine clinical treatment effect.
 
 ## What is statistical significance?
 
--   The term "statistical significance" is a shorthand term, used to describe the probability of obtaining a result as extreme as, or more extreme than, the result we obtained, if the null hypothesis were true.
+- **The** $p$-value is the continuous probability of obtaining sample data at least as extreme as the observed result, assuming the null hypothesis is true: $$p = P(D \ge d_{\text{obs}} \mid H_0)$$
+  - It does **not** indicate the probability that $H_0$ is true ($P(H_0 \mid D)$).
+  - It does **not** reflect the clinical magnitude or practical utility of the treatment.
+- **Statistical Significance** is a decision rule applied when the calculated $p$-value falls at or below a predetermined threshold ($\alpha$):
+  - If $p \le \alpha$, we reject $H_0$.
+  - The threshold $\alpha = .05$ is a historical convention, representing a tolerated 5% long-run Type I error rate when $H_0$ is true [@wassersteinASAStatementPValues2016].
 
-> In short: Statistical significance is a test of how compatible the data are with the null hypothesis. It does not tell us what our data proves, only that it is unlikely that the null hypothesis is true.
+# Part 2: Sampling Variability Under the Null ($H_0$ is True)
 
-# Imagine there is a population of 2000 people with a particular condition.
+## A Clinical Simulation: Zero Population Difference
 
-## 
+Suppose an entire clinical population consists of 2,000 patients with generalized anxiety disorder: - 1,000 receive an active psychological therapy. - 1,000 receive treatment as usual (TAU). - **The Ground Truth:** The treatment has zero effect ($\mu_1 = \mu_2 = 0, \sigma_1 = \sigma_2 = 1$). The null hypothesis is strictly true.
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=6, fig.height=4}
-
-
-# generate a dataframe made of 2 vectors named Treatment and Control. Each vector has 1000 elements generated from a normal distribution with mean 0. Treatment has an SD of 3 and Control has an SD of 1.
-
-#treatment <- rnorm(1000, mean = 0, sd = 1)
-#control <- rnorm(1000, mean = 0, sd = 1.5)
-
-#data <- data.frame(treatment, control)
-
-#write.csv(data, "popData.csv")
-
-data <- read.csv("Datasets/popData.csv")
-
-# plot a scatterplot of the data using ggplot2. reorganise the data into long format first.
-
-
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=7, fig.height=3.5, fig.align='center'}
 library(ggplot2)
-
-data_long <- data.frame(
-  group = c(rep("treatment", 1000), rep("control", 1000)),
-  value = c(data$treatment, data$control)
-)
-
-
-# show a scatterplot of the data with colour representing group membership
-
-ggplot(data_long, aes(x = group, y = value, colour = group)) +
-  geom_jitter(width = 0.2, height = 0) +
-  theme_classic() +
-  theme(legend.position = "none") +
-  labs(x = "Group", y = "Score on measure")
-
-
-
-
-
-```
-
-Imagine we could see them all, and knew that there was not much difference between those who received treatment and those who did not.
-
-# Now, imagine that 100 studies were done across the country, each with a sample size of 20 per group.
-
-> What would the results say?
-
-## 
-
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=6, fig.height=4}
-
-
-# generate a dataframe made of 2 vectors named Treatment and Control. Each vector has 1000 elements generated from a normal distribution with mean 0. Treatment has an SD of 3 and Control has an SD of 1.
-
-
-# plot a scatterplot of the data using ggplot2. reorganise the data into long format first.
-
-
-
-
-# Create 100 random samples of size 20 from the treatment and control vectors. Calculate the mean of each sample and store it in a vector called sample_means.
-
-sample_mean_diffs <- c()
-p_values <- c()
-conf_int <- c()
-cohens_d <- c()
 
 set.seed(1232)
-
-for (i in 1:100) {
-  sample1 <- sample(data$treatment, size = 20)
-  sample2 <- sample(data$control, size = 20)
-  sample_mean_diffs[i] <- mean(sample1) - mean(sample2)
-  p_values[i] <- t.test(sample1, sample2)$p.value
-  conf_int[i] <- t.test(sample1, sample2)$conf.int[2] - t.test(sample1, sample2)$conf.int[1]
-  cohens_d[i] <- (mean(sample1) - mean(sample2)) / sqrt(((length(sample1) - 1) * var(sample1) + (length(sample2) - 1) * var(sample2)) / (length(sample1) + length(sample2) - 2))
-}
-
-
-# Plot a histogram of the sample means using ggplot2
-
-library(ggplot2)
-
-ggplot(data.frame(sample_mean_diffs), aes(x = sample_mean_diffs)) +
-  geom_histogram(binwidth = 0.5) +
-  geom_vline(aes(xintercept = mean(sample_mean_diffs)), color = "red", linetype = "dashed", size = 1) +
-  ggtitle("Histogram of Sample Mean Differences") +
-  xlab("Sample Mean Difference") +
-  ylab("Frequency")
-
-
-```
-
-# If a t-test was done on each of these samples, what would the results say?
-
-## 
-
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=6, fig.height=4}
-
-p <- ggplot(data.frame(p_values), aes(x = 1:100, y = p_values)) +
-  geom_hline(aes(yintercept = 0.05), color = "red", linetype = "dashed", size = 1)
-
-# set ylim to c(0, 1) to zoom in on the p-values
-
-p + ylim(c(0, 1)) 
-
-```
-
-## 
-
-
-
-
-
-## 
-
-```{r}
-    #| label: animation-chunk-print
-    #| echo: true
-    #| fig-anim: true  # This is often the key to making it work automatically
-
- 
-p <- p+  geom_point() +
-  geom_hline(aes(yintercept = 0.05), color = "red", linetype = "dashed", size = 1) +
-  ggtitle("P-Values") +
-  xlab("Sample Number") +
-  ylab("P-Value")
-
-library(gganimate)
-
-p1 <- p + transition_states(1:100, transition_length = 2) + 
-  shadow_mark() +
-  enter_fade() 
-
-animate(p1, fps = 5, duration = 20, end_pause = 20)
-
-
-
-
-```
-
-
-## What is statistical significance?
-
--   In psychological research, we usually use a p-value of 0.05 as the threshold for statistical significance.
-
--   This means that, even if the null hypothesis were true, if we were to repeat the study 100 times, we could still find a "extreme" difference, 5 times (5% of the time).
-
--   This is 5% threshold is an arbitrary choice, and is not used for any theoretical reason.
-
-##  
-
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8, fig.height=5, fig.align='center'}
-
-# plot of notmal distribution with 2.5% shaded on each side
-
-x <- seq(-4, 4, length=100)
-
-y <- dnorm(x, mean=0, sd=1)
-
-plot(x, y, type="l", lwd=2, xlab="Standard Deviations", ylab="")
-
-abline(v=c(-1.96, 1.96), lty=2)
-
-abline(h=0, lty=2)
-
-
-## add labels to represent the percentages of the distribution in the shaded and non-shaded areas
-
-text(-2.5, 0.05, "2.5%", cex=0.8)
-
-text(2.5, 0.05, "2.5%", cex=0.8)
-
-text(0, 0.01, "95%", cex=0.8)
-
-```
-
--   For example: for a difference between 2 means, we could still obtain a difference of up to 1.96 standard deviations, 95% of the time, even if the null hypothesis were true.
-
--   There's still a 5% chance (2.5% + 2.5%) of obtaining a difference higher than 1.96 standard deviations, even if the null hypothesis were true.
-
-## Small samples and p values
-
-- Small samples increase the likelihood of false positives (significant results that don't reflect the population)
-
-- This is because the true pattern in the population is not perfectly reflected in small samples.
-
-- Within small samples, there will be random variation that can lead to differences between groups.
-
-# Takeaways
-
--   Even when the null hypothesis is true, we can still obtain a range of differences when we sample from the population.
-
--   Some of these differences will even result in p-values below 0.05.
-
--  It's important to recognise that false positives (Type 1 error) can happen. Smaller samples are subject to more random variation and lack of control in study design can lead to spurious conclusions.
-
-## The problem with statistical significance 
-
-> "It's science's dirtiest secret: The 'scientific method' of testing hypotheses by statistical analysis stands on a flimsy foundation."
-
-In February 2014, George Cobb, Professor Emeritus of Mathematics and Statistics at Mount Holyoke College, posed these questions to an ASA discussion forum:
-
-Q: Why do so many colleges and grad schools teach p = 0.05?
-
-A: Because that's still what the scientific community and journal editors use.
-
-Q: Why do so many people still use p = 0.05?
-
-A: Because that's what they were taught in college or grad school.
-
-[@WassersteinLazar2016]
-
-## What is the problem with statistical significance?
-
-"Researchers commonly use p-values to answer the question: How strongly does the evidence favor the alternative hypothesis relative to the null hypothesis? p-Values themselves do not directly answer this question and are often misinterpreted" [@BenjaminBerger2019]
-
-## The ASA statement on p-values 
-
-1.  P-values can indicate how incompatible the data are with a specified statistical model.
-2.  P-values do not measure the probability that the studied hypothesis is true, or the probability that the data were produced by random chance alone.
-3.  Scientific conclusions and business or policy decisions should not be based only on whether a p-value passes a specific threshold.
-4.  Proper inference requires full reporting and transparency.
-5.  A p-value, or statistical significance, does not measure the size of an effect or the importance of a result.
-6.  By itself, a p-value does not provide a good measure of evidence regarding a model or hypothesis.
-
-[@WassersteinLazar2016]
-
-## The ASA statement on p-values {.smaller .scrollable visibility="hidden"}
-
-1.  P-values can indicate how incompatible the data are with a specified statistical model.
-
-> P-values test how compatible the data are with a specified statistical model. The smaller the p-value, the less compatible the data are with the null hypothesis.
-
-2.  P-values do not measure the probability that the studied hypothesis is true, or the probability that the data were produced by random chance alone.
-
-> P-values only tell us about the compatibility of the data with the possible explanation (the null hypothesis).They do not confirm or deny the truth of the explanation or the probability of the data having occurred by chance.
-
-3.  Scientific conclusions and business or policy decisions should not be based only on whether a p-value passes a specific threshold.
-
-> Reducing decisions to a dichotomous "significant--not significant" classification leads to poor decisions. This "all-or-nothing" dichotomy based on a threshold (usually 0.05) is a poor substitute for scientific reasoning.
-
-## The ASA statement on p-values {.smaller .scrollable visibility="hidden"}
-
-4.  Proper inference requires full reporting and transparency.
-
-> P-values and related analyses should not be reported selectively. This makes the data that is presented impossible to interpret, as it is missing necessary context. All hypotheses that were tested should be presented.
-
-5.  A p-value, or statistical significance, does not measure the size of an effect or the importance of a result.
-
-> The p-value is not a measure of the size of an effect or the importance of a result. Even tiny effects can be statistically significant if the sample size is large enough.
-
-6.  By itself, a p-value does not provide a good measure of evidence regarding a model or hypothesis.
-
-> Values near 0.05 offer only weak evidence against the null hypothesis. Values larger than 0.05 do not necessarily imply evidence in favor of the null hypothesis - there could be other hypotheses that are more compatible with the data.
-
-# Takeaways
-
--   p-values can put people into a binary mindset about results (yes/no) when the data collected is likely more complex
-
--   p-values are not stable from one study to the next, so be careful about interpreting them.
-
--   p-values are not a good measure of evidence for or against a hypothesis, only how likely the data are to have occurred if the null hypothesis were true.
-
--   There is no such thing as a "near-significant" result. A p-value of 0.048 is not more "important" than a p-value of 0.05.
-
-# Confidence Intervals
-
-## P-values are not stable from one study to the next
-
-![p-values and confidence intervals for 25 samples](images/ci.jpg)
-
-## Using confidence intervals to interpret results
-
--   Confidence intervals are a better way to interpret results than p-values.
--   A confidence interval is a range of values that is likely to contain the true value of a parameter.
--   For example, a 95% confidence interval for a mean says:
-    -   If we were to collect the same sample 100 times and calculate a 95% confidence interval of the mean for each sample, 95 of the intervals would contain the true population mean.
-
-## What can confidence intervals tell us?
-
--   Confidence intervals can a range of likely outcomes (if we were to conduct the study repeatedly). The wider they are, the less precise our estimate is.
-
-![In a later class, Dr Alan Bowman will discuss clinically meaningful results](images/clinical_relevance.jpg){fig-align="center"}
-
-## How do we report Confidence Intervals? 
-
-To report confidence intervals in APA style, we need to report the lower and upper bounds of the interval, and the confidence level.
-
-For example:
-
-> The results of the t-test showed a significant difference between the two groups, t(18) = 2.43, p = .03, 95% CI \[0.02, 0.45\].
-
-This tells us that the true mean difference between the two groups is likely to be between 0.02 and 0.45. We can decide (depending on our research question) how meaningful this is to us.
-
-::: notes
-CI = if we were to repeat the study 100 times, 95 of the confidence intervals would contain the true mean difference.
-:::
-
-# Takeaways
-
--   p-values are not a good measure of the size of an effect or the importance of a result.
-
--   Confidence intervals are a better way to interpret results than p-values.
-
--   Confidence intervals can tell us the likely range of outcomes, and a better sense of how precise our estimate of the true value is.
-
-## Let's look again at the data:
-
-```{r}
-ggplot(data_long, aes(x = group, y = value, colour = group)) +
-  geom_jitter(width = 0.2, height = 0) +
+n_pop <- 1000
+pop_treatment <- rnorm(n_pop, mean = 0, sd = 1)
+pop_control <- rnorm(n_pop, mean = 0, sd = 1)
+
+pop_data <- data.frame(
+  group = factor(rep(c("Control", "Treatment"), each = n_pop)),
+  value = c(pop_control, pop_treatment)
+)
+
+ggplot(pop_data, aes(x = group, y = value, colour = group)) +
+  geom_jitter(width = 0.2, alpha = 0.4, size = 1) +
   theme_classic() +
   theme(legend.position = "none") +
-  labs(x = "Group", y = "Score on measure")
+  labs(x = "Clinical Group", y = "Score on Outcome Measure",
+       title = "Entire Population (N = 2,000, True Difference = 0)")
 ```
 
-There's not much difference between the two groups. Does that mean there is no difference?
+## Running 100 Small Clinical Trials ($N = 20$ per group)
 
-# Effect sizes and designing studies with sufficient power
+Now imagine 100 independent research teams draw a random sample of $n = 20$ per arm from this identical population.
 
-## Significance does not mean importance
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=7, fig.height=3.5, fig.align='center'}
+n_studies <- 100
+n_sample <- 20
 
--   Over the last several decades, psychology research has become too focused on statistical significance.
--   A statistically significant result does not mean that the result is meaningful or important.
--   The focus on statistical significance has led to a number of problems:
-    -   P-hacking
-    -   Publication bias
-    -   Questionable research practices (small sample sizes, etc.)
+sim_diffs <- numeric(n_studies)
+sim_pvals <- numeric(n_studies)
 
-## What is effect size? 
+set.seed(1232)
+for (i in 1:n_studies) {
+  s_trt <- sample(pop_treatment, size = n_sample)
+  s_ctrl <- sample(pop_control, size = n_sample)
+  tt <- t.test(s_trt, s_ctrl, var.equal = TRUE)
+  sim_diffs[i] <- mean(s_trt) - mean(s_ctrl)
+  sim_pvals[i] <- tt$p.value
+}
 
--   When we conduct research, we are usually asking a question about a difference or a relationship.
-    -   For example, we might be interested in whether there is a difference in the mean score on a measure between clinical two groups.
-    -   Or we might be interested in whether there is a relationship between two variables.
--   However, different studies use different samples and measures, and so the results of these studies are not directly comparable.
+sim_df <- data.frame(study = 1:n_studies, diff = sim_diffs, p_val = sim_pvals)
 
-> Effect size is a standardized measure of the magnitude of an effect
+ggplot(sim_df, aes(x = diff)) +
+  geom_histogram(binwidth = 0.15, fill = "#2c3e50", color = "white") +
+  geom_vline(aes(xintercept = 0), color = "red", linetype = "dashed", size = 1) +
+  theme_classic() +
+  labs(x = "Observed Mean Difference in Sample", y = "Number of Studies",
+       title = "Sampling Distribution of Mean Differences Across 100 Studies",
+       subtitle = "True population difference is 0; variation is driven entirely by sampling error")
+```
 
-## Which measure of effect size should I use? 
+Even with an identical population, sampling noise produces observed group differences ranging from negative to positive.
 
--   There are many measures of effect size, some of the most common are:
-    -   Cohen's d
-    -   Pearson's r
-    -   Odds ratio
-    -   Phi coefficient
-    -   Eta squared
-    -   R squared
--   The choice of effect size measure depends on the type of study and the type of data collected.
+## Observed $p$-values Across the 100 Studies
 
-## Small, medium and large effect sizes? 
+What happens when each of the 100 studies runs an independent-samples $t$-test?
 
--   Often people talk in terms of small, medium and large effect sizes. This is not very helpful, as it is not clear what these terms mean.
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8, fig.height=3.8, fig.align='center'}
+sim_df$sig <- ifelse(sim_df$p_val <= 0.05, "p <= .05 (False Positive)", "p > .05")
 
--   It is better to understand the literature in your field, and to know what effect sizes are typically found in studies similar to yours.
+ggplot(sim_df, aes(x = study, y = p_val, color = sig)) +
+  geom_point(size = 2) +
+  geom_hline(yintercept = 0.05, color = "red", linetype = "dashed") +
+  scale_color_manual(values = c("p <= .05 (False Positive)" = "#e74c3c", "p > .05" = "#34495e")) +
+  theme_classic() +
+  theme(legend.position = "bottom", legend.title = element_blank()) +
+  labs(x = "Study Number (1 to 100)", y = "Observed p-value",
+       title = "Distribution of p-values Under a True Null Hypothesis",
+       subtitle = "Under H0, p-values follow a uniform distribution; ~5% fall below .05 purely by chance")
+```
 
--   However, we need to be careful [@AlbersLakens2018]:
+- In this simulation, roughly 5 out of 100 studies yield $p \le .05$.
+- These researchers would claim a "statistically significant" treatment effect despite the true effect being zero.
 
-    -   effect size estimates from small studies are inaccurate
+## Understanding the Sampling Distribution Under $H_0$
 
-    -   publication bias inflates effect sizes.
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4, fig.align='center'}
+x <- seq(-4, 4, length = 300)
+y <- dt(x, df = 38)
 
--   "Follow-up" bias, is an issue with people deciding whether or not to conduct studies based on the effects found in pilot data
+plot(x, y, type = "l", lwd = 2, xlab = "Test Statistic (t-value, df = 38)", ylab = "Density",
+     main = "Theoretical t-Distribution Under H0")
+abline(v = c(-2.024, 2.024), lty = 2, col = "red")
+text(-2.7, 0.05, "2.5%\n(t < -2.024)", cex = 0.85, col = "red")
+text(2.7, 0.05, "2.5%\n(t > 2.024)", cex = 0.85, col = "red")
+text(0, 0.15, "95% of studies under H0\nfall between -2.024 and +2.024", cex = 0.9)
+```
 
-## Don't use pilot data to estimate effect size 
+- For small samples ($n = 20$ per group, $df = 38$), sampling variability is governed by the $t$-distribution, not the standard normal distribution.
+- The critical value for $\alpha = .05$ is $t = \pm 2.024$ (not $z = \pm 1.96$).
+- Differences are measured in **standard errors of the difference**, not population standard deviations.
 
--   This can lead to seriously underpowered study designs, especially when the sample size of the pilot and/or the true effect size is small to medium.
+## What Small Samples Do and Do Not Do to Type I Error
 
--   Not only is this approach inaccurate, it is inefficient.
+- **What small samples do NOT do:**
+  - Small samples do **not** increase the nominal Type I error rate ($\alpha$).
+  - If $\alpha = .05$ and test assumptions hold, the false positive rate remains exactly 5%, regardless of whether $N = 20$ or $N = 20,000$.
+- **What small samples DO do:**
+  - **Increase estimation imprecision:** Wide standard errors mean point estimates fluctuate wildly around the truth.
+  - **Produce severe power deficits:** True effects are routinely missed.
+  - **Distort the published literature:** When coupled with publication bias, small significant studies yield heavily inflated effect size estimates.
 
--   Instead:
+# Part 3: The Flaws of NHST and the Role of Confidence Intervals
 
-    -   Determine the smallest effect size of interest (SESOI), based on either utility or theoretical arguments, and use the SESOI in an a-priori power analysis.
-    -   Sequential analysis might be appropriate [@Lakens2014]\
-    -   A "safeguard" power analysis can be used (underestimates the effect from published studies) [@PeruginiEtAl2014]
+## The Problem with Threshold-Based Inference
 
-## When designing a study, we need to ensure it has sufficient power
+> "It's science's dirtiest secret: The 'scientific method' of testing hypotheses by statistical analysis stands on a flimsy foundation."
+>
+> — George Cobb, Professor Emeritus of Mathematics and Statistics, Mount Holyoke College
 
-What does this mean?
+- Q: Why do so many training programs teach $p \le .05$?
+  - A: Because that is what journals and reviewers have historically required.
+- Q: Why do researchers continue to rely on $p \le .05$?
+  - A: Because that is what they were taught in graduate research methods [@wassersteinASAStatementPValues2016].
 
--   Power is ability to detect an effect if it exists
--   If a study has low power, it is not possible for us to tell whether a statistically non-significant result is due to:
-    -   The absence of an effect
-    -   The absence of power to detect an effect
+## What is the Problem with $p$-values?
 
-## Think of power as the strength of magnification and effect size as the size of what you are looking for...
+> "Researchers commonly use $p$-values to answer the question: How strongly does the evidence favor the alternative hypothesis relative to the null hypothesis? $p$-Values themselves do not directly answer this question and are often misinterpreted."
+>
+> — @benjaminThreeRecommendationsImproving2019
+
+- A $p$-value near $.05$ provides only weak evidence against the null hypothesis.
+- A non-significant $p$-value ($p > .05$) does not demonstrate the absence of an effect; it merely indicates that the data are not sufficiently incompatible with $H_0$ under the chosen sample size.
+
+## The ASA Statement on $p$-values
+
+1.  $p$-values can indicate how incompatible the data are with a specified statistical model.
+2.  $p$-values do not measure the probability that the studied hypothesis is true, or the probability that the data were produced by random chance alone.
+3.  Scientific conclusions and clinical decisions should not be based solely on whether a $p$-value passes an arbitrary threshold.
+4.  Proper inference requires full reporting and transparency (no selective reporting or $p$-hacking).
+5.  A $p$-value does not measure the size of an effect or the clinical importance of a result.
+6.  By itself, a $p$-value does not provide a good measure of evidence regarding a model or hypothesis [@wassersteinASAStatementPValues2016].
+
+## $p$-values are Instable Across Replications
+
+![The Dance of the $p$-Values: Observed $p$-values fluctuate drastically across identical sample sizes (Cumming, 2014)](images/ci.jpg)
+
+## Using Confidence Intervals to Interpret Results
+
+- A **confidence interval (CI)** reflects the precision of a sample estimate.
+- **Formal definition:** If we repeated our sampling procedure an infinite number of times under identical conditions, 95% of computed 95% confidence intervals would encompass the true population parameter.
+- **Informal interpretation:** The 95% CI demarcates the range of parameter values that remain statistically compatible with our sample data at $\alpha = .05$.
+- Unlike $p$-values, confidence intervals keep the analysis anchored to the original measurement scale.
+
+## What Can Confidence Intervals Tell Us?
+
+![Evaluating estimates against clinically meaningful thresholds](images/clinical_relevance.jpg){fig-align="center"}
+
+- Narrow CIs indicate high precision (large samples); wide CIs indicate substantial uncertainty (small samples).
+- CIs allow researchers to assess whether an effect is statistically significant, clinically trivial, or practically meaningful.
+
+## Reporting Confidence Intervals in APA Style
+
+Always report the point estimate, the confidence level, and both bounds alongside exact $p$-values:
+
+> "Patients receiving CBT exhibited significantly greater reductions in depressive symptoms than those in the control condition, $t(38) = 2.43$, $p = .020$, mean difference $= 4.20$ points, 95% CI $[0.70, 7.70]$, Cohen's $d = 0.77$."
+
+- This communicates both the central estimate and the bound of uncertainty: the true average reduction could plausibly be as small as 0.70 points or as large as 7.70 points.
+
+# Part 4: Effect Sizes and Clinical Importance
+
+## Statistical Significance Does Not Mean Clinical Importance
+
+- Statistical significance is highly dependent on sample size:
+  - In a massive sample ($N = 10,000$), a clinically meaningless change of 0.2 points on the PHQ-9 will produce $p < .001$.
+  - In a small sample ($N = 15$), a clinically transformative reduction of 6 points might yield $p = .12$.
+- Clinical psychology requires measuring **magnitude of change**, not merely whether an effect is distinguishable from zero.
+
+## What is an Effect Size?
+
+An **effect size** is a quantitative index of the magnitude of a difference, relationship, or treatment outcome.
+
+1.  **Unstandardized Effect Sizes:**
+    - Expressed in the original clinical units of measurement (e.g., points on the Beck Depression Inventory, Hamilton Rating Scale, or minutes of sleep).
+    - Readily interpretable by clinicians and service users.
+2.  **Standardized Effect Sizes:**
+    - Expressed without measurement units, scaling the difference by sample or pooled standard deviation (e.g., Cohen's $d$, Hedges' $g$, Pearson's $r$, Odds Ratios).
+    - Essential when synthesizing across different clinical measures in meta-analyses.
+
+## Commonly Used Standardized Effect Sizes
+
+| Metric | Formula / Description | Common Application |
+|:-----------------------|:-----------------------|:-----------------------|
+| **Cohen's** $d$ | $d = \frac{\bar{X}_1 - \bar{X}_2}{s_{\text{pooled}}}$ | Mean differences between two clinical groups |
+| **Hedges'** $g$ | Cohen's $d \times \left(1 - \frac{3}{4(n_1+n_2) - 9}\right)$ | Corrects for small-sample upward bias in Cohen's $d$ |
+| **Pearson's** $r$ | Standardized covariance between continuous variables | Association between psychometric measures |
+| **Odds Ratio (OR)** | $\frac{\text{Odds of outcome in Treatment}}{\text{Odds of outcome in Control}}$ | Binary clinical outcomes (e.g., recovery vs. relapse) |
+| **Partial** $\eta^2$ | Proportion of variance explained by a factor | Factorial ANOVA in multi-arm trials |
+
+## The Problem with Benchmark Rules of Thumb
+
+- Jacob Cohen suggested generic benchmarks: small ($d = 0.2$), medium ($d = 0.5$), and large ($d = 0.8$).
+- In clinical psychology, generic labels can be misleading:
+  - An effect of $d = 0.20$ on suicide prevention or all-cause mortality is clinically vital.
+  - An effect of $d = 0.80$ on a self-report proxy measure with high measurement error may have negligible clinical utility.
+- Effect sizes must be interpreted relative to:
+  - The specific clinical population and baseline severity.
+  - The **Minimal Clinically Important Difference (MCID)**.
+  - The **Reliable Change Index (RCI)**.
+
+## Do Not Use Pilot Data to Estimate Effect Size
+
+- Clinical researchers often compute $d$ from an underpowered pilot study ($n = 10$ per arm) and plug that estimate into G\*Power to plan a definitive trial.
+- **Why this fails \[**@albersWhenPowerAnalyses2018\]**:**
+  - Small sample effect sizes have extreme variance; a sample $d = 0.60$ from $N = 20$ may easily reflect a population effect of $d = 0.15$.
+  - "Follow-up bias": Researchers only proceed to a full trial when the pilot effect happens to land high.
+- **Better alternatives:**
+  - Define the **Smallest Effect Size of Interest (SESOI)** based on clinical cost-benefit and patient impact [@lakensPerformingHighpoweredStudies2014].
+  - Use safeguard power analysis (taking the lower bound of the CI from prior literature) [@peruginiSafeguardPowerProtection2014].
+
+# Part 5: Statistical Power and Sample Planning ($H_1$ is True)
+
+## What is Statistical Power?
+
+- **Statistical Power (**$1 - \beta$) is the probability of correctly rejecting the null hypothesis when a specific alternative hypothesis ($H_1$) is true.
+- If an intervention genuinely reduces symptoms by $d = 0.50$, an 80% powered study will successfully detect that effect ($p \le .05$) 80 times out of 100.
+- 20 times out of 100, the study will commit a **Type II error (**$\beta = .20$)—failing to detect a genuinely effective treatment.
+
+## The Magnification Analogy
 
 ![](images/image_0.jpg){fig-align="center"}
 
-## Thinking about statistical power
+- **Effect Size:** The size of the object you are searching for.
+- **Sample Size (**$N$): The magnification strength of your lens.
+- A large effect (an elephant) can be seen with low magnification (small $N$).
+- A subtle effect (a microbe) requires a powerful microscope (large $N$).
 
--   We first need to decide what effect size we are interested in detecting. This can be called the smallest effect size of interest (SESOI).
+## The Four Interconnected Parameters
 
--   We then need to decide how much power we want to have to detect this effect size.
+Any statistical test involves four mutually dependent parameters:
 
--   A common choice is 80% power, but this is arbitrary. This means:
+$$\text{Alpha } (\alpha) \quad \longleftrightarrow \quad \text{Sample Size } (N) \quad \longleftrightarrow \quad \text{Effect Size } (\delta) \quad \longleftrightarrow \quad \text{Power } (1 - \beta)$$
 
-> With the given effect size and the calculated sample size, we will be able to detect the effect (if it exists) 80% of the time.
+- If any three are specified, the fourth is mathematically fixed:
+  - Given $\alpha = .05$, targeted $d = 0.50$, and power $= .80$, required $N$ is fixed.
+  - Given $\alpha = .05$, available $N = 30$, and targeted $d = 0.30$, power is fixed.
+- **A-priori power analysis:** Determining the required sample size *before* data collection begins.
+- **Post-hoc power ("observed power"):** Calculating power based on the observed $p$-value after data collection. This provides no new information and is circular; do not use it.
 
-# Putting it all together...
+## The Consequences of Underpowered Clinical Research
+
+When studies run with low power (e.g., $1 - \beta = .30$):
+
+1.  **High False Negative Rate:** Genuinely beneficial treatments are discarded because trials lack power to detect them.
+2.  **Type M Error (Magnitude / Exaggeration):**
+    - In an underpowered study, an effect can only cross the $p \le .05$ threshold if the observed sample effect is much larger than the true population effect.
+    - This leads to the **Winner's Curse**: published findings systematically overestimate true treatment efficacy .
+3.  **Type S Error (Sign):**
+    - The probability that an observed statistically significant effect is in the opposite direction of the true effect.
+4.  **Research Ethics:**
+    - Exposing patients to trial burdens, risk, and clinical procedures in an underpowered study that cannot answer the scientific question is ethically indefensible.
+
+## Visualizing Statistical Power
 
 ##  {background-iframe="https://christopherjwilson.shinyapps.io/app1/" background-interactive="true"}
 
+# Part 6: Synthesis and Alternatives
 
+## Takeaways for Clinical Researchers
 
+- The $p$-value measures compatibility with $H_0$; it does not prove an effect or evaluate clinical importance.
+- Type I error ($\alpha$) is fixed by the researcher; small samples do not inflate $\alpha$, but they cause catastrophic loss of power and severe estimation instability.
+- Never use raw pilot effect sizes to justify sample sizes for clinical trials.
+- Anchor prospective power calculations to the **Smallest Effect Size of Interest (SESOI)** or the **Minimal Clinically Important Difference (MCID)**.
+- Emphasize estimation: report unstandardized mean differences and 95% confidence intervals alongside standardized effect sizes.
 
+## Alternatives to Binary NHST
 
-# Takeaways
+- **Estimation Statistics:** Focusing on effect sizes and confidence intervals rather than dichotomous $p$-value cutoffs.
+- **Equivalence Testing (TOST):** Two One-Sided Tests designed to test for the *absence* of a meaningful effect within predefined equivalence bounds ($-\Delta$ to $+\Delta$).
+- **Bayesian Parameter Estimation:** Updating prior probability distributions to generate posterior credible intervals—allowing direct statements about parameter probabilities: $$P(\theta \mid D) \propto P(D \mid \theta) P(\theta)$$
+- **E-values & Evidence Ratios:** Quantifying the strength of evidence for one model relative to another rather than relying on arbitrary alpha cutoffs.
 
--   Power is ability to detect an effect if it exists
+## When planning your study you should:
 
--   Before conducting a study, we need to know what effect size we are interested in detecting
-
--   We need to ensure that our study has sufficient power to detect this effect size
-
--   Very large samples will show very small effects as statistically significant (but these may not be important)
-
-# Alternatives to Null Hypothesis Significance Testing
-
-## Different approaches
-
-- Confidence intervals  (focus on precision of estimates)
-- Bayesian statistics (a focus on estimating parameters and updating beliefs based on data)
-- Estimation statistics (focus on effect sizes and confidence intervals)
-- E-values (focus on the evidence for or against a hypothesis)
-
-# We will learn how to calculate effect size, confidence intervals and power in R
+- Identify what is a meaningful effect for your research
+- Conduct an apriori power analysis
+- Plan the study based on the required sample size
 
 # References
