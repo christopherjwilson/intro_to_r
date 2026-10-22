@@ -170,7 +170,7 @@ install.packages("effsize") #<1>
 
 Now we can load the package and calculate the effect size.
 
-```{r message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE, output=FALSE}
 
 # load the effsize package
 

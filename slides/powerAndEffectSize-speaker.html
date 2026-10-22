@@ -245,9 +245,9 @@ Dr Christopher Wilson
 <section id="what-is-statistical-significance" class="slide level2">
 <h2>What is statistical significance?</h2>
 <ul>
-<li><strong>The</strong> <span class="math inline">\(p\)</span>-value is the continuous probability of obtaining sample data at least as extreme as the observed result, assuming the null hypothesis is true: <span class="math display">\[p = P(D \ge d_{\text{obs}} \mid H_0)\]</span>
+<li><strong>The</strong> <span class="math inline">\(p\)</span>-value is the continuous probability of obtaining sample data at least as extreme as the observed result, assuming the null hypothesis is true
 <ul>
-<li>It does <strong>not</strong> indicate the probability that <span class="math inline">\(H_0\)</span> is true (<span class="math inline">\(P(H_0 \mid D)\)</span>).</li>
+<li>It does <strong>not</strong> indicate the probability that <span class="math inline">\(H_0\)</span> is true</li>
 <li>It does <strong>not</strong> reflect the clinical magnitude or practical utility of the treatment.</li>
 </ul></li>
 <li><strong>Statistical Significance</strong> is a decision rule applied when the calculated <span class="math inline">\(p\)</span>-value falls at or below a predetermined threshold (<span class="math inline">\(\alpha\)</span>):
@@ -258,12 +258,12 @@ Dr Christopher Wilson
 </ul>
 </section></section>
 <section>
-<section id="part-2-sampling-variability-under-the-null-h_0-is-true" class="title-slide slide level1 center">
-<h1>Part 2: Sampling Variability Under the Null (<span class="math inline">\(H_0\)</span> is True)</h1>
+<section id="part-2-sampling-variability-when-h_0-is-true" class="title-slide slide level1 center">
+<h1>Part 2: Sampling Variability when (<span class="math inline">\(H_0\)</span> is True)</h1>
 
 </section>
-<section id="a-clinical-simulation-zero-population-difference" class="slide level2">
-<h2>A Clinical Simulation: Zero Population Difference</h2>
+<section id="a-clinical-simulation-when-the-null-hypothesis-is-true" class="slide level2">
+<h2>A Clinical Simulation: When the null hypothesis is true</h2>
 <p>Suppose an entire clinical population consists of 2,000 patients with generalized anxiety disorder: - 1,000 receive an active psychological therapy. - 1,000 receive treatment as usual (TAU).</p>
 <p>- <strong>The Ground Truth:</strong> The treatment has zero effect (<span class="math inline">\(\mu_1 = \mu_2 = 0, \sigma_1 = \sigma_2 = 1\)</span>).</p>
 <p>The null hypothesis is strictly true.</p>
@@ -288,9 +288,10 @@ Dr Christopher Wilson
 <h2>Understanding the Sampling Distribution Under <span class="math inline">\(H_0\)</span></h2>
 
 <img data-src="powerAndEffectSize_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center r-stretch" width="768"><ul>
-<li>For small samples (<span class="math inline">\(n = 20\)</span> per group, <span class="math inline">\(df = 38\)</span>), sampling variability is governed by the <span class="math inline">\(t\)</span>-distribution, not the standard normal distribution.</li>
-<li>The critical value for <span class="math inline">\(\alpha = .05\)</span> is <span class="math inline">\(t = \pm 2.024\)</span> (not <span class="math inline">\(z = \pm 1.96\)</span>).</li>
-<li>Differences are measured in <strong>standard errors of the difference</strong>, not population standard deviations.</li>
+<li><p>For small samples (<span class="math inline">\(n = 20\)</span> per group, <span class="math inline">\(df = 38\)</span>), sampling variability is governed by the <span class="math inline">\(t\)</span>-distribution, (for larger samples, the standard normal distribution).</p></li>
+<li><p>Because we know the distribution of effects, we know where the “unlikely” values fall</p></li>
+<li><p>The critical value for <span class="math inline">\(\alpha = .05\)</span> is <span class="math inline">\(t = \pm 2.024\)</span> (for normal distribution <span class="math inline">\(z = \pm 1.96\)</span>).</p></li>
+<li><p>When we find a value outside this range, it is considered “statistically significant”. But it could always be a false positive (we don’t know).</p></li>
 </ul>
 </section>
 <section id="what-small-samples-do-and-do-not-do-to-type-i-error" class="slide level2">
@@ -362,7 +363,7 @@ Dr Christopher Wilson
 <ul>
 <li>A <strong>confidence interval (CI)</strong> reflects the precision of a sample estimate.</li>
 <li><strong>Formal definition:</strong> If we repeated our sampling procedure an infinite number of times under identical conditions, 95% of computed 95% confidence intervals would encompass the true population parameter.</li>
-<li><strong>Informal interpretation:</strong> The 95% CI demarcates the range of parameter values that remain statistically compatible with our sample data at <span class="math inline">\(\alpha = .05\)</span>.</li>
+<li><strong>Informal interpretation:</strong> The 95% CI demarcates the range of parameter values (e.g., mean) that would not be rejected at <span class="math inline">\(\alpha = .05\)</span> given the observed sample.</li>
 <li>Unlike <span class="math inline">\(p\)</span>-values, confidence intervals keep the analysis anchored to the original measurement scale.</li>
 </ul>
 </section>
@@ -494,8 +495,97 @@ Dr Christopher Wilson
 </ul>
 </section></section>
 <section>
-<section id="part-5-statistical-power-and-sample-planning-h_1-is-true" class="title-slide slide level1 center">
-<h1>Part 5: Statistical Power and Sample Planning (<span class="math inline">\(H_1\)</span> is True)</h1>
+<section id="part-5-sampling-when-an-effect-exists-h_1-is-true" class="title-slide slide level1 center">
+<h1>Part 5: Sampling When an Effect Exists (<span class="math inline">\(H_1\)</span> is True)</h1>
+
+</section>
+<section id="contrast-simulation-a-real-treatment-difference-exists" class="slide level2">
+<h2>Contrast Simulation: A Real Treatment Difference Exists</h2>
+<p>Now consider the opposite scenario: <strong>the psychological treatment actually works</strong>.</p>
+<ul>
+<li>Population of 2,000 patients: 1,000 Control, 1,000 Treatment.</li>
+<li><strong>The Ground Truth:</strong> The treatment group improves by <span class="math inline">\(0.5\)</span> standard deviations (<span class="math inline">\(\mu_{\text{Treatment}} = 0.5\)</span>, <span class="math inline">\(\mu_{\text{Control}} = 0\)</span>, <span class="math inline">\(\sigma = 1\)</span>).</li>
+<li>The true population effect size is a moderate <strong>Cohen’s <span class="math inline">\(d = 0.50\)</span></strong>.</li>
+</ul>
+
+<img data-src="powerAndEffectSize_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center r-stretch" width="672"></section>
+<section id="running-100-small-studies-on-an-effective-treatment-n-20-per-group" class="slide level2">
+<h2>Running 100 Small Studies on an Effective Treatment (<span class="math inline">\(N = 20\)</span> per group)</h2>
+<p>What happens if 100 research teams each recruit <span class="math inline">\(n = 20\)</span> per group to evaluate this effective treatment?</p>
+
+<img data-src="powerAndEffectSize_files/figure-revealjs/unnamed-chunk-6-1.png" class="quarto-figure quarto-figure-center r-stretch" width="672"><p>The sample differences average <span class="math inline">\(0.50\)</span>, but with <span class="math inline">\(n = 20\)</span> per group, estimates vary widely.</p>
+</section>
+<section id="observed-p-values-when-a-real-effect-exists" class="slide level2">
+<h2>Observed <span class="math inline">\(p\)</span>-values When a Real Effect Exists</h2>
+<p>If a <span class="math inline">\(t\)</span>-test is run on each of these 100 studies, how many successfully detect the treatment?</p>
+
+<img data-src="powerAndEffectSize_files/figure-revealjs/unnamed-chunk-7-1.png" class="quarto-figure quarto-figure-center r-stretch" width="768"><ul>
+<li>In this simulation, only <strong>35 out of 100 studies</strong> achieved <span class="math inline">\(p \le .05\)</span>.</li>
+<li><strong>65 studies concluded there was “no significant effect”</strong> despite the treatment working.</li>
+<li>These are <strong>Type II errors (<span class="math inline">\(\beta \approx 65\%\)</span>)</strong>.</li>
+</ul>
+</section>
+<section id="the-winners-curse-type-m-error-visualized" class="slide level2">
+<h2>The “Winner’s Curse” (Type M Error Visualized)</h2>
+<p>What happens to the estimated effect sizes if journals only publish the “statistically significant” studies?</p>
+
+<img data-src="powerAndEffectSize_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center r-stretch" width="768"><ul>
+<li>To achieve <span class="math inline">\(p \le .05\)</span> with only <span class="math inline">\(n = 20\)</span> per arm, an observed effect has to be substantially larger than the true population effect.</li>
+<li>The average published effect is inflated from <span class="math inline">\(d = 0.50\)</span> to <span class="math inline">\(d \approx 0.75\)</span>—an exaggeration of ~50% <span class="citation" data-cites="gelman2014">(<a href="#/references" role="doc-biblioref" onclick="">Gelman &amp; Carlin, 2014</a>)</span>.</li>
+</ul>
+</section>
+<section id="comparing-the-two-worlds-h_0-true-vs.-h_1-true" class="slide level2">
+<h2>Comparing the Two Worlds: <span class="math inline">\(H_0\)</span> True vs.&nbsp;<span class="math inline">\(H_1\)</span> True</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 35%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Metric</th>
+<th style="text-align: center;">World 1: Null is True (<span class="math inline">\(d = 0.00\)</span>)</th>
+<th style="text-align: center;">World 2: Effect Exists (<span class="math inline">\(d = 0.50\)</span>, Low Power)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Sample Size per arm</strong></td>
+<td style="text-align: center;"><span class="math inline">\(n = 20\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(n = 20\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Expected Significant Studies</strong></td>
+<td style="text-align: center;">~5 out of 100 (<span class="math inline">\(\alpha = .05\)</span>)</td>
+<td style="text-align: center;">~34 out of 100 (<span class="math inline">\(1 - \beta \approx .34\)</span>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Correct Decisions</strong></td>
+<td style="text-align: center;">95% (Fail to reject <span class="math inline">\(H_0\)</span>)</td>
+<td style="text-align: center;">34% (Reject <span class="math inline">\(H_0\)</span>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Errors Committed</strong></td>
+<td style="text-align: center;">5% Type I errors (False alarms)</td>
+<td style="text-align: center;">~66% Type II errors (Missed effects)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Observed <span class="math inline">\(p\)</span>-value distribution</strong></td>
+<td style="text-align: center;">Uniform across <span class="math inline">\([0, 1]\)</span></td>
+<td style="text-align: center;">Right-skewed toward zero, but many <span class="math inline">\(&gt; .05\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Published Effect Size (<span class="math inline">\(p \le .05\)</span>)</strong></td>
+<td style="text-align: center;">Spurious (noise mistaken for signal)</td>
+<td style="text-align: center;">Heavily inflated (Type M error / Winner’s Curse)</td>
+</tr>
+</tbody>
+</table>
+</section></section>
+<section>
+<section id="part-6-statistical-power-and-sample-planning-h_1-is-true" class="title-slide slide level1 center">
+<h1>Part 6: Statistical Power and Sample Planning (<span class="math inline">\(H_1\)</span> is True)</h1>
 
 </section>
 <section id="what-is-statistical-power" class="slide level2">
@@ -594,6 +684,9 @@ Dr Christopher Wilson
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
 <div id="ref-benjaminThreeRecommendationsImproving2019" class="csl-entry" role="listitem">
 Benjamin, D. J., &amp; Berger, J. O. (2019). Three <span>Recommendations</span> for <span>Improving</span> the <span>Use</span> of p-<span>Values</span>. <em>The American Statistician</em>, <em>73</em>, 186–191. <a href="https://doi.org/10.1080/00031305.2018.1543135">https://doi.org/10.1080/00031305.2018.1543135</a>
+</div>
+<div id="ref-gelman2014" class="csl-entry" role="listitem">
+Gelman, A., &amp; Carlin, J. (2014). Beyond <span>Power Calculations</span>: <span>Assessing Type S</span> (<span>Sign</span>) and <span>Type M</span> (<span>Magnitude</span>) <span>Errors</span>. <em>Perspectives on Psychological Science</em>, <em>9</em>(6), 641–651. <a href="https://doi.org/10.1177/1745691614551642">https://doi.org/10.1177/1745691614551642</a>
 </div>
 <div id="ref-lakensPerformingHighpoweredStudies2014" class="csl-entry" role="listitem">
 Lakens, D. (2014). Performing high-powered studies efficiently with sequential analyses. <em>European Journal of Social Psychology</em>, <em>44</em>(7), 701–710. <a href="https://doi.org/10.1002/ejsp.2023">https://doi.org/10.1002/ejsp.2023</a>
