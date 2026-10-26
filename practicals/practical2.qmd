@@ -228,7 +228,7 @@ To figure this out, we need to use a power analysis. We will use the power.t.tes
 
 # install the effsize package
 
-install.packages("webpower") #<1>
+install.packages("WebPower") #<1>
 
 
 ```
@@ -240,7 +240,7 @@ Now we can load the package and calculate the power.
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE, eval=FALSE}
 
-library("webpower") #<1>
+library("WebPower") #<1>
 
 power.t.test(d = effectSize, sig.level = 0.05, power = 0.8, type = "two.sample") #<2>
 
