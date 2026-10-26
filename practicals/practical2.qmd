@@ -223,13 +223,32 @@ To figure this out, we need to use a power analysis. We will use the power.t.tes
 -   power = power
 -   type = "two.sample" (because we have two groups)
 
-```{r echo=TRUE, message=FALSE, warning=FALSE, eval=FALSE}
 
-power.t.test(d = effectSize, sig.level = 0.05, power = 0.8, type = "two.sample") #<1>
+```{r eval=FALSE}
+
+# install the effsize package
+
+install.packages("webpower") #<1>
+
 
 ```
 
-1.  In the above code, replace the word "effectSize" with the effect size you calculated above.
+1.  Remember, you only need to install a package once. If you have already installed the package, you do not need to run this code.
+
+Now we can load the package and calculate the power.
+
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, eval=FALSE}
+
+library("webpower") #<1>
+
+power.t.test(d = effectSize, sig.level = 0.05, power = 0.8, type = "two.sample") #<2>
+
+```
+
+1. Load the package webpower to conduct power analysis.
+
+2.  In the above code, replace the word "effectSize" with the effect size you calculated above.
 
 ::: {.callout-tip collapse="true"}
 # What is power?
