@@ -20,8 +20,8 @@ author: Dr Christopher Wilson
 institute: Teesside University
 logo: "logo.jpg"
 csl: apa.csl
-width: 1280
-height: 720
+width: 1920
+height: 1080
 ---
 
 ```{r setup, include=FALSE}
@@ -30,6 +30,7 @@ knitr::opts_chunk$set(
 fig.align = "center"
 )
 
+library(dplyr)
 ```
 
 ## Key points from Lecture 1:
@@ -121,7 +122,7 @@ When designing your study:
 
 -   This is not necessarily because of a lack of statistical knowledge
 
-## Different analyses for different designs? {.smaller}
+## Different analyses for different designs? 
 
 Psych students are often taught to use different statistical tests for different types of designs. For example:
 
@@ -131,7 +132,7 @@ Psych students are often taught to use different statistical tests for different
 -   Regression for testing the relationship between a continuous and a categorical variable
 -   ANCOVA for testing the relationship between a continuous and a categorical variable, controlling for a third continuous variable
 
-## All of the previous examples are based on regression
+## All of the previous examples are based on the linear model and can be tested with regression
 
 ```{=html}
 <iframe width="1200" height="700" src="https://lindeloev.github.io/tests-as-linear/linear_tests_cheat_sheet.pdf" title="Webpage example"></iframe>
@@ -186,23 +187,74 @@ df <- data.frame(x, y)
 
 lm <- lm(y ~ x, data = df)
 
-p = ggplot(lm, aes(x = x, y = y)) + geom_point()
+p = ggplot(lm, aes(x = x, y = y)) + geom_point(alpha=0.3)
 
 # now fit a linear model to the data and add the intercept value to the plot
 
 intercept <- lm$coefficients[1]
 # add the regression line to the plot with a confidence interval
 
-p <- p +   geom_smooth(method = "lm", se = FALSE, color = "lightgrey")
+p <- p +   geom_smooth(method = "lm", se = FALSE, color = "blue")
 
-p <- p + labs(x = "Attentional bias", y = "Anxiety")
+p <- p + labs(x = "Attentional bias", y = "Anxiety") + 
+   theme_classic(base_size = 18)
 
 
 
 p
 ```
 
--   The regression line is the line of best fit through the data (smallest amount of overall error between the line and the data points)
+-   The regression line is the line of best fit through the data (smallest amount of overall error between the line and the data points). Lowest possible sum of squared residuals.
+
+
+## Visualizing the Intercept and Slope
+
+- **Intercept ($\beta_0$):** The predicted value of $y$ (Anxiety) when $x = 0$ (Attentional Bias). 
+- **Slope ($\beta_1$):** The predicted change in $y$ for every 1-unit increase in $x$.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| out-width: 60%
+#| out-height: 60%
+#| fig-align: center
+
+library(ggplot2)
+set.seed(123)
+x <- rnorm(100, 10, 2)
+y <- x + rnorm(100, 2, 3)
+df <- data.frame(x, y)
+
+model <- lm(y ~ x, data = df)
+b0 <- coef(model)[1]
+b1 <- coef(model)[2]
+
+ggplot(df, aes(x = x, y = y)) + 
+  geom_point(alpha = 0.3) +
+  geom_abline(intercept = b0, slope = b1, color = "blue", size = 1.2) +
+  
+  # Highlight Intercept (Red)
+  geom_point(aes(x = 0, y = b0), color = "red", size = 4) +
+  geom_segment(aes(x = 0, y = -1, xend = 0, yend = b0), color = "red", linetype = "dashed") +
+  geom_text(aes(x = 0.5, y = b0 + 1, label = paste("Intercept\n(When X=0, Y=", round(b0, 2), ")", sep="")), 
+            color = "red", hjust = 0, fontface = "bold") +
+  
+  # Highlight Slope (Green) - Drawn around x=10 for visibility
+  geom_segment(aes(x = 10, y = b0 + b1*10, xend = 11, yend = b0 + b1*10), color = "#27ae60", size = 1.2) +
+  geom_segment(aes(x = 11, y = b0 + b1*10, xend = 11, yend = b0 + b1*11), color = "#27ae60", size = 1.2) +
+  geom_text(aes(x = 11.3, y = b0 + b1*10.5, label = paste("Slope\n(+1 X = +", round(b1, 2), " Y)", sep="")), 
+            color = "#27ae60", hjust = 0, fontface = "bold") +
+  
+  # Force axes to show 0 so the intercept makes visual sense
+  coord_cartesian(xlim = c(0, 15), ylim = c(-1, max(y) + 2)) +
+  labs(x = "Attentional bias", y = "Anxiety") +
+  theme_classic(base_size = 18)
+```
+
+- The Intercept (Red): The predicted level of Anxiety when Attentional bias is exactly zero. Notice how the line must be traced backwards outside of our measured data range to find this value.
+
+- The Slope (Green): The predicted change in Anxiety for every 1-unit increase in Attentional bias.
 
 ## Residuals
 
@@ -220,7 +272,7 @@ p + geom_segment(aes(xend = x, yend = .fitted, color = "red"), alpha = 0.5) + gu
 
 # But what is the null hypothesis in regression?
 
-## The null hypothesis in regression {.smaller}
+## The null hypothesis in regression 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
@@ -233,7 +285,9 @@ p + geom_hline(yintercept = mean(y), linetype = "dashed", color = "red")
 
 ```
 
--   The null hypothesis is that the line of best fit is no better at predicting the y variable than the mean of the y variable
+-   The null hypothesis is that there is no relationship between the variables, meaning the slope of the regression line is exactly zero ($\beta_1 = 0$).
+
+- A completely flat regression line is mathematically identical to a horizontal line drawn at the mean of the $y$ variable. Therefore, the null hypothesis also posits that the predictor is no more useful than simply guessing the average $y$ score for every participant.
 
 
 
@@ -260,6 +314,35 @@ model1 <- lm(y ~ x, data = df) #<1>
 summary(model1) #<2>
 
 ```
+
+Important elements:
+
+- **$R^2$:** How much variance in the outcome variable is explained by the regression model?
+- **model p-value:** Significance of the model (remember R output uses exponential notation)
+- **predictor $\beta$ value:** How much the outcome variable changes relative to a single unit increase in this variable
+- **$\beta$ p-value:** Significance of the individual predictor
+
+
+## Visualizing Model Fit ($R^2$)
+
+- How do we know if our regression line is actually useful? We look at the variance it explains.
+- **Total Error (Null Model):** The distance between the data points and the red dashed line (the mean of $y$). 
+- **Unexplained Error (Regression Model):** The distance between the data points and our blue regression line.
+- **$R^2$ (R-squared):** The percentage of the original error that is eliminated by using the regression line instead of just guessing the mean. 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+#| out-width: 60%
+#| out-height: 50%
+#| fig-align: center
+
+# Reusing the dataframe from the previous slide
+p + geom_hline(yintercept = mean(y), linetype = "dashed", color = "red") +
+  geom_smooth(method = "lm", se = FALSE, color = "blue") +
+  geom_segment(aes(xend = x, yend = mean(y)), color = "red", alpha = 0.3) +
+  geom_segment(aes(xend = x, yend = .fitted), color = "blue", alpha = 0.3) +
+  labs(title = "Red = Error from Mean | Blue = Error from Regression Line")
+```
+
 
 # What if we have a categorical predictor variable?
 
@@ -325,17 +408,35 @@ ggplot(df, aes(x = group, y = dv, color = group)) + geom_point() + geom_hline(yi
 
 In a regression model, the intercept is the mean of one of the groups, and the slope is the difference between the means of the two groups
 
-## Example: t-test as a linear model {.smaller}
+## Example: t-test as a linear model 
 
 ```{r echo = T}
 
 # run a linear model
 
-lm(dv ~ group, data = df) |> summary()
+lm(dv ~ group, data = df) %>% summary()
 
 ```
 
 -   In the above example, the t-test and linear model give the same results. The intercept for the linear model is the mean of the Control Group, and the slope is the difference between the means of group Control and Treatment.
+
+## Under the Hood: Dummy Coding
+
+How does a linear model output a mean difference as a slope? R automatically applies **dummy coding** (0 and 1) to categorical variables.
+
+Let's look at the regression equation: $Y = \beta_0 + \beta_1(X)$
+
+If R codes our **Control Group as 0** and our **Treatment Group as 1**:
+
+- **For a Control patient ($X = 0$):**
+  - $Y = \text{Intercept} + \text{Slope} \times (0)$
+  - $Y = \text{Intercept}$ 
+  - *(Therefore, the Intercept MUST equal the mean of the Control group)*
+
+- **For a Treatment patient ($X = 1$):**
+  - $Y = \text{Intercept} + \text{Slope} \times (1)$
+  - $Y = \text{Intercept} + \text{Slope}$
+  - *(Therefore, the Slope MUST equal the exact difference between the Treatment and Control means)*
 
 ## We can check the confidence intervals from the regression model
 
@@ -343,7 +444,7 @@ lm(dv ~ group, data = df) |> summary()
 
 # show the confidence confidence intervals of the coefficients
 
-lm(dv ~ group, data = df) |> confint()
+lm(dv ~ group, data = df) %>% confint()
 
 ```
 
@@ -385,17 +486,17 @@ df <- data.frame(group, dv)
 
 # running an ANOVA
 
-aov(dv ~ group, data = df) |> summary()
+aov(dv ~ group, data = df) %>% summary()
 
 ```
 
 In this example, we can see that there is a significant effect of group on the outcome variable. However, we do not know which groups are significantly different from each other.
 
-## ANOVA as regression {.smaller}
+## ANOVA as regression 
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 
-lm(dv ~ group, data = df) |> summary()
+lm(dv ~ group, data = df) %>% summary()
 
 ```
 
@@ -410,7 +511,7 @@ In this example, we can see that there is a significant effect of group on the o
 
 -   For example, the relationship between age and cognitive functioning is often non-linear
 
--   In these cases, we can use other approaches (e.g., polynomial regression) to test the relationship
+-   In these cases, we can use an adapted linear approach (e.g., polynomial regression) to test the relationship
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
@@ -471,7 +572,7 @@ p
 
 ## Summary
 
--   Once your research question has been decided, figure out how you can model your hypothesis with the data you are collecing
+-   Once your research question has been decided, figure out how you can model your hypothesis with the data you are collecting
 
 -   Many different types of hypothesis can be tested using regression models
 

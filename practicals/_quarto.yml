@@ -7,7 +7,7 @@ project:
   render:
   - practical1.qmd
   - practical2.qmd
-  - regression.qmd
+  - practical3.qmd
   - multiplePredictors.qmd
   - moderation.qmd
   - mediation.qmd

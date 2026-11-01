@@ -358,6 +358,18 @@ Interpret the regression model results.
 
 Our next hypothesis is that the level of depression is different for each treatment group. We can test this hypothesis using a regression model with a categorical predictor variable. 
 
+### Setting the Reference Level (Releveling)
+
+By default, when R includes a categorical variable in a model, it chooses the reference category (the intercept) alphabetically. For our `treatment` variable (ACT, CBT, Control), R will use "ACT" as the baseline. In clinical research, it is usually more meaningful to compare treatments against the "Control" group instead. 
+
+We can change the default reference level using the `relevel()` function before we run our model:
+
+```{r}
+#| echo: true
+# set Control as the reference level
+practical3_data$treatment <- relevel(as.factor(practical3_data$treatment), ref = "Control")
+```
+
 ::: {.callout-warning}
 
 # Testing assumptions with a categorical predictor variable

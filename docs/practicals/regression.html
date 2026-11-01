@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -72,7 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="regression_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="regression_files/libs/quarto-html/anchor.min.js"></script>
 <link href="regression_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="regression_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="regression_files/libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="regression_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="regression_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="regression_files/libs/bootstrap/bootstrap-215b371544c282197b31c8aa00ce3677.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -673,6 +673,14 @@ window.onload = function() {
 <section id="regression-with-a-categorical-predictor-variable" class="level2">
 <h2 class="anchored" data-anchor-id="regression-with-a-categorical-predictor-variable">Regression with a categorical predictor variable</h2>
 <p>Our next hypothesis is that the level of depression is different for each treatment group. We can test this hypothesis using a regression model with a categorical predictor variable.</p>
+<section id="setting-the-reference-level-releveling" class="level3">
+<h3 class="anchored" data-anchor-id="setting-the-reference-level-releveling">Setting the Reference Level (Releveling)</h3>
+<p>By default, when R includes a categorical variable in a model, it chooses the reference category (the intercept) alphabetically. For our <code>treatment</code> variable (ACT, CBT, Control), R will use “ACT” as the baseline. In clinical research, it is usually more meaningful to compare treatments against the “Control” group instead.</p>
+<p>We can change the default reference level using the <code>relevel()</code> function before we run our model:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set Control as the reference level</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>practical3_data<span class="sc">$</span>treatment <span class="ot">&lt;-</span> <span class="fu">relevel</span>(<span class="fu">as.factor</span>(practical3_data<span class="sc">$</span>treatment), <span class="at">ref =</span> <span class="st">"Control"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -716,6 +724,7 @@ window.onload = function() {
 <p>Save your script.</p>
 </div>
 </div>
+</section>
 </section>
 <section id="you-are-done-for-today-b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2066612068616e64732d636c617070696e67203e7d7d" class="level1">
 <h1>You are done for today <i class="fa-solid fa-hands-clapping" aria-label="hands-clapping"></i></h1>

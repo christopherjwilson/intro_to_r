@@ -6,8 +6,8 @@
 <script src="factorAnalysis_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="factorAnalysis_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="factorAnalysis_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="factorAnalysis_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.10.18">
+<link href="factorAnalysis_files/libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.19">
 
   <meta name="author" content="Dr Christopher Wilson">
   <title>Factor Analysis</title>
@@ -772,17 +772,17 @@ Parallel analysis suggests that the number of factors =  6  and the number of co
 
  Eigen Values of 
   Original factors Resampled data Simulated data Original components
-1             6.64           0.25           0.26                7.29
+1             6.64           0.28           0.28                7.29
 2             0.91           0.15           0.15                1.74
 3             0.63           0.13           0.13                1.32
 4             0.48           0.12           0.11                1.23
 5             0.29           0.10           0.10                0.99
-6             0.13           0.08           0.08                0.90
+6             0.13           0.09           0.09                0.90
   Resampled components Simulated components
 1                 1.17                 1.17
 2                 1.15                 1.15
-3                 1.13                 1.13
-4                 1.11                 1.11
+3                 1.13                 1.12
+4                 1.11                 1.10
 5                 1.09                 1.09
 6                 1.08                 1.08</code></pre>
 </div>
@@ -1195,14 +1195,14 @@ Minimum correlation of possible factor scores     0.85 0.35 0.26 0.05</code></pr
 Call: fa(r = raq, nfactors = 4, rotate = "oblimin", max.iter = 100, 
     fm = "pa")
 Standardized loadings (pattern matrix) based upon correlation matrix
-      PA3   PA1   PA2   PA4   h2   u2 com
+      PA2   PA1   PA4   PA3   h2   u2 com
 Q01  0.51  0.02  0.19  0.08 0.37 0.63 1.3
 Q02 -0.11  0.06  0.03  0.48 0.26 0.74 1.2
 Q03 -0.42  0.03 -0.09  0.36 0.47 0.53 2.1
 Q04  0.53  0.08  0.15  0.06 0.42 0.58 1.2
 Q05  0.43  0.11  0.10  0.03 0.30 0.70 1.3
 Q06 -0.11  0.81  0.02  0.00 0.59 0.41 1.0
-Q07  0.29  0.47  0.04 -0.03 0.49 0.51 1.7
+Q07  0.29  0.47  0.04 -0.04 0.49 0.51 1.7
 Q08 -0.01 -0.07  0.84  0.06 0.65 0.35 1.0
 Q09  0.00 -0.01  0.07  0.59 0.34 0.66 1.0
 Q10  0.05  0.35  0.08 -0.07 0.20 0.80 1.2
@@ -1220,7 +1220,7 @@ Q21  0.61  0.05  0.03 -0.07 0.47 0.53 1.0
 Q22  0.15 -0.12 -0.08  0.48 0.25 0.75 1.4
 Q23  0.17 -0.02 -0.11  0.35 0.12 0.88 1.7
 
-                       PA3  PA1  PA2  PA4
+                       PA2  PA1  PA4  PA3
 SS loadings           3.14 2.39 2.29 1.49
 Proportion Var        0.14 0.10 0.10 0.06
 Cumulative Var        0.14 0.24 0.34 0.40
@@ -1228,11 +1228,11 @@ Proportion Explained  0.34 0.26 0.25 0.16
 Cumulative Proportion 0.34 0.59 0.84 1.00
 
  With factor correlations of 
-      PA3   PA1   PA2   PA4
-PA3  1.00  0.51  0.54 -0.39
+      PA2   PA1   PA4   PA3
+PA2  1.00  0.51  0.54 -0.39
 PA1  0.51  1.00  0.46 -0.30
-PA2  0.54  0.46  1.00 -0.20
-PA4 -0.39 -0.30 -0.20  1.00
+PA4  0.54  0.46  1.00 -0.20
+PA3 -0.39 -0.30 -0.20  1.00
 
 Mean item complexity =  1.4
 Test of the hypothesis that 4 factors are sufficient.
@@ -1251,7 +1251,7 @@ RMSEA index =  0.048  and the 90 % confidence intervals are  0.046 0.051
 BIC =  -144.8
 Fit based upon off diagonal values = 0.99
 Measures of factor score adequacy             
-                                                   PA3  PA1  PA2  PA4
+                                                   PA2  PA1  PA4  PA3
 Correlation of (regression) scores with factors   0.73 0.78 0.82 0.76
 Multiple R square of scores with factors          0.53 0.61 0.67 0.57
 Minimum correlation of possible factor scores     0.06 0.22 0.34 0.14</code></pre>

@@ -6,8 +6,8 @@
 <script src="linearModels_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="linearModels_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="linearModels_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="linearModels_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.10.18">
+<link href="linearModels_files/libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.19">
 
   <meta name="author" content="Dr Christopher Wilson">
   <title>Hypothesis testing with linear models</title>
@@ -310,7 +310,7 @@ Dr Christopher Wilson
 <li><p>This is not necessarily because of a lack of statistical knowledge</p></li>
 </ul>
 </section>
-<section id="different-analyses-for-different-designs" class="slide level2 smaller">
+<section id="different-analyses-for-different-designs" class="slide level2">
 <h2>Different analyses for different designs?</h2>
 <p>Psych students are often taught to use different statistical tests for different types of designs. For example:</p>
 <ul>
@@ -321,8 +321,8 @@ Dr Christopher Wilson
 <li>ANCOVA for testing the relationship between a continuous and a categorical variable, controlling for a third continuous variable</li>
 </ul>
 </section>
-<section id="all-of-the-previous-examples-are-based-on-regression" class="slide level2">
-<h2>All of the previous examples are based on regression</h2>
+<section id="all-of-the-previous-examples-are-based-on-the-linear-model-and-can-be-tested-with-regression" class="slide level2">
+<h2>All of the previous examples are based on the linear model and can be tested with regression</h2>
 <iframe width="1200" height="700" src="https://lindeloev.github.io/tests-as-linear/linear_tests_cheat_sheet.pdf" title="Webpage example"></iframe>
 </section>
 <section id="think-about-your-questions-before-you-think-about-the-stats" class="slide level2">
@@ -359,13 +359,33 @@ Dr Christopher Wilson
 <h2>Linear regression</h2>
 
 <img data-src="linearModels_files/figure-revealjs/unnamed-chunk-1-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><ul>
-<li>The regression line is the line of best fit through the data (smallest amount of overall error between the line and the data points)</li>
+<li>The regression line is the line of best fit through the data (smallest amount of overall error between the line and the data points). Lowest possible sum of squared residuals.</li>
+</ul>
+</section>
+<section id="visualizing-the-intercept-and-slope" class="slide level2">
+<h2>Visualizing the Intercept and Slope</h2>
+<ul>
+<li><strong>Intercept (<span class="math inline">\(\beta_0\)</span>):</strong> The predicted value of <span class="math inline">\(y\)</span> (Anxiety) when <span class="math inline">\(x = 0\)</span> (Attentional Bias).</li>
+<li><strong>Slope (<span class="math inline">\(\beta_1\)</span>):</strong> The predicted change in <span class="math inline">\(y\)</span> for every 1-unit increase in <span class="math inline">\(x\)</span>.</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="linearModels_files/figure-revealjs/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center" style="width:60.0%;height:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><p>The Intercept (Red): The predicted level of Anxiety when Attentional bias is exactly zero. Notice how the line must be traced backwards outside of our measured data range to find this value.</p></li>
+<li><p>The Slope (Green): The predicted change in Anxiety for every 1-unit increase in Attentional bias.</p></li>
 </ul>
 </section>
 <section id="residuals" class="slide level2">
 <h2>Residuals</h2>
 
-<img data-src="linearModels_files/figure-revealjs/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><ul>
+<img data-src="linearModels_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><ul>
 <li>The distances between the data points and the regression line are the residuals</li>
 </ul>
 </section></section>
@@ -374,11 +394,12 @@ Dr Christopher Wilson
 <h1>But what is the null hypothesis in regression?</h1>
 
 </section>
-<section id="the-null-hypothesis-in-regression" class="slide level2 smaller">
+<section id="the-null-hypothesis-in-regression" class="slide level2">
 <h2>The null hypothesis in regression</h2>
 
-<img data-src="linearModels_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><ul>
-<li>The null hypothesis is that the line of best fit is no better at predicting the y variable than the mean of the y variable</li>
+<img data-src="linearModels_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><ul>
+<li><p>The null hypothesis is that there is no relationship between the variables, meaning the slope of the regression line is exactly zero (<span class="math inline">\(\beta_1 = 0\)</span>).</p></li>
+<li><p>A completely flat regression line is mathematically identical to a horizontal line drawn at the mean of the <span class="math inline">\(y\)</span> variable. Therefore, the null hypothesis also posits that the predictor is no more useful than simply guessing the average <span class="math inline">\(y\)</span> score for every participant.</p></li>
 </ul>
 </section>
 <section id="looking-at-regression-output" class="slide level2">
@@ -428,6 +449,31 @@ Multiple R-squared:  0.252, Adjusted R-squared:  0.2444
 F-statistic: 33.02 on 1 and 98 DF,  p-value: 1.029e-07</code></pre>
 </div>
 </div>
+<p>Important elements:</p>
+<ul>
+<li><strong><span class="math inline">\(R^2\)</span>:</strong> How much variance in the outcome variable is explained by the regression model?</li>
+<li><strong>model p-value:</strong> Significance of the model (remember R output uses exponential notation)</li>
+<li><strong>predictor <span class="math inline">\(\beta\)</span> value:</strong> How much the outcome variable changes relative to a single unit increase in this variable</li>
+<li><strong><span class="math inline">\(\beta\)</span> p-value:</strong> Significance of the individual predictor</li>
+</ul>
+</section>
+<section id="visualizing-model-fit-r2" class="slide level2">
+<h2>Visualizing Model Fit (<span class="math inline">\(R^2\)</span>)</h2>
+<ul>
+<li>How do we know if our regression line is actually useful? We look at the variance it explains.</li>
+<li><strong>Total Error (Null Model):</strong> The distance between the data points and the red dashed line (the mean of <span class="math inline">\(y\)</span>).</li>
+<li><strong>Unexplained Error (Regression Model):</strong> The distance between the data points and our blue regression line.</li>
+<li><strong><span class="math inline">\(R^2\)</span> (R-squared):</strong> The percentage of the original error that is eliminated by using the regression line instead of just guessing the mean.</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="linearModels_files/figure-revealjs/unnamed-chunk-7-1.png" class="quarto-figure quarto-figure-center" style="width:60.0%;height:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
 </section></section>
 <section>
 <section id="what-if-we-have-a-categorical-predictor-variable" class="title-slide slide level1 center">
@@ -461,24 +507,24 @@ sample estimates:
 <section id="plotting-the-data-1" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Plotting the data #1</h2>
 
-<img data-src="linearModels_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p>Here we can see the data for each group</p>
+<img data-src="linearModels_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p>Here we can see the data for each group</p>
 </section>
 <section id="plotting-the-data-2" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Plotting the data #2</h2>
 
-<img data-src="linearModels_files/figure-revealjs/unnamed-chunk-9-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p>Here we can see the mean for each group, represented by the dashed lines</p>
+<img data-src="linearModels_files/figure-revealjs/unnamed-chunk-11-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p>Here we can see the mean for each group, represented by the dashed lines</p>
 </section>
 <section id="plotting-the-data-3" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Plotting the data #3</h2>
 
-<img data-src="linearModels_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p>In a regression model, the intercept is the mean of one of the groups, and the slope is the difference between the means of the two groups</p>
+<img data-src="linearModels_files/figure-revealjs/unnamed-chunk-12-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p>In a regression model, the intercept is the mean of one of the groups, and the slope is the difference between the means of the two groups</p>
 </section>
-<section id="example-t-test-as-a-linear-model" class="slide level2 smaller">
+<section id="example-t-test-as-a-linear-model" class="slide level2">
 <h2>Example: t-test as a linear model</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-label="1"></a><span class="co"># run a linear model</span></span>
 <span id="cb4-2"><a href="" aria-label="2"></a></span>
-<span id="cb4-3"><a href="" aria-label="3"></a><span class="fu">lm</span>(dv <span class="sc">~</span> group, <span class="at">data =</span> df) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-3"><a href="" aria-label="3"></a><span class="fu">lm</span>(dv <span class="sc">~</span> group, <span class="at">data =</span> df) <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -504,12 +550,32 @@ F-statistic: 6.471 on 1 and 18 DF,  p-value: 0.02036</code></pre>
 <li>In the above example, the t-test and linear model give the same results. The intercept for the linear model is the mean of the Control Group, and the slope is the difference between the means of group Control and Treatment.</li>
 </ul>
 </section>
+<section id="under-the-hood-dummy-coding" class="slide level2">
+<h2>Under the Hood: Dummy Coding</h2>
+<p>How does a linear model output a mean difference as a slope? R automatically applies <strong>dummy coding</strong> (0 and 1) to categorical variables.</p>
+<p>Let’s look at the regression equation: <span class="math inline">\(Y = \beta_0 + \beta_1(X)\)</span></p>
+<p>If R codes our <strong>Control Group as 0</strong> and our <strong>Treatment Group as 1</strong>:</p>
+<ul>
+<li><strong>For a Control patient (<span class="math inline">\(X = 0\)</span>):</strong>
+<ul>
+<li><span class="math inline">\(Y = \text{Intercept} + \text{Slope} \times (0)\)</span></li>
+<li><span class="math inline">\(Y = \text{Intercept}\)</span></li>
+<li><em>(Therefore, the Intercept MUST equal the mean of the Control group)</em></li>
+</ul></li>
+<li><strong>For a Treatment patient (<span class="math inline">\(X = 1\)</span>):</strong>
+<ul>
+<li><span class="math inline">\(Y = \text{Intercept} + \text{Slope} \times (1)\)</span></li>
+<li><span class="math inline">\(Y = \text{Intercept} + \text{Slope}\)</span></li>
+<li><em>(Therefore, the Slope MUST equal the exact difference between the Treatment and Control means)</em></li>
+</ul></li>
+</ul>
+</section>
 <section id="we-can-check-the-confidence-intervals-from-the-regression-model" class="slide level2">
 <h2>We can check the confidence intervals from the regression model</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-label="1"></a><span class="co"># show the confidence confidence intervals of the coefficients</span></span>
 <span id="cb6-2"><a href="" aria-label="2"></a></span>
-<span id="cb6-3"><a href="" aria-label="3"></a><span class="fu">lm</span>(dv <span class="sc">~</span> group, <span class="at">data =</span> df) <span class="sc">|&gt;</span> <span class="fu">confint</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-3"><a href="" aria-label="3"></a><span class="fu">lm</span>(dv <span class="sc">~</span> group, <span class="at">data =</span> df) <span class="sc">%&gt;%</span> <span class="fu">confint</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                   2.5 %     97.5 %
 (Intercept)    11.092729 13.7417583
@@ -548,7 +614,7 @@ groupTreatment -4.141139 -0.3948464</code></pre>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="" aria-label="1"></a><span class="co"># running an ANOVA</span></span>
 <span id="cb8-2"><a href="" aria-label="2"></a></span>
-<span id="cb8-3"><a href="" aria-label="3"></a><span class="fu">aov</span>(dv <span class="sc">~</span> group, <span class="at">data =</span> df) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-3"><a href="" aria-label="3"></a><span class="fu">aov</span>(dv <span class="sc">~</span> group, <span class="at">data =</span> df) <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            Df Sum Sq Mean Sq F value  Pr(&gt;F)   
 group        2  48.97  24.486   6.435 0.00518 **
@@ -559,10 +625,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 <p>In this example, we can see that there is a significant effect of group on the outcome variable. However, we do not know which groups are significantly different from each other.</p>
 </section>
-<section id="anova-as-regression-1" class="slide level2 smaller">
+<section id="anova-as-regression-1" class="slide level2">
 <h2>ANOVA as regression</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="" aria-label="1"></a><span class="fu">lm</span>(dv <span class="sc">~</span> group, <span class="at">data =</span> df) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="" aria-label="1"></a><span class="fu">lm</span>(dv <span class="sc">~</span> group, <span class="at">data =</span> df) <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -596,10 +662,10 @@ F-statistic: 6.435 on 2 and 27 DF,  p-value: 0.005183</code></pre>
 <ul>
 <li><p>Not all relationships between variables are linear</p></li>
 <li><p>For example, the relationship between age and cognitive functioning is often non-linear</p></li>
-<li><p>In these cases, we can use other approaches (e.g., polynomial regression) to test the relationship</p></li>
+<li><p>In these cases, we can use an adapted linear approach (e.g., polynomial regression) to test the relationship</p></li>
 </ul>
 
-<img data-src="linearModels_files/figure-revealjs/unnamed-chunk-16-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="linearModels_files/figure-revealjs/unnamed-chunk-18-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="what-about-non-linear-relationships-2" class="slide level2">
 <h2>What about non-linear relationships? #2</h2>
 <ul>
@@ -626,7 +692,7 @@ F-statistic: 6.435 on 2 and 27 DF,  p-value: 0.005183</code></pre>
 <section id="summary" class="slide level2">
 <h2>Summary</h2>
 <ul>
-<li><p>Once your research question has been decided, figure out how you can model your hypothesis with the data you are collecing</p></li>
+<li><p>Once your research question has been decided, figure out how you can model your hypothesis with the data you are collecting</p></li>
 <li><p>Many different types of hypothesis can be tested using regression models</p></li>
 <li><p>This can allow us to ask questions that are more complex because we can include multiple predictor variables in the same model (next week)</p></li>
 <li><p>We can get more information from a regression output than from a t-test or ANOVA (for example)</p></li>
@@ -820,9 +886,9 @@ F-statistic: 6.435 on 2 and 27 DF,  p-value: 0.005183</code></pre>
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: 1280,
+        width: 1920,
 
-        height: 720,
+        height: 1080,
 
         // Factor of the display size that should remain empty around the content
         margin: 0.1,
