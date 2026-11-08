@@ -102,7 +102,7 @@ Our first hypothesis is that avoidance behaviour can be predicted by the level o
 
 ```{r}
 #| echo: true
-#| output: false
+#| output: true
 # plot the data
 
 plot(avoidance ~ depression, data = practical3_data) #<1>
@@ -144,7 +144,7 @@ This is because regression assumptions are based on the residuals of the model, 
 We can run regression using the <func>lm()</func> function. 
 
 ```{r}
-#| output: false
+#| output: true
 
 # run the regression model
 
@@ -269,7 +269,7 @@ Leverage is the idea that a particular outlier might have a lot of influence on 
 
 **Bad:** Data points outside the red lines. Outliers with high leverage.
 
-**What do we do if this assumption is violated?:** Outliers will affect the calculation of variances (e.g. sum of squares or standard deviation) that are used in many calculations related to the regression model. If there are influential cases, we should consider removing them from the analysis. When doing so, it is important to explain why you removed them, and be transparent about how this affected the model results.
+**What do we do if this assumption is violated?:** Outliers will affect the calculation of variances (e.g. sum of squares or standard deviation) that are used in many calculations related to the regression model. If there are influential cases, we should consider removing them from the analysis. When doing so, it is important to explain why you removed them, and be transparent about how this affected the model results you have done.
 
 :::
 
@@ -286,8 +286,8 @@ Check the assumptions of linear regression for the model above. Note any violati
 
 To view the results of the regression model, we use the <func>summary()</func> function.
 
-```{r }
-#| output: false
+```{r}
+#| output: true
 
 model <- lm(avoidance ~ depression, data = practical3_data) #<1>
 
@@ -322,7 +322,7 @@ The final section in the output shows:
 
 - **Multiple R-squared**. This is the R-squared value. It is the amount of variance in the outcome variable that is explained by the model. We usually talk about this as a percentage value.
 
-- **Adjusted R-squared**. This is the adjusted R-squared value. It is the amount of variance in the outcome variable that is explained by the model, adjusted for the number of predictor variables in the model. This is to account for the fact that having more predictors in the model will always increase the R-squared value, even if the predictors are not related to the outcome variable. It is relevant when we have more than one predictor variable in the model.
+- **Adjusted R-squared**. This is the adjusted R-squared value. It is the amount of variance in the outcome variable that is explained by the model, adjusted for the number of predictor variables in the model. This is to account for the fact that having more predictors in the model will always increase the R-squared value, even if the predictors are not related to the outcome variable. This measure is relevant when we have more than one predictor variable in the model.
 
 - **F Statistic**. The F value comes from the ANOVA that is used to test the significance of the model.  It tests the null hypothesis that all of the beta values are equal to zero. 
 

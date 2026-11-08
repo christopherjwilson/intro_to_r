@@ -412,6 +412,13 @@ window.onload = function() {
 </dd>
 </dl>
 </div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="practical3_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -633,7 +640,7 @@ window.onload = function() {
 <div class="callout-body-container callout-body">
 <p><strong>Good:</strong> No data points outside the red lines.</p>
 <p><strong>Bad:</strong> Data points outside the red lines. Outliers with high leverage.</p>
-<p><strong>What do we do if this assumption is violated?:</strong> Outliers will affect the calculation of variances (e.g.&nbsp;sum of squares or standard deviation) that are used in many calculations related to the regression model. If there are influential cases, we should consider removing them from the analysis. When doing so, it is important to explain why you removed them, and be transparent about how this affected the model results.</p>
+<p><strong>What do we do if this assumption is violated?:</strong> Outliers will affect the calculation of variances (e.g.&nbsp;sum of squares or standard deviation) that are used in many calculations related to the regression model. If there are influential cases, we should consider removing them from the analysis. When doing so, it is important to explain why you removed them, and be transparent about how this affected the model results you have done.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -669,6 +676,26 @@ window.onload = function() {
 <span data-code-cell="annotated-cell-4" data-code-lines="3" data-code-annotation="2">This is the command to output the results of the model analysis you</span>
 </dd>
 </dl>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = avoidance ~ depression, data = practical3_data)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.5850 -0.5850 -0.1107  0.6264  2.6264 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -1.20907    0.61948  -1.952   0.0533 .  
+depression   0.73713    0.04131  17.844   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.9972 on 118 degrees of freedom
+Multiple R-squared:  0.7296,    Adjusted R-squared:  0.7273 
+F-statistic: 318.4 on 1 and 118 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <section id="call-the-regression-formula" class="level3">
@@ -726,8 +753,8 @@ window.onload = function() {
 <p>By default, when R includes a categorical variable in a model, it chooses the reference category (the intercept) alphabetically. For our <code>treatment</code> variable (ACT, CBT, Control), R will use “ACT” as the baseline. In clinical research, it is usually more meaningful to compare treatments against the “Control” group instead.</p>
 <p>We can change the default reference level using the <code>relevel()</code> function before we run our model:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set Control as the reference level</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>practical3_data<span class="sc">$</span>treatment <span class="ot">&lt;-</span> <span class="fu">relevel</span>(<span class="fu">as.factor</span>(practical3_data<span class="sc">$</span>treatment), <span class="at">ref =</span> <span class="st">"Control"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set Control as the reference level</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>practical3_data<span class="sc">$</span>treatment <span class="ot">&lt;-</span> <span class="fu">relevel</span>(<span class="fu">as.factor</span>(practical3_data<span class="sc">$</span>treatment), <span class="at">ref =</span> <span class="st">"Control"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
