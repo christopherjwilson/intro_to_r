@@ -101,9 +101,9 @@ modData <- read.csv("../datasets/modData.csv")
 
 ```{r eval = F, echo = T}
 
-# model1 without interactions
+# model_add without interactions
 
-model1 <- lm(data = modData, generalWellbeing ~ timeInCounselling + rapportLevel) #<1>
+model_add <- lm(data = modData, generalWellbeing ~ timeInCounselling + rapportLevel) #<1>
 
 # model1 with interactions
 
@@ -114,6 +114,21 @@ model1 <- lm(data = modData, generalWellbeing ~ timeInCounselling * rapportLevel
 1.  This model does not include an interaction between timeInCounselling and rapportLevel. This is because we used the + symbol to separate the predictor variables.
 
 2.  This model does include an interaction between timeInCounselling and rapportLevel. This is because we used the \* symbol to separate the predictor variables.
+
+## Variance explained by the interaction ($\Delta R^2$) {.smaller}
+
+-   Just like hierarchical regression last week, we can compare the additive model and the interaction model using `anova()`.
+
+-   This tells us whether adding the interaction significantly improves model fit and how much additional variance ($\Delta R^2$) it explains.
+
+```{r eval = T, echo = T}
+
+model_add <- lm(data = modData, generalWellbeing ~ timeInCounselling + rapportLevel)
+model1 <- lm(data = modData, generalWellbeing ~ timeInCounselling * rapportLevel)
+
+anova(model_add, model1)
+
+```
 
 ## Interpreting interactions in regression #1 {.smaller}
 
@@ -133,9 +148,25 @@ summary(model1)
 
 -   We can see that the interaction between timeInCounselling and rapportLevel is significant
 
--   We can see that the main effects of timeInCounselling and rapportLevel are not significant
+-   We can see that the lower-order terms for timeInCounselling and rapportLevel are not significant
 
--   In models where the interaction is significant, we should not interpret the main effects of the predictor variables (even when they are significant).
+-   When an interaction is in the model, these lower-order coefficients are **conditional effects** (the effect of one predictor when the other equals 0) — not unconditional main effects.
+
+## Conditional effects and mean-centering {.smaller}
+
+-   If `0` is not a meaningful score on our scale (e.g., a rapport questionnaire scored 1–7), the conditional effect at `0` is difficult to interpret clinically.
+
+-   **Mean-centering** continuous predictors ($X - \bar{X}$) shifts `0` to the sample average without changing the interaction term, $R^2$, or simple slopes (Aiken & West, 1991).
+
+```{r eval = T, echo = T}
+
+modData$time_c <- scale(modData$timeInCounselling, scale = FALSE)
+modData$rapport_c <- scale(modData$rapportLevel, scale = FALSE)
+
+model1_c <- lm(data = modData, generalWellbeing ~ time_c * rapport_c)
+summary(model1_c)$coefficients
+
+```
 
 ## Interpreting interactions in regression #3
 
@@ -152,9 +183,9 @@ plot_model(model1, type="int", mdrt.values = "meansd")
 
 ## Interpreting interactions in regression #4
 
--   We can further test this interaction by calculating range of values where the interaction is significant.
+-   The interaction coefficient itself is a single value across the whole model, but the **conditional effect (simple slope)** of $X$ on $Y$ varies across levels of the moderator.
 
--   We can do this using the `rockchalk` package. We will do it our moderation example later.
+-   We can calculate the exact range of moderator values where the simple slope is statistically significant using the **Johnson-Neyman (J-N) technique** in the `rockchalk` package.
 
 ## Thinking about interactions
 
@@ -230,13 +261,25 @@ grViz(dia1)
 
 -   We should not use moderation designs "just to see what happens". The statistical test alone does not **prove** the existence of the theoretical relationship.
 
+## What if the moderator is categorical? {.smaller}
+
+-   The moderator does not have to be continuous. In clinical research, we often test whether a relationship differs across groups (e.g., *Treatment* vs. *Control*).
+
+-   Using the dummy coding approach from Lecture 1 (`0` = Control, `1` = Treatment), the same `*` formula tests whether the slope of the continuous predictor differs between groups:
+
+```r
+lm(outcome ~ continuousPredictor * treatmentGroup, data = myData)
+```
+
+-   Here, the interaction coefficient ($b_3$) represents the **difference in slopes** between the Treatment group and the Control group.
+
 ## How do we check for moderation?
 
 -   The first step is to build a regression model that includes the main effects and the interaction between the two predictor variables (this is the same as interaction that we covered earlier).
 
 -   If the interaction is significant, we can then visualise the interaction using simple slopes (same as what we did earlier).
 
--   We can then calculate the range of values of the moderator variable where the interaction is significant.
+-   We can then use the **Johnson-Neyman technique** to calculate the range of values of the moderator variable where the simple slope of $X$ on $Y$ is significant.
 
 ## Moderation example
 
@@ -302,7 +345,7 @@ ps
 
 ## Testing the moderation effect #3 {.scrollable}
 
-Step 3: Test the range of values where the interaction is significant:
+Step 3: Test the range of moderator values where the simple slope is significant (Johnson-Neyman technique):
 
 ```{r eval = T, echo = T}
  
@@ -358,7 +401,7 @@ plot(ts)
 
 ## How do we interpret the moderation effect?
 
--   We can see that the relationship between *Time in counselling* and *General Wellbeing* is significant levels of *Rapport level* outside of -10.8 and 3.54.
+-   The Johnson-Neyman region of significance shows that the simple slope of *Time in counselling* on *General Wellbeing* is significant at levels of *Rapport level* outside of -10.8 and 3.54.
 
 -   However, the *Rapport level* scale does not actually go below 0. So we can say that the relationship between *Time in counselling* and *General Wellbeing* is significant when *Rapport level* is above 3.54.
 
@@ -372,4 +415,12 @@ plot(ts)
 
 -   Moderations are just a specific type of interaction. They are based on specific theoretical models about the relationship between variables.
 
--   We can use the `rockchalk` package to test for interactions and moderation and plot them.
+-   We can use simple slopes and the Johnson-Neyman technique (`rockchalk`) to probe and plot moderation effects.
+
+## References {.smaller}
+
+Aiken, L. S., & West, S. G. (1991). *Multiple regression: Testing and interpreting interactions*. Sage Publications.
+
+Bauer, D. J., & Curran, P. J. (2005). Probing interactions in fixed and multilevel regression: Inferential and graphical techniques. *Multivariate Behavioral Research*, *40*(3), 373–400.
+
+Hayes, A. F. (2018). *Introduction to mediation, moderation, and conditional process analysis: A regression-based approach* (2nd ed.). Guilford Press.

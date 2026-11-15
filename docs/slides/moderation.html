@@ -6,14 +6,14 @@
 <script src="moderation_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="moderation_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="moderation_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="moderation_files/libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.10.19">
+<link href="moderation_files/libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.11.9">
 
   <meta name="author" content="Dr Christopher Wilson">
   <title>Moderation Designs</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="moderation_files/libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="moderation_files/libs/revealjs/dist/reveal.css">
   <style>
@@ -101,7 +101,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="moderation_files/libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
+  <link rel="stylesheet" href="moderation_files/libs/revealjs/dist/theme/quarto-00ad5a49dff614330cd349bcec985ec3.css">
   <link rel="stylesheet" href="include/style.css">
   <link href="moderation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="moderation_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -326,9 +326,9 @@ Dr Christopher Wilson
 <li><p>We do this by adding a term to our model that represents the interaction between the predictor variables.</p></li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1" aria-label="1"></a><span class="co"># model1 without interactions</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1" aria-label="1"></a><span class="co"># model_add without interactions</span></span>
 <span id="annotated-cell-1-2"><a href="#annotated-cell-1-2" aria-label="2"></a></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();" href="">1</a><span id="annotated-cell-1-3" class="code-annotation-target"><a href="#annotated-cell-1-3" aria-label="3"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">+</span> rapportLevel)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();" href="">1</a><span id="annotated-cell-1-3" class="code-annotation-target"><a href="#annotated-cell-1-3" aria-label="3"></a>model_add <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">+</span> rapportLevel)</span>
 <span id="annotated-cell-1-4"><a href="#annotated-cell-1-4" aria-label="4"></a></span>
 <span id="annotated-cell-1-5"><a href="#annotated-cell-1-5" aria-label="5"></a><span class="co"># model1 with interactions</span></span>
 <span id="annotated-cell-1-6"><a href="#annotated-cell-1-6" aria-label="6"></a></span>
@@ -347,14 +347,38 @@ Dr Christopher Wilson
 </div>
 </div>
 </section>
+<section id="variance-explained-by-the-interaction-delta-r2" class="slide level2 smaller">
+<h2>Variance explained by the interaction (<span class="math inline">\(\Delta R^2\)</span>)</h2>
+<ul>
+<li><p>Just like hierarchical regression last week, we can compare the additive model and the interaction model using <code>anova()</code>.</p></li>
+<li><p>This tells us whether adding the interaction significantly improves model fit and how much additional variance (<span class="math inline">\(\Delta R^2\)</span>) it explains.</p></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-label="1"></a>model_add <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">+</span> rapportLevel)</span>
+<span id="cb1-2"><a href="" aria-label="2"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">*</span> rapportLevel)</span>
+<span id="cb1-3"><a href="" aria-label="3"></a></span>
+<span id="cb1-4"><a href="" aria-label="4"></a><span class="fu">anova</span>(model_add, model1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Model 1: generalWellbeing ~ timeInCounselling + rapportLevel
+Model 2: generalWellbeing ~ timeInCounselling * rapportLevel
+  Res.Df   RSS Df Sum of Sq      F    Pr(&gt;F)    
+1     97 14248                                  
+2     96 12381  1    1867.1 14.477 0.0002496 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+</section>
 <section id="interpreting-interactions-in-regression-1" class="slide level2 smaller">
 <h2>Interpreting interactions in regression #1</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy"><code class="sourceCode r"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1" aria-label="1"></a><span class="co"># model1 with interactions</span></span>
-<span id="annotated-cell-2-2"><a href="#annotated-cell-2-2" aria-label="2"></a></span>
-<span id="annotated-cell-2-3"><a href="#annotated-cell-2-3" aria-label="3"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">*</span> rapportLevel)</span>
-<span id="annotated-cell-2-4"><a href="#annotated-cell-2-4" aria-label="4"></a></span>
-<span id="annotated-cell-2-5"><a href="#annotated-cell-2-5" aria-label="5"></a><span class="fu">summary</span>(model1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy"><code class="sourceCode r"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1" aria-label="1"></a><span class="co"># model1 with interactions</span></span>
+<span id="annotated-cell-3-2"><a href="#annotated-cell-3-2" aria-label="2"></a></span>
+<span id="annotated-cell-3-3"><a href="#annotated-cell-3-3" aria-label="3"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">*</span> rapportLevel)</span>
+<span id="annotated-cell-3-4"><a href="#annotated-cell-3-4" aria-label="4"></a></span>
+<span id="annotated-cell-3-5"><a href="#annotated-cell-3-5" aria-label="5"></a><span class="fu">summary</span>(model1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -385,9 +409,30 @@ F-statistic: 12.22 on 3 and 96 DF,  p-value: 7.701e-07</code></pre>
 <ul>
 <li><p>We can see that the overall model is significant</p></li>
 <li><p>We can see that the interaction between timeInCounselling and rapportLevel is significant</p></li>
-<li><p>We can see that the main effects of timeInCounselling and rapportLevel are not significant</p></li>
-<li><p>In models where the interaction is significant, we should not interpret the main effects of the predictor variables (even when they are significant).</p></li>
+<li><p>We can see that the lower-order terms for timeInCounselling and rapportLevel are not significant</p></li>
+<li><p>When an interaction is in the model, these lower-order coefficients are <strong>conditional effects</strong> (the effect of one predictor when the other equals 0) — not unconditional main effects.</p></li>
 </ul>
+</section>
+<section id="conditional-effects-and-mean-centering" class="slide level2 smaller">
+<h2>Conditional effects and mean-centering</h2>
+<ul>
+<li><p>If <code>0</code> is not a meaningful score on our scale (e.g., a rapport questionnaire scored 1–7), the conditional effect at <code>0</code> is difficult to interpret clinically.</p></li>
+<li><p><strong>Mean-centering</strong> continuous predictors (<span class="math inline">\(X - \bar{X}\)</span>) shifts <code>0</code> to the sample average without changing the interaction term, <span class="math inline">\(R^2\)</span>, or simple slopes (Aiken &amp; West, 1991).</p></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-label="1"></a>modData<span class="sc">$</span>time_c <span class="ot">&lt;-</span> <span class="fu">scale</span>(modData<span class="sc">$</span>timeInCounselling, <span class="at">scale =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-2"><a href="" aria-label="2"></a>modData<span class="sc">$</span>rapport_c <span class="ot">&lt;-</span> <span class="fu">scale</span>(modData<span class="sc">$</span>rapportLevel, <span class="at">scale =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-3"><a href="" aria-label="3"></a></span>
+<span id="cb4-4"><a href="" aria-label="4"></a>model1_c <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> time_c <span class="sc">*</span> rapport_c)</span>
+<span id="cb4-5"><a href="" aria-label="5"></a><span class="fu">summary</span>(model1_c)<span class="sc">$</span>coefficients</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   Estimate Std. Error   t value     Pr(&gt;|t|)
+(Intercept)      21.1500982 1.14323559 18.500210 2.032942e-33
+time_c            0.9094195 0.33730981  2.696096 8.285470e-03
+rapport_c         0.5824146 0.15175997  3.837735 2.223873e-04
+time_c:rapport_c  0.1533761 0.04031029  3.804888 2.496199e-04</code></pre>
+</div>
+</div>
 </section>
 <section id="interpreting-interactions-in-regression-3" class="slide level2">
 <h2>Interpreting interactions in regression #3</h2>
@@ -395,12 +440,12 @@ F-statistic: 12.22 on 3 and 96 DF,  p-value: 7.701e-07</code></pre>
 <li>We can look at the <strong>simple slopes</strong> of the interaction.</li>
 </ul>
 
-<img data-src="moderation_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
+<img data-src="moderation_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
 <section id="interpreting-interactions-in-regression-4" class="slide level2">
 <h2>Interpreting interactions in regression #4</h2>
 <ul>
-<li><p>We can further test this interaction by calculating range of values where the interaction is significant.</p></li>
-<li><p>We can do this using the <code>rockchalk</code> package. We will do it our moderation example later.</p></li>
+<li><p>The interaction coefficient itself is a single value across the whole model, but the <strong>conditional effect (simple slope)</strong> of <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span> varies across levels of the moderator.</p></li>
+<li><p>We can calculate the exact range of moderator values where the simple slope is statistically significant using the <strong>Johnson-Neyman (J-N) technique</strong> in the <code>rockchalk</code> package.</p></li>
 </ul>
 </section>
 <section id="thinking-about-interactions" class="slide level2">
@@ -447,8 +492,8 @@ F-statistic: 12.22 on 3 and 96 DF,  p-value: 7.701e-07</code></pre>
 <h2>Diagram of moderation design</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-8353af1649d2b83af655" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-8353af1649d2b83af655">{"x":{"diagram":"\n\tdigraph moderation_model { \n\t  # Nodes  \n\t  node [shape = rectangle, fontname = Arial, fontsize=9]\n\t  iv    [pos = \"-1,1!\", label = \"Time in\ncounselling\"]\n\t  blank [pos =  \"0,1!\", label = \"\", width = 0.001, height = 0.001]\n\t  mod   [pos =  \"0,2!\", label = \"Rapport\nlevel\"]\n\t  dv    [pos =  \"1,1!\", label = \"General\nwellbeing\"]\n\t    \n\t  # Hide moderator edges\n\t  { rank = same; blank mod }\n\t  \n\t  # Edges\n\t  edge [fontname = Arial, fontsize=8]\n\t  mod -> blank\n\t  iv -> blank [dir = none]\n\t  blank -> dv [minlen = 1]\n\n\t  # Graph\n\t  graph [layout = neato, overlap = true, outputorder = edgesfirst]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-83a6d6aadceacf3052cf" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-83a6d6aadceacf3052cf">{"x":{"diagram":"\n\tdigraph moderation_model { \n\t  # Nodes  \n\t  node [shape = rectangle, fontname = Arial, fontsize=9]\n\t  iv    [pos = \"-1,1!\", label = \"Time in\ncounselling\"]\n\t  blank [pos =  \"0,1!\", label = \"\", width = 0.001, height = 0.001]\n\t  mod   [pos =  \"0,2!\", label = \"Rapport\nlevel\"]\n\t  dv    [pos =  \"1,1!\", label = \"General\nwellbeing\"]\n\t    \n\t  # Hide moderator edges\n\t  { rank = same; blank mod }\n\t  \n\t  # Edges\n\t  edge [fontname = Arial, fontsize=8]\n\t  mod -> blank\n\t  iv -> blank [dir = none]\n\t  blank -> dv [minlen = 1]\n\n\t  # Graph\n\t  graph [layout = neato, overlap = true, outputorder = edgesfirst]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -460,12 +505,23 @@ F-statistic: 12.22 on 3 and 96 DF,  p-value: 7.701e-07</code></pre>
 <li><p>We should not use moderation designs “just to see what happens”. The statistical test alone does not <strong>prove</strong> the existence of the theoretical relationship.</p></li>
 </ul>
 </section>
+<section id="what-if-the-moderator-is-categorical" class="slide level2 smaller">
+<h2>What if the moderator is categorical?</h2>
+<ul>
+<li><p>The moderator does not have to be continuous. In clinical research, we often test whether a relationship differs across groups (e.g., <em>Treatment</em> vs.&nbsp;<em>Control</em>).</p></li>
+<li><p>Using the dummy coding approach from Lecture 1 (<code>0</code> = Control, <code>1</code> = Treatment), the same <code>*</code> formula tests whether the slope of the continuous predictor differs between groups:</p></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-label="1"></a><span class="fu">lm</span>(outcome <span class="sc">~</span> continuousPredictor <span class="sc">*</span> treatmentGroup, <span class="at">data =</span> myData)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Here, the interaction coefficient (<span class="math inline">\(b_3\)</span>) represents the <strong>difference in slopes</strong> between the Treatment group and the Control group.</li>
+</ul>
+</section>
 <section id="how-do-we-check-for-moderation" class="slide level2">
 <h2>How do we check for moderation?</h2>
 <ul>
 <li><p>The first step is to build a regression model that includes the main effects and the interaction between the two predictor variables (this is the same as interaction that we covered earlier).</p></li>
 <li><p>If the interaction is significant, we can then visualise the interaction using simple slopes (same as what we did earlier).</p></li>
-<li><p>We can then calculate the range of values of the moderator variable where the interaction is significant.</p></li>
+<li><p>We can then use the <strong>Johnson-Neyman technique</strong> to calculate the range of values of the moderator variable where the simple slope of <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span> is significant.</p></li>
 </ul>
 </section>
 <section id="moderation-example" class="slide level2">
@@ -480,14 +536,14 @@ F-statistic: 12.22 on 3 and 96 DF,  p-value: 7.701e-07</code></pre>
 <h2>Moderation example #2</h2>
 <p>The regression model is the same as the one we used for interactions.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1" aria-label="1"></a><span class="co"># model1 with interactions</span></span>
-<span id="annotated-cell-3-2"><a href="#annotated-cell-3-2" aria-label="2"></a></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();" href="">1</a><span id="annotated-cell-3-3" class="code-annotation-target"><a href="#annotated-cell-3-3" aria-label="3"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">*</span> rapportLevel)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-6-1"><a href="#annotated-cell-6-1" aria-label="1"></a><span class="co"># model1 with interactions</span></span>
+<span id="annotated-cell-6-2"><a href="#annotated-cell-6-2" aria-label="2"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1" onclick="event.preventDefault();" href="">1</a><span id="annotated-cell-6-3" class="code-annotation-target"><a href="#annotated-cell-6-3" aria-label="3"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">*</span> rapportLevel)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-6" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="3" data-code-annotation="1">This model includes an interaction between timeInCounselling and rapportLevel. We know this because we used the * symbol to separate the predictor variables.</span>
+<span data-code-cell="annotated-cell-6" data-code-lines="3" data-code-annotation="1">This model includes an interaction between timeInCounselling and rapportLevel. We know this because we used the * symbol to separate the predictor variables.</span>
 </dd>
 </dl>
 </div>
@@ -498,28 +554,28 @@ F-statistic: 12.22 on 3 and 96 DF,  p-value: 7.701e-07</code></pre>
 <p>Testing at which levels of <em>Rapport level</em> the relationship between <em>Time in counselling</em> and <em>General Wellbeing</em> is significant.</p>
 <p>Step 1: Run the regression model:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="" aria-label="1"></a><span class="co"># model1 with interactions</span></span>
-<span id="cb2-2"><a href="" aria-label="2"></a></span>
-<span id="cb2-3"><a href="" aria-label="3"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">*</span> rapportLevel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="" aria-label="1"></a><span class="co"># model1 with interactions</span></span>
+<span id="cb7-2"><a href="" aria-label="2"></a></span>
+<span id="cb7-3"><a href="" aria-label="3"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">*</span> rapportLevel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="testing-the-moderation-effect-2" class="slide level2 scrollable">
 <h2>Testing the moderation effect #2</h2>
 <p>Step 2: Plot the interaction:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="" aria-label="1"></a><span class="co"># model1 with interactions</span></span>
-<span id="cb3-2"><a href="" aria-label="2"></a></span>
-<span id="cb3-3"><a href="" aria-label="3"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">*</span> rapportLevel)</span>
-<span id="cb3-4"><a href="" aria-label="4"></a></span>
-<span id="cb3-5"><a href="" aria-label="5"></a><span class="co"># using the rockchalk package</span></span>
-<span id="cb3-6"><a href="" aria-label="6"></a></span>
-<span id="cb3-7"><a href="" aria-label="7"></a><span class="fu">library</span>(rockchalk)</span>
-<span id="cb3-8"><a href="" aria-label="8"></a></span>
-<span id="cb3-9"><a href="" aria-label="9"></a><span class="co"># use the plotSlopes() function</span></span>
-<span id="cb3-10"><a href="" aria-label="10"></a></span>
-<span id="cb3-11"><a href="" aria-label="11"></a>ps <span class="ot">&lt;-</span> <span class="fu">plotSlopes</span>(model1, <span class="at">plotx =</span> <span class="st">"timeInCounselling"</span>, <span class="at">modx =</span> <span class="st">"rapportLevel"</span>, <span class="at">interval =</span> <span class="st">"confidence"</span>, <span class="at">modxVals =</span> <span class="st">"std.dev"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="" aria-label="1"></a><span class="co"># model1 with interactions</span></span>
+<span id="cb8-2"><a href="" aria-label="2"></a></span>
+<span id="cb8-3"><a href="" aria-label="3"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">*</span> rapportLevel)</span>
+<span id="cb8-4"><a href="" aria-label="4"></a></span>
+<span id="cb8-5"><a href="" aria-label="5"></a><span class="co"># using the rockchalk package</span></span>
+<span id="cb8-6"><a href="" aria-label="6"></a></span>
+<span id="cb8-7"><a href="" aria-label="7"></a><span class="fu">library</span>(rockchalk)</span>
+<span id="cb8-8"><a href="" aria-label="8"></a></span>
+<span id="cb8-9"><a href="" aria-label="9"></a><span class="co"># use the plotSlopes() function</span></span>
+<span id="cb8-10"><a href="" aria-label="10"></a></span>
+<span id="cb8-11"><a href="" aria-label="11"></a>ps <span class="ot">&lt;-</span> <span class="fu">plotSlopes</span>(model1, <span class="at">plotx =</span> <span class="st">"timeInCounselling"</span>, <span class="at">modx =</span> <span class="st">"rapportLevel"</span>, <span class="at">interval =</span> <span class="st">"confidence"</span>, <span class="at">modxVals =</span> <span class="st">"std.dev"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-label="1"></a>ps</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="" aria-label="1"></a>ps</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$call
 plotSlopes.lm(model = model1, plotx = "timeInCounselling", modx = "rapportLevel", 
@@ -678,26 +734,26 @@ attr(,"class")
 [1] "plotSlopes" "rockchalk" </code></pre>
 </div>
 </div>
-<img data-src="moderation_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
+<img data-src="moderation_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
 <section id="testing-the-moderation-effect-3" class="slide level2 scrollable">
 <h2>Testing the moderation effect #3</h2>
-<p>Step 3: Test the range of values where the interaction is significant:</p>
+<p>Step 3: Test the range of moderator values where the simple slope is significant (Johnson-Neyman technique):</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-label="1"></a><span class="co"># model1 with interactions</span></span>
-<span id="cb6-2"><a href="" aria-label="2"></a></span>
-<span id="cb6-3"><a href="" aria-label="3"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">*</span> rapportLevel)</span>
-<span id="cb6-4"><a href="" aria-label="4"></a></span>
-<span id="cb6-5"><a href="" aria-label="5"></a><span class="co"># using the rockchalk package</span></span>
-<span id="cb6-6"><a href="" aria-label="6"></a></span>
-<span id="cb6-7"><a href="" aria-label="7"></a><span class="fu">library</span>(rockchalk)</span>
-<span id="cb6-8"><a href="" aria-label="8"></a></span>
-<span id="cb6-9"><a href="" aria-label="9"></a><span class="co"># use the plotSlopes() function</span></span>
-<span id="cb6-10"><a href="" aria-label="10"></a></span>
-<span id="cb6-11"><a href="" aria-label="11"></a>ps <span class="ot">&lt;-</span> <span class="fu">plotSlopes</span>(model1, <span class="at">plotx =</span> <span class="st">"timeInCounselling"</span>, <span class="at">modx =</span> <span class="st">"rapportLevel"</span>, <span class="at">interval =</span> <span class="st">"confidence"</span>, <span class="at">modxVals =</span> <span class="st">"std.dev"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="" aria-label="1"></a><span class="co"># model1 with interactions</span></span>
+<span id="cb11-2"><a href="" aria-label="2"></a></span>
+<span id="cb11-3"><a href="" aria-label="3"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">*</span> rapportLevel)</span>
+<span id="cb11-4"><a href="" aria-label="4"></a></span>
+<span id="cb11-5"><a href="" aria-label="5"></a><span class="co"># using the rockchalk package</span></span>
+<span id="cb11-6"><a href="" aria-label="6"></a></span>
+<span id="cb11-7"><a href="" aria-label="7"></a><span class="fu">library</span>(rockchalk)</span>
+<span id="cb11-8"><a href="" aria-label="8"></a></span>
+<span id="cb11-9"><a href="" aria-label="9"></a><span class="co"># use the plotSlopes() function</span></span>
+<span id="cb11-10"><a href="" aria-label="10"></a></span>
+<span id="cb11-11"><a href="" aria-label="11"></a>ps <span class="ot">&lt;-</span> <span class="fu">plotSlopes</span>(model1, <span class="at">plotx =</span> <span class="st">"timeInCounselling"</span>, <span class="at">modx =</span> <span class="st">"rapportLevel"</span>, <span class="at">interval =</span> <span class="st">"confidence"</span>, <span class="at">modxVals =</span> <span class="st">"std.dev"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="" aria-label="1"></a><span class="co"># use the testSlopes() function</span></span>
-<span id="cb7-2"><a href="" aria-label="2"></a></span>
-<span id="cb7-3"><a href="" aria-label="3"></a>ts <span class="ot">&lt;-</span> <span class="fu">testSlopes</span>(ps)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="" aria-label="1"></a><span class="co"># use the testSlopes() function</span></span>
+<span id="cb12-2"><a href="" aria-label="2"></a></span>
+<span id="cb12-3"><a href="" aria-label="3"></a>ts <span class="ot">&lt;-</span> <span class="fu">testSlopes</span>(ps)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Values of rapportLevel OUTSIDE this interval:
         lo         hi 
@@ -705,45 +761,45 @@ attr(,"class")
 cause the slope of (b1 + b2*rapportLevel)timeInCounselling to be statistically significant</code></pre>
 </div>
 </div>
-<img data-src="moderation_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
+<img data-src="moderation_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"></section>
 <section id="testing-the-moderation-effect-4" class="slide level2 scrollable">
 <h2>Testing the moderation effect #4</h2>
 <p>Step 4: Visualise the results:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="" aria-label="1"></a><span class="co"># model1 with interactions</span></span>
-<span id="cb9-2"><a href="" aria-label="2"></a></span>
-<span id="cb9-3"><a href="" aria-label="3"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">*</span> rapportLevel)</span>
-<span id="cb9-4"><a href="" aria-label="4"></a></span>
-<span id="cb9-5"><a href="" aria-label="5"></a><span class="co"># using the rockchalk package</span></span>
-<span id="cb9-6"><a href="" aria-label="6"></a></span>
-<span id="cb9-7"><a href="" aria-label="7"></a><span class="fu">library</span>(rockchalk)</span>
-<span id="cb9-8"><a href="" aria-label="8"></a></span>
-<span id="cb9-9"><a href="" aria-label="9"></a><span class="co"># use the plotSlopes() function</span></span>
-<span id="cb9-10"><a href="" aria-label="10"></a></span>
-<span id="cb9-11"><a href="" aria-label="11"></a>ps <span class="ot">&lt;-</span> <span class="fu">plotSlopes</span>(model1, <span class="at">plotx =</span> <span class="st">"timeInCounselling"</span>, <span class="at">modx =</span> <span class="st">"rapportLevel"</span>, <span class="at">interval =</span> <span class="st">"confidence"</span>, <span class="at">modxVals =</span> <span class="st">"std.dev"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="" aria-label="1"></a><span class="co"># model1 with interactions</span></span>
+<span id="cb14-2"><a href="" aria-label="2"></a></span>
+<span id="cb14-3"><a href="" aria-label="3"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">*</span> rapportLevel)</span>
+<span id="cb14-4"><a href="" aria-label="4"></a></span>
+<span id="cb14-5"><a href="" aria-label="5"></a><span class="co"># using the rockchalk package</span></span>
+<span id="cb14-6"><a href="" aria-label="6"></a></span>
+<span id="cb14-7"><a href="" aria-label="7"></a><span class="fu">library</span>(rockchalk)</span>
+<span id="cb14-8"><a href="" aria-label="8"></a></span>
+<span id="cb14-9"><a href="" aria-label="9"></a><span class="co"># use the plotSlopes() function</span></span>
+<span id="cb14-10"><a href="" aria-label="10"></a></span>
+<span id="cb14-11"><a href="" aria-label="11"></a>ps <span class="ot">&lt;-</span> <span class="fu">plotSlopes</span>(model1, <span class="at">plotx =</span> <span class="st">"timeInCounselling"</span>, <span class="at">modx =</span> <span class="st">"rapportLevel"</span>, <span class="at">interval =</span> <span class="st">"confidence"</span>, <span class="at">modxVals =</span> <span class="st">"std.dev"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="moderation_files/figure-revealjs/unnamed-chunk-10-1.png" width="960"></p>
+<p><img data-src="moderation_files/figure-revealjs/unnamed-chunk-12-1.png" width="960"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="" aria-label="1"></a><span class="co"># use the testSlopes() function</span></span>
-<span id="cb10-2"><a href="" aria-label="2"></a></span>
-<span id="cb10-3"><a href="" aria-label="3"></a>ts <span class="ot">&lt;-</span> <span class="fu">testSlopes</span>(ps)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="" aria-label="1"></a><span class="co"># use the testSlopes() function</span></span>
+<span id="cb15-2"><a href="" aria-label="2"></a></span>
+<span id="cb15-3"><a href="" aria-label="3"></a>ts <span class="ot">&lt;-</span> <span class="fu">testSlopes</span>(ps)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Values of rapportLevel OUTSIDE this interval:
         lo         hi 
 -10.828550   3.537184 
 cause the slope of (b1 + b2*rapportLevel)timeInCounselling to be statistically significant</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="" aria-label="1"></a><span class="co"># plot the range of significant values</span></span>
-<span id="cb12-2"><a href="" aria-label="2"></a></span>
-<span id="cb12-3"><a href="" aria-label="3"></a><span class="fu">plot</span>(ts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="" aria-label="1"></a><span class="co"># plot the range of significant values</span></span>
+<span id="cb17-2"><a href="" aria-label="2"></a></span>
+<span id="cb17-3"><a href="" aria-label="3"></a><span class="fu">plot</span>(ts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="moderation_files/figure-revealjs/unnamed-chunk-10-2.png" width="960"></p>
+<p><img data-src="moderation_files/figure-revealjs/unnamed-chunk-12-2.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -752,7 +808,7 @@ cause the slope of (b1 + b2*rapportLevel)timeInCounselling to be statistically s
 <section id="how-do-we-interpret-the-moderation-effect" class="slide level2">
 <h2>How do we interpret the moderation effect?</h2>
 <ul>
-<li><p>We can see that the relationship between <em>Time in counselling</em> and <em>General Wellbeing</em> is significant levels of <em>Rapport level</em> outside of -10.8 and 3.54.</p></li>
+<li><p>The Johnson-Neyman region of significance shows that the simple slope of <em>Time in counselling</em> on <em>General Wellbeing</em> is significant at levels of <em>Rapport level</em> outside of -10.8 and 3.54.</p></li>
 <li><p>However, the <em>Rapport level</em> scale does not actually go below 0. So we can say that the relationship between <em>Time in counselling</em> and <em>General Wellbeing</em> is significant when <em>Rapport level</em> is above 3.54.</p></li>
 <li><p>We can look at the first interaction plot to see the direction of the relationship between <em>Time in counselling</em> and <em>General Wellbeing</em> at increasing levels of <em>Rapport level</em>.</p></li>
 </ul>
@@ -763,8 +819,14 @@ cause the slope of (b1 + b2*rapportLevel)timeInCounselling to be statistically s
 <li><p>We can use regression to model interactions between predictor variables.</p></li>
 <li><p>We can also use regression to model moderation of relationships between predictor variables.</p></li>
 <li><p>Moderations are just a specific type of interaction. They are based on specific theoretical models about the relationship between variables.</p></li>
-<li><p>We can use the <code>rockchalk</code> package to test for interactions and moderation and plot them.</p></li>
+<li><p>We can use simple slopes and the Johnson-Neyman technique (<code>rockchalk</code>) to probe and plot moderation effects.</p></li>
 </ul>
+</section>
+<section id="references" class="slide level2 smaller">
+<h2>References</h2>
+<p>Aiken, L. S., &amp; West, S. G. (1991). <em>Multiple regression: Testing and interpreting interactions</em>. Sage Publications.</p>
+<p>Bauer, D. J., &amp; Curran, P. J. (2005). Probing interactions in fixed and multilevel regression: Inferential and graphical techniques. <em>Multivariate Behavioral Research</em>, <em>40</em>(3), 373–400.</p>
+<p>Hayes, A. F. (2018). <em>Introduction to mediation, moderation, and conditional process analysis: A regression-based approach</em> (2nd ed.). Guilford Press.</p>
 
 </section></section>
     </div>
@@ -807,7 +869,7 @@ cause the slope of (b1 + b2*rapportLevel)timeInCounselling to be statistically s
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"\u003ci class=\"fas fa-gear\">\u003c/i>","content":"\u003cul class=\"slide-menu-items\">\n\u003cli class=\"slide-tool-item active\" data-item=\"0\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\">\u003ckbd>f\u003c/kbd> Fullscreen\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"1\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\">\u003ckbd>s\u003c/kbd> Speaker View\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"2\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\">\u003ckbd>o\u003c/kbd> Slide Overview\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"3\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\">\u003ckbd>e\u003c/kbd> PDF Export Mode\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"4\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\">\u003ckbd>r\u003c/kbd> Scroll View Mode\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"5\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\">\u003ckbd>b\u003c/kbd> Toggle Chalkboard\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"6\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\">\u003ckbd>c\u003c/kbd> Toggle Notes Canvas\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"7\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\">\u003ckbd>d\u003c/kbd> Download Drawings\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"8\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\">\u003ckbd>?\u003c/kbd> Keyboard Help\u003c/a>\u003c/li>\n\u003c/ul>"}],"openButton":true,"openButtonLabel":"Slide menu"},
 'chalkboard': {"buttons":true},
 'multiplex': {"secret":null,"id":"0b19bf18debb28ba","url":"https://reveal-multiplex.glitch.me/"},
 'drop': {"button":true,"shortcut":"]","engine":"webr","webr":{"packages":["tidyverse"]},"pyodide":{"packages":[]}},
@@ -1103,7 +1165,8 @@ cause the slope of (b1 + b2*rapportLevel)timeInCounselling to be statistically s
               return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
           }
           // Inspect non-navigation links and adorn them if external
-         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          window.quartoDecorateExternalLinks = function (root) {
+         var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
           for (var i=0; i<links.length; i++) {
             const link = links[i];
             if (!isInternal(link.href)) {
@@ -1112,8 +1175,69 @@ cause the slope of (b1 + b2*rapportLevel)timeInCounselling to be statistically s
               if (link.dataset.originalHref !== undefined) {
                 link.href = link.dataset.originalHref;
               }
+              if (!link.classList.contains('no-external-icon')) {
+              }
             }
           }
+          };
+          window.quartoDecorateExternalLinks(window.document);
+        // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+        // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+        const hideOnEscAndFocusOut = {
+          name: 'hideOnEscAndFocusOut',
+          defaultValue: true,
+          fn(instance) {
+            const dismiss = () => {
+              // A show scheduled by the trigger delay would otherwise reopen it
+              instance.clearDelayTimeouts();
+              instance.hide();
+            };
+            const onKeyDown = (event) => {
+              if (event.key !== 'Escape') {
+                return;
+              }
+              // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+              // except an open reveal.js slide menu, which Esc should close too.
+              // The menu handles keys only when its keyboard option is on.
+              const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+                window.Reveal.getConfig().menu?.keyboard !== false;
+              if (!menuHandlesEsc) {
+                event.stopPropagation();
+              }
+              if (instance.popper.contains(window.document.activeElement)) {
+                // Disabled while refocusing so the focus trigger does not reopen it
+                instance.disable();
+                instance.reference.focus();
+                instance.enable();
+              }
+              dismiss();
+            };
+            const onFocusOut = (event) => {
+              const target = event.relatedTarget;
+              if (target && !instance.reference.contains(target) &&
+                  !instance.popper.contains(target)) {
+                dismiss();
+              }
+            };
+            // On the trigger too: a click trigger (code-annotations: select) has no
+            // blur handling. Attached for the instance's lifetime so leaving the
+            // trigger also cancels a show still pending on the trigger delay.
+            instance.reference.addEventListener('focusout', onFocusOut);
+            return {
+              onShow() {
+                window.document.addEventListener('keydown', onKeyDown, true);
+                instance.popper.addEventListener('focusout', onFocusOut);
+              },
+              onHide() {
+                window.document.removeEventListener('keydown', onKeyDown, true);
+                instance.popper.removeEventListener('focusout', onFocusOut);
+              },
+              onDestroy() {
+                instance.reference.removeEventListener('focusout', onFocusOut);
+              },
+            };
+          },
+        };
         function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
           const config = {
             allowHTML: true,
@@ -1127,6 +1251,7 @@ cause the slope of (b1 + b2*rapportLevel)timeInCounselling to be statistically s
             interactiveBorder: 10,
             theme: 'light-border',
             placement: 'bottom-start',
+            plugins: [hideOnEscAndFocusOut],
           };
           if (contentFn) {
             config.content = contentFn;

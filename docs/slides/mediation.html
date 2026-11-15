@@ -6,14 +6,14 @@
 <script src="mediation_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="mediation_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="mediation_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="mediation_files/libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.10.19">
+<link href="mediation_files/libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.11.9">
 
   <meta name="author" content="Dr Christopher Wilson">
   <title>Mediation Designs</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="mediation_files/libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="mediation_files/libs/revealjs/dist/reveal.css">
   <style>
@@ -101,7 +101,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="mediation_files/libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
+  <link rel="stylesheet" href="mediation_files/libs/revealjs/dist/theme/quarto-00ad5a49dff614330cd349bcec985ec3.css">
   <link rel="stylesheet" href="include/style.css">
   <link href="mediation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="mediation_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -230,6 +230,7 @@ Dr Christopher Wilson
 <li><p>The Baron and Kenny (1986) approach to mediation</p></li>
 <li><p>The Preacher and Hayes (2008) approach to mediation</p></li>
 <li><p>What is bootstrapping?</p></li>
+<li><p>Study design, causality, and statistical power</p></li>
 <li><p>Mediation analysis with a categorical mediator or predictor</p></li>
 </ul>
 </section>
@@ -253,8 +254,8 @@ Dr Christopher Wilson
 <h2>Distinguishing between moderation and mediation</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-4170cb280e353516cef3" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-4170cb280e353516cef3">{"x":{"diagram":"\n\tdigraph moderation_model { \n\t  # Nodes  \n\t  node [shape = rectangle, fontname = Arial, fontsize=9]\n\t  iv    [pos = \"-1,1!\", label = \"Temperature\"]\n\t  blank [pos =  \"0,1!\", label = \"\", width = 0.001, height = 0.001]\n\t  mod   [pos =  \"0,2!\", label = \"Likelihood\nof rain\"]\n\t  dv    [pos =  \"1,1!\", label = \"People\nat the\nbeach\"]\n\t    \n\t  # Hide moderator edges\n\t  { rank = same; blank mod }\n\t  \n\t  # Edges\n\t  edge [fontname = Arial, fontsize=8]\n\t  mod -> blank\n\t  iv -> blank [dir = none]\n\t  blank -> dv [minlen = 1]\n\n\t  # Graph\n\t  graph [layout = neato, overlap = true, outputorder = edgesfirst]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-68f18dd309e39dd5187e" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-68f18dd309e39dd5187e">{"x":{"diagram":"\n\tdigraph moderation_model { \n\t  # Nodes  \n\t  node [shape = rectangle, fontname = Arial, fontsize=9]\n\t  iv    [pos = \"-1,1!\", label = \"Temperature\"]\n\t  blank [pos =  \"0,1!\", label = \"\", width = 0.001, height = 0.001]\n\t  mod   [pos =  \"0,2!\", label = \"Likelihood\nof rain\"]\n\t  dv    [pos =  \"1,1!\", label = \"People\nat the\nbeach\"]\n\t    \n\t  # Hide moderator edges\n\t  { rank = same; blank mod }\n\t  \n\t  # Edges\n\t  edge [fontname = Arial, fontsize=8]\n\t  mod -> blank\n\t  iv -> blank [dir = none]\n\t  blank -> dv [minlen = 1]\n\n\t  # Graph\n\t  graph [layout = neato, overlap = true, outputorder = edgesfirst]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -262,16 +263,17 @@ Dr Christopher Wilson
 <h2>Distinguishing between moderation and mediation</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-7a61e025864deaa220d3" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-7a61e025864deaa220d3">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\",\n       label = \"\",\n       labelloc = \"t\",\n       labeljust = \"c\",\n       fontname = \"Helvetica\",\n       fontcolor = \"gray30\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Screen time\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"1,1!\"] \n  \"2\" [label = \"Social Media\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"3,3!\"] \n  \"3\" [label = \"Lonliness\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"5,1!\"] \n\"1\"->\"2\" [color = \"blue\", fontsize = \"16\"] \n\"2\"->\"3\" [color = \"green\", fontsize = \"16\"] \n\"1\"->\"3\" [color = \"red\", fontsize = \"16\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-e12f37792171fd63113e" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-e12f37792171fd63113e">{"x":{"diagram":"\ndigraph mediation_model {\n  graph [layout = neato, overlap = true]\n  node [shape = rectangle, fontname = Arial, fontsize = 12,\n        style = filled, fillcolor = white, width = 1.5, height = 1]\n\n  X [pos = \"1,1!\", label = \"Therapy\"]\n  M [pos = \"3,3!\", label = \"Practice\"]\n  Y [pos = \"5,1!\", label = \"Mental Health\"]\n\n  edge [fontname = Arial, fontsize = 14]\n  X -> M [color = blue,  label = <Path <I>a<\/I>>]\n  M -> Y [color = green, label = <Path <I>b<\/I>>]\n  X -> Y [color = red,   label = <Path <I>c<\/I>&prime;>]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p>Diagram of mediation design</p>
 </div>
 </div>
 </section>
-<section id="what-type-of-research-question" class="slide level2 smaller">
+<section id="what-type-of-research-question" class="slide level2">
 <h2>What type of research question?</h2>
 <p>Mediation is an analysis technique. However, we use it to answer the following type of research question:</p>
 <blockquote>
-<p>To what extent is the relationship between X and Y mediated by a another variable (M)?</p>
+<p>To what extent is the relationship between X and Y mediated by another variable (M)?</p>
 </blockquote>
 <p>Consider the following example:</p>
 <blockquote>
@@ -282,23 +284,24 @@ Dr Christopher Wilson
 <h2>Visualising mediation</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-31007751b96e9a6fd612" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-31007751b96e9a6fd612">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\",\n       label = \"\",\n       labelloc = \"t\",\n       labeljust = \"c\",\n       fontname = \"Helvetica\",\n       fontcolor = \"gray30\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Therapy\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"1,1!\"] \n  \"2\" [label = \"Practice\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"3,3!\"] \n  \"3\" [label = \"Mental Health\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"5,1!\"] \n\"1\"->\"2\" [color = \"blue\", fontsize = \"16\"] \n\"2\"->\"3\" [color = \"green\", fontsize = \"16\"] \n\"1\"->\"3\" [color = \"red\", fontsize = \"16\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-61e463836a3aed99a825" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-61e463836a3aed99a825">{"x":{"diagram":"\ndigraph mediation_model {\n  graph [layout = neato, overlap = true]\n  node [shape = rectangle, fontname = Arial, fontsize = 12,\n        style = filled, fillcolor = white, width = 1.5, height = 1]\n\n  X [pos = \"1,1!\", label = \"Therapy\"]\n  M [pos = \"3,3!\", label = \"Practice\"]\n  Y [pos = \"5,1!\", label = \"Mental Health\"]\n\n  edge [fontname = Arial, fontsize = 14]\n  X -> M [color = blue,  label = <Path <I>a<\/I>>]\n  M -> Y [color = green, label = <Path <I>b<\/I>>]\n  X -> Y [color = red,   label = <Path <I>c<\/I>&prime;>]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p>Diagram of mediation design</p>
 </div>
 </div>
 </section>
 <section id="what-is-the-difference-between-mediation-and-moderation" class="slide level2 smaller">
 <h2>What is the difference between mediation and moderation?</h2>
 <ul>
-<li><p>Mediation theorising about the mechanism by which an effect occurs.</p></li>
+<li><p>Mediation is theorising about the mechanism by which an effect occurs.</p></li>
 <li><p>Moderation is theorising about the conditions under which an effect changes.</p></li>
 </ul>
 <p>That is, from a theoretical perspective:</p>
 <blockquote>
-<p>mediation is hypothesising about <em>why</em> something happens in a relationship, and suggesting that the relationship can be explained through the mediator variable.</p>
+<p>Mediation is hypothesising about <em>why</em> something happens in a relationship, and suggesting that the relationship can be explained through the mediator variable.</p>
 </blockquote>
 <blockquote>
-<p>Moderation is hypothesising about that a relationship is different under certain conditions (i.e.&nbsp;the changing level of the moderator variable).</p>
+<p>Moderation is hypothesising that a relationship is different under certain conditions (i.e.&nbsp;the changing level of the moderator variable).</p>
 </blockquote>
 </section>
 <section id="how-do-we-test-for-mediation" class="slide level2">
@@ -310,7 +313,7 @@ Dr Christopher Wilson
 <li>The “modern” approach is to use the Preacher and Hayes (2008) approach.</li>
 </ul></li>
 <li><p>It is worth understanding both approaches, as they are both used in the literature.</p></li>
-<li><p>However, the Preacher and Hayes approach is more roust and more flexible.</p></li>
+<li><p>However, the Preacher and Hayes approach is more robust and more flexible.</p></li>
 </ul>
 </section>
 <section>
@@ -321,19 +324,30 @@ Dr Christopher Wilson
 <section id="baron-and-kenny-1986-approach-to-mediation-1" class="slide level2 smaller">
 <h2>Baron and Kenny (1986) approach to mediation</h2>
 <ul>
-<li><p>Baron and Kenny (1986) approach to mediation is a three step process.</p></li>
-<li><p>The first step is to show that the independent variable (X) is related to the mediator (M).</p></li>
-<li><p>The second step is to show that the mediator (M) is related to the dependent variable (Y).</p></li>
-<li><p>The third step is to show that the relationship between the independent variable (X) and the dependent variable (Y) is reduced when the mediator (M) is included in the model.</p></li>
-<li><p>The Sobel test is used to test the significance of the indirect effect.</p></li>
+<li><p>The classic Baron and Kenny (1986) approach uses a series of regression steps to evaluate paths between <span class="math inline">\(X\)</span>, <span class="math inline">\(M\)</span>, and <span class="math inline">\(Y\)</span>:</p>
+<ol type="1">
+<li>Show that <span class="math inline">\(X\)</span> predicts <span class="math inline">\(Y\)</span> (Total effect, Path <span class="math inline">\(c\)</span>).</li>
+<li>Show that <span class="math inline">\(X\)</span> predicts <span class="math inline">\(M\)</span> (Path <span class="math inline">\(a\)</span>).</li>
+<li>Show that <span class="math inline">\(M\)</span> predicts <span class="math inline">\(Y\)</span> when controlling for <span class="math inline">\(X\)</span> (Path <span class="math inline">\(b\)</span>).</li>
+<li>Check whether the direct effect of <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span> (Path <span class="math inline">\(c'\)</span>) drops to non-significance (<strong>full mediation</strong>) or is reduced in size (<strong>partial mediation</strong>) when <span class="math inline">\(M\)</span> is included.</li>
+</ol></li>
+<li><p>The Sobel test was traditionally used to test the significance of the indirect effect (<span class="math inline">\(a \times b\)</span>).</p></li>
+</ul>
+</section>
+<section id="limitations-of-the-baron-and-kenny-approach" class="slide level2">
+<h2>Limitations of the Baron and Kenny approach</h2>
+<ul>
+<li><p>Modern methodologists no longer require a statistically significant <strong>total effect (Path <span class="math inline">\(c\)</span>)</strong> before testing mediation (Hayes, 2009; Zhao et al., 2010).</p></li>
+<li><p>In <strong>inconsistent mediation (suppression)</strong>, the direct effect (<span class="math inline">\(c'\)</span>) and indirect effect (<span class="math inline">\(a \times b\)</span>) have opposite signs and cancel each other out, yielding a non-significant total effect despite genuine mediation.</p></li>
+<li><p>Rather than relying on separate significance tests, modern approaches directly estimate and test the <strong>indirect effect (<span class="math inline">\(a \times b\)</span>)</strong>.</p></li>
 </ul>
 </section>
 <section id="visualising-mediation-1" class="slide level2">
 <h2>Visualising mediation</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-18fd8dff168628203309" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-18fd8dff168628203309">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\",\n       label = \"\",\n       labelloc = \"t\",\n       labeljust = \"c\",\n       fontname = \"Helvetica\",\n       fontcolor = \"gray30\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Therapy\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"1,1!\"] \n  \"2\" [label = \"Practice\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"3,3!\"] \n  \"3\" [label = \"Mental Health\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"5,1!\"] \n\"1\"->\"2\" [color = \"blue\", fontsize = \"16\"] \n\"2\"->\"3\" [color = \"green\", fontsize = \"16\"] \n\"1\"->\"3\" [color = \"red\", fontsize = \"16\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-f6bc8ef1625d0e56d2c4" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-f6bc8ef1625d0e56d2c4">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\",\n       label = \"\",\n       labelloc = \"t\",\n       labeljust = \"c\",\n       fontname = \"Helvetica\",\n       fontcolor = \"gray30\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Therapy\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"1,1!\"] \n  \"2\" [label = \"Practice\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"3,3!\"] \n  \"3\" [label = \"Mental Health\", shape = \"rectangle\", fillcolor = \"#FFFFFF\", width = \"1.5\", height = \"1\", fontsize = \"12\", color = \"black\", fontcolor = \"black\", pos = \"5,1!\"] \n\"1\"->\"2\" [color = \"blue\", label = \"Path a\", fontsize = \"14\"] \n\"2\"->\"3\" [color = \"green\", label = \"Path b\", fontsize = \"14\"] \n\"1\"->\"3\" [color = \"red\", label = \"Path c\"\", fontsize = \"14\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -345,12 +359,12 @@ Dr Christopher Wilson
 <li>M is the mediator (practice)</li>
 <li>Y is the dependent variable (mental health)</li>
 </ul>
-<p>Then we would need to show that:</p>
+<p>Then in the classic framework we examine:</p>
 <ol type="1">
-<li>X is related to Y (Path C total effect)</li>
-<li>X is related to M (path A)</li>
-<li>M is related to Y (path B)</li>
-<li>The relationship between X and Y is reduced when M is included in the model. (path C direct effect)</li>
+<li>X is related to Y (Path c total effect)</li>
+<li>X is related to M (Path a)</li>
+<li>M is related to Y (Path b)</li>
+<li>The relationship between X and Y is reduced when M is included in the model (Path c’ direct effect)</li>
 </ol>
 </section>
 <section id="baron-and-kenny-1986-approach-to-mediation-3" class="slide level2 smaller">
@@ -358,35 +372,35 @@ Dr Christopher Wilson
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1" aria-label="1"></a><span class="co">#1. Total Effect of X on Y</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1" aria-label="1"></a><span class="co">#1. Total Effect of X on Y (Path c)</span></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();" href="">1</a><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2" aria-label="2"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X, <span class="at">data=</span>Meddata)</span>
 <span id="annotated-cell-1-3"><a href="#annotated-cell-1-3" aria-label="3"></a></span>
-<span id="annotated-cell-1-4"><a href="#annotated-cell-1-4" aria-label="4"></a><span class="co">#2. Path A (X on M)</span></span>
+<span id="annotated-cell-1-4"><a href="#annotated-cell-1-4" aria-label="4"></a><span class="co">#2. Path a (X on M)</span></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();" href="">2</a><span id="annotated-cell-1-5" class="code-annotation-target"><a href="#annotated-cell-1-5" aria-label="5"></a>fita <span class="ot">&lt;-</span> <span class="fu">lm</span>(M <span class="sc">~</span> X, <span class="at">data=</span>Meddata)</span>
 <span id="annotated-cell-1-6"><a href="#annotated-cell-1-6" aria-label="6"></a></span>
-<span id="annotated-cell-1-7"><a href="#annotated-cell-1-7" aria-label="7"></a><span class="co">#3. Path B (M on Y)</span></span>
+<span id="annotated-cell-1-7"><a href="#annotated-cell-1-7" aria-label="7"></a><span class="co">#3. Path b (M on Y)</span></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3" onclick="event.preventDefault();" href="">3</a><span id="annotated-cell-1-8" class="code-annotation-target"><a href="#annotated-cell-1-8" aria-label="8"></a>fitb <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> M, <span class="at">data=</span>Meddata)</span>
 <span id="annotated-cell-1-9"><a href="#annotated-cell-1-9" aria-label="9"></a></span>
-<span id="annotated-cell-1-10"><a href="#annotated-cell-1-10" aria-label="10"></a><span class="co">#4. Reversed Path C (Y on X, controlling for M)</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="4" onclick="event.preventDefault();" href="">4</a><span id="annotated-cell-1-11" class="code-annotation-target"><a href="#annotated-cell-1-11" aria-label="11"></a>fitc <span class="ot">&lt;-</span> <span class="fu">lm</span>(X <span class="sc">~</span> Y <span class="sc">+</span> M, <span class="at">data=</span>Meddata)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="annotated-cell-1-10"><a href="#annotated-cell-1-10" aria-label="10"></a><span class="co">#4. Direct Effect / Path c' (Y on X, controlling for M)</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="4" onclick="event.preventDefault();" href="">4</a><span id="annotated-cell-1-11" class="code-annotation-target"><a href="#annotated-cell-1-11" aria-label="11"></a>fitc <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X <span class="sc">+</span> M, <span class="at">data=</span>Meddata)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-1" data-code-lines="2" data-code-annotation="1">Total Effect of X on Y. This should be significant.</span>
+<span data-code-cell="annotated-cell-1" data-code-lines="2" data-code-annotation="1">Total Effect of X on Y (Path c).</span>
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-1" data-code-lines="5" data-code-annotation="2">Path A (X on M). This should be significant.</span>
+<span data-code-cell="annotated-cell-1" data-code-lines="5" data-code-annotation="2">Path a (X on M).</span>
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-1" data-code-lines="8" data-code-annotation="3">Path B (M on Y). This should be significant.</span>
+<span data-code-cell="annotated-cell-1" data-code-lines="8" data-code-annotation="3">Path b (M on Y).</span>
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-cell="annotated-cell-1" data-code-lines="11" data-code-annotation="4">Reversed Path C (Y on X, controlling for M). This should be non-significant.</span>
+<span data-code-cell="annotated-cell-1" data-code-lines="11" data-code-annotation="4">Direct Effect / Path c’ (Y on X, controlling for M). In full mediation this becomes non-significant; in partial mediation it is reduced in magnitude.</span>
 </dd>
 </dl>
 </div>
@@ -404,32 +418,29 @@ Baron and Kenny Method
 ===============================================================================================================
                                                         Dependent variable:                                    
                     -------------------------------------------------------------------------------------------
-                              Y                      M                      Y                      X           
+                              Y                      M                                  Y                      
                              (1)                    (2)                    (3)                    (4)          
 ---------------------------------------------------------------------------------------------------------------
-X                          0.361***               0.688***                                                     
-                           (0.074)                (0.070)                                                      
+X                          0.361***               0.688***                                       0.069         
+                           (0.074)                (0.070)                                       (0.097)        
                                                                                                                
-Y                                                                                                0.076         
-                                                                                                (0.106)        
+M                                                                        0.474***               0.423***       
+                                                                         (0.070)                (0.099)        
                                                                                                                
-M                                                                        0.474***               0.686***       
-                                                                         (0.070)                (0.089)        
-                                                                                                               
-Constant                   -13.968                 1.493                  -8.525               88.074***       
-                           (13.102)               (12.315)               (8.605)                (9.072)        
+Constant                   -13.968                 1.493                  -8.525                -14.601        
+                           (13.102)               (12.315)               (8.605)                (12.083)       
                                                                                                                
 ---------------------------------------------------------------------------------------------------------------
 Observations                 100                    100                    100                    100          
-R2                          0.193                  0.497                  0.318                  0.499         
-Adjusted R2                 0.185                  0.492                  0.311                  0.489         
-Residual Std. Error    5.194 (df = 98)        4.882 (df = 98)        4.777 (df = 98)        5.012 (df = 97)    
-F Statistic         23.498*** (df = 1; 98) 96.713*** (df = 1; 98) 45.604*** (df = 1; 98) 48.375*** (df = 2; 97)
+R2                          0.193                  0.497                  0.318                  0.321         
+Adjusted R2                 0.185                  0.492                  0.311                  0.307         
+Residual Std. Error    5.194 (df = 98)        4.882 (df = 98)        4.777 (df = 98)        4.789 (df = 97)    
+F Statistic         23.498*** (df = 1; 98) 96.713*** (df = 1; 98) 45.604*** (df = 1; 98) 22.947*** (df = 2; 97)
 ===============================================================================================================
 Note:                                                                               *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
 </div>
 </div>
-<p>In the table above, all of the paths are significant. However, the relationship between X and Y is no longer significant when M is included in the model.</p>
+<p>In the table above, Paths c, a, and b are significant. However, the direct relationship between X and Y (Path c’) is no longer significant when M is included in the model.</p>
 </section>
 <section id="test-the-significance-of-the-indirect-effect" class="slide level2">
 <h2>Test the significance of the indirect effect</h2>
@@ -460,8 +471,8 @@ p.value 8.890948e-05 9.536664e-05 8.279019e-05</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="" aria-label="1"></a><span class="co">#Mediate package</span></span>
 <span id="cb5-2"><a href="" aria-label="2"></a><span class="fu">library</span>(mediation)</span>
 <span id="cb5-3"><a href="" aria-label="3"></a></span>
-<span id="cb5-4"><a href="" aria-label="4"></a>fitM <span class="ot">&lt;-</span> <span class="fu">lm</span>(M <span class="sc">~</span> X,     <span class="at">data=</span>Meddata) <span class="co">#IV on M; </span></span>
-<span id="cb5-5"><a href="" aria-label="5"></a>fitY <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X <span class="sc">+</span> M, <span class="at">data=</span>Meddata) <span class="co">#IV and M on DV; </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-4"><a href="" aria-label="4"></a>fitM <span class="ot">&lt;-</span> <span class="fu">lm</span>(M <span class="sc">~</span> X,     <span class="at">data=</span>Meddata) <span class="co">#IV on M (Path a); </span></span>
+<span id="cb5-5"><a href="" aria-label="5"></a>fitY <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X <span class="sc">+</span> M, <span class="at">data=</span>Meddata) <span class="co">#IV and M on DV (Paths c' and b); </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -523,26 +534,27 @@ Heteroscedasticity 0.61907 0.43139 Assumptions acceptable.</code></pre>
 <section id="step-3.1-run-the-mediation-analysis-on-the-models" class="slide level2">
 <h2>Step 3.1: Run the mediation analysis on the models</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="" aria-label="1"></a>fitMed <span class="ot">&lt;-</span> <span class="fu">mediate</span>(fitM, fitY, <span class="at">treat=</span><span class="st">"X"</span>, <span class="at">mediator=</span><span class="st">"M"</span>)</span>
-<span id="cb10-2"><a href="" aria-label="2"></a><span class="fu">summary</span>(fitMed)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="" aria-label="1"></a><span class="co"># boot = TRUE requests non-parametric bootstrapping (package default is FALSE)</span></span>
+<span id="cb10-2"><a href="" aria-label="2"></a>fitMed <span class="ot">&lt;-</span> <span class="fu">mediate</span>(fitM, fitY, <span class="at">treat=</span><span class="st">"X"</span>, <span class="at">mediator=</span><span class="st">"M"</span>, <span class="at">boot =</span> <span class="cn">TRUE</span>, <span class="at">sims =</span> <span class="dv">5000</span>)</span>
+<span id="cb10-3"><a href="" aria-label="3"></a><span class="fu">summary</span>(fitMed)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Causal Mediation Analysis 
 
-Quasi-Bayesian Confidence Intervals
+Nonparametric Bootstrap Confidence Intervals with the Percentile Method
 
                 Estimate 95% CI Lower 95% CI Upper p-value    
-ACME            0.289138     0.156561     0.440034  &lt;2e-16 ***
-ADE             0.066264    -0.122160     0.249925    0.51    
-Total Effect    0.355402     0.200147     0.501757  &lt;2e-16 ***
-Prop. Mediated  0.809159     0.418090     1.553460  &lt;2e-16 ***
+ACME            0.291420     0.144533     0.448659  &lt;2e-16 ***
+ADE             0.069492    -0.111575     0.254826  0.4376    
+Total Effect    0.360912     0.219090     0.516893  &lt;2e-16 ***
+Prop. Mediated  0.807453     0.405307     1.402618  &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Sample Size Used: 100 
 
 
-Simulations: 1000 </code></pre>
+Simulations: 5000 </code></pre>
 </div>
 </div>
 </section>
@@ -550,10 +562,10 @@ Simulations: 1000 </code></pre>
 <h2>Step 3.1: Run the mediation analysis on the models</h2>
 <p>The mediate function gives us:</p>
 <ul>
-<li>Average Causal Mediation Effects (ACME)</li>
-<li>Average Direct Effects (ADE)</li>
-<li>combined indirect and direct effects (Total Effect)</li>
-<li>the ratio of these estimates (Prop. Mediated).</li>
+<li>Average Causal Mediation Effects (<strong>ACME</strong> = indirect effect, <span class="math inline">\(a \times b\)</span>)</li>
+<li>Average Direct Effects (<strong>ADE</strong> = direct effect, Path <span class="math inline">\(c'\)</span>)</li>
+<li>combined indirect and direct effects (<strong>Total Effect</strong>, Path <span class="math inline">\(c = c' + ab\)</span>)</li>
+<li>the ratio of these estimates (<strong>Prop. Mediated</strong> = <span class="math inline">\(ab / c\)</span>).</li>
 </ul>
 <p>The ACME here is the indirect effect of M (total effect - direct effect) and thus this value tells us if our mediation effect is significant.</p>
 </section>
@@ -574,7 +586,7 @@ Simulations: 1000 </code></pre>
 <p><strong>Translation:</strong></p>
 <ul>
 <li>Total effect is significant: there is a relationship between X and Y (direct and indirect)</li>
-<li>ADE is not significant: the relationship between X and Y is not direct</li>
+<li>ADE is not significant: the direct relationship between X and Y (controlling for M) is not significant</li>
 <li>ACME is significant: the relationship between X and Y is mediated by M</li>
 </ul>
 </section></section>
@@ -586,19 +598,39 @@ Simulations: 1000 </code></pre>
 <section id="bootstrapping-the-mediation-model" class="slide level2">
 <h2>Bootstrapping the mediation model</h2>
 <ul>
-<li><p>By default, the mediate function uses bootstrapping to estimate the confidence intervals of the mediation effects.</p></li>
-<li><p>Bootstrapping is a more robust method of estimating confidence intervals than the Sobel test.</p></li>
-<li><p>Bootstrapping is a simulation method that involves repeatedly sampling from the data with replacement. This is done 1000 times by default.</p></li>
-<li><p>The confidence intervals are then estimated from the distribution of the bootstrapped estimates.</p></li>
+<li><p>In <code>mediation::mediate()</code>, the default is <code>boot = FALSE</code> (a quasi-Bayesian Monte Carlo approximation). Setting <code>boot = TRUE</code> runs non-parametric bootstrapping.</p></li>
+<li><p>Bootstrapping is a more robust method of estimating confidence intervals for the indirect effect than the Sobel test.</p></li>
+<li><p>Bootstrapping is a simulation method that involves repeatedly sampling from the data with replacement (typically 5,000 times).</p></li>
+<li><p>The confidence intervals are then estimated empirically from the distribution of the bootstrapped indirect effects (<span class="math inline">\(a \times b\)</span>).</p></li>
 </ul>
 </section>
 <section id="why-use-bootstrapping" class="slide level2">
 <h2>Why use bootstrapping?</h2>
 <ul>
-<li><p>Bootstrapping is non-parametric, which means that it does not assume that the data are normally distributed.</p></li>
-<li><p>The Sobel test assumes that the data are normally distributed, and is therefore less robust.</p></li>
-<li><p>Bootstrapping is robust to violations of normality, heteroscedasticity, and outliers.</p></li>
-<li><p>Bootstrapping is not just for mediation analysis, it can be used for any statistical analysis, to estimate confidence intervals.</p></li>
+<li><p>Non-parametric bootstrapping does not assume the indirect effect is normally distributed, providing more accurate confidence intervals and higher statistical power (Preacher &amp; Hayes, 2008).</p></li>
+<li><p><strong>Important caveat:</strong> Standard bootstrapping still relies on the underlying OLS models (<code>fitM</code> and <code>fitY</code>), so it does <strong>not</strong> protect against outliers or heteroscedasticity—we still need to check model diagnostics.</p></li>
+<li><p>Bootstrapping is not just for mediation analysis; it can be used across many statistical analyses to estimate confidence intervals.</p></li>
+</ul>
+</section></section>
+<section>
+<section id="study-design-and-power-considerations" class="title-slide slide level1 center">
+<h1>Study design and power considerations</h1>
+
+</section>
+<section id="study-design-and-causal-assumptions" class="slide level2">
+<h2>Study design and causal assumptions</h2>
+<ul>
+<li><p><strong>Temporal precedence:</strong> From a theoretical perspective, mediation implies a causal sequence (<span class="math inline">\(X \rightarrow M \rightarrow Y\)</span>). However, cross-sectional mediation (all variables measured at one time point) can produce biased estimates of longitudinal processes (Maxwell &amp; Cole, 2007).</p></li>
+<li><p><strong>Controlling for confounds :</strong> Even in an RCT where <span class="math inline">\(X\)</span> is randomized, <span class="math inline">\(M\)</span> is measured rather than manipulated—so the <span class="math inline">\(M \rightarrow Y\)</span> path remains correlational and vulnerable to unmeasured confounders (Imai et al., 2010).</p></li>
+<li><p><strong>Practical takeaway:</strong> Mediation is not a substitution for longitudinal designs. Control variables or baseline scores can be included as covariates in both <code>fitM</code> and <code>fitY</code> models (similar to multiple regression approach).</p></li>
+</ul>
+</section>
+<section id="sample-size-and-statistical-power" class="slide level2">
+<h2>Sample size and statistical power</h2>
+<ul>
+<li><p>Like moderation, mediation requires careful <em>a priori</em> power analysis.</p></li>
+<li><p>To achieve 80% power when both paths (<span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>) are small-to-moderate can require <strong><span class="math inline">\(N \approx 400+\)</span></strong> participants (Fritz &amp; MacKinnon, 2007).</p></li>
+<li><p>When planning studies, check sample size feasibility early using Monte Carlo mediation power calculators (e.g., Schoemann et al.’s <code>mc_power_med</code>).</p></li>
 </ul>
 </section></section>
 <section>
@@ -609,22 +641,17 @@ Simulations: 1000 </code></pre>
 <section id="mediation-analysis-with-a-categorical-mediator-1" class="slide level2">
 <h2>Mediation analysis with a categorical mediator</h2>
 <ul>
-<li><p>The mediation package can also be used to test for mediation with a categorical mediator.</p></li>
-<li><p>The approach is the same as above, but the regression models will specify the mediator or predictor as a factor <a href="https://christopherjwilson.github.io/APRM23/descriptives.html#lets-make-sure-our-data-types-are-correct-1">example here</a>.</p></li>
+<li><p>The mediation package can also be used to test for mediation with a categorical mediator or predictor.</p></li>
+<li><p>The approach is the same as above, but the regression models will specify the mediator or predictor as a factor variable.</p></li>
 </ul>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream ## Mediation analysis with binary outcomes</p>
+</section>
+<section id="mediation-analysis-with-binary-outcomes" class="slide level2">
+<h2>Mediation analysis with binary outcomes</h2>
 <ul>
-<li>This will mean that some of the regression models will be logistic regression models, like this :</li>
+<li><p>It is also possible to test mediation if your outcome is binary, for example (e.g., Yes / No).</p></li>
+<li><p>This will mean that some of the regression models will be logistic regression models, like this (<code>glm</code> is used for logistic regression):</p></li>
 </ul>
-<pre><code>model &lt;- glm(Outcome ~ Predictor,family="binomial",data=myData)
-=======
-## Mediation analysis with binary outcome
-
-- It is also possible to test mediation if your outcome is binary for example (e.g., Yes / No)
-
--   This will mean that some of the regression models will be logistic regression models, like this (glm is used for logistic regression) :
-</code></pre>
-<p>model &lt;- glm(Outcome ~ Predictor,family=“binomial”,data=myData) &gt;&gt;&gt;&gt;&gt;&gt;&gt; Stashed changes ```</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="" aria-label="1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm</span>(Outcome <span class="sc">~</span> Predictor, <span class="at">family =</span> <span class="st">"binomial"</span>, <span class="at">data =</span> myData)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><a href="https://www.r-bloggers.com/2015/09/how-to-perform-a-logistic-regression-in-r/">example here</a></p>
 <ul>
 <li>The mediation analysis will then be run as outlined earlier.</li>
@@ -634,9 +661,10 @@ Simulations: 1000 </code></pre>
 <h2>Summary</h2>
 <ul>
 <li><p>What is mediation?</p></li>
-<li><p>The Baron and Kenny (1986) approach to mediation</p></li>
+<li><p>The Baron and Kenny (1986) approach to mediation (and its modern updates)</p></li>
 <li><p>The Preacher and Hayes (2008) approach to mediation</p></li>
 <li><p>What is bootstrapping?</p></li>
+<li><p>Study design, confounding, and statistical power</p></li>
 <li><p>Mediation analysis with a categorical mediator or predictor</p></li>
 <li><p>Mediation analysis with other regression types</p></li>
 </ul>
@@ -644,9 +672,14 @@ Simulations: 1000 </code></pre>
 <section id="references" class="slide level2 smaller">
 <h2>References</h2>
 <p>Baron, R. M., &amp; Kenny, D. A. (1986). The moderator–mediator variable distinction in social psychological research: Conceptual, strategic, and statistical considerations. <em>Journal of personality and social psychology</em>, <em>51</em>(6), 1173.</p>
-<p>Preacher, K. J., &amp; Hayes, A. F. (2008). Asymptotic and resampling strategies for assessing and comparing indirect effects in multiple mediator models. <em>Behavior research methods</em>, <em>40</em>(3), 879-891.</p>
+<p>Fritz, M. S., &amp; MacKinnon, D. P. (2007). Required sample size to detect the mediated effect. <em>Psychological Science</em>, <em>18</em>(3), 233–239.</p>
+<p>Hayes, A. F. (2009). Beyond Baron and Kenny: Statistical mediation analysis in the new millennium. <em>Communication Monographs</em>, <em>76</em>(4), 408–420.</p>
 <p>Hayes, A. F. (2013). Introduction to mediation, moderation, and conditional process analysis: A regression-based approach. Guilford Press.</p>
 <p>Hayes, A. F., &amp; Rockwood, N. J. (2017). Regression-based statistical mediation and moderation analysis in clinical research: Observations, recommendations, and implementation. Behaviour research and therapy, 98, 39-57.</p>
+<p>Imai, K., Keele, L., &amp; Tingley, D. (2010). A general approach to causal mediation analysis. <em>Psychological Methods</em>, <em>15</em>(4), 309–334.</p>
+<p>Maxwell, S. E., &amp; Cole, D. A. (2007). Bias in cross-sectional analyses of longitudinal mediation. <em>Psychological Methods</em>, <em>12</em>(1), 23–44.</p>
+<p>Preacher, K. J., &amp; Hayes, A. F. (2008). Asymptotic and resampling strategies for assessing and comparing indirect effects in multiple mediator models. <em>Behavior research methods</em>, <em>40</em>(3), 879-891.</p>
+<p>Zhao, X., Lynch Jr, J. G., &amp; Chen, Q. (2010). Reconsidering Baron and Kenny: Myths and truths about mediation analysis. <em>Journal of Consumer Research</em>, <em>37</em>(2), 197–206.</p>
 
 </section></section>
     </div>
@@ -689,7 +722,7 @@ Simulations: 1000 </code></pre>
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"\u003ci class=\"fas fa-gear\">\u003c/i>","content":"\u003cul class=\"slide-menu-items\">\n\u003cli class=\"slide-tool-item active\" data-item=\"0\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\">\u003ckbd>f\u003c/kbd> Fullscreen\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"1\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\">\u003ckbd>s\u003c/kbd> Speaker View\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"2\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\">\u003ckbd>o\u003c/kbd> Slide Overview\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"3\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\">\u003ckbd>e\u003c/kbd> PDF Export Mode\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"4\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\">\u003ckbd>r\u003c/kbd> Scroll View Mode\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"5\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\">\u003ckbd>b\u003c/kbd> Toggle Chalkboard\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"6\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\">\u003ckbd>c\u003c/kbd> Toggle Notes Canvas\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"7\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\">\u003ckbd>d\u003c/kbd> Download Drawings\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"8\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\">\u003ckbd>?\u003c/kbd> Keyboard Help\u003c/a>\u003c/li>\n\u003c/ul>"}],"openButton":true,"openButtonLabel":"Slide menu"},
 'chalkboard': {"buttons":true},
 'multiplex': {"secret":null,"id":"0bd27f6b4df97b9f","url":"https://reveal-multiplex.glitch.me/"},
 'drop': {"button":true,"shortcut":"]","engine":"webr","webr":{"packages":["tidyverse"]},"pyodide":{"packages":[]}},
@@ -985,7 +1018,8 @@ Simulations: 1000 </code></pre>
               return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
           }
           // Inspect non-navigation links and adorn them if external
-         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          window.quartoDecorateExternalLinks = function (root) {
+         var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
           for (var i=0; i<links.length; i++) {
             const link = links[i];
             if (!isInternal(link.href)) {
@@ -994,8 +1028,69 @@ Simulations: 1000 </code></pre>
               if (link.dataset.originalHref !== undefined) {
                 link.href = link.dataset.originalHref;
               }
+              if (!link.classList.contains('no-external-icon')) {
+              }
             }
           }
+          };
+          window.quartoDecorateExternalLinks(window.document);
+        // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+        // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+        const hideOnEscAndFocusOut = {
+          name: 'hideOnEscAndFocusOut',
+          defaultValue: true,
+          fn(instance) {
+            const dismiss = () => {
+              // A show scheduled by the trigger delay would otherwise reopen it
+              instance.clearDelayTimeouts();
+              instance.hide();
+            };
+            const onKeyDown = (event) => {
+              if (event.key !== 'Escape') {
+                return;
+              }
+              // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+              // except an open reveal.js slide menu, which Esc should close too.
+              // The menu handles keys only when its keyboard option is on.
+              const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+                window.Reveal.getConfig().menu?.keyboard !== false;
+              if (!menuHandlesEsc) {
+                event.stopPropagation();
+              }
+              if (instance.popper.contains(window.document.activeElement)) {
+                // Disabled while refocusing so the focus trigger does not reopen it
+                instance.disable();
+                instance.reference.focus();
+                instance.enable();
+              }
+              dismiss();
+            };
+            const onFocusOut = (event) => {
+              const target = event.relatedTarget;
+              if (target && !instance.reference.contains(target) &&
+                  !instance.popper.contains(target)) {
+                dismiss();
+              }
+            };
+            // On the trigger too: a click trigger (code-annotations: select) has no
+            // blur handling. Attached for the instance's lifetime so leaving the
+            // trigger also cancels a show still pending on the trigger delay.
+            instance.reference.addEventListener('focusout', onFocusOut);
+            return {
+              onShow() {
+                window.document.addEventListener('keydown', onKeyDown, true);
+                instance.popper.addEventListener('focusout', onFocusOut);
+              },
+              onHide() {
+                window.document.removeEventListener('keydown', onKeyDown, true);
+                instance.popper.removeEventListener('focusout', onFocusOut);
+              },
+              onDestroy() {
+                instance.reference.removeEventListener('focusout', onFocusOut);
+              },
+            };
+          },
+        };
         function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
           const config = {
             allowHTML: true,
@@ -1009,6 +1104,7 @@ Simulations: 1000 </code></pre>
             interactiveBorder: 10,
             theme: 'light-border',
             placement: 'bottom-start',
+            plugins: [hideOnEscAndFocusOut],
           };
           if (contentFn) {
             config.content = contentFn;
