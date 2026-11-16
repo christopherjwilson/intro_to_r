@@ -265,7 +265,7 @@ grViz(dia1)
 
 -   The moderator does not have to be continuous. In clinical research, we often test whether a relationship differs across groups (e.g., *Treatment* vs. *Control*).
 
--   Using the dummy coding approach from Lecture 1 (`0` = Control, `1` = Treatment), the same `*` formula tests whether the slope of the continuous predictor differs between groups:
+-   With a categorical predictor (`0` = Control, `1` = Treatment), the same `*` interaction formula tests whether the slope of the continuous predictor differs between groups:
 
 ```r
 lm(outcome ~ continuousPredictor * treatmentGroup, data = myData)
