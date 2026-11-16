@@ -492,8 +492,8 @@ time_c:rapport_c  0.1533761 0.04031029  3.804888 2.496199e-04</code></pre>
 <h2>Diagram of moderation design</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-83a6d6aadceacf3052cf" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-83a6d6aadceacf3052cf">{"x":{"diagram":"\n\tdigraph moderation_model { \n\t  # Nodes  \n\t  node [shape = rectangle, fontname = Arial, fontsize=9]\n\t  iv    [pos = \"-1,1!\", label = \"Time in\ncounselling\"]\n\t  blank [pos =  \"0,1!\", label = \"\", width = 0.001, height = 0.001]\n\t  mod   [pos =  \"0,2!\", label = \"Rapport\nlevel\"]\n\t  dv    [pos =  \"1,1!\", label = \"General\nwellbeing\"]\n\t    \n\t  # Hide moderator edges\n\t  { rank = same; blank mod }\n\t  \n\t  # Edges\n\t  edge [fontname = Arial, fontsize=8]\n\t  mod -> blank\n\t  iv -> blank [dir = none]\n\t  blank -> dv [minlen = 1]\n\n\t  # Graph\n\t  graph [layout = neato, overlap = true, outputorder = edgesfirst]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-34214be3e33153fc80df" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-34214be3e33153fc80df">{"x":{"diagram":"\n\tdigraph moderation_model { \n\t  # Nodes  \n\t  node [shape = rectangle, fontname = Arial, fontsize=9]\n\t  iv    [pos = \"-1,1!\", label = \"Time in\ncounselling\"]\n\t  blank [pos =  \"0,1!\", label = \"\", width = 0.001, height = 0.001]\n\t  mod   [pos =  \"0,2!\", label = \"Rapport\nlevel\"]\n\t  dv    [pos =  \"1,1!\", label = \"General\nwellbeing\"]\n\t    \n\t  # Hide moderator edges\n\t  { rank = same; blank mod }\n\t  \n\t  # Edges\n\t  edge [fontname = Arial, fontsize=8]\n\t  mod -> blank\n\t  iv -> blank [dir = none]\n\t  blank -> dv [minlen = 1]\n\n\t  # Graph\n\t  graph [layout = neato, overlap = true, outputorder = edgesfirst]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -575,185 +575,27 @@ time_c:rapport_c  0.1533761 0.04031029  3.804888 2.496199e-04</code></pre>
 <span id="cb8-10"><a href="" aria-label="10"></a></span>
 <span id="cb8-11"><a href="" aria-label="11"></a>ps <span class="ot">&lt;-</span> <span class="fu">plotSlopes</span>(model1, <span class="at">plotx =</span> <span class="st">"timeInCounselling"</span>, <span class="at">modx =</span> <span class="st">"rapportLevel"</span>, <span class="at">interval =</span> <span class="st">"confidence"</span>, <span class="at">modxVals =</span> <span class="st">"std.dev"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="" aria-label="1"></a>ps</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$call
-plotSlopes.lm(model = model1, plotx = "timeInCounselling", modx = "rapportLevel", 
-    modxVals = "std.dev", interval = "confidence")
-
-$newdata
-    timeInCounselling rapportLevel      fit       lwr      upr
-1           0.0000000        -2.64 18.37848 11.026008 25.73095
-2           0.3846154        -2.64 18.28110 11.260845 25.30136
-3           0.7692308        -2.64 18.18373 11.491611 24.87585
-4           1.1538462        -2.64 18.08636 11.717677 24.45504
-5           1.5384615        -2.64 17.98898 11.938290 24.03968
-6           1.9230769        -2.64 17.89161 12.152542 23.63068
-7           2.3076923        -2.64 17.79424 12.359341 23.22913
-8           2.6923077        -2.64 17.69686 12.557361 22.83637
-9           3.0769231        -2.64 17.59949 12.745000 22.45398
-10          3.4615385        -2.64 17.50212 12.920322 22.08391
-11          3.8461538        -2.64 17.40474 13.080993 21.72849
-12          4.2307692        -2.64 17.30737 13.224237 21.39050
-13          4.6153846        -2.64 17.20999 13.346794 21.07320
-14          5.0000000        -2.64 17.11262 13.444943 20.78030
-15          5.3846154        -2.64 17.01525 13.514590 20.51591
-16          5.7692308        -2.64 16.91787 13.551490 20.28426
-17          6.1538462        -2.64 16.82050 13.551607 20.08939
-18          6.5384615        -2.64 16.72313 13.511587 19.93467
-19          6.9230769        -2.64 16.62575 13.429271 19.82224
-20          7.3076923        -2.64 16.52838 13.304065 19.75269
-21          7.6923077        -2.64 16.43101 13.137056 19.72496
-22          8.0769231        -2.64 16.33363 12.930810 19.73645
-23          8.4615385        -2.64 16.23626 12.688938 19.78358
-24          8.8461538        -2.64 16.13888 12.415585 19.86218
-25          9.2307692        -2.64 16.04151 12.114982 19.96804
-26          9.6153846        -2.64 15.94414 11.791127 20.09715
-27         10.0000000        -2.64 15.84676 11.447610 20.24592
-28         10.3846154        -2.64 15.74939 11.087544 20.41124
-29         10.7692308        -2.64 15.65202 10.713570 20.59046
-30         11.1538462        -2.64 15.55464 10.327895 20.78139
-31         11.5384615        -2.64 15.45727  9.932351 20.98219
-32         11.9230769        -2.64 15.35990  9.528451 21.19134
-33         12.3076923        -2.64 15.26252  9.117446 21.40760
-34         12.6923077        -2.64 15.16515  8.700369 21.62993
-35         13.0769231        -2.64 15.06778  8.278078 21.85747
-36         13.4615385        -2.64 14.97040  7.851288 22.08951
-37         13.8461538        -2.64 14.87303  7.420594 22.32546
-38         14.2307692        -2.64 14.77565  6.986498 22.56481
-39         14.6153846        -2.64 14.67828  6.549423 22.80714
-40         15.0000000        -2.64 14.58091  6.109726 23.05209
-41          0.0000000         4.94 15.24797 10.313337 20.18259
-42          0.3846154         4.94 15.59774 10.890307 20.30518
-43          0.7692308         4.94 15.94752 11.463997 20.43104
-44          1.1538462         4.94 16.29730 12.033890 20.56070
-45          1.5384615         4.94 16.64707 12.599367 20.69478
-46          1.9230769         4.94 16.99685 13.159683 20.83402
-47          2.3076923         4.94 17.34663 13.713941 20.97931
-48          2.6923077         4.94 17.69640 14.261057 21.13175
-49          3.0769231         4.94 18.04618 14.799731 21.29263
-50          3.4615385         4.94 18.39596 15.328402 21.46351
-51          3.8461538         4.94 18.74573 15.845218 21.64625
-52          4.2307692         4.94 19.09551 16.348017 21.84300
-53          4.6153846         4.94 19.44529 16.834332 22.05624
-54          5.0000000         4.94 19.79506 17.301455 22.28867
-55          5.3846154         4.94 20.14484 17.746566 22.54311
-56          5.7692308         4.94 20.49462 18.166961 22.82227
-57          6.1538462         4.94 20.84439 18.560343 23.12844
-58          6.5384615         4.94 21.19417 18.925157 23.46318
-59          6.9230769         4.94 21.54395 19.260837 23.82706
-60          7.3076923         4.94 21.89372 19.567913 24.21953
-61          7.6923077         4.94 22.24350 19.847914 24.63909
-62          8.0769231         4.94 22.59328 20.103115 25.08344
-63          8.4615385         4.94 22.94305 20.336214 25.54989
-64          8.8461538         4.94 23.29283 20.550030 26.03563
-65          9.2307692         4.94 23.64261 20.747278 26.53794
-66          9.6153846         4.94 23.99238 20.930434 27.05433
-67         10.0000000         4.94 24.34216 21.101670 27.58265
-68         10.3846154         4.94 24.69194 21.262847 28.12103
-69         10.7692308         4.94 25.04171 21.415536 28.66789
-70         11.1538462         4.94 25.39149 21.561045 29.22194
-71         11.5384615         4.94 25.74127 21.700464 29.78207
-72         11.9230769         4.94 26.09104 21.834695 30.34739
-73         12.3076923         4.94 26.44082 21.964488 30.91715
-74         12.6923077         4.94 26.79060 22.090466 31.49073
-75         13.0769231         4.94 27.14037 22.213148 32.06760
-76         13.4615385         4.94 27.49015 22.332971 32.64733
-77         13.8461538         4.94 27.83993 22.450300 33.22956
-78         14.2307692         4.94 28.18970 22.565444 33.81397
-79         14.6153846         4.94 28.53948 22.678665 34.40030
-80         15.0000000         4.94 28.88926 22.790188 34.98833
-81          0.0000000        12.52 12.11745  6.158021 18.07688
-82          0.3846154        12.52 12.91438  7.224345 18.60441
-83          0.7692308        12.52 13.71131  8.284898 19.13772
-84          1.1538462        12.52 14.50823  9.338797 19.67767
-85          1.5384615        12.52 15.30516 10.385000 20.22532
-86          1.9230769        12.52 16.10209 11.422277 20.78190
-87          2.3076923        12.52 16.89902 12.449180 21.34885
-88          2.6923077        12.52 17.69594 13.464019 21.92787
-89          3.0769231        12.52 18.49287 14.464835 22.52090
-90          3.4615385        12.52 19.28980 15.449394 23.13020
-91          3.8461538        12.52 20.08672 16.415202 23.75824
-92          4.2307692        12.52 20.88365 17.359564 24.40774
-93          4.6153846        12.52 21.68058 18.279688 25.08147
-94          5.0000000        12.52 22.47750 19.172862 25.78215
-95          5.3846154        12.52 23.27443 20.036683 26.51218
-96          5.7692308        12.52 24.07136 20.869310 27.27341
-97          6.1538462        12.52 24.86829 21.669699 28.06687
-98          6.5384615        12.52 25.66521 22.437745 28.89268
-99          6.9230769        12.52 26.46214 23.174302 29.74998
-100         7.3076923        12.52 27.25907 23.881056 30.63708
-101         7.6923077        12.52 28.05599 24.560314 31.55168
-102         8.0769231        12.52 28.85292 25.214742 32.49110
-103         8.4615385        12.52 29.64985 25.847131 33.45257
-104         8.8461538        12.52 30.44678 26.460208 34.43334
-105         9.2307692        12.52 31.24370 27.056518 35.43089
-106         9.6153846        12.52 32.04063 27.638350 36.44291
-107        10.0000000        12.52 32.83756 28.207724 37.46739
-108        10.3846154        12.52 33.63448 28.766385 38.50258
-109        10.7692308        12.52 34.43141 29.315830 39.54699
-110        11.1538462        12.52 35.22834 29.857333 40.59934
-111        11.5384615        12.52 36.02527 30.391975 41.65856
-112        11.9230769        12.52 36.82219 30.920669 42.72372
-113        12.3076923        12.52 37.61912 31.444191 43.79405
-114        12.6923077        12.52 38.41605 31.963199 44.86889
-115        13.0769231        12.52 39.21297 32.478251 45.94770
-116        13.4615385        12.52 40.00990 32.989824 47.02998
-117        13.8461538        12.52 40.80683 33.498325 48.11533
-118        14.2307692        12.52 41.60376 34.004104 49.20341
-119        14.6153846        12.52 42.40068 34.507462 50.29390
-120        15.0000000        12.52 43.19761 35.008660 51.38656
-
-$modxVals
-(m-sd)    (m) (m+sd) 
- -2.64   4.94  12.52 
-
-$col
-     (m-sd)         (m)      (m+sd) 
-    "black"      "blue" "darkgreen" 
-
-$lty
-(m-sd)    (m) (m+sd) 
-     1      2      3 
-
-$fancy
-$fancy$col
-     (m-sd)         (m)      (m+sd) 
-    "black"      "blue" "darkgreen" 
-
-$fancy$lty
-(m-sd)    (m) (m+sd) 
-     1      2      3 
-
-$fancy$lwd
-(m-sd)    (m) (m+sd) 
-     2      2      2 
-
-
-attr(,"class")
-[1] "plotSlopes" "rockchalk" </code></pre>
-</div>
 </div>
 <img data-src="moderation_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
 <section id="testing-the-moderation-effect-3" class="slide level2 scrollable">
 <h2>Testing the moderation effect #3</h2>
 <p>Step 3: Test the range of moderator values where the simple slope is significant (Johnson-Neyman technique):</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="" aria-label="1"></a><span class="co"># model1 with interactions</span></span>
-<span id="cb11-2"><a href="" aria-label="2"></a></span>
-<span id="cb11-3"><a href="" aria-label="3"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">*</span> rapportLevel)</span>
-<span id="cb11-4"><a href="" aria-label="4"></a></span>
-<span id="cb11-5"><a href="" aria-label="5"></a><span class="co"># using the rockchalk package</span></span>
-<span id="cb11-6"><a href="" aria-label="6"></a></span>
-<span id="cb11-7"><a href="" aria-label="7"></a><span class="fu">library</span>(rockchalk)</span>
-<span id="cb11-8"><a href="" aria-label="8"></a></span>
-<span id="cb11-9"><a href="" aria-label="9"></a><span class="co"># use the plotSlopes() function</span></span>
-<span id="cb11-10"><a href="" aria-label="10"></a></span>
-<span id="cb11-11"><a href="" aria-label="11"></a>ps <span class="ot">&lt;-</span> <span class="fu">plotSlopes</span>(model1, <span class="at">plotx =</span> <span class="st">"timeInCounselling"</span>, <span class="at">modx =</span> <span class="st">"rapportLevel"</span>, <span class="at">interval =</span> <span class="st">"confidence"</span>, <span class="at">modxVals =</span> <span class="st">"std.dev"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="" aria-label="1"></a><span class="co"># model1 with interactions</span></span>
+<span id="cb9-2"><a href="" aria-label="2"></a></span>
+<span id="cb9-3"><a href="" aria-label="3"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">*</span> rapportLevel)</span>
+<span id="cb9-4"><a href="" aria-label="4"></a></span>
+<span id="cb9-5"><a href="" aria-label="5"></a><span class="co"># using the rockchalk package</span></span>
+<span id="cb9-6"><a href="" aria-label="6"></a></span>
+<span id="cb9-7"><a href="" aria-label="7"></a><span class="fu">library</span>(rockchalk)</span>
+<span id="cb9-8"><a href="" aria-label="8"></a></span>
+<span id="cb9-9"><a href="" aria-label="9"></a><span class="co"># use the plotSlopes() function</span></span>
+<span id="cb9-10"><a href="" aria-label="10"></a></span>
+<span id="cb9-11"><a href="" aria-label="11"></a>ps <span class="ot">&lt;-</span> <span class="fu">plotSlopes</span>(model1, <span class="at">plotx =</span> <span class="st">"timeInCounselling"</span>, <span class="at">modx =</span> <span class="st">"rapportLevel"</span>, <span class="at">interval =</span> <span class="st">"confidence"</span>, <span class="at">modxVals =</span> <span class="st">"std.dev"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="" aria-label="1"></a><span class="co"># use the testSlopes() function</span></span>
-<span id="cb12-2"><a href="" aria-label="2"></a></span>
-<span id="cb12-3"><a href="" aria-label="3"></a>ts <span class="ot">&lt;-</span> <span class="fu">testSlopes</span>(ps)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="" aria-label="1"></a><span class="co"># use the testSlopes() function</span></span>
+<span id="cb10-2"><a href="" aria-label="2"></a></span>
+<span id="cb10-3"><a href="" aria-label="3"></a>ts <span class="ot">&lt;-</span> <span class="fu">testSlopes</span>(ps)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Values of rapportLevel OUTSIDE this interval:
         lo         hi 
@@ -766,17 +608,17 @@ cause the slope of (b1 + b2*rapportLevel)timeInCounselling to be statistically s
 <h2>Testing the moderation effect #4</h2>
 <p>Step 4: Visualise the results:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="" aria-label="1"></a><span class="co"># model1 with interactions</span></span>
-<span id="cb14-2"><a href="" aria-label="2"></a></span>
-<span id="cb14-3"><a href="" aria-label="3"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">*</span> rapportLevel)</span>
-<span id="cb14-4"><a href="" aria-label="4"></a></span>
-<span id="cb14-5"><a href="" aria-label="5"></a><span class="co"># using the rockchalk package</span></span>
-<span id="cb14-6"><a href="" aria-label="6"></a></span>
-<span id="cb14-7"><a href="" aria-label="7"></a><span class="fu">library</span>(rockchalk)</span>
-<span id="cb14-8"><a href="" aria-label="8"></a></span>
-<span id="cb14-9"><a href="" aria-label="9"></a><span class="co"># use the plotSlopes() function</span></span>
-<span id="cb14-10"><a href="" aria-label="10"></a></span>
-<span id="cb14-11"><a href="" aria-label="11"></a>ps <span class="ot">&lt;-</span> <span class="fu">plotSlopes</span>(model1, <span class="at">plotx =</span> <span class="st">"timeInCounselling"</span>, <span class="at">modx =</span> <span class="st">"rapportLevel"</span>, <span class="at">interval =</span> <span class="st">"confidence"</span>, <span class="at">modxVals =</span> <span class="st">"std.dev"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="" aria-label="1"></a><span class="co"># model1 with interactions</span></span>
+<span id="cb12-2"><a href="" aria-label="2"></a></span>
+<span id="cb12-3"><a href="" aria-label="3"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> modData, generalWellbeing <span class="sc">~</span> timeInCounselling <span class="sc">*</span> rapportLevel)</span>
+<span id="cb12-4"><a href="" aria-label="4"></a></span>
+<span id="cb12-5"><a href="" aria-label="5"></a><span class="co"># using the rockchalk package</span></span>
+<span id="cb12-6"><a href="" aria-label="6"></a></span>
+<span id="cb12-7"><a href="" aria-label="7"></a><span class="fu">library</span>(rockchalk)</span>
+<span id="cb12-8"><a href="" aria-label="8"></a></span>
+<span id="cb12-9"><a href="" aria-label="9"></a><span class="co"># use the plotSlopes() function</span></span>
+<span id="cb12-10"><a href="" aria-label="10"></a></span>
+<span id="cb12-11"><a href="" aria-label="11"></a>ps <span class="ot">&lt;-</span> <span class="fu">plotSlopes</span>(model1, <span class="at">plotx =</span> <span class="st">"timeInCounselling"</span>, <span class="at">modx =</span> <span class="st">"rapportLevel"</span>, <span class="at">interval =</span> <span class="st">"confidence"</span>, <span class="at">modxVals =</span> <span class="st">"std.dev"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -784,18 +626,18 @@ cause the slope of (b1 + b2*rapportLevel)timeInCounselling to be statistically s
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="" aria-label="1"></a><span class="co"># use the testSlopes() function</span></span>
-<span id="cb15-2"><a href="" aria-label="2"></a></span>
-<span id="cb15-3"><a href="" aria-label="3"></a>ts <span class="ot">&lt;-</span> <span class="fu">testSlopes</span>(ps)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="" aria-label="1"></a><span class="co"># use the testSlopes() function</span></span>
+<span id="cb13-2"><a href="" aria-label="2"></a></span>
+<span id="cb13-3"><a href="" aria-label="3"></a>ts <span class="ot">&lt;-</span> <span class="fu">testSlopes</span>(ps)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Values of rapportLevel OUTSIDE this interval:
         lo         hi 
 -10.828550   3.537184 
 cause the slope of (b1 + b2*rapportLevel)timeInCounselling to be statistically significant</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="" aria-label="1"></a><span class="co"># plot the range of significant values</span></span>
-<span id="cb17-2"><a href="" aria-label="2"></a></span>
-<span id="cb17-3"><a href="" aria-label="3"></a><span class="fu">plot</span>(ts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="" aria-label="1"></a><span class="co"># plot the range of significant values</span></span>
+<span id="cb15-2"><a href="" aria-label="2"></a></span>
+<span id="cb15-3"><a href="" aria-label="3"></a><span class="fu">plot</span>(ts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure>

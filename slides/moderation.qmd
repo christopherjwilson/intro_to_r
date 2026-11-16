@@ -339,7 +339,7 @@ library(rockchalk)
 
 ps <- plotSlopes(model1, plotx = "timeInCounselling", modx = "rapportLevel", interval = "confidence", modxVals = "std.dev")
 
-ps
+
 
 ```
 
