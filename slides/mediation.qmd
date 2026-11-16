@@ -205,57 +205,36 @@ That is, from a theoretical perspective:
 
 -   The Sobel test was traditionally used to test the significance of the indirect effect ($a \times b$).
 
-## Limitations of the Baron and Kenny approach
 
--   Modern methodologists no longer require a statistically significant **total effect (Path $c$)** before testing mediation (Hayes, 2009; Zhao et al., 2010).
-
--   In **inconsistent mediation (suppression)**, the direct effect ($c'$) and indirect effect ($a \times b$) have opposite signs and cancel each other out, yielding a non-significant total effect despite genuine mediation.
-
--   Rather than relying on separate significance tests, modern approaches directly estimate and test the **indirect effect ($a \times b$)**.
 
 ## Visualising mediation
 
-```{r fig.height = 5, fig.width = 10, fig.align='center', echo=F}
-
-
-#| fig.cap="Diagram of mediation design"
-#| fig.asp=0.5
-#| fig.pos="H"
-#| fig.align='center'
+  
+```{r}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 5
+#| fig-align: center
+#| fig-cap: "Diagram of mediation design"
 
 library(DiagrammeR)
 
-# diagram of treatment -> practice -> mental health
-# LR 
-# treatment -> practice
-# practice -> mental health
-# treatment -> mental health
-edf <-
-  create_edge_df(
-    from = c(1, 2, 1),
-    to = c(2, 3, 3),
-    color=c("blue","green","red"),
-    label = c("Path a", "Path b", "Path c'"),
-    fontsize=14)
+grViz("
+digraph mediation_model {
+  graph [layout = neato, overlap = true]
+  node [shape = rectangle, fontname = Arial, fontsize = 12,
+        style = filled, fillcolor = white, width = 1.5, height = 1]
 
-ndf <- create_node_df(
-  n=3,
-  label = c("Therapy", "Practice", "Mental Health"),
-  shape = "rectangle", 
-  fillcolor = "white", 
-  width = 1.5, 
-  height = 1, 
-  x=c(1,3,5), 
-  y=c(1,3,1),
-  fontsize=12,
-  color="black",
-  fontcolor="black")
+  X [pos = '1,1!', label = 'Therapy']
+  M [pos = '3,3!', label = 'Practice']
+  Y [pos = '5,1!', label = 'Mental Health']
 
-med_graph <-
-  create_graph(nodes_df = ndf, edges_df = edf)
-
-med_graph %>% render_graph(title = "")
-
+  edge [fontname = Arial, fontsize = 14]
+  X -> M [color = blue,  label = <Path <I>a</I>>]
+  M -> Y [color = green, label = <Path <I>b</I>>]
+  X -> Y [color = red,   label = <Path <I>c</I>&prime;>]
+}
+")
 ```
 
 ## Baron and Kenny (1986) approach to mediation #2 {.smaller}
@@ -333,6 +312,15 @@ We can test the significance of the indirect effect using the Sobel test.
 library(bda)
 mediation.test(Meddata$M, Meddata$X, Meddata$Y)
 ```
+
+## Limitations of the Baron and Kenny approach
+
+-   Researchers no longer require a statistically significant **total effect (Path $c$)** before testing mediation (Hayes, 2009; Zhao et al., 2010).
+
+-   In **inconsistent mediation (suppression)**, the direct effect ($c'$) and indirect effect ($a \times b$) have opposite signs and cancel each other out, yielding a non-significant total effect despite genuine mediation.
+
+-   Rather than relying on separate significance tests, modern approaches directly estimate and test the **indirect effect ($a \times b$)**.
+
 
 # The Preacher and Hayes (2008) approach to mediation
 
