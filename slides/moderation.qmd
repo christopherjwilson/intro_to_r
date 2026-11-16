@@ -261,7 +261,7 @@ grViz(dia1)
 
 -   We should not use moderation designs "just to see what happens". The statistical test alone does not **prove** the existence of the theoretical relationship.
 
-## What if the moderator is categorical? {.smaller}
+## What if the moderator is categorical? 
 
 -   The moderator does not have to be continuous. In clinical research, we often test whether a relationship differs across groups (e.g., *Treatment* vs. *Control*).
 

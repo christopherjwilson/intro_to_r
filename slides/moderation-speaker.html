@@ -492,8 +492,8 @@ time_c:rapport_c  0.1533761 0.04031029  3.804888 2.496199e-04</code></pre>
 <h2>Diagram of moderation design</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-34214be3e33153fc80df" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-34214be3e33153fc80df">{"x":{"diagram":"\n\tdigraph moderation_model { \n\t  # Nodes  \n\t  node [shape = rectangle, fontname = Arial, fontsize=9]\n\t  iv    [pos = \"-1,1!\", label = \"Time in\ncounselling\"]\n\t  blank [pos =  \"0,1!\", label = \"\", width = 0.001, height = 0.001]\n\t  mod   [pos =  \"0,2!\", label = \"Rapport\nlevel\"]\n\t  dv    [pos =  \"1,1!\", label = \"General\nwellbeing\"]\n\t    \n\t  # Hide moderator edges\n\t  { rank = same; blank mod }\n\t  \n\t  # Edges\n\t  edge [fontname = Arial, fontsize=8]\n\t  mod -> blank\n\t  iv -> blank [dir = none]\n\t  blank -> dv [minlen = 1]\n\n\t  # Graph\n\t  graph [layout = neato, overlap = true, outputorder = edgesfirst]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-1c6577c433bd693f1e27" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-1c6577c433bd693f1e27">{"x":{"diagram":"\n\tdigraph moderation_model { \n\t  # Nodes  \n\t  node [shape = rectangle, fontname = Arial, fontsize=9]\n\t  iv    [pos = \"-1,1!\", label = \"Time in\ncounselling\"]\n\t  blank [pos =  \"0,1!\", label = \"\", width = 0.001, height = 0.001]\n\t  mod   [pos =  \"0,2!\", label = \"Rapport\nlevel\"]\n\t  dv    [pos =  \"1,1!\", label = \"General\nwellbeing\"]\n\t    \n\t  # Hide moderator edges\n\t  { rank = same; blank mod }\n\t  \n\t  # Edges\n\t  edge [fontname = Arial, fontsize=8]\n\t  mod -> blank\n\t  iv -> blank [dir = none]\n\t  blank -> dv [minlen = 1]\n\n\t  # Graph\n\t  graph [layout = neato, overlap = true, outputorder = edgesfirst]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -505,7 +505,7 @@ time_c:rapport_c  0.1533761 0.04031029  3.804888 2.496199e-04</code></pre>
 <li><p>We should not use moderation designs “just to see what happens”. The statistical test alone does not <strong>prove</strong> the existence of the theoretical relationship.</p></li>
 </ul>
 </section>
-<section id="what-if-the-moderator-is-categorical" class="slide level2 smaller">
+<section id="what-if-the-moderator-is-categorical" class="slide level2">
 <h2>What if the moderator is categorical?</h2>
 <ul>
 <li><p>The moderator does not have to be continuous. In clinical research, we often test whether a relationship differs across groups (e.g., <em>Treatment</em> vs.&nbsp;<em>Control</em>).</p></li>
