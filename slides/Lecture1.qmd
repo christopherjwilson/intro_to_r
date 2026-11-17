@@ -58,7 +58,7 @@ There are many ongoing discussions in clinical psychology research. They will be
 - To investigate psychological disorders, assessment, treatment, prevention, professional training, ethics, and cultural diversity.
 
 ::: aside
-[@Blampied1998Research; @ComerKendall2013; @Kazdin2021Research; @2005Handbook; @Sanderson1991Research]
+[@blampied1998; @comer2013; @kazdin2021; @roberts2005; @sanderson1991]
 :::
 
 ::: notes
@@ -73,7 +73,7 @@ If we focus on the research that is designed to look at the causes of, or find e
 
 ![](images/psychopathologyResearch.png)
 
-[@ComerKendall2013]
+[@comer2013]
 
 ::: notes
 Comer and Kednall outline 4 types of clinical research and explain what can and cannot be understood through each of them.
@@ -83,7 +83,7 @@ The key here is to recognise that the inclusion of a clinical sample allows us t
 
 ## Experimental psychopathology research
 
-Sometimes referred to as "Type 1" clinical research [@ComerKendall2013]
+Sometimes referred to as "Type 1" clinical research [@comer2013]
 
 - Able to identify putative causal variables that are directly manipulable (i.e., How or why might psychopathology develop?).
 
@@ -101,7 +101,7 @@ However, an additional component of those with PTSD is a difficulty disengaging 
 
 ## Quasi experimental psychopathology research
 
-Sometimes referred to as "Type II" clinical research [@ComerKendall2013]
+Sometimes referred to as "Type II" clinical research [@comer2013]
 
 - Type II research can help identify independent variables that exacerbate, or modify the expression of, existing forms of abnormal behavior
 
@@ -114,7 +114,7 @@ Sometimes referred to as "Type II" clinical research [@ComerKendall2013]
 ::: notes
 Quasi experimental research example
 
-@FelminghamEtAl2010 recorded fMRI data in both male and female participants with a diagnosis of PTSD.
+@felmingham2010 recorded fMRI data in both male and female participants with a diagnosis of PTSD.
 
 - Trauma-exposed controls, and non-- trauma-exposed controls while they viewed masked facial expressions of fear.
 
@@ -147,7 +147,7 @@ It is also important to consider what type of studies existing research indicate
 
 # What is basic clinical research?
 
-"any type of psychological research investigating processes that are involved in the development and/or maintenance of psychopathology across any level of explanation (e.g., biological, cognitive, behavioral)" [@EhringEtAl2022]
+"any type of psychological research investigating processes that are involved in the development and/or maintenance of psychopathology across any level of explanation (e.g., biological, cognitive, behavioral)" [@ehring2022]
 
 - Could also be called fundamental or core research
 
@@ -160,7 +160,7 @@ Information about core psychological processes is essential to:
 - guide treatment development if the psychopathology process of interest can be modeled with sufficient detail
 
 ::: aside
-[@ForsythZvolensky2001].
+[@forsyth2001].
 :::
 
 ## How much are treatments informed by research?
@@ -168,7 +168,7 @@ Information about core psychological processes is essential to:
 - Only 23% of treatments showed a very strong link between basic research and the development of the intervention, and further 20% showed a strong link
 
 ::: aside
-[@EhringEtAl2022].
+[@ehring2022].
 :::
 
 ## Some of the issues with translating clinical psychology research into treatment/intervention
@@ -257,21 +257,21 @@ Research findings in clinical psychology are not as reliable as assumed, due to:
 - Retrospective reports lack objective information about external stumuli or order of events.
 
 ::: aside
-[@EhringEtAl2011]
+[@ehring2022]
 :::
 
 ## Why use clinical analogue studies? #2
 
-- Subclinical measurements can allow accurate modelling of relevant processes (e.g. Depression: @HillEtAl1987).
+- Subclinical measurements can allow accurate modelling of relevant processes (e.g. Depression: @hill1987).
 
 - Allows design of studies to better understand the relationship between:
 
   - treatment -\> process\
   - process -\> outcome
 
-[@EhringEtAl2022]
+[@ehring2022]
 
-- Allows control and focus on specific variables to identify mechanisms of change [@EhringEtAl2022]
+- Allows control and focus on specific variables to identify mechanisms of change [@ehring2022]
 
 ## Intervention -\> process -\> outcome
 
@@ -279,13 +279,13 @@ Research findings in clinical psychology are not as reliable as assumed, due to:
 
 ## Clinical relevance of analogue studies
 
-- "the nature and intensity of the target problem, not the clinical status of the subjects, are the critical variables in analogue research" (e.g., fear and phobias: @BorkovecRachman1979, p. 253).
+- "the nature and intensity of the target problem, not the clinical status of the subjects, are the critical variables in analogue research" (e.g., fear and phobias: @borkovec1979, p. 253).
 
-- Basic research has helped identify etiological factors in the development of many disorders - e.g. OCD: @Gibbs1996
+- Basic research has helped identify etiological factors in the development of many disorders - e.g. OCD: @gibbs1996
 
 - Symptoms can be prevalent in non-clinical populations, with similar qualitative expressions of experience and similar causal and maintenance factors
 
-  [@AbramowitzEtAl2001]
+  [@abramowitz2001]
 
 ## Limitations of clinical analogue studies? #1
 
@@ -299,7 +299,7 @@ Potential issues with clinical analogue studies include:
 
 ## Limitations of clinical analogue studies? #2 {.smaller}
 
-However, it has been argued that the limitations of clinical analogue studies are often overstated [@AbramowitzEtAl2014] and that the weaknesses of clinical analogue studies are often shared with clinical studies (i.e. poor research is poor research, regardless of the sample):
+However, it has been argued that the limitations of clinical analogue studies are often overstated [@abramowitz2014] and that the weaknesses of clinical analogue studies are often shared with clinical studies (i.e. poor research is poor research, regardless of the sample):
 
 - Lack of sufficient power in studies
 - Reliance on findings from single studies that have yet to be replicated

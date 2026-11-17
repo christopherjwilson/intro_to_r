@@ -73,7 +73,7 @@ When using sample data to make a categorical decision about a population paramet
   - It does **not** reflect the clinical magnitude or practical utility of the treatment.
 - **Statistical Significance** is a decision rule applied when the calculated $p$-value falls at or below a predetermined threshold ($\alpha$):
   - If $p \le \alpha$, we reject $H_0$.
-  - The threshold $\alpha = .05$ is a historical convention, representing a tolerated 5% long-run Type I error rate when $H_0$ is true [@wassersteinASAStatementPValues2016].
+  - The threshold $\alpha = .05$ is a historical convention, representing a tolerated 5% long-run Type I error rate when $H_0$ is true  [@wasserstein2016].
 
 # Part 2: Sampling Variability when ($H_0$ is True)
 
@@ -203,13 +203,13 @@ text(0, 0.15, "95% of studies under H0\nfall between -2.024 and +2.024", cex = 0
 - Q: Why do so many training programs teach $p \le .05$?
   - A: Because that is what journals and reviewers have historically required.
 - Q: Why do researchers continue to rely on $p \le .05$?
-  - A: Because that is what they were taught in graduate research methods [@wassersteinASAStatementPValues2016].
+  - A: Because that is what they were taught in graduate research methods [@wasserstein2016].
 
 ## What is the Problem with $p$-values?
 
 > "Researchers commonly use $p$-values to answer the question: How strongly does the evidence favor the alternative hypothesis relative to the null hypothesis? $p$-Values themselves do not directly answer this question and are often misinterpreted."
 >
-> — @benjaminThreeRecommendationsImproving2019
+> — @benjamin2019
 
 - A $p$-value near $.05$ provides only weak evidence against the null hypothesis.
 - A non-significant $p$-value ($p > .05$) does not demonstrate the absence of an effect; it merely indicates that the data are not sufficiently incompatible with $H_0$ under the chosen sample size.
@@ -221,7 +221,7 @@ text(0, 0.15, "95% of studies under H0\nfall between -2.024 and +2.024", cex = 0
 3.  Scientific conclusions and clinical decisions should not be based solely on whether a $p$-value passes an arbitrary threshold.
 4.  Proper inference requires full reporting and transparency (no selective reporting or $p$-hacking).
 5.  A $p$-value does not measure the size of an effect or the clinical importance of a result.
-6.  By itself, a $p$-value does not provide a good measure of evidence regarding a model or hypothesis [@wassersteinASAStatementPValues2016].
+6.  By itself, a $p$-value does not provide a good measure of evidence regarding a model or hypothesis [@wasserstein2016].
 
 ## $p$-values are Instable Across Replications
 
@@ -297,8 +297,8 @@ An **effect size** is a quantitative index of the magnitude of a difference, rel
   - Small sample effect sizes have extreme variance; a sample $d = 0.60$ from $N = 20$ may easily reflect a population effect of $d = 0.15$.
   - "Follow-up bias": Researchers only proceed to a full trial when the pilot effect happens to land high.
 - **Better alternatives:**
-  - Define the **Smallest Effect Size of Interest (SESOI)** based on clinical cost-benefit and patient impact [@lakensPerformingHighpoweredStudies2014].
-  - Use safeguard power analysis (taking the lower bound of the CI from prior literature) [@peruginiSafeguardPowerProtection2014].
+  - Define the **Smallest Effect Size of Interest (SESOI)** based on clinical cost-benefit and patient impact [@lakens2014].
+  - Use safeguard power analysis (taking the lower bound of the CI from prior literature) [@perugini2014].
 
 
 # Part 5: Sampling When an Effect Exists ($H_1$ is True)

@@ -157,6 +157,12 @@ The sample size required to achieve a power of 0.80 for a t-test with the specif
 
 ## Power analysis by simulation
 
+```{=html}
+<div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%">
+	<iframe src="https://teesside.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=045c359a-7e3d-4b0e-a302-b50500f327a7&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" style="border: 1px solid #464646; position: absolute; top: 0; left: 0; width: 100%; height: 100%; box-sizing: border-box;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="Power analysis by simulation: 2 group design (t-test)"></iframe>
+</div>
+```
+
 For more complex designs, different approaches to power analysis might be necessary, such as using simulation. This is approach us based on simulating the type of data you expect to see in your study.
 
 That is to say, if you are planning a study based on a difference between two means, you would simulate the data based on the expected means, and standard deviations. Or if you are planning a regression study, you would simulate data based on the expected regression coefficients. By doing this, you can create many simulated datasets that reflect the design of your planned study.
@@ -205,11 +211,13 @@ The above code simulates data for a study with two groups (treatment and control
 
 In the simulation, we keep the standard deviations the same for each group to simplify the analysis and focus on the effect of the difference in means. By keeping the standard deviations constant, we can isolate the impact of the mean difference on the statistical power of the test. However, there might be situations where the standard deviations differ between groups, and in such cases, the simulation can be adjusted accordingly to reflect the expected variability in the data.
 :::
+
 ::: {.callout-tip}
 ## Do the exact mean values matter?
 
 Yes and no, the exact mean values themselves do not matter as much as the difference between them (the effect size). In power analysis, we are primarily concerned with the magnitude of the effect we want to detect, rather than the specific values of the means. Therefore, when simulating data for power analysis, it is more important to focus on the difference between the means rather than their absolute values.
 :::
+
 ::: {.callout-tip}
 ## Can we simulate a specific effect size directly?
 
@@ -281,13 +289,14 @@ data.frame(pval, is_sig)
 
 The code above is the same as before, but wrapped in a function called `sim_data()`. The function takes three arguments: `n` (the sample size per group), `m1` (the mean for group 1), and `m2` (the mean for group 2). The function returns a data frame with the p-value and whether the result is significant. By using this function, we can easily repeat the simulation multiple times.
 
-::: {.callout-tip}
+:::{.callout-tip}
 
 ## Why use a function for the simulation?
 
 Using a function for the simulation allows us to encapsulate the simulation logic in a reusable way. This makes it easier to run the simulation multiple times with different parameters (e.g., sample size, means) without having to rewrite the code each time. It also improves code organization and readability, making it clear what the simulation does and what inputs it requires.
 :::
-::: {.callout-tip}
+
+:::{.callout-tip}
 ## What are the inputs to the function?
 
 These are the values what we might want to vary when planning a study. The sample size per group (`n`) is important because it directly affects the power of the study. The means for each group (`m1` and `m2`) determine the effect size we want to detect. By varying these inputs, we can modify the sample size and effect size in our simulations to see how they impact the power of the study.
@@ -325,7 +334,7 @@ Then, we use a for loop to run the `sim_data()` function 1000 times, storing the
 Finally, we calculate the power by taking the mean of the `is_sig` column, which gives us the proportion of simulations where the result was statistically significant.
 
 Normally, we would want the power to be at least 0.80, meaning that we would correctly reject the null hypothesis in at least 80% of the simulations when there is a true effect. If the calculated power is lower than this threshold, we may need to increase the sample size to achieve the desired power level.
-:::
+
 
 ::: {.callout-tip}
 ## Why do we use a loop to run the simulation multiple times?

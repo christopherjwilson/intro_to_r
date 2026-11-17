@@ -83,6 +83,7 @@ For example, if we are looking at whether *Time in counselling* and *Rapport lev
 -   With the interaction, we consider the effect of *Time in counselling* on *General Wellbeing* at different levels of *Rapport level with clinician* (or vice versa).
 
 ```{r echo=F, eval = T}
+library(dplyr)
 
 # load datasets/modData.csv
 
@@ -160,8 +161,10 @@ summary(model1)
 
 ```{r eval = T, echo = T}
 
-modData$time_c <- scale(modData$timeInCounselling, scale = FALSE)
-modData$rapport_c <- scale(modData$rapportLevel, scale = FALSE)
+modData$time_c <- scale(modData$timeInCounselling, scale = FALSE) %>% as.numeric()
+modData$rapport_c <- scale(modData$rapportLevel, scale = FALSE)  %>% as.numeric()
+
+# be sure to use as.numeric when scaling data so you don't get an error later down the line!
 
 model1_c <- lm(data = modData, generalWellbeing ~ time_c * rapport_c)
 summary(model1_c)$coefficients
